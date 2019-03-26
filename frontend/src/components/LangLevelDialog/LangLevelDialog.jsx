@@ -34,7 +34,7 @@ class LangLevelDialog extends React.Component {
                     onClick={this.handleClickListItem}
                     variant="contained"
                 >
-                    Language Level
+                    Level of speaking
                 </Button>
                 <ConfirmationDialogRaw
                     classes={{
