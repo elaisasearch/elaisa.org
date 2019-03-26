@@ -8,17 +8,15 @@ import Dialog from '@material-ui/core/Dialog';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Radio from '@material-ui/core/Radio';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import { Typography } from '@material-ui/core';
 
 const options = [
     'A1',
     'A2',
-    'A3',
     'B1',
     'B2',
-    'B3',
     'C1',
     'C2',
-    'C3'
 ];
 
 class ConfirmationDialogRaw extends React.Component {
@@ -64,8 +62,11 @@ class ConfirmationDialogRaw extends React.Component {
         aria-labelledby="confirmation-dialog-title"
         {...other}
       >
-        <DialogTitle id="confirmation-dialog-title">Language Level</DialogTitle>
+        <DialogTitle id="confirmation-dialog-title">Level of speaking</DialogTitle>
         <DialogContent>
+          <Typography variant="body1">
+          Please select your level of speaking of the desired language so that I can search for suitable articles for you.
+          </Typography>
           <RadioGroup
             ref={ref => {
               this.radioGroupRef = ref;
