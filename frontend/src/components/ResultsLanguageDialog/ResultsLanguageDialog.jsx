@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
-import ConfirmationDialogRaw from '../LangLevelDialog/ConfirmationDialogRaw';
+import LanguageDialog from './LanguageDialog';
 
 const styles = theme => ({
     paper: {
@@ -34,9 +34,9 @@ class ResultsLanguageDialog extends React.Component {
                     onClick={this.handleClickListItem}
                     variant="contained"
                 >
-                    Results Language
+                    Language of results
                 </Button>
-                <ConfirmationDialogRaw
+                <LanguageDialog
                     classes={{
                         paper: classes.paper,
                     }}
