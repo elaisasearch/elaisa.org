@@ -11,12 +11,12 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { Typography } from '@material-ui/core';
 
 const options = [
-    'A1',
-    'A2',
-    'B1',
-    'B2',
-    'C1',
-    'C2',
+  'A1',
+  'A2',
+  'B1',
+  'B2',
+  'C1',
+  'C2',
 ];
 
 class ConfirmationDialogRaw extends React.Component {
@@ -64,8 +64,11 @@ class ConfirmationDialogRaw extends React.Component {
       >
         <DialogTitle id="confirmation-dialog-title">Level of speaking</DialogTitle>
         <DialogContent>
-          <Typography variant="body1">
-          Please select your level of speaking of the desired language so that I can search for suitable articles for you.
+          <Typography variant="body1" paragraph>
+            Please select your level of speaking of the desired language so that I can search for suitable articles for you.
+          </Typography>
+          <Typography variant="caption" paragraph>
+            If you don't know your actual level, click on the menu on the top left to choose a online test.
           </Typography>
           <RadioGroup
             ref={ref => {
