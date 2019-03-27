@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { List, Divider, ListItem, ListItemIcon, ListItemText, Collapse, ListSubheader } from '@material-ui/core/';
-import { Share, ExpandLess, ExpandMore, Mail, Home, Assignment } from '@material-ui/icons/';
+import { Share, ExpandLess, ExpandMore, Home } from '@material-ui/icons/';
 import style from '../../assets/jss/MenuStyle';
 import MenuHelper from './MenuHelper';
 

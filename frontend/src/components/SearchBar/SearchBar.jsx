@@ -6,32 +6,52 @@ import TextField from '@material-ui/core/TextField';
 import styles from '../../assets/jss/SearchBarStyle';
 
 
-const SearchBar = (props) => {
-  const { classes } = props;
+class SearchBar extends React.Component {
 
-  return (
-    <div style={styles.root}>
-      <TextField
-        style={styles.margin}
-        InputLabelProps={{
-          classes: {
-            root: classes.cssLabel,
-            focused: classes.cssFocused,
-          },
-        }}
-        InputProps={{
-          classes: {
-            root: classes.cssOutlinedInput,
-            focused: classes.cssFocused,
-            notchedOutline: classes.notchedOutline,
-          },
-        }}
-        label="Search for documents in a specific language"
-        variant="outlined"
-        id="custom-css-outlined-input"
-      />
-    </div>
-  );
+  constructor(props) {
+    super(props)
+    this.state = {
+      searchValue: ''
+    }
+  }
+
+  keyPress = (e) => {
+    // get the input when user cliks enter (13)
+    if(e.keyCode === 13){
+      console.log(e.target.value)
+       this.setState({
+         searchValue: e.target.value
+       })
+    }
+ }
+  render() {
+    const { classes } = this.props;
+    return (
+      <div style={styles.root}>
+        <TextField
+          onKeyDown={this.keyPress}
+          style={styles.margin}
+          InputLabelProps={{
+            classes: {
+              root: classes.cssLabel,
+              focused: classes.cssFocused,
+            },
+          }}
+          InputProps={{
+            classes: {
+              root: classes.cssOutlinedInput,
+              focused: classes.cssFocused,
+              notchedOutline: classes.notchedOutline,
+            },
+          }}
+          label="Search for documents in a specific language"
+          variant="outlined"
+          id="custom-css-outlined-input"
+        />
+      </div>
+    );
+  }
+
 }
 
 export default withStyles(styles)(SearchBar);

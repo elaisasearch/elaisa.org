@@ -10,7 +10,7 @@ const MenuHelper = (props) => {
     const { href, style, text, flag} = props
     return (
         <ListItemLink href={href} style={style}>
-            <img src={flag} style={{width:"10%"}}></img>
+            <img src={flag} alt="flag" style={{width:"10%"}}></img>
             <ListItemText primary={text} />
         </ListItemLink>
     );
