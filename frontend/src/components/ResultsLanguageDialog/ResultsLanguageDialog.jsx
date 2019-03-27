@@ -32,7 +32,7 @@ class ResultsLanguageDialog extends React.Component {
     handleClose = value => {
         this.setState({ value, open: false });
         this.props.onClose(value);
-        this.languageButtonText = `Language: ${value}`;
+        this.languageButtonText = value === undefined ? "Language of Results" : `Language: ${value}`;
     };
 
     render() {

@@ -31,7 +31,7 @@ class LangLevelDialog extends React.Component {
     handleClose = value => {
         this.setState({ value, open: false });
         this.props.onClose(value);
-        this.levelButtonText = `Level: ${value}`;
+        this.levelButtonText = value === undefined ? "Level of Speaking" : `Level: ${value}`;        ;
     };
 
     render() {
