@@ -15,8 +15,8 @@ const options = [
   'Deutsch',
   'English',
   'Français',
-  'Spanish',
-  'Italian'
+  'Español',
+  'Italiano'
 ];
 
 class LanguageDialog extends React.Component {
