@@ -7,7 +7,7 @@ import styles from '../../assets/jss/SearchBarNavigationBarStyle';
 
 
 const SearchBar = (props) => {
-    const { classes } = props;
+    const { classes, value } = props;
 
     return (
         <div style={styles.root}>
@@ -18,6 +18,7 @@ const SearchBar = (props) => {
                 fullWidth
                 margin="normal"
                 variant="outlined"
+                value={value}
                 InputProps={{
                     classes: {
                       root: classes.cssOutlinedInput,

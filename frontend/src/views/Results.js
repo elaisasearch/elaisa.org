@@ -3,14 +3,12 @@ import NavigationBar from '../components/NavigiationBar/NavigationBar';
 
 class Results extends React.Component {
 
-    constructor(props) {
-        super(props)
-    }
-
     render() {
+        const searchValue = this.props.location.state.searchValue;
+
         return (
             <div>
-                <NavigationBar results/>
+                <NavigationBar results value={searchValue}/>
             </div>
         );
     }

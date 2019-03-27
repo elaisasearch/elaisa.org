@@ -10,12 +10,14 @@ import SearchBarNavigationBar from '../SearchBar/SearchBarNavigationBar';
 const NavigationBar = (props) => {
 
   const renderSearchBar = (props) => {
+    const searchValue = props.value
     if (props.results) {
-      return <SearchBarNavigationBar/>
+      return <SearchBarNavigationBar value={searchValue}/>
     }
   }
 
   return (
+
     <div style={styles.root}>
       <AppBar position="static" id="navBar" style={styles.appBar}>
         <Toolbar>
