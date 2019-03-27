@@ -13,10 +13,17 @@ const styles = theme => ({
 });
 
 class ResultsLanguageDialog extends React.Component {
-    state = {
-        open: false,
-        value: 'Dione',
-    };
+
+    constructor(props) {
+        super();
+        this.state = {
+            open: false,
+            value: props.value,
+        };
+    }
+
+    languageButtonText = "Language of Results";
+
 
     handleClickListItem = () => {
         this.setState({ open: true });
@@ -24,6 +31,8 @@ class ResultsLanguageDialog extends React.Component {
 
     handleClose = value => {
         this.setState({ value, open: false });
+        this.props.onClose(value);
+        this.languageButtonText = `Language: ${value}`;
     };
 
     render() {
@@ -34,14 +43,14 @@ class ResultsLanguageDialog extends React.Component {
                     onClick={this.handleClickListItem}
                     variant="contained"
                 >
-                    Language of results
+                    {this.languageButtonText}
                 </Button>
                 <LanguageDialog
                     classes={{
                         paper: classes.paper,
                     }}
                     open={this.state.open}
-                    onClose={this.handleClose}
+                    onClose={e => this.handleClose(e)}
                     value={this.state.value}
                 />
             </div>

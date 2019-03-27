@@ -13,10 +13,16 @@ const styles = theme => ({
 });
 
 class LangLevelDialog extends React.Component {
-    state = {
-        open: false,
-        value: 'Dione',
-    };
+
+    constructor(props) {
+        super();
+        this.state = {
+            open: false,
+            value: props.value,
+        };
+    }
+
+    levelButtonText = "Level of speaking";
 
     handleClickListItem = () => {
         this.setState({ open: true });
@@ -24,24 +30,26 @@ class LangLevelDialog extends React.Component {
 
     handleClose = value => {
         this.setState({ value, open: false });
+        this.props.onClose(value);
+        this.levelButtonText = `Level: ${value}`;
     };
 
     render() {
         const { classes } = this.props;
         return (
-            <div style={{margin:"1%"}}>
+            <div style={{ margin: "1%" }}>
                 <Button
                     onClick={this.handleClickListItem}
                     variant="contained"
                 >
-                    Level of speaking
+                    {this.levelButtonText}
                 </Button>
                 <ConfirmationDialogRaw
                     classes={{
                         paper: classes.paper,
                     }}
                     open={this.state.open}
-                    onClose={this.handleClose}
+                    onClose={e => this.handleClose(e)}
                     value={this.state.value}
                 />
             </div>

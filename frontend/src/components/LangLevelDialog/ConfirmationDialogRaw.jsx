@@ -27,7 +27,6 @@ class ConfirmationDialogRaw extends React.Component {
     };
   }
 
-  // TODO
   componentWillReceiveProps(nextProps) {
     if (nextProps.value !== this.props.value) {
       this.setState({ value: nextProps.value });
