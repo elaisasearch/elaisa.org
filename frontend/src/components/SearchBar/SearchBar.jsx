@@ -27,10 +27,10 @@ class SearchBar extends React.Component {
   keyPress = (e) => {
     // get the input when user cliks enter (13)
     if (e.keyCode === 13) {
-      console.log(e.target.value)
+      console.log(`Search Query: ${e.target.value}`)
       if (e.target.value.length === 0) {
         alert("Please type in a search value")
-      } else if (this.state.language.length === 0 || this.state.level.length === 0) {
+      } else if (this.state.level === undefined || this.state.language === undefined || this.state.language.length === 0 || this.state.level.length === 0) {
         alert("Please define your level and a language")
       } else {
         // https://stackoverflow.com/questions/44121069/how-to-pass-params-with-history-push-link-redirect-in-react-router-v4
