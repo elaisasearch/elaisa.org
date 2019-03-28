@@ -18,7 +18,7 @@ const SearchBar = (props) => {
                 fullWidth
                 margin="normal"
                 variant="outlined"
-                value={value}
+                defaultValue={value}
                 InputProps={{
                     classes: {
                       root: classes.cssOutlinedInput,
