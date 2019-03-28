@@ -35,6 +35,7 @@ class DropDownMenu extends React.Component {
 
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
+    console.log("DropDown", event.target.value)
     this.props.onChange(event.target.value);
 
   };
@@ -54,7 +55,8 @@ class DropDownMenu extends React.Component {
             {desc}
           </InputLabel>
           <Select
-            value={value === undefined ? this.state.pickedData : value}
+            // value={value === undefined ? this.state.pickedData : value}
+            value={this.state.pickedData}
             onChange={this.handleChange}
             input={
               <OutlinedInput             
