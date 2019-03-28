@@ -41,7 +41,7 @@ class DropDownMenu extends React.Component {
   };
 
   render() {
-    const { classes, items, desc, value } = this.props;
+  const { classes, items, desc, /*value*/ } = this.props;
 
     return (
       <form className={classes.root} autoComplete="off">

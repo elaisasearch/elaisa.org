@@ -8,11 +8,6 @@ import styles from '../../assets/jss/SearchBarNavigationBarStyle';
 
 class SearchBar extends React.Component {
 
-    constructor(props) {
-        super(props)
-
-    }
-
     handleChange = (e) => {
         this.props.onChange(e.target.value);
     }
