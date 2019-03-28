@@ -17,9 +17,9 @@ class NavigationBar extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      value: '',
-      level: '',
-      language: ''
+      value: props.values === undefined ? '' : props.values[0],
+      language: props.values === undefined ? '' : props.values[1],
+      level: props.values === undefined ? '' : props.values[2]
     }
   }
 
