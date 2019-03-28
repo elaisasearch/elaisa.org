@@ -10,20 +10,29 @@ import SearchBarNavigationBar from '../SearchBar/SearchBarNavigationBar';
 
 import DropDownMenu from '../DropDownMenu/DropDownMenu';
 
-const NavigationBar = (props) => {
+class NavigationBar extends React.Component {
 
-  const renderSearchBar = (props) => {
+  constructor(props) {
+    super(props)
+    this.state = {
+      value: '',
+      level: '',
+      language: ''
+    }
+  }
+
+  renderSearchBar = (props) => {
     const searchValue = props.value
     if (props.results) {
       return <div style={{display: "flex", flexGrow: 1}}>
         <SearchBarNavigationBar value={searchValue}/>
-        <DropDownMenu desc="Result Language" items={["Deutsch", "English", "Español"]} />
-        <DropDownMenu desc="Language Level" items={["A1", "A2", "B1", "B2", "C1", "C2"]} />
+        <DropDownMenu desc="Result Language" items={["Deutsch", "English", "Español"]} onChange={e => this.setState({ language: e })} />
+        <DropDownMenu desc="Language Level" items={["A1", "A2", "B1", "B2", "C1", "C2"]} onChange={e => this.setState({ level: e })} />
       </div>
     }
   }
 
-  const renderFilterBar = (props) => {
+  renderFilterBar = (props) => {
     if (props.results) {
       return <div style={{ marginLeft: "9vh", padding: "1vh" }}>
         <Button>All</Button>
@@ -33,20 +42,22 @@ const NavigationBar = (props) => {
     }
   }
 
-  return (
+  render() {
+    return (
 
-    <div style={styles.root}>
-      <AppBar position="static" id="navBar" style={styles.appBar}>
-        <Toolbar>
-          <div>
-            <LeftMenu />
-          </div>
-          {renderSearchBar(props)}
-        </Toolbar>
-        {renderFilterBar(props)}
-      </AppBar>
-    </div>
-  );
+      <div style={styles.root}>
+        <AppBar position="static" id="navBar" style={styles.appBar}>
+          <Toolbar>
+            <div>
+              <LeftMenu />
+            </div>
+            {this.renderSearchBar(this.props)}
+          </Toolbar>
+          {this.renderFilterBar(this.props)}
+        </AppBar>
+      </div>
+    );
+  }
 }
 
 export default NavigationBar;
