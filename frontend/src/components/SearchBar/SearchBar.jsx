@@ -23,7 +23,6 @@ class SearchBar extends React.Component {
   }
 
   keyPress = (e) => {
-    console.log(e)
     // get the input when user cliks enter (13)
     if (e.keyCode === 13) {
       console.log(`Search Query: ${e.target.value}`)

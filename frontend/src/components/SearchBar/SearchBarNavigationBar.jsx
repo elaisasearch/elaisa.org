@@ -6,29 +6,46 @@ import TextField from '@material-ui/core/TextField';
 import styles from '../../assets/jss/SearchBarNavigationBarStyle';
 
 
-const SearchBar = (props) => {
-    const { classes, value } = props;
+class SearchBar extends React.Component {
 
-    return (
-        <div style={styles.root}>
-            <TextField
-                id="outlined-full-width"
-                style={{ margin: 8, borderColor: "grey" }}
-                placeholder="Search for documents"
-                fullWidth
-                margin="normal"
-                variant="outlined"
-                defaultValue={value}
-                InputProps={{
-                    classes: {
-                      root: classes.cssOutlinedInput,
-                      focused: classes.cssFocused,
-                      notchedOutline: classes.notchedOutline,
-                    },
-                  }}
-            />
-        </div>
-    );
+    constructor(props) {
+        super(props)
+
+    }
+
+    handleChange = (e) => {
+        this.props.onChange(e.target.value);
+    }
+
+    handleKeyDown = (e) => {
+        this.props.onKeyDown(e);
+    }
+
+    render() {
+        const { classes, value } = this.props;
+        return (
+            <div style={styles.root}>
+                <TextField
+                    onKeyDown={e => this.handleKeyDown(e)}
+                    onChange={e => this.handleChange(e)}
+                    id="outlined-full-width"
+                    style={{ margin: 8, borderColor: "grey" }}
+                    placeholder="Search for documents"
+                    fullWidth
+                    margin="normal"
+                    variant="outlined"
+                    defaultValue={value}
+                    InputProps={{
+                        classes: {
+                            root: classes.cssOutlinedInput,
+                            focused: classes.cssFocused,
+                            notchedOutline: classes.notchedOutline,
+                        },
+                    }}
+                />
+            </div>
+        );
+    }
 }
 
 export default withStyles(styles)(SearchBar);
