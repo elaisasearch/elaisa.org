@@ -10,7 +10,7 @@ Before you can start the app, you have to install all dependencies shown in the 
 
 To start the project , you can run this command in the *language-level-search-engine/frontend* directory:
 
-### `yarn start`
+` yarn start `
 
 This runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -25,10 +25,10 @@ Node.JS must be installed on your machine to run the *yarn* command
 
 If you started the application you will see the following website: 
 
-![landingpage](./docs/pics/landingpage.png)
+![landingpage](../docs/pics/landingpage.png)
 
 Now you have to define the **language of the found results** and your **language level** for this chosen result language. After this, just type in a search value, such as **dog**. 
 
 Now, just klick the Enter key or click on the **SEARCH** button and get to the results page (shown below). For now, there are no results so the page is white. In the navigation bar you can see your chosen values. In the future you will have the ability to filter the results for "All", "News" or "Blogs" (examples). 
 
-![resultspage](./docs/pics/resultspage.png)
+![resultspage](../docs/pics/resultspage.png)
