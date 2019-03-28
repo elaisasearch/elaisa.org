@@ -22,7 +22,7 @@ const styles = theme => ({
 
 class DropDownMenu extends React.Component {
   state = {
-    age: '',
+    pickedData: '',
     name: '',
     labelWidth: 0,
   };
@@ -40,7 +40,7 @@ class DropDownMenu extends React.Component {
   };
 
   render() {
-    const { classes, items, desc } = this.props;
+    const { classes, items, desc, value } = this.props;
 
     return (
       <form className={classes.root} autoComplete="off">
@@ -54,12 +54,12 @@ class DropDownMenu extends React.Component {
             {desc}
           </InputLabel>
           <Select
-            value={this.state.age}
+            value={value === undefined ? this.state.pickedData : value}
             onChange={this.handleChange}
             input={
               <OutlinedInput             
                 labelWidth={this.state.labelWidth}
-                name="age"
+                name="pickedData"
                 id="outlined-age-simple"
               />
             }
