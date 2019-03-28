@@ -8,8 +8,8 @@ import MenuHelper from './MenuHelper';
 import german from '../../assets/img/menu_flags/german.jpg';
 import english from '../../assets/img/menu_flags/english.jpg';
 import spanish from '../../assets/img/menu_flags/spanish.jpg';
-import french from '../../assets/img/menu_flags/french.jpg';
-import italian from '../../assets/img/menu_flags/italian.jpg';
+// import french from '../../assets/img/menu_flags/french.jpg';
+// import italian from '../../assets/img/menu_flags/italian.jpg';
 
 function ListItemLink(props) {
     return <ListItem button component="a" {...props} />;
@@ -50,11 +50,11 @@ class SideList extends Component {
                     </ListItem>
                     <Collapse in={this.state.open} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
-                            <MenuHelper href="https://github.com/AlexTeusz" flag={german} style={style.nested} text="Deutsch" />
-                            <MenuHelper href="https://twitter.com/AlexTeusz" flag={english} style={style.nested} text="English" />
-                            <MenuHelper href="https://www.facebook.com/alex.teusz?ref=bookmarks" flag={french} style={style.nested} text="Français" />
-                            <MenuHelper href="https://www.instagram.com/alexteusz/" flag={spanish} style={style.nested} text="Español" />
-                            <MenuHelper href="https://www.linkedin.com/in/alexander-teusz-7b1312153/" flag={italian} style={style.nested} text="Italiano" />
+                            <MenuHelper href="https://sprachtest.de/einstufungstest-deutsch" flag={german} style={style.nested} text="Deutsch" />
+                            <MenuHelper href="https://sprachtest.de/einstufungstest-englisch" flag={english} style={style.nested} text="English" />
+                            {/* <MenuHelper href="https://sprachtest.de/einstufungstest-franzoesisch" flag={french} style={style.nested} text="Français" /> */}
+                            <MenuHelper href="https://sprachtest.de/einstufungstest-spanisch" flag={spanish} style={style.nested} text="Español" />
+                            {/* <MenuHelper href="https://sprachtest.de/einstufungstest-italienisch" flag={italian} style={style.nested} text="Italiano" /> */}
                             <Divider />
                         </List>
                     </Collapse>
