@@ -2,9 +2,7 @@ const styles = {
     root: {
     },
     margin: {
-      width: "50%",
-      marginTop: "5%",
-      marginBottom: "1%"
+      width: "70%",
     },
     cssLabel: {
       '&$cssFocused': {
@@ -18,6 +16,14 @@ const styles = {
       },
     },
     notchedOutline: {},
+    pickers: {
+      display: "flex",
+      justifyContent: "center",
+      marginTop: "5%"
+    },
+    searchButton: {
+      marginTop:"1%"
+    }
 };
 
 export default styles;
