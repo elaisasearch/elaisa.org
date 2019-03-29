@@ -1,7 +1,7 @@
 import scrapy
 
 
-class QuotesSpider(scrapy.Spider):
+class NewsSpider(scrapy.Spider):
     name = "news_de_DE"
     start_urls = [
         'https://www.tagesschau.de/inland/ruestungsexporte-169.html',
