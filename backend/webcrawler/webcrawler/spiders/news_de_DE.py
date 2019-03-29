@@ -15,10 +15,16 @@ class QuotesSpider(scrapy.Spider):
         for data in response.css('html'):
             yield {
                 'url': url,
+                'meta': {
+                    'keywords': data.css('meta[name*=eywords]::attr(content)').get(),
+                    'author': data.css("meta[name*=uthor]::attr(content)").get(),
+                    'publisher': data.css("meta[name*=ublisher]::attr(content)").get(),
+                    'desc': data.css("meta[name*=escription]::attr(content)").get(),
+                    'date': data.css("meta[name*=ate]::attr(content)").get()
+                },
                 'title': data.css('title::text').get(),
                 'abstract': data.css('strong::text').get(),
                 'text': data.css('p::text').getall()
             }
-        next_page = response.css('div.linklist li a::attr(href)').get()
-        if next_page is not None:
-            yield response.follow(next_page, callback=self.parse)
+        for a in response.css('a::attr(href)'):
+            yield response.follow(a, callback=self.parse)
