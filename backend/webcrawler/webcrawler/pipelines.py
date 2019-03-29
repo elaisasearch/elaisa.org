@@ -49,7 +49,7 @@ class MongoPipeline(object):
         self.client.close()
 
     def process_item(self, item, spider):
-        if spider.name == "news_de_DE" and item['meta']['language'] == "de":
+        if spider.name == "news_de_DE":
             self.collection_name = 'news_de_DE'
         else: 
             self.collection_name = 'crawled_items'
