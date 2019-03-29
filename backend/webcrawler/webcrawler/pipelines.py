@@ -7,9 +7,11 @@
 from scrapy.exceptions import DropItem
 import pymongo
 
+
 class WebcrawlerPipeline(object):
     def process_item(self, item, spider):
         return item
+
 
 class DuplicatesPipeline(object):
 
@@ -26,7 +28,7 @@ class DuplicatesPipeline(object):
 
 class MongoPipeline(object):
 
-    collection_name = 'news_de_DE'
+    collection_name = ""
 
     def __init__(self, mongo_uri, mongo_db):
         self.mongo_uri = mongo_uri
@@ -47,5 +49,10 @@ class MongoPipeline(object):
         self.client.close()
 
     def process_item(self, item, spider):
+        if spider.name == "news_de_DE" and item['meta']['language'] == "de":
+            self.collection_name = 'news_de_DE'
+        else: 
+            self.collection_name = 'crawled_items'
+
         self.db[self.collection_name].insert_one(dict(item))
         return item
