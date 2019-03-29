@@ -26,7 +26,7 @@ class DuplicatesPipeline(object):
 
 class MongoPipeline(object):
 
-    collection_name = 'german'
+    collection_name = 'news_de_DE'
 
     def __init__(self, mongo_uri, mongo_db):
         self.mongo_uri = mongo_uri
