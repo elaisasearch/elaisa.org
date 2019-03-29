@@ -11,8 +11,10 @@ class QuotesSpider(scrapy.Spider):
     ]
 
     def parse(self, response):
+        url = response.url
         for data in response.css('html'):
             yield {
+                'url': url,
                 'title': data.css('title::text').get(),
                 'abstract': data.css('strong::text').get(),
                 'text': data.css('p::text').getall()
