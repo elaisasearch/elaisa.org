@@ -21,6 +21,10 @@ NEWSPIDER_MODULE = 'webcrawler.spiders'
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
 
+# Mongo DB
+MONGO_URI= "mongodb://127.0.0.1:27017"
+MONGO_DATABASE = "LanguageLevelSearchEngine"
+
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
 
@@ -66,6 +70,7 @@ ROBOTSTXT_OBEY = True
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
     'webcrawler.pipelines.DuplicatesPipeline': 300,
+    'webcrawler.pipelines.MongoPipeline': 500,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
