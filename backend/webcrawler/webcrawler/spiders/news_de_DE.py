@@ -4,10 +4,14 @@ import scrapy
 class NewsSpider(scrapy.Spider):
     name = "news_de_DE"
     start_urls = [
+        'http://www.spiegel.de/',
+        'https://www.tagesschau.de/',
+        'https://www1.wdr.de/'
         'https://www.tagesschau.de/inland/ruestungsexporte-169.html',
-        'https://www.tagesschau.de/ausland/brexit-879.html',
-        'https://www.tagesschau.de/ausland/ukraine-odessa-101.html',
-        'https://www.tagesschau.de/ausland/guaido-venezuela-109.html'
+        'https://www1.wdr.de/sport/fussball/vorbericht-bayer-leverkusen-in-hoffenheim-100.htmls',
+        'http://www.spiegel.de/politik/ausland/brexit-eu-koennte-grossbritannien-verlaengerung-verweigern-a-1260391.html'
+
+
     ]
 
     def parse(self, response):
@@ -26,9 +30,9 @@ class NewsSpider(scrapy.Spider):
                     },
                     'title': data.css('title::text').get(),
                     'abstract': data.css('strong::text').get(),
-                    'text': "".join(str(element) for element in data.css('p::text').getall()) 
+                    'text': "".join(str(element) for element in data.css('p::text').getall())
                 }
-            else: 
+            else:
                 continue
         for a in response.css('a::attr(href)'):
             yield response.follow(a, callback=self.parse)
