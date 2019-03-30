@@ -5,25 +5,30 @@ except: from functools import reduce
 try:    raw_input
 except: raw_input = input
 from collections import Counter
+from pymongo import MongoClient
 
  # source: http://rosettacode.org/wiki/Inverted_index#Python
- 
-def parsetexts(fileglob='InvertedIndex/T*.txt'):
+
+def parseMongo():
+    client = MongoClient('mongodb://localhost:27017/')
+    db = client["LanguageLevelSearchEngine"]
+    collection = db["news_de_DE"]
     texts, words = {}, set()
-    for txtfile in glob(fileglob):
-        with open(txtfile, 'r') as f:
-            txt = f.read().split()
-            words |= set(txt)
-            texts[txtfile.split('\\')[-1]] = txt
+    for news in collection.find():
+        pp(str(news["_id"]))
+        txt = news["text"].split()
+        words |= set(txt)
+        texts[str(news["_id"])] = txt
+        break
     return texts, words
 
-texts, words = parsetexts()
-print('\nTexts')
-pp(texts)
-print('\nWords')
-pp(sorted(words))
+texts, words = parseMongo()
+#print('\nTexts')
+#pp(texts)
+#print('\nWords')
+#pp(sorted(words))
 
-terms = ["what", "is", "it"]
+terms = ["sie", "wie"]
 
 
 def termsearch(terms): # Searches full inverted index
@@ -59,20 +64,24 @@ finvindex = {word:set((txt, wrdindx)
                       if word in wrds)
              for word in words}
  
-print('\nFull Inverted Index')
-pp({k:sorted(v) for k,v in finvindex.items()})
+#print('\nFull Inverted Index')
+#pp({k:sorted(v) for k,v in finvindex.items()})
  
 print('\nTerm Search on full inverted index for: ' + repr(terms))
 pp(sorted(termsearch(terms)))
  
-phrase = '"what is it"'
+phrase = '"beim dritten Mal"'
 print('\nPhrase Search for: ' + phrase)
 print(phrasesearch(phrase))
  
 # Show multiple match capability
-phrase = '"it is"'
+phrase = '"Sie"'
 print('\nPhrase Search for: ' + phrase)
 ans = phrasesearch(phrase)
 print(ans)
 ans = Counter(ans)
-print('  The phrase is found most commonly in text: ' + repr(ans.most_common(1)[0][0]))
+# print('  The phrase is found most commonly in text: ' + repr(ans.most_common(1)[0][0]))
+try: 
+    print('  The phrase is found most commonly in text: ' + repr(ans.most_common(1)[0][0]))
+except: 
+    print('  The phrase is found most commonly in text: ' + repr(ans.most_common(1)))
