@@ -15,11 +15,9 @@ def parseMongo():
     collection = db["news_de_DE"]
     texts, words = {}, set()
     for news in collection.find():
-        pp(str(news["_id"]))
         txt = news["text"].split()
         words |= set(txt)
         texts[str(news["_id"])] = txt
-        break
     return texts, words
 
 texts, words = parseMongo()
@@ -75,12 +73,11 @@ print('\nPhrase Search for: ' + phrase)
 print(phrasesearch(phrase))
  
 # Show multiple match capability
-phrase = '"Sie"'
+phrase = '"Die Polizei"'
 print('\nPhrase Search for: ' + phrase)
 ans = phrasesearch(phrase)
 print(ans)
 ans = Counter(ans)
-# print('  The phrase is found most commonly in text: ' + repr(ans.most_common(1)[0][0]))
 try: 
     print('  The phrase is found most commonly in text: ' + repr(ans.most_common(1)[0][0]))
 except: 
