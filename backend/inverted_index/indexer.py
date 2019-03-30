@@ -1,9 +1,6 @@
 from pprint import pprint as pp
-from glob import glob
 try: reduce
 except: from functools import reduce
-try:    raw_input
-except: raw_input = input
 from collections import Counter
 from pymongo import MongoClient
 
@@ -63,7 +60,7 @@ finvindex = {word:set((txt, wrdindx)
              for word in words}
  
 #print('\nFull Inverted Index')
-#pp({k:sorted(v) for k,v in finvindex.items()})
+pp({k:sorted(v) for k,v in finvindex.items()})
  
 print('\nTerm Search on full inverted index for: ' + repr(terms))
 pp(sorted(termsearch(terms)))
