@@ -1,3 +1,4 @@
 scrapy
 pymongo
 bottle
+pypdf2
