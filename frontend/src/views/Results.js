@@ -10,7 +10,8 @@ class Results extends React.Component {
         this.state = {
             searchValue: props.location.state.searchValue,
             language: props.location.state.language,
-            level: props.location.state.level
+            level: props.location.state.level,
+            resultDocs: []
         }
         this.getResultDocs();
     }
@@ -19,15 +20,15 @@ class Results extends React.Component {
         // source: https://github.com/axios/axios
         // IMPORTANT: install this on chrome: https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi/related
         axios.get(`http://localhost:8080/find&query=${this.state.searchValue}`)
-            .then(function (response) {
+            .then((response) => {
                 // handle success
-                console.log(response.data[0].documents);
+                this.setState({resultDocs: response.data})
             })
-            .catch(function (error) {
+            .catch((error) =>{
                 // handle error
-                console.log(error);
+                console.log(error)
             })
-            .then(function () {
+            .then(() =>{
                 // always executed
             });
     }
@@ -36,7 +37,7 @@ class Results extends React.Component {
         return (
             <div>
                 <NavigationBar results values={[this.state.searchValue, this.state.language, this.state.level]} />
-                <ResultList/>
+                <ResultList resultDocs={this.state.resultDocs}/>
             </div>
         );
     }
