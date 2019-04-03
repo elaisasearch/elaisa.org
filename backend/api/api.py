@@ -22,14 +22,27 @@ class MongoEncoder(JSONEncoder):
 
 @route('/find&query=<query>', method="GET")
 def find(query):
-    terms = query.split()
-    #words = getWordsFromMongo()
-    #documents = termsearch(terms, words)
     client = MongoClient('mongodb://localhost:27017/')
     db = client["LanguageLevelSearchEngine"]
-    objdb = db["inverted_index_de_DE"].find({'word': terms[0]}).skip(0).limit(3)
-    entries = [entry for entry in objdb]
-    return json.dumps(entries, cls=MongoEncoder)
+    col = db["news_de_DE"]
 
+    terms = query.split()
+    docs = getIdsFromWord(terms)
+    docIds = [id[0] for id in docs]
+
+    documents = []
+    for id in docIds:
+        query= {"_id": ObjectId(id)}
+        documents.append(col.find(query)[0])
+
+    return json.dumps(documents, cls=MongoEncoder)
+
+
+def getIdsFromWord(terms):
+    client = MongoClient('mongodb://localhost:27017/')
+    db = client["LanguageLevelSearchEngine"]
+    objdb = db["inverted_index_de_DE"].find({'word': terms[0]}).skip(0)
+    entries = [entry for entry in objdb]
+    return entries[0]["documents"]
 
 run(host='localhost', port=8080, debug=True)
