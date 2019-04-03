@@ -11,7 +11,8 @@ class Results extends React.Component {
             searchValue: props.location.state.searchValue,
             language: props.location.state.language,
             level: props.location.state.level,
-            resultDocs: []
+            resultDocs: [],
+            error: false
         }
         this.getResultDocs();
     }
@@ -26,7 +27,7 @@ class Results extends React.Component {
             })
             .catch((error) =>{
                 // handle error
-                console.log(error)
+                this.setState({error: true})
             })
             .then(() =>{
                 // always executed
@@ -37,7 +38,7 @@ class Results extends React.Component {
         return (
             <div>
                 <NavigationBar results values={[this.state.searchValue, this.state.language, this.state.level]} />
-                <ResultList resultDocs={this.state.resultDocs}/>
+                <ResultList error={this.state.error} resultDocs={this.state.resultDocs}/>
             </div>
         );
     }
