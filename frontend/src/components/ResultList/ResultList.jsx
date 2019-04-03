@@ -11,7 +11,7 @@ const styles = theme => ({
     display: 'flex',
     flexDirection: 'column',
     marginLeft: '7%',
-    marginTop: '4%'
+    marginTop: '2%'
   },
 });
 
@@ -24,9 +24,14 @@ class ResultList extends React.Component{
 
     render(){
         const { classes } = this.props;
+
+        const { resultDocs } = this.props;
+
         return (
           <List className={classes.root}>
-            <ResultItem website="www.wdr.de" title="Das Ding | WDR" desc="Hallo was geht heute bei dir denn so ab?"/>
+            {resultDocs.map(doc => (
+                <ResultItem website={doc.url} title={doc.title} desc={doc.meta.desc} keywords={doc.meta.keywords} date={doc.meta.date} language={doc.meta.language}/>
+            ))}
           </List>
         );
     }

@@ -1,7 +1,8 @@
 import React from 'react'
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import { Typography } from '@material-ui/core'
+import { Typography } from '@material-ui/core';
+import moment from 'moment';
 
 const styles = {
     display: 'flex',
@@ -19,34 +20,46 @@ const styles = {
     listItem: {
         padding: 0,
         marginTop: '0.5vh'
+    },
+    keywords: {
+        color: 'blue',
+        fontSize: '12px'
+    },
+    date: {
+        fontSize: '12px'
     }
 
 }
 
 const ResultItem = (props) => {
 
-    const { website, title, desc } = props
+    const { website, title, desc, keywords, date, language } = props
+    console.log("Locale", language)
 
     const Title = () => {
         return <a href={website} style={styles.title}>{title}</a>
     }
 
     return (
-
         <ListItem style={styles}>
             <div style={styles.levelDiv}>C1</div>
             <div>
                 <Title />
                 <ListItemText
                     style={styles.listItem}
-                    //   primary={title}
-                    component="a"
                     secondary={
                         <React.Fragment>
+                             <Typography component="span" style={styles.date}>
+                                {/* TODO: only shows the english date */}
+                                {moment(date).locale(language).format('LLLL') === "Invalid date" ? "" : moment(date).locale(language).format('LLL')} 
+                            </Typography>
                             <Typography component="span" style={styles.subtitle}>
                                 {website}
                             </Typography>
                             {desc}
+                            <Typography component="span" style={styles.keywords}>
+                                {keywords}
+                            </Typography>
                         </React.Fragment>
                     }
                 />
