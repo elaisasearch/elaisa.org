@@ -2,11 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import Avatar from '@material-ui/core/Avatar';
-import Typography from '@material-ui/core/Typography';
+import ResultItem from './ResultItem';
 
 const styles = theme => ({
   root: {
@@ -17,14 +13,11 @@ const styles = theme => ({
     marginLeft: '7%',
     marginTop: '4%'
   },
-//   inline: {
-//     display: 'inline',
-//   },
 });
 
-class ResultList{
+class ResultList extends React.Component{
 
-    consructor(props){
+    constructor(props){
         super(props)
 
     }
@@ -33,19 +26,7 @@ class ResultList{
         const { classes } = this.props;
         return (
           <List className={classes.root}>
-            <ListItem alignItems="flex-start">
-              <ListItemText
-                primary="Brunch this weekend?"
-                secondary={
-                  <React.Fragment>
-                    <Typography component="span" className={classes.inline} color="textPrimary">
-                      Ali Connors
-                    </Typography>
-                    {" — I'll be in your neighborhood doing errands this…"}
-                  </React.Fragment>
-                }
-              />
-            </ListItem>
+            <ResultItem website="www.wdr.de" title="Das Ding | WDR" desc="Hallo was geht heute bei dir denn so ab?"/>
           </List>
         );
     }
