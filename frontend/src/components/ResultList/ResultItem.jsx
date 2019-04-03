@@ -6,6 +6,7 @@ import moment from 'moment';
 
 const styles = {
     display: 'flex',
+    marginBottom: '1%',
     subtitle: {
         color: 'green'
     },

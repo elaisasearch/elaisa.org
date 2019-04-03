@@ -10,7 +10,7 @@ const styles = theme => ({
     maxWidth: '70%',
     display: 'flex',
     flexDirection: 'column',
-    marginLeft: '7%',
+    marginLeft: '5%',
     marginTop: '2%'
   },
 });
