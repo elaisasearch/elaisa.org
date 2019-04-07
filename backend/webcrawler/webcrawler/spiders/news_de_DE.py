@@ -1,7 +1,6 @@
 import scrapy
 import textacy
 
-
 class NewsSpider(scrapy.Spider):
     name = "news_de_DE"
     start_urls = [
@@ -19,6 +18,11 @@ class NewsSpider(scrapy.Spider):
         url = response.url
         for data in response.css('html'):
             if data.css('html::attr(lang)').get() == "de":
+
+                # preprocess text for lowercase search and normalized data
+                text = "".join(str(element) for element in data.css('p::text').getall())
+                preprocessedText = textacy.preprocess_text(text, no_accents=True, no_punct=True, lowercase=True)
+
                 yield {
                     'url': url,
                     'meta': {
@@ -31,8 +35,7 @@ class NewsSpider(scrapy.Spider):
                     },
                     'title': data.css('title::text').get(),
                     'abstract': data.css('strong::text').get(),
-                    # TODO: preprocess text before insert it into the mongoDB
-                    'text': "".join(str(textacy.preprocess_text(element, no_accents=True, no_punct=True)) for element in data.css('p::text').getall())
+                    'text': preprocessedText
                 }
             else:
                 continue
