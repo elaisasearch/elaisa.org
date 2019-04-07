@@ -12,6 +12,7 @@ class Results extends React.Component {
             language: props.location.state.language,
             level: props.location.state.level,
             resultDocs: [],
+            resultDocsLength: 0,
             error: false
         }
         this.getResultDocs();
@@ -23,7 +24,10 @@ class Results extends React.Component {
         axios.get(`http://localhost:8080/find&query=${this.state.searchValue}`)
             .then((response) => {
                 // handle success
-                this.setState({resultDocs: response.data})
+                this.setState({
+                    resultDocs: response.data,
+                    resultDocsLength: response.data.length
+                })
             })
             .catch((error) =>{
                 // handle error
@@ -37,7 +41,7 @@ class Results extends React.Component {
     render() {
         return (
             <div>
-                <NavigationBar results values={[this.state.searchValue, this.state.language, this.state.level]} />
+                <NavigationBar results values={[this.state.searchValue, this.state.language, this.state.level, this.state.resultDocsLength]} />
                 <ResultList error={this.state.error} resultDocs={this.state.resultDocs}/>
             </div>
         );
