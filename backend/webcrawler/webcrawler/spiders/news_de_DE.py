@@ -30,6 +30,7 @@ class NewsSpider(scrapy.Spider):
                     no_phone_numbers=True,
                     no_contractions=True
                 )
+                # TODO: add lemmatizing for words
 
                 yield {
                     'url': url,
