@@ -69,8 +69,8 @@ class NavigationBar extends React.Component {
   }
 
   renderFilterBar = (props) => {
-    const resultDocsLength = props.values[3]
     if (props.results) {
+      const resultDocsLength = props.values[3]
       return <div style={{display: "flex", alignItems: "center"}}>
         <div style={{ marginLeft: "8vh", padding: "1vh", display: "flex", flexGrow: 1}}>
           <Button>All</Button>
