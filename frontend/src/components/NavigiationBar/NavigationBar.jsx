@@ -49,6 +49,8 @@ class NavigationBar extends React.Component {
           language: this.state.language
         }
       });
+      window.location.reload()
+
     }
   }
 
