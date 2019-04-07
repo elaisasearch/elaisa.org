@@ -4,3 +4,4 @@ bottle
 pypdf2
 bson
 json
+textacy
