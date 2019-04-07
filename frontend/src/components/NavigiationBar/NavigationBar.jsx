@@ -3,7 +3,6 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button'
 import { withRouter } from "react-router-dom";
-import { Typography } from '@material-ui/core';
 
 
 //import styles
@@ -71,15 +70,10 @@ class NavigationBar extends React.Component {
   renderFilterBar = (props) => {
     if (props.results) {
       const resultDocsLength = props.values[3]
-      return <div style={{display: "flex", alignItems: "center"}}>
-        <div style={{ marginLeft: "8vh", padding: "1vh", display: "flex", flexGrow: 1}}>
+      return <div style={{ marginLeft: "8vh", padding: "1vh", display: "flex", flexGrow: 1}}>
           <Button>All</Button>
           <Button>News</Button>
           <Button>Blogs</Button>
-        </div>
-        <div style={{display: "flex", marginRight: "8vh"}}>
-          <Typography variant="caption">{`${resultDocsLength} results found`}</Typography>
-        </div>
       </div>}
   }
 
