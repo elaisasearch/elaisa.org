@@ -1,4 +1,5 @@
 import scrapy
+import textacy
 
 
 class NewsSpider(scrapy.Spider):
@@ -31,7 +32,7 @@ class NewsSpider(scrapy.Spider):
                     'title': data.css('title::text').get(),
                     'abstract': data.css('strong::text').get(),
                     # TODO: preprocess text before insert it into the mongoDB
-                    'text': "".join(str(element) for element in data.css('p::text').getall())
+                    'text': "".join(str(textacy.preprocess_text(element, no_accents=True, no_punct=True)) for element in data.css('p::text').getall())
                 }
             else:
                 continue
