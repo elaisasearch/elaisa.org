@@ -43,7 +43,7 @@ class SearchBar extends React.Component {
         // search: `?query=${e.target.value}&level=${this.state.level}&language=${this.state.language}`,
         search: `?query=${this.state.value}&level=${this.state.level}&language=${this.state.language}`,
         state: {
-          searchValue: this.state.value,
+          searchValue: this.state.value.toLowerCase(),
           level: this.state.level,
           language: this.state.language
         }
