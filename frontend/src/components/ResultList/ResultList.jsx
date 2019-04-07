@@ -17,6 +17,10 @@ const styles = theme => ({
         marginLeft: '5%',
         marginTop: '2%'
     },
+    resultDocsLength: {
+        martginLeft: '10%',
+        marginTop: '2%'
+    }
 });
 
 class ResultList extends React.Component {
@@ -26,11 +30,15 @@ class ResultList extends React.Component {
     }
 
     renderList = (resultDocs, classes) => {
-        return <List className={classes.root}>
-            {resultDocs.map(doc => (
+
+        return <div>
+            <Typography style={{marginLeft: '18vh', marginTop: '2vh'}} variant="caption">{`${this.props.resultDocsLength} results`}</Typography>
+            <List className={classes.root}>
+                {resultDocs.map(doc => (
                 <ResultItem website={doc.url} title={doc.title} desc={doc.meta.desc} keywords={doc.meta.keywords} date={doc.meta.date} language={doc.meta.language} />
-            ))}
-        </List>
+                ))}
+            </List>
+        </div>
     }
 
     renderProgress = (value) => {

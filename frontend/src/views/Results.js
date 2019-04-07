@@ -2,7 +2,6 @@ import React from 'react';
 import NavigationBar from '../components/NavigiationBar/NavigationBar';
 import ResultList from '../components/ResultList/ResultList';
 import axios from 'axios';
-import { Typography } from '@material-ui/core';
 
 
 class Results extends React.Component {
@@ -44,8 +43,7 @@ class Results extends React.Component {
         return (
             <div>
                 <NavigationBar results values={[this.state.searchValue, this.state.language, this.state.level, this.state.resultDocsLength]} />
-                <Typography variant="caption">{`${this.state.resultDocsLength} results`}</Typography>
-                <ResultList error={this.state.error} resultDocs={this.state.resultDocs}/>
+                <ResultList resultDocsLength={this.state.resultDocsLength} error={this.state.error} resultDocs={this.state.resultDocs}/>
             </div>
         );
     }
