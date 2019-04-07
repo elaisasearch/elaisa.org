@@ -21,7 +21,15 @@ class NewsSpider(scrapy.Spider):
 
                 # preprocess text for lowercase search and normalized data
                 text = "".join(str(element) for element in data.css('p::text').getall())
-                preprocessedText = textacy.preprocess_text(text, no_accents=True, no_punct=True, lowercase=True)
+                preprocessedText = textacy.preprocess_text(
+                    text, 
+                    no_accents=True, 
+                    no_punct=True, lowercase=True, 
+                    fix_unicode=True, 
+                    no_emails=True, 
+                    no_phone_numbers=True,
+                    no_contractions=True
+                )
 
                 yield {
                     'url': url,
