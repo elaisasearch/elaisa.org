@@ -25,10 +25,6 @@ const styles = theme => ({
 
 class ResultList extends React.Component {
 
-    constructor(props) {
-        super(props)
-    }
-
     renderList = (resultDocs, classes) => {
 
         return <div>
