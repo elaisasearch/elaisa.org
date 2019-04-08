@@ -24,7 +24,8 @@ class NewsSpider(scrapy.Spider):
                 preprocessedText = textacy.preprocess_text(
                     text, 
                     no_accents=True, 
-                    no_punct=True, lowercase=True, 
+                    no_punct=True, 
+                    lowercase=True, 
                     fix_unicode=True, 
                     no_emails=True, 
                     no_phone_numbers=True,
