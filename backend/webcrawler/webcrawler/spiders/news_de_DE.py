@@ -20,7 +20,7 @@ class NewsSpider(scrapy.Spider):
             if data.css('html::attr(lang)').get() == "de":
 
                 # preprocess text for lowercase search and normalized data
-                text = "".join(str(element) for element in data.css('p::text').getall())
+                text = " ".join(str(element) for element in data.css('p::text').getall())
                 preprocessedText = textacy.preprocess_text(
                     text, 
                     no_accents=True, 
@@ -30,6 +30,7 @@ class NewsSpider(scrapy.Spider):
                     no_phone_numbers=True,
                     no_contractions=True
                 )
+                preprocessedText = textacy.preprocess.normalize_whitespace(preprocessedText)
                 # TODO: add lemmatizing for words
 
                 yield {
