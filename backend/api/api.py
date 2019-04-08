@@ -60,6 +60,7 @@ def find(query):
 def getIdsFromWord(terms):
     client = MongoClient('mongodb://localhost:27017/')
     db = client["LanguageLevelSearchEngine"]
+    # TODO: Allow multiple terms search
     objdb = db["inverted_index_de_DE"].find({'word': terms[0]}).skip(0)
     entries = [entry for entry in objdb]
     return entries[0]["documents"]
