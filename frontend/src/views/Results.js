@@ -42,8 +42,10 @@ class Results extends React.Component {
         return (
             <div>
                 <NavigationBar results values={[this.state.searchValue, this.state.language, this.state.level, this.state.resultDocsLength]} />
-                <ResultList resultDocsLength={this.state.resultDocsLength} error={this.state.error} resultDocs={this.state.resultDocs}/>
-                <WikiCard/>
+                <div style={{display: "flex"}}>
+                    <ResultList resultDocsLength={this.state.resultDocsLength} error={this.state.error} resultDocs={this.state.resultDocs}/>
+                    <WikiCard/>
+                </div>
             </div>
         );
     }

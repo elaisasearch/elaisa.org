@@ -10,7 +10,10 @@ import Typography from '@material-ui/core/Typography';
 const styles = {
   card: {
     minWidth: 275,
-    maxWidth: 275
+    maxWidth: 275,
+    maxHeight: 280,
+    marginTop: '6vh',
+    marginRight: '10vh'
   },
   bullet: {
     display: 'inline-block',
@@ -39,7 +42,7 @@ function WikiCardTemplate(props) {
         <Typography variant="h5" component="h2">
           {title}
         </Typography>
-
+        <br/>
         <Typography component="p">
           {summary.slice(0,200)}...
         </Typography>
