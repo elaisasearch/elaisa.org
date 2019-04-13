@@ -2,7 +2,7 @@ from bottle import route, run, response
 import bottle
 
 # import lib files
-from lib import search
+from lib import search, wikipedia
 
 
 # source: https://stackoverflow.com/questions/17262170/bottle-py-enabling-cors-for-jquery-ajax-requests
@@ -27,6 +27,10 @@ def find(query):
 
     return search.findDocuments(query)
 
+@route('/wiki&term=<term>&language=<language>', method=["OPTIONS","GET"])
+@enable_cors
+def getInformationFromWikipedia(term, language):
+    return wikipedia.getWikiEntry(term, language)
 
 
 run(host='localhost', port=8080, debug=True)
