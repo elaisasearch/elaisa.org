@@ -31,7 +31,6 @@ const styles = {
 function WikiCardTemplate(props) {
   const { classes } = props;
   const { url, title, summary } = props;
-  const bull = <span className={classes.bullet}>•</span>;
 
   return (
     <Card className={classes.card}>
