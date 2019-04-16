@@ -11,7 +11,7 @@ import errorPic from '../../assets/img/error.png'
 const styles = theme => ({
     root: {
         width: '100%',
-        maxWidth: '70%',
+        maxWidth: '90%',
         display: 'flex',
         flexDirection: 'column',
         marginLeft: '5%',
