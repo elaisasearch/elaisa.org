@@ -1,8 +1,0 @@
-scrapy
-pymongo
-bottle
-pypdf2
-bson
-json
-textacy
-wikipedia-api
