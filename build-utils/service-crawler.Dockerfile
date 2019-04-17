@@ -17,3 +17,6 @@ EXPOSE 80
 
 # Run api.py when the container launches
 CMD [ "scrapy", "crawl", "news_de_DE" ]
+
+# TODO: needs a running mongo db 
+# https://docs.docker.com/samples/library/mongo/
