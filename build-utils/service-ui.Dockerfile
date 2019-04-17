@@ -12,7 +12,9 @@ COPY services/service-ui/package*.json /app
 # Install all dependencies
 RUN yarn install
 
-COPY services/service-ui /app
+# Only copy necessary folders
+COPY services/service-ui/src /app/src
+COPY services/service-ui/public /app/public
 
 
 # Build the application
