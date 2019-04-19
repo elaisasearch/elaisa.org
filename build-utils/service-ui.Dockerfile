@@ -1,6 +1,7 @@
 # Dockerfile for service-ui
 
 FROM node:10.15.3
+MAINTAINER Alexander Teusz <teusz.alexander@gmail.com>
 
 # Create app directory
 RUN mkdir -p /app
