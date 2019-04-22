@@ -4,8 +4,8 @@ from bson.objectid import ObjectId
 from json import JSONEncoder
 
 # get database info
-with open('../../bin/globals.json') as globals_file:
-    GLOBALS = json.load(globals_file)
+f = open("../../../bin/globals.json", "r")
+GLOBALS = json.load(f)
 
 #JSON Encoder
 # https://stackoverflow.com/questions/28251835/from-pymongo-objectid-import-objectid-importerror-no-module-named-objectid
