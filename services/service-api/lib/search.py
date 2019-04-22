@@ -3,6 +3,9 @@ import json
 from bson.objectid import ObjectId
 from json import JSONEncoder
 
+# get database info
+with open('../../bin/globals.json') as globals_file:
+    GLOBALS = json.load(globals_file)
 
 #JSON Encoder
 # https://stackoverflow.com/questions/28251835/from-pymongo-objectid-import-objectid-importerror-no-module-named-objectid
@@ -14,9 +17,9 @@ class MongoEncoder(JSONEncoder):
             return JSONEncoder.default(obj, **kwargs)
 
 def findDocuments(query):
-    client = MongoClient('mongodb://localhost:27017/')
-    db = client["LanguageLevelSearchEngine"]
-    col = db["news_de_DE"]
+    client = MongoClient(GLOBALS["mongo"]["client"])
+    db = client[GLOBALS["mongo"]["database"]]
+    col = db[GLOBALS["mongo"]["collections"]["crawled"]["news"][0]]
 
     terms = query.split()
     docs = getIdsFromWord(terms)
@@ -30,9 +33,9 @@ def findDocuments(query):
     return json.dumps(documents, cls=MongoEncoder)
 
 def getIdsFromWord(terms):
-    client = MongoClient('mongodb://localhost:27017/')
-    db = client["LanguageLevelSearchEngine"]
+    client = MongoClient(GLOBALS["mongo"]["client"])
+    db = client[GLOBALS["mongo"]["database"]]
     # TODO: Allow multiple terms search
-    objdb = db["inverted_index_de_DE"].find({'word': terms[0]}).skip(0)
+    objdb = db[GLOBALS["mongo"]["collections"]["inverted_index"][0]].find({'word': terms[0]}).skip(0)
     entries = [entry for entry in objdb]
     return entries[0]["documents"]
