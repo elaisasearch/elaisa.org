@@ -1,0 +1,10 @@
+version: "3"
+services: 
+  db:
+    image: mongo:4.0.3
+    ports:
+      - 27017:27017
+  ui:
+    image: alexteusz/languagelevelsearchengine-service-ui:1.0.0
+    ports:
+      - 80:3000
