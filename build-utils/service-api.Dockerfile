@@ -1,19 +1,10 @@
-# Dockerfile for service-api
+# source: https://idolstarastronomer.com/docker-and-bottle.html
 
-FROM python:3.6.5
+FROM devries/bottle
 
-# Create app directory
-RUN mkdir -p /api
-WORKDIR /api
+RUN pip install gevent
 
-# Copy api files into workdir
-COPY services/service-api /api
+ADD services/service-api /app
+WORKDIR /app
 
-# Install any needed packages specified in requirements.txt
-RUN pip install --trusted-host pypi.python.org -r requirements.txt
-
-# Make port 80 available to the world outside this container
-EXPOSE 8080
-
-# Run api.py when the container launches
-CMD [ "python", "api.py" ]
+CMD ["gunicorn","-b","0.0.0.0:8080","-w","3","-k","gevent","--log-file","-","--log-level","debug","--access-logfile","-","api:app"]
