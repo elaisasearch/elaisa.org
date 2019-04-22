@@ -4,6 +4,7 @@ from bson.objectid import ObjectId
 from json import JSONEncoder
 
 # get database info
+# BUG: no such file or dictionary ERROR ... 
 f = open("../../../bin/globals.json", "r")
 GLOBALS = json.load(f)
 
