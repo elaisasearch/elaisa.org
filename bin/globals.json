@@ -1,0 +1,16 @@
+{
+    "mongo": {
+        "client": "mongodb://localhost:27017/",
+        "database": "LanguageLevelSearchEngine",
+        "collections": {
+            "inverted_index": [
+                "inverted_index_de_DE"
+            ],
+            "crawled": {
+                "news": [
+                    "news_de_DE"
+                ]
+            }
+        }
+    }
+}
