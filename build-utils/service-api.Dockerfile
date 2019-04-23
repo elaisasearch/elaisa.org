@@ -1,10 +1,14 @@
-# source: https://idolstarastronomer.com/docker-and-bottle.html
+FROM python:3.6.5
 
-FROM devries/bottle
-
-RUN pip install gevent
-
-ADD services/service-api /app
+# Create app directory
+RUN mkdir -p /app
 WORKDIR /app
 
-CMD ["gunicorn","-b","0.0.0.0:8080","-w","3","-k","gevent","--log-file","-","--log-level","debug","--access-logfile","-","api:app"]
+# Copy api files into workdir
+COPY services/service-api /app
+
+# Install any needed packages specified in requirements.txt
+RUN pip install --trusted-host pypi.python.org -r requirements.txt
+
+# Run api.py when the container launches
+CMD [ "python", "api.py" ]
