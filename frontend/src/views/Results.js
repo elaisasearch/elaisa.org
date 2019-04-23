@@ -2,6 +2,7 @@ import React from 'react';
 import NavigationBar from '../components/NavigiationBar/NavigationBar';
 import ResultList from '../components/ResultList/ResultList';
 import axios from 'axios';
+import WikiCard from '../components/WikiCard/WikiCard';
 
 
 class Results extends React.Component {
@@ -14,7 +15,8 @@ class Results extends React.Component {
             level: props.location.state.level,
             resultDocs: [],
             resultDocsLength: 0,
-            error: false
+            error: false,
+            wikiEntry: {}
         }
         this.getResultDocs();
     }
@@ -34,16 +36,16 @@ class Results extends React.Component {
                 // handle error
                 this.setState({error: true})
             })
-            .then(() =>{
-                // always executed
-            });
     }
 
     render() {
         return (
             <div>
                 <NavigationBar results values={[this.state.searchValue, this.state.language, this.state.level, this.state.resultDocsLength]} />
-                <ResultList resultDocsLength={this.state.resultDocsLength} error={this.state.error} resultDocs={this.state.resultDocs}/>
+                <div style={{display: "flex"}}>
+                    <ResultList resultDocsLength={this.state.resultDocsLength} error={this.state.error} resultDocs={this.state.resultDocs}/>
+                    <WikiCard/>
+                </div>
             </div>
         );
     }
