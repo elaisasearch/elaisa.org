@@ -1,16 +1,19 @@
-import re
+﻿# -*- coding: utf-8 -*-
 """
+Created on Mon Apr 15 18:39:16 2019
 Skript, zur Extraktion der Begriffe für die englische Sprache
+@author: Jenny
 """
+import re
+from pymongo import MongoClient
+
 language_level = ["A1", "A2", "B1", "B2", "C1", "C2"]
 #language_level = ["B2"]
-
 # OLD :A1 = []A2 = []B1 = []B2 = []C1 = []C2 = []
-
 complete_list = []
 
 
-def extraction(level):
+def extraction_from_pdf(level):
     dateiname = "Level " + level + " Word List.txt"
     input_text = open(dateiname, "r")
 
@@ -28,17 +31,46 @@ def extraction(level):
     for i in matches:
         ergebnisliste = re.findall(muster, i)
         liste.append(ergebnisliste[0])
-    print("Liste ", level, ": ", liste)
+    #print("Liste ", level, ": ", liste)
     return liste
 
 
-# Funktionsaufruf, Speichern aller Level-Listen in complete_list
-for level in language_level:
-    complete_list.append(extraction(level))
+def listen_verarbeitung(complete_list):
+    A1_set = set(complete_list[0])
+    A2_set = set(complete_list[1])
+    B1_set = set(complete_list[2])
+    B2_set = set(complete_list[3])
+    C1_set = set(complete_list[4])
+    C2_set = set(complete_list[5])
     
+    C2 = list(C2_set - C1_set - B2_set - B1_set - A2_set - A1_set)
+    C1 = list(C1_set - B2_set - B1_set - A2_set - A1_set)
+    B2 = list(B2_set - B1_set - A2_set - A1_set)
+    B1 = list(B1_set - A2_set - A1_set)
+    A2 = list(A2_set - A1_set)
+    A1 = list(A1_set)
+    
+    A1.sort()
+    A2.sort()
+    B1.sort()
+    B2.sort()
+    C1.sort()
+    C2.sort()
+    
+    complete_list = (A1, A2, B1, B2, C1, C2)
+    return complete_list
+    
+for level in language_level:
+    complete_list.append(extraction_from_pdf(level))
 
-print(complete_list)
+complete_list = listen_verarbeitung(complete_list)
 
 
-# TODO: Checken, ob die einzelnen Listen disjunkt sind
-# TODO: Was machen wir mit doppelten Worten? (-> minimalstes Niveau auswählen!)
+client = MongoClient('localhost', 27017)
+db = client['LanguageLevelSearchEngine']
+collection = db['vocab_english']
+
+for i in range(0,5):
+    for vokabel in complete_list[i]:
+        tmpdict = {"word" : str(vokabel), "languageLevel" : str(language_level[i])}
+        collection.insert_one(tmpdict)
