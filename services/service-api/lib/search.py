@@ -5,8 +5,24 @@ from json import JSONEncoder
 
 # get database info
 # BUG: no such file or dictionary ERROR ... 
-f = open("../../../bin/globals.json", "r")
-GLOBALS = json.load(f)
+#f = open("../../../bin/globals.json", "r")
+
+GLOBALS = {
+    "mongo": {
+        "client": "mongodb://localhost:27017/",
+        "database": "LanguageLevelSearchEngine",
+        "collections": {
+            "inverted_index": [
+                "inverted_index_de_DE"
+            ],
+            "crawled": {
+                "news": [
+                    "news_de_DE"
+                ]
+            }
+        }
+    }
+}
 
 #JSON Encoder
 # https://stackoverflow.com/questions/28251835/from-pymongo-objectid-import-objectid-importerror-no-module-named-objectid
