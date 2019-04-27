@@ -1,12 +1,12 @@
-# Backend for Search Engine
+# Services for Search Engine
 
 ## First Steps
 
-- `pip3 install -r requirements.txt`
+- `pip3 install -r ../requirements.txt`
 
 ## Start the example news_de_DE.py crawler
 
-`cd` in the directory *backend/webcrawler* and type in the following command: 
+`cd` in the directory *service-crawler* and type in the following command: 
 
 - ` scrapy crawl news_de_DE -o news_de_DE.json `
 

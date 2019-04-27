@@ -27,4 +27,4 @@
 /**/__init__.py
 
 # Crawler
-/backend/webcrawler/*.json
+/services/service-crawler/webcrawler/*.json
