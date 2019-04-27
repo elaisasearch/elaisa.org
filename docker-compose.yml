@@ -4,10 +4,10 @@ services:
     image: mongo:4.0.3
     ports:
       - 27017:27017
-  #api: 
-  #  image: TODO: insert servie-api image
-  #  ports:
-  #    - 8080:8080
+  api: 
+    image: service-api:1.0.1
+    ports:
+      - 8080:8080
   ui:
     image: alexteusz/languagelevelsearchengine-service-ui:1.0.0
     ports:
