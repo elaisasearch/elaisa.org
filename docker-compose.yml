@@ -3,7 +3,7 @@ services:
   db:
     image: mongo:4.0.3
     ports:
-      - 27017:27017
+      - 27016:27017
     restart: always
   api: 
     image: service-api:1.0.1
