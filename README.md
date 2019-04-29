@@ -6,7 +6,7 @@ Search engine depending on the language level
 **Build the images:**
 
 - `docker build -f build-utils/service-ui.Dockerfile -t service-ui:1.0.0 .`
-- `docker build -f build-utils/service-api.Dockerfile -t service-api:1.0.0 .`
+- `docker build -f build-utils/service-api.Dockerfile -t service-api:1.0.1 .`
 - `docker build -f build-utils/service-crawler.Dockerfile -t service-crawler:1.0.0 .`
 
 **Test the image:**
