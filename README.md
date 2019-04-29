@@ -26,7 +26,7 @@ This will show the content of the UI image in your terminal.
 
 1. Start UI and DB
 2. Navigate to the `service-crawler`
-3. Start the crawler with `scrapy crawler <spider>` 
+3. Start the crawler with `scrapy crawl <spider>` 
 4. Index the crawled documents
     1. Navigate to the `service-index`
     2. Run `python indexer.py`
