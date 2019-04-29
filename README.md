@@ -19,7 +19,7 @@ This will show the content of the UI image in your terminal.
 
 1. `docker-compose up`
    - This will start the application on `localhost`
-   - and start the mongo db on `0.0.0.0:27017`
+   - and start the mongo db on `0.0.0.0:27016`
 2. Visit `localhost` on your webbrowser
 
 **Fill the Database**
