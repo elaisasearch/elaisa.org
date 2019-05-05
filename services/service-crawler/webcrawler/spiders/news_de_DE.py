@@ -4,12 +4,12 @@ import textacy
 class NewsSpider(scrapy.Spider):
     name = "news_de_DE"
     start_urls = [
-        'http://www.spiegel.de/',
-        'https://www.tagesschau.de/',
-        'https://www1.wdr.de/'
+        #'http://www.spiegel.de/',
+        #'https://www.tagesschau.de/',
+        #'https://www1.wdr.de/'
         'https://www.tagesschau.de/inland/ruestungsexporte-169.html',
-        'https://www1.wdr.de/sport/fussball/vorbericht-bayer-leverkusen-in-hoffenheim-100.htmls',
-        'http://www.spiegel.de/politik/ausland/brexit-eu-koennte-grossbritannien-verlaengerung-verweigern-a-1260391.html'
+        #'https://www1.wdr.de/sport/fussball/vorbericht-bayer-leverkusen-in-hoffenheim-100.htmls',
+        #'http://www.spiegel.de/politik/ausland/brexit-eu-koennte-grossbritannien-verlaengerung-verweigern-a-1260391.html'
         'https://www.kindersache.de/',
         'https://www.zdf.de/nachrichten'
         'https://www.faz.net/aktuell/'
