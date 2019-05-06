@@ -22,7 +22,7 @@ NEWSPIDER_MODULE = 'webcrawler.spiders'
 ROBOTSTXT_OBEY = True
 
 # Mongo DB
-MONGO_URI= "mongodb://localhost:27017"
+MONGO_URI= "mongodb://localhost:27016"
 MONGO_DATABASE = "LanguageLevelSearchEngine"
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
