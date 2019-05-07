@@ -12,7 +12,7 @@ def enable_cors():
     """
     response.headers['Access-Control-Allow-Origin'] = '*'
     response.headers['Access-Control-Allow-Methods'] = 'PUT, GET, POST, DELETE, OPTIONS'
-    response.headers['Access-Control-Allow-Headers'] = 'Origin, Accept, Content-Type, X-Requested-With, X-CSRF-Token'
+response.headers['Access-Control-Allow-Headers'] = 'Origin, Accept, Content-Type, X-Requested-With, X-CSRF-Token'
 
 @app.route('/')
 def index():
@@ -22,12 +22,9 @@ def index():
 def find(query):
     response.headers['Content-type'] = 'application/json'
 
-    return search.findDocuments(query)
-
-@app.route('/wiki&term=<term>&language=<language>', method=["OPTIONS","GET"])
-def getInformationFromWikipedia(term, language):
-    response.headers['Content-type'] = 'application/json'
-
-    return wikipedia.getWikiEntry(term, language)
+    return {
+        "wikipedia": wikipedia.getWikiEntry(query, "de"),
+        "documents": search.findDocuments(query)
+    }
 
 app.run(host='0.0.0.0', port=8080, debug=True)
