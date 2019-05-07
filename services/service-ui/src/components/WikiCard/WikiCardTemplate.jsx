@@ -28,9 +28,9 @@ const styles = {
   },
 };
 
-function WikiCardTemplate(props) {
+const  WikiCardTemplate = (props) => {
   const { classes } = props;
-  const { url, title, summary } = props;
+  const { url, title, summary } = props;
 
   return (
     <Card className={classes.card}>
