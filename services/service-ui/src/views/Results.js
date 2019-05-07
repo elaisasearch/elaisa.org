@@ -3,6 +3,7 @@ import NavigationBar from '../components/NavigiationBar/NavigationBar';
 import ResultList from '../components/ResultList/ResultList';
 import axios from 'axios';
 import WikiCard from '../components/WikiCard/WikiCard';
+import memeteam from '../assets/img/memeteam.png';
 
 
 class Results extends React.Component {
@@ -50,14 +51,27 @@ class Results extends React.Component {
         }
     }
 
+    renderResults(searchValue){
+        if (searchValue == "memeteam") {
+            return <img src={memeteam} style={
+                {marginTop: "2%",
+                display: "block",
+                marginLeft: "auto",
+                marginRight: "auto",
+                width: "30%"
+            }} alt="MemeTeam" />
+        }
+        return (<div style={{display: "flex"}}>
+            <ResultList resultDocsLength={this.state.resultDocsLength} error={this.state.error} resultDocs={this.state.resultDocs}/>
+            {this.renderWiki(this.state.error)}
+        </div>);
+    }
+
     render() {
         return (
             <div>
                 <NavigationBar results values={[this.state.searchValue, this.state.language, this.state.level, this.state.resultDocsLength]} />
-                <div style={{display: "flex"}}>
-                    <ResultList resultDocsLength={this.state.resultDocsLength} error={this.state.error} resultDocs={this.state.resultDocs}/>
-                    {this.renderWiki(this.state.error)}
-                </div>
+                {this.renderResults(this.state.searchValue)}
             </div>
         );
     }
