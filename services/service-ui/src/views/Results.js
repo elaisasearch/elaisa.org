@@ -16,7 +16,9 @@ class Results extends React.Component {
             resultDocs: [],
             resultDocsLength: 0,
             error: false,
-            wikiEntry: {}
+            wiki_url: "",
+            wiki_title: "",
+            wiki_summary: ""
         }
         this.getResultDocs();
     }
@@ -28,8 +30,11 @@ class Results extends React.Component {
             .then((response) => {
                 // handle success
                 this.setState({
-                    resultDocs: response.data,
-                    resultDocsLength: response.data.length
+                    resultDocs: JSON.parse(response.data.documents),
+                    resultDocsLength: JSON.parse(response.data.documents.length),
+                    wiki_url: response.data.wikipedia.url,
+                    wiki_title: response.data.wikipedia.title,
+                    wiki_summary: response.data.wikipedia.summary
                 })
             })
             .catch((error) =>{
@@ -38,13 +43,20 @@ class Results extends React.Component {
             })
     }
 
+    // Only render wiki card if there is a result 
+    renderWiki(error){
+        if (!error){
+            return <WikiCard url={this.state.wiki_url} title={this.state.wiki_title} summary={this.state.wiki_summary} />
+        }
+    }
+
     render() {
         return (
             <div>
                 <NavigationBar results values={[this.state.searchValue, this.state.language, this.state.level, this.state.resultDocsLength]} />
                 <div style={{display: "flex"}}>
                     <ResultList resultDocsLength={this.state.resultDocsLength} error={this.state.error} resultDocs={this.state.resultDocs}/>
-                    <WikiCard/>
+                    {this.renderWiki(this.state.error)}
                 </div>
             </div>
         );
