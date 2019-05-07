@@ -52,7 +52,7 @@ class Results extends React.Component {
     }
 
     renderResults(searchValue){
-        if (searchValue == "memeteam") {
+        if (searchValue === "memeteam") {
             return <img src={memeteam} style={
                 {marginTop: "2%",
                 display: "block",
