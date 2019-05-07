@@ -1,18 +1,12 @@
-import wikipediaapi
+import wikipedia
 
 def getWikiEntry(term, language): 
 
-    wiki_wiki = wikipediaapi.Wikipedia(language)
-    page = wiki_wiki.page(term)
+    wikipedia.set_lang(language)
+    page = wikipedia.page(term)
     
-    if page.exists():
-        return {
-            "url": page.fullurl,
-            "title": page.title,
-            "summary": page.summary
-        }
-    else: 
-        return {"error": "page doesn't exist."}
-
-    print("Page - Title: %s" % page.title)
-    print("Page - Summary: %s" % page.summary)
+    return {
+        "url": page.url,
+        "title": page.title,
+        "summary": page.summary
+    }

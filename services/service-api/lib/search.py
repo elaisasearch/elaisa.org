@@ -9,7 +9,7 @@ from json import JSONEncoder
 
 GLOBALS = {
     "mongo": {
-        "client": "mongodb://db:27017/",
+        "client": "mongodb://localhost:27017/",
         "database": "LanguageLevelSearchEngine",
         "collections": {
             "inverted_index": [

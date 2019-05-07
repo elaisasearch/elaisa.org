@@ -3,6 +3,7 @@ import NavigationBar from '../components/NavigiationBar/NavigationBar';
 import ResultList from '../components/ResultList/ResultList';
 import axios from 'axios';
 import WikiCard from '../components/WikiCard/WikiCard';
+import memeteam from '../assets/img/memeteam.png';
 
 
 class Results extends React.Component {
@@ -16,7 +17,9 @@ class Results extends React.Component {
             resultDocs: [],
             resultDocsLength: 0,
             error: false,
-            wikiEntry: {}
+            wiki_url: "",
+            wiki_title: "",
+            wiki_summary: ""
         }
         this.getResultDocs();
     }
@@ -28,8 +31,11 @@ class Results extends React.Component {
             .then((response) => {
                 // handle success
                 this.setState({
-                    resultDocs: response.data,
-                    resultDocsLength: response.data.length
+                    resultDocs: JSON.parse(response.data.documents),
+                    resultDocsLength: JSON.parse(response.data.documents.length),
+                    wiki_url: response.data.wikipedia.url,
+                    wiki_title: response.data.wikipedia.title,
+                    wiki_summary: response.data.wikipedia.summary
                 })
             })
             .catch((error) =>{
@@ -38,14 +44,34 @@ class Results extends React.Component {
             })
     }
 
+    // Only render wiki card if there is a result 
+    renderWiki(error){
+        if (!error){
+            return <WikiCard url={this.state.wiki_url} title={this.state.wiki_title} summary={this.state.wiki_summary} />
+        }
+    }
+
+    renderResults(searchValue){
+        if (searchValue === "memeteam") {
+            return <img src={memeteam} style={
+                {marginTop: "2%",
+                display: "block",
+                marginLeft: "auto",
+                marginRight: "auto",
+                width: "30%"
+            }} alt="MemeTeam" />
+        }
+        return (<div style={{display: "flex"}}>
+            <ResultList resultDocsLength={this.state.resultDocsLength} error={this.state.error} resultDocs={this.state.resultDocs}/>
+            {this.renderWiki(this.state.error)}
+        </div>);
+    }
+
     render() {
         return (
             <div>
                 <NavigationBar results values={[this.state.searchValue, this.state.language, this.state.level, this.state.resultDocsLength]} />
-                <div style={{display: "flex"}}>
-                    <ResultList resultDocsLength={this.state.resultDocsLength} error={this.state.error} resultDocs={this.state.resultDocs}/>
-                    <WikiCard/>
-                </div>
+                {this.renderResults(this.state.searchValue)}
             </div>
         );
     }
