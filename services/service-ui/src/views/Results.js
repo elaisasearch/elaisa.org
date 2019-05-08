@@ -4,7 +4,7 @@ import ResultList from "../components/ResultList/ResultList";
 import axios from "axios";
 import WikiCard from "../components/WikiCard/WikiCard";
 import memeteam from "../assets/img/memeteam.png";
-import { Typography } from "@material-ui/core";
+import { Typography, CircularProgress } from "@material-ui/core";
 import errorPic from "../assets/img/error.png";
 import styles from "../assets/jss/ResultsStyle";
 
@@ -20,7 +20,8 @@ class Results extends React.Component {
       error: false,
       wiki_url: "",
       wiki_title: "",
-      wiki_summary: ""
+      wiki_summary: "",
+      waiting: true
     };
     this.getResultDocs();
   }
@@ -37,12 +38,17 @@ class Results extends React.Component {
           resultDocsLength: JSON.parse(response.data.documents.length),
           wiki_url: response.data.wikipedia.url,
           wiki_title: response.data.wikipedia.title,
-          wiki_summary: response.data.wikipedia.summary
+          wiki_summary: response.data.wikipedia.summary,
+          waiting: false
         });
+        
       })
       .catch(error => {
         // handle error
-        this.setState({ error: true });
+        this.setState({
+             error: true,
+             waiting: false
+            });
       });
   };
 
@@ -60,6 +66,9 @@ class Results extends React.Component {
   }
 
   renderResults(searchValue) {
+    if (this.state.waiting) {
+       return <div style={styles.progress}><CircularProgress style={{color: "grey"}}/></div>
+    }
     // If search Value equals "memeteam" show team picture
     if (searchValue === "memeteam") {
       return (
@@ -78,8 +87,7 @@ class Results extends React.Component {
           </div>
         </div>
       );
-    }
-    else if (this.state.resultDocsLength !== 0) {
+    } else if (this.state.resultDocsLength !== 0) {
       // Otherwise show the results
       return (
         <div style={{ display: "flex" }}>

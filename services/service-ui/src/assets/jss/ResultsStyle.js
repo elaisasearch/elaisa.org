@@ -22,6 +22,11 @@ const styles = {
         alignItems: 'center',
         height: '70vh',
         flexDirection: 'column'
+    },
+    progress: {
+        marginTop: "20vh",
+        display: "flex",
+        justifyContent: "center"
     }
   };
 
