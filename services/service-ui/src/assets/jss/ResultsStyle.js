@@ -15,6 +15,13 @@ const styles = {
     },
     polaroidImage: {
         width: "100%"
+    },
+    sadDog: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '70vh',
+        flexDirection: 'column'
     }
   };
 

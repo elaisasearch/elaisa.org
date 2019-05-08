@@ -4,6 +4,8 @@ import ResultList from '../components/ResultList/ResultList';
 import axios from 'axios';
 import WikiCard from '../components/WikiCard/WikiCard';
 import memeteam from '../assets/img/memeteam.png';
+import { Typography } from '@material-ui/core';
+import errorPic from '../assets/img/error.png'
 import styles from '../assets/jss/ResultsStyle'
 
 class Results extends React.Component {
@@ -62,9 +64,18 @@ class Results extends React.Component {
                 </div>
             </div>
         }
-        // otherwise show the results
+        // Show the sad dog centered if there are no results
+        else if (this.state.resultDocsLength === 0) {
+            return <div style={styles.sadDog}>
+                <img src={errorPic} alt="Error" style={{width:"20%"}}></img>
+                <Typography variant="h6">
+                    Sorry, there are no results for "<b>{this.state.searchValue}</b>"". Please try again
+                </Typography>
+            </div>
+        }
+        // Otherwise show the results
         return <div style={{display: "flex"}}>
-            <ResultList resultDocsLength={this.state.resultDocsLength} error={this.state.error} resultDocs={this.state.resultDocs}/>
+            <ResultList searchValue={this.state.searchValue} resultDocsLength={this.state.resultDocsLength} resultDocs={this.state.resultDocs}/>
             {this.renderWiki(this.state.error)}
         </div>
     }
