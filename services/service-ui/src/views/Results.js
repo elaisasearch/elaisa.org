@@ -4,7 +4,7 @@ import ResultList from '../components/ResultList/ResultList';
 import axios from 'axios';
 import WikiCard from '../components/WikiCard/WikiCard';
 import memeteam from '../assets/img/memeteam.png';
-
+import styles from '../assets/jss/ResultsStyle'
 
 class Results extends React.Component {
 
@@ -52,19 +52,21 @@ class Results extends React.Component {
     }
 
     renderResults(searchValue){
+        // If search Value equals "memeteam" show team picture
         if (searchValue === "memeteam") {
-            return <img src={memeteam} style={
-                {marginTop: "2%",
-                display: "block",
-                marginLeft: "auto",
-                marginRight: "auto",
-                width: "30%"
-            }} alt="MemeTeam" />
+            return <div style={styles.polaroid}>
+                <a href="https://github.com/dasmemeteam/language-level-search-engine" target="_blank"><img src={memeteam} alt="MemeTeam" style={styles.polaroidImage} /></a>
+                <div style={styles.polaroidText}>
+                    <p>Jenny, Paula, Alex</p>
+                    <p><b>The MemeTeam</b></p>
+                </div>
+            </div>
         }
-        return (<div style={{display: "flex"}}>
+        // otherwise show the results
+        return <div style={{display: "flex"}}>
             <ResultList resultDocsLength={this.state.resultDocsLength} error={this.state.error} resultDocs={this.state.resultDocs}/>
             {this.renderWiki(this.state.error)}
-        </div>);
+        </div>
     }
 
     render() {
