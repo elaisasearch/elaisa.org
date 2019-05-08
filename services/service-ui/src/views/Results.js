@@ -66,6 +66,7 @@ class Results extends React.Component {
   }
 
   renderResults(searchValue) {
+    // while service is fetching data, show the progress circle
     if (this.state.waiting) {
        return <div style={styles.progress}><CircularProgress style={{color: "grey"}}/></div>
     }
