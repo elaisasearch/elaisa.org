@@ -5,8 +5,6 @@ import List from '@material-ui/core/List';
 import ResultItem from './ResultItem';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { Typography } from '@material-ui/core';
-import errorPic from '../../assets/img/error.png'
-
 
 const styles = theme => ({
     root: {
@@ -28,7 +26,7 @@ class ResultList extends React.Component {
     renderList = (resultDocs, classes) => {
 
         return <div>
-            <Typography style={{marginLeft: '18vh', marginTop: '2vh'}} variant="caption">{`${this.props.resultDocsLength} results`}</Typography>
+            <Typography style={{marginLeft: '18vh', marginTop: '2vh'}} variant="caption">{`${this.props.resultDocsLength} results for "${this.props.searchValue}"`}</Typography>
             <List className={classes.root}>
                 {resultDocs.map(doc => (
                 <ResultItem website={doc.url} title={doc.title} desc={doc.meta.desc} keywords={doc.meta.keywords} date={doc.meta.date} language={doc.meta.language} />
@@ -58,30 +56,10 @@ class ResultList extends React.Component {
     //     return this.renderList(resultDocs, classes)
     // }
 
-    renderErrorMessage = () => {
-        return <div style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            height: '70vh',
-            flexDirection: 'column'
-        }}>
-            <img src={errorPic} alt="Error" style={{width:"20%"}}></img>
-            <Typography variant="h6">
-                Sorry, there are no results for your search query. Please try again
-            </Typography>
-        </div>
-    }
-
     render() {
-        const { classes } = this.props;
-
-        const { resultDocs, error } = this.props;
+        const { classes, resultDocs } = this.props;
         
-        if (error) {
-            return this.renderErrorMessage()
-        }
-        else return this.renderList(resultDocs, classes);
+        return this.renderList(resultDocs, classes);
     }
 
 }

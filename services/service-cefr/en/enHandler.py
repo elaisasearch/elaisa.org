@@ -14,10 +14,10 @@ complete_list = []
 
 
 def extraction_from_pdf(level):
-    dateiname = "Level " + level + " Word List.txt"
-    input_text = open(dateiname, "r")
+    dateiname = "files/Level " + level + " Word List.txt"
+    input_text = open(dateiname, "rb")
 
-    text = input_text.read()
+    text = input_text.read().decode('iso-8859-1')
 
     #Suche aller Begriffe mit dem Muster: Newline Word Whitespace Slash(ice)
     muster = r"\n\w+\s/"
@@ -66,11 +66,11 @@ for level in language_level:
 complete_list = listen_verarbeitung(complete_list)
 
 
-client = MongoClient('localhost', 27016)
+client = MongoClient('localhost', 27017)
 db = client['LanguageLevelSearchEngine']
 collection = db['vocab_english']
 
 for i in range(0,5):
     for vokabel in complete_list[i]:
-        tmpdict = {"word" : str(vokabel), "languageLevel" : str(language_level[i])}
+        tmpdict = {"word" : str(vokabel.lower()), "languageLevel" : str(language_level[i])}
         collection.insert_one(tmpdict)

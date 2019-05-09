@@ -19,6 +19,7 @@ class DuplicatesPipeline(object):
         self.titles_seen = set()
 
     def process_item(self, item, spider):
+        # TODO: change abstract with better comparison. better use URL
         if item['abstract'] in self.titles_seen:
             raise DropItem("Duplicate item found: %s" % item)
         else:

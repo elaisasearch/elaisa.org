@@ -1,23 +1,37 @@
 import scrapy
 import textacy
+import re 
 
 class NewsSpider(scrapy.Spider):
     name = "news_de_DE"
     start_urls = [
-        #'http://www.spiegel.de/',
-        #'https://www.tagesschau.de/',
-        #'https://www1.wdr.de/'
+        'http://www.spiegel.de/',
+        'https://www.tagesschau.de/',
+        'https://www1.wdr.de/',
         'https://www.tagesschau.de/inland/ruestungsexporte-169.html',
-        #'https://www1.wdr.de/sport/fussball/vorbericht-bayer-leverkusen-in-hoffenheim-100.htmls',
-        #'http://www.spiegel.de/politik/ausland/brexit-eu-koennte-grossbritannien-verlaengerung-verweigern-a-1260391.html'
+        'https://www1.wdr.de/sport/fussball/vorbericht-bayer-leverkusen-in-hoffenheim-100.htmls',
+        'http://www.spiegel.de/politik/ausland/brexit-eu-koennte-grossbritannien-verlaengerung-verweigern-a-1260391.html',
         'https://www.kindersache.de/',
-        'https://www.zdf.de/nachrichten'
+        'https://www.zdf.de/nachrichten',
+        'https://www.faz.net/aktuell/'
+    ]
+
+    trustedUrls = [
+        'http://www.spiegel.de/',
+        'https://www.tagesschau.de/',
+        'https://www1.wdr.de/',
+        'https://www.kindersache.de/',
+        'https://www.zdf.de/nachrichten',
         'https://www.faz.net/aktuell/'
     ]
 
     def parse(self, response):
         url = response.url
         for data in response.css('html'):
+
+            # TODO: check if current url is in trusted Urls, so that we only parse news sites
+            #re.match(r'{}'.format(url))
+
             if data.css('html::attr(lang)').get() == "de":
 
                 # preprocess text for lowercase search and normalized data
