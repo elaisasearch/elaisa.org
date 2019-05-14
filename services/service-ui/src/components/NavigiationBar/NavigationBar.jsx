@@ -61,8 +61,8 @@ class NavigationBar extends React.Component {
       const level = props.values[2] 
       return <div style={{display: "flex", flexGrow: 1}}>
         <SearchBarNavigationBar value={searchValue} onChange={e => this.setState({value: e})} onKeyDown={this.keyPress}/>
-        <DropDownMenu value={language} desc="Result Language" items={["Deutsch", "English", "Español"]} onChange={e => this.setState({ language: e })} />
-        <DropDownMenu value={level} desc="Language Level" items={["A1", "A2", "B1", "B2", "C1", "C2"]} onChange={e => this.setState({ level: e })} />
+        <DropDownMenu value={language} desc="Result Language" items={["Deutsch", "English", "Español"]} values={["de","en","es"]} onChange={e => this.setState({ language: e })} />
+        <DropDownMenu value={level} desc="Language Level" items={["A1", "A2", "B1", "B2", "C1", "C2"]} values={["A1", "A2", "B1", "B2", "C1", "C2"]} onChange={e => this.setState({ level: e })} />
       </div>
     }
   }
