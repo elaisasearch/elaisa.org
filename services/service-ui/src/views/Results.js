@@ -114,7 +114,7 @@ class Results extends React.Component {
         <div style={styles.sadDog}>
           <img src={errorPic} alt="Error" style={{ width: "20%" }} />
           <Typography variant="h6">
-            Sorry, there are no results for "<b>{this.state.searchValue}</b>"".
+            Sorry, there are no results for "<b>{this.state.searchValue}</b>".
             Please try again
           </Typography>
         </div>
