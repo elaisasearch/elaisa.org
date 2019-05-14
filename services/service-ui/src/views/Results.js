@@ -29,8 +29,15 @@ class Results extends React.Component {
   getResultDocs = () => {
     // source: https://github.com/axios/axios
     // IMPORTANT: install this on chrome: https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi/related
+    
+
     axios
-      .get(`http://localhost:8080/find&query=${this.state.searchValue}`)
+      .get(`http://localhost:8080/find&query=${this.state.searchValue}&level=${this.state.level}&language=${this.state.language}`, {
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        }
+      })
       .then(response => {
         // handle success
         this.setState({
@@ -44,6 +51,7 @@ class Results extends React.Component {
         
       })
       .catch(error => {
+        console.log("API Error: ", error)
         // handle error
         this.setState({
              error: true,
