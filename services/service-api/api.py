@@ -23,7 +23,7 @@ def find(query, level, language):
     response.headers['Content-type'] = 'application/json'
 
     return {
-        "wikipedia": wikipedia.getWikiEntry(query, "de"),
+        "wikipedia": wikipedia.getWikiEntry(query, language),
         "documents": search.findDocuments(query, level, language)
     }
 

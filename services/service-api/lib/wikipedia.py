@@ -2,7 +2,7 @@ import wikipedia
 
 def getWikiEntry(term, language): 
 
-    # wikipedia.set_lang(language)
+    wikipedia.set_lang(language)
     page = wikipedia.page(term)
     
     return {
