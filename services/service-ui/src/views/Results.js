@@ -125,6 +125,9 @@ class Results extends React.Component {
             Sorry, there are no results for "<b>{this.state.searchValue}</b>" 😔.
             Please try again 🧐.
           </Typography>
+          <Typography variant="caption">
+            Try to choose another language level than <b>{this.state.level}</b>
+          </Typography>
         </div>
       );
     }
