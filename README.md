@@ -1,6 +1,18 @@
 # language-level-search-engine
 Search engine depending on the language level
 
+# Start App without Docker
+
+1. `cd services/service-ui/ && yarn && yarn start`
+2. `cd services/service-api && python api.py`
+    - If you're on Windows, please check if you can start Python files with `python file.py`
+3. Mongo DB should run on `localhost:27017`
+4. `cd services/service-cefr/en && python enHandler.py`
+5. `cd services/service-crawler && scrapy crawl news_en_EN`
+6. `cd services/service-index && python indexer.py`
+
+Now you can visit the application on `localhost:3000` and search for english documents.
+
 # Docker
 
 **Build the images:**
