@@ -13,11 +13,11 @@ GLOBALS = {
         "database": "LanguageLevelSearchEngine",
         "collections": {
             "inverted_index": [
-                "inverted_index_de_DE"
+                "inverted_index_en_EN"
             ],
             "crawled": {
                 "news": [
-                    "news_de_DE"
+                    "news_en_EN"
                 ]
             }
         }
