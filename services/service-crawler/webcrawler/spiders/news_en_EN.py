@@ -1,6 +1,7 @@
 import scrapy
 import textacy
 import re 
+from . import categorize
 
 class NewsSpider(scrapy.Spider):
     name = "news_en_EN"
@@ -48,6 +49,9 @@ class NewsSpider(scrapy.Spider):
                 preprocessedText = textacy.preprocess.normalize_whitespace(preprocessedText)
                 # TODO: add lemmatizing for words
 
+                # categorize documents
+                # categorize.categorizeText(text)
+                
                 yield {
                     'url': url,
                     'meta': {
@@ -60,7 +64,8 @@ class NewsSpider(scrapy.Spider):
                     },
                     'title': data.css('title::text').get(),
                     'abstract': data.css('strong::text').get(),
-                    'text': preprocessedText
+                    'text': preprocessedText,
+                    'level': categorize.categorizeText(text)
                 }
             else:
                 continue
