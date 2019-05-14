@@ -29,7 +29,7 @@ class ResultList extends React.Component {
             <Typography style={{marginLeft: '18vh', marginTop: '2vh'}} variant="caption">{`${this.props.resultDocsLength} results for "${this.props.searchValue}"`}</Typography>
             <List className={classes.root}>
                 {resultDocs.map(doc => (
-                <ResultItem website={doc.url} title={doc.title} desc={doc.meta.desc} keywords={doc.meta.keywords} date={doc.meta.date} language={doc.meta.language} />
+                <ResultItem website={doc.url} title={doc.title} desc={doc.meta.desc} keywords={doc.meta.keywords} date={doc.meta.date} language={doc.meta.language} level={doc.level} />
                 ))}
             </List>
         </div>

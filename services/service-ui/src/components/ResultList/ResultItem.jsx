@@ -34,8 +34,10 @@ const styles = {
 
 const ResultItem = (props) => {
 
-    const { website, title, desc, keywords, date, language } = props
+    const { website, title, desc, keywords, date, language, level } = props
     console.log("Locale", language)
+
+    console.log("Level: ", level );
 
     const Title = () => {
         return <a href={website} style={styles.title}>{title}</a>
@@ -43,7 +45,7 @@ const ResultItem = (props) => {
 
     return (
         <ListItem style={styles}>
-            <div style={styles.levelDiv}>C1</div>
+            <div style={styles.levelDiv}>{level}</div>
             <div>
                 <Title />
                 <ListItemText
