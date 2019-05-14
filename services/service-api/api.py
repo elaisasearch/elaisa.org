@@ -1,6 +1,6 @@
 from bottle import Bottle, request, response, run
 # import lib files
-from lib import search
+from lib import search, wikipedia
 
 app = Bottle()
 
@@ -23,12 +23,7 @@ def find(query, level, language):
     response.headers['Content-type'] = 'application/json'
 
     return {
-        #"wikipedia": wikipedia.getWikiEntry(query, "de"),
-        "wikipedia": {
-            "url": "www.google.de",
-            "title": "Haushund",
-            "summary": "Ein Tier"
-        },
+        "wikipedia": wikipedia.getWikiEntry(query, "de"),
         "documents": search.findDocuments(query, level, language)
     }
 
