@@ -85,6 +85,7 @@ class Results extends React.Component {
           <a
             href="https://github.com/dasmemeteam/language-level-search-engine"
             target="_blank"
+            rel="noopener noreferrer"
           >
             <img src={memeteam} alt="MemeTeam" style={styles.polaroidImage} />
           </a>
