@@ -6,7 +6,7 @@ from pymongo import MongoClient
 def parseMongo():
     client = MongoClient('mongodb://localhost:27017/')
     db = client["LanguageLevelSearchEngine"]
-    collection = db["news_de_DE"]
+    collection = db["news_en_EN"]
     texts, words = {}, set()
     for news in collection.find():
         txt = news["text"].split()
@@ -28,7 +28,7 @@ finvindex = {word: set((txt, wrdindx)
 def storeIndexInMongo(finvindex):
     client = MongoClient('mongodb://localhost:27017/')
     db = client["LanguageLevelSearchEngine"]
-    collection = db["inverted_index_de_DE"]
+    collection = db["inverted_index_en_EN"]
 
     for word, docs in finvindex.items():
         collection.insert_one({"word": word, "documents": list(docs)})
