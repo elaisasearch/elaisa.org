@@ -144,6 +144,7 @@ class Results extends React.Component {
             this.state.level,
             this.state.resultDocsLength
           ]}
+          id="navBar"
         />
         {this.renderResults(this.state.searchValue)}
       </div>

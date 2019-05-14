@@ -32,6 +32,7 @@ class LeftMenu extends React.Component {
                     style={{color:"black"}}
                     aria-label="Open Menu"
                     onClick={this.toggleDrawer('left', true)}
+                    id="menuButton"
                 >
                     <MenuIcon />
                 </IconButton>

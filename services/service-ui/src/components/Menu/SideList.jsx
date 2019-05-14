@@ -3,6 +3,7 @@ import { List, Divider, ListItem, ListItemIcon, ListItemText, Collapse, ListSubh
 import { Share, ExpandLess, ExpandMore, Home } from '@material-ui/icons/';
 import style from '../../assets/jss/MenuStyle';
 import MenuHelper from './MenuHelper';
+import Switch from './Switch';
 
 // import language flags for menu
 import german from '../../assets/img/menu_flags/german.jpg';
@@ -58,6 +59,11 @@ class SideList extends Component {
                             <Divider />
                         </List>
                     </Collapse>
+                    {/* Home */}
+                     <ListItem>
+                        <Switch />
+                        <ListItemText inset primary="Darkmode" />
+                    </ListItem>
                 </List>
             </div>
         );
