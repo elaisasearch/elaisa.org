@@ -50,7 +50,7 @@ Now the database is ready for production.
 
 ### This Video shows the basic use
 
-[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/PUorFd57_fE/0.jpg)](https://www.youtube.com/watch?v=WsK0cTHHD3E&feature=youtu.be)
+[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/PUorFd57_fE/0.jpg)](https://www.youtube.com/watch?v=eo8XwrqPIgg&feature=youtu.be)
 
 ### Architecture
 
