@@ -49,7 +49,7 @@ def findDocuments(query, level, language):
 
     documents = []
     for id in docIds:
-        query = {"_id": ObjectId(id), "level": level}
+        query = {"_id": ObjectId(id), "level": level, "meta.language": language}
         results = col.find(query)
 
         for r in results: 
