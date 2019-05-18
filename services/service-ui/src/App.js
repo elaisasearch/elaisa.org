@@ -12,7 +12,7 @@ class App extends Component {
     return (
       <div className="App">
         <NavigationBar/>
-        <img id="logo" src={logo} style={{ width: "20%", marginTop: "5%" }} alt="Pizza"></img>
+        <img id="logo" src={logo} style={{ width: "15%", marginTop: "5%" }} alt="Pizza"></img>
         <SearchBar/>
       </div>
     );
