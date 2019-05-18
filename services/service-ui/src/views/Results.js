@@ -29,13 +29,27 @@ class Results extends React.Component {
   getResultDocs = () => {
     // source: https://github.com/axios/axios
     // IMPORTANT: install this on chrome: https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi/related
+    
+
     axios
-      .get(`http://localhost:8080/find&query=${this.state.searchValue}`)
+      .get(`http://localhost:8080/find&query=${this.state.searchValue}&level=${this.state.level}&language=${this.state.language}`, {
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        }
+      })
       .then(response => {
         // handle success
+
+        // get the length of result docs
+        let length = 0
+        for (let d in JSON.parse(response.data.documents)) {
+          length++;
+        }
+
         this.setState({
           resultDocs: JSON.parse(response.data.documents),
-          resultDocsLength: JSON.parse(response.data.documents.length),
+          resultDocsLength: length,
           wiki_url: response.data.wikipedia.url,
           wiki_title: response.data.wikipedia.title,
           wiki_summary: response.data.wikipedia.summary,
@@ -44,6 +58,7 @@ class Results extends React.Component {
         
       })
       .catch(error => {
+        console.log("API Error: ", error)
         // handle error
         this.setState({
              error: true,
@@ -77,6 +92,7 @@ class Results extends React.Component {
           <a
             href="https://github.com/dasmemeteam/language-level-search-engine"
             target="_blank"
+            rel="noopener noreferrer"
           >
             <img src={memeteam} alt="MemeTeam" style={styles.polaroidImage} />
           </a>
@@ -106,8 +122,11 @@ class Results extends React.Component {
         <div style={styles.sadDog}>
           <img src={errorPic} alt="Error" style={{ width: "20%" }} />
           <Typography variant="h6">
-            Sorry, there are no results for "<b>{this.state.searchValue}</b>"".
-            Please try again
+            Sorry, there are no results for "<b>{this.state.searchValue}</b>" 😔.
+            Please try again 🧐.
+          </Typography>
+          <Typography variant="caption">
+            Try to choose another language level than <b>{this.state.level}</b>
           </Typography>
         </div>
       );

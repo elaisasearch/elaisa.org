@@ -52,7 +52,9 @@ class MongoPipeline(object):
     def process_item(self, item, spider):
         if spider.name == "news_de_DE":
             self.collection_name = 'news_de_DE'
-        else: 
+        elif spider.name == "news_en_EN": 
+            self.collection_name = 'news_en_EN'
+        else:
             self.collection_name = 'crawled_items'
 
         self.db[self.collection_name].insert_one(dict(item))
