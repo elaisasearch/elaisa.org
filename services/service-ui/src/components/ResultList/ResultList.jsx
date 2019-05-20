@@ -9,7 +9,6 @@ import { Typography } from '@material-ui/core';
 const styles = theme => ({
     root: {
         width: '100%',
-        maxWidth: '90%',
         display: 'flex',
         flexDirection: 'column',
         marginLeft: '5%',
@@ -25,7 +24,7 @@ class ResultList extends React.Component {
 
     renderList = (resultDocs, classes) => {
 
-        return <div>
+        return <div style={{'marginRight': '10vh'}}>
             <Typography style={{marginLeft: '18vh', marginTop: '2vh'}} variant="caption">{`${this.props.resultDocsLength} results for "${this.props.searchValue}"`}</Typography>
             <List className={classes.root}>
                 {resultDocs.map(doc => (
