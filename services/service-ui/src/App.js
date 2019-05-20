@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './App.css';
 import NavigationBar from './components/NavigiationBar/NavigationBar';
 import SearchBar from './components/SearchBar/SearchBar';
+import styles from './assets/jss/AppStyle'
 
 //logo
 import logo from './assets/img/logo.png';
@@ -10,9 +10,9 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div style={styles.app}>
         <NavigationBar/>
-        <img id="logo" src={logo} style={{ width: "15%", marginTop: "5%" }} alt="Pizza"></img>
+        <img id="logo" src={logo} style={styles.logo} alt="Pizza"></img>
         <SearchBar/>
       </div>
     );
