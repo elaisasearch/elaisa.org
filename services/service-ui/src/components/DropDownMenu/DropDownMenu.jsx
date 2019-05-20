@@ -9,13 +9,9 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 
 const styles = theme => ({
-  root: {},
   formControl: {
     margin: theme.spacing.unit,
     minWidth: 160
-  },
-  selectEmpty: {
-    marginTop: theme.spacing.unit * 2
   }
 });
 
@@ -42,7 +38,7 @@ class DropDownMenu extends React.Component {
     const { classes, items, desc, values } = this.props;
 
     return (
-      <form className={classes.root} autoComplete="off">
+      <form autoComplete="off">
         <FormControl variant="outlined" className={classes.formControl}>
           <InputLabel
             ref={ref => {
