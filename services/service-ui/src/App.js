@@ -12,7 +12,7 @@ class App extends Component {
     return (
       <div style={styles.app}>
         <NavigationBar/>
-        <img id="logo" src={logo} style={styles.logo} alt="Pizza"></img>
+        <img id="logo" src={logo} style={styles.logo} alt="Elaisa Search Engine Logo"></img>
         <SearchBar/>
       </div>
     );
