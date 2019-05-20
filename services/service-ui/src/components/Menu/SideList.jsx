@@ -9,8 +9,6 @@ import Switch from './Switch';
 import german from '../../assets/img/menu_flags/german.jpg';
 import english from '../../assets/img/menu_flags/english.jpg';
 import spanish from '../../assets/img/menu_flags/spanish.jpg';
-// import french from '../../assets/img/menu_flags/french.jpg';
-// import italian from '../../assets/img/menu_flags/italian.jpg';
 
 function ListItemLink(props) {
     return <ListItem button component="a" {...props} />;
