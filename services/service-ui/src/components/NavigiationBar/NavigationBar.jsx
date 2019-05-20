@@ -59,7 +59,7 @@ class NavigationBar extends React.Component {
       const searchValue = props.values[0]
       const language = props.values[1] 
       const level = props.values[2] 
-      return <div style={{display: "flex", flexGrow: 1}}>
+      return <div style={styles.searchBar}>
         <SearchBarNavigationBar value={searchValue} onChange={e => this.setState({value: e})} onKeyDown={this.keyPress}/>
         <DropDownMenu value={language} desc="Result Language" items={["Deutsch", "English", "Español"]} values={["de","en","es"]} onChange={e => this.setState({ language: e })} />
         <DropDownMenu value={level} desc="Language Level" items={["A1", "A2", "B1", "B2", "C1", "C2"]} values={["A1", "A2", "B1", "B2", "C1", "C2"]} onChange={e => this.setState({ level: e })} />
@@ -69,7 +69,7 @@ class NavigationBar extends React.Component {
 
   renderFilterBar = (props) => {
     if (props.results) {
-      return <div style={{ marginLeft: "9vh", padding: "1vh", display: "flex", flexGrow: 1}}>
+      return <div style={styles.filterBar}>
           <Button>All</Button>
           <Button>News</Button>
           <Button>Blogs</Button>
