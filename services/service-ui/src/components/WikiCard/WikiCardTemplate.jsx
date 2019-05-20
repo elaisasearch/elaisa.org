@@ -13,7 +13,8 @@ const styles = {
     maxWidth: 275,
     maxHeight: 280,
     marginTop: '6vh',
-    marginRight: '10vh'
+    marginRight: '10vh',
+    marginLeft: 'auto'
   },
   bullet: {
     display: 'inline-block',
