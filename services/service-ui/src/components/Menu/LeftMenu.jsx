@@ -1,6 +1,6 @@
 import React from 'react';
 import MenuIcon from '@material-ui/icons/Menu';
-import {Drawer, IconButton} from '@material-ui/core/';
+import { Drawer, IconButton } from '@material-ui/core/';
 // Side List for Menu
 import SideList from './SideList';
 
@@ -25,7 +25,7 @@ class LeftMenu extends React.Component {
         return (
             <div>
                 <IconButton
-                    style={{color:"black"}}
+                    style={{ color: "black" }}
                     aria-label="Open Menu"
                     onClick={this.toggleDrawer('left', true)}
                     id="menuButton"
@@ -37,7 +37,7 @@ class LeftMenu extends React.Component {
                         tabIndex={0}
                         role="button"
                     >
-                        <SideList/>
+                        <SideList />
                     </div>
                 </Drawer>
             </div>
