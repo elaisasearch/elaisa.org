@@ -10,7 +10,6 @@ class SwitchLabels extends React.Component {
 
   handleChange = name => event => {
     this.setState({ [name]: event.target.checked });
-    console.log("Darkmode: ", !this.state.darkmode)
     try {
         if (!this.state.darkmode) {
             document.body.style.background = "#484848";
