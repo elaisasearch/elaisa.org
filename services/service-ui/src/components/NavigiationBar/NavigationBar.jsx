@@ -25,9 +25,7 @@ class NavigationBar extends React.Component {
 
   keyPress = (e) => {
     // get the input when user cliks enter (13)
-    if (e.keyCode === 13) {
-      console.log(`Search Query: ${e.target.value}`)
-      
+    if (e.keyCode === 13) {      
       this.searchButtonPressed()
     }
   }
