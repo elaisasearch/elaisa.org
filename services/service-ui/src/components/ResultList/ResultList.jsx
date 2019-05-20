@@ -26,16 +26,6 @@ class ResultList extends React.Component {
         </div>
     }
 
-    // renderItems = (resultDocs, classes) => {
-    //     let i = 0
-    //     while (i <= resultDocs.length) {
-    //         i = i + 1;
-    //         console.log(i)
-    //         return this.renderProgress()
-    //     }
-    //     return this.renderList(resultDocs, classes)
-    // }
-
     render() {
         const { resultDocs } = this.props;
         
