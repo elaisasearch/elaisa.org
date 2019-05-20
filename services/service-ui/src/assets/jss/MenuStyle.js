@@ -1,7 +1,6 @@
-const style = theme => ({
+const styles = theme => ({
     list: {
         width: 250,
-        maxWidth: "25vh"
     },
     fullList: {
         width: 'auto',
@@ -11,4 +10,4 @@ const style = theme => ({
     }
 });
 
-export default style;
+export default styles;

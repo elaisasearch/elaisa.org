@@ -29,7 +29,7 @@ class SideList extends Component {
             <div style={styles.list}>
                 <List
                     component="nav"
-                    style={styles.list}
+                    style={{maxWidth: "25vh"}}
                     subheader={<ListSubheader component="nav">Menu</ListSubheader>}
                 >
                     {/* Home */}
