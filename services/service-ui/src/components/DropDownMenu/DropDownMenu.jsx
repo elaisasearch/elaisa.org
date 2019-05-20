@@ -30,7 +30,6 @@ class DropDownMenu extends React.Component {
 
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
-    console.log("DropDown", event.target.value);
     this.props.onChange(event.target.value);
   };
 
