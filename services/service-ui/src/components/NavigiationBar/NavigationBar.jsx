@@ -85,7 +85,6 @@ class NavigationBar extends React.Component {
             {this.renderSearchBar(this.props)}
           </Toolbar>
           {this.renderFilterBar(this.props)}
-          <div>{}</div>
         </AppBar>
       </div>
     );
