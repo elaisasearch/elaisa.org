@@ -48,7 +48,6 @@ class DropDownMenu extends React.Component {
             {desc}
           </InputLabel>
           <Select
-            // value={value === undefined ? this.state.pickedData : value}
             value={this.state.pickedData}
             onChange={this.handleChange}
             input={
