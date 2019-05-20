@@ -25,8 +25,6 @@ class SearchBar extends React.Component {
   keyPress = (e) => {
     // get the input when user cliks enter (13)
     if (e.keyCode === 13) {
-      console.log(`Search Query: ${e.target.value}`)
-
       this.searchButtonPressed()
     }
   }
@@ -52,11 +50,9 @@ class SearchBar extends React.Component {
   }
 
   handleChangeLevel = value => {
-    console.log(`Level: ${value}`)
     this.setState({ level: value })
   }
   handleChangeLanguage = value => {
-    console.log(`Language: ${value}`);
     this.setState({ language: value });
   }
 
