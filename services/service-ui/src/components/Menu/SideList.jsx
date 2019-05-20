@@ -51,9 +51,7 @@ class SideList extends Component {
                         <List component="div" disablePadding>
                             <MenuHelper href="https://sprachtest.de/einstufungstest-deutsch" flag={german} style={styles.nested} text="Deutsch" />
                             <MenuHelper href="https://sprachtest.de/einstufungstest-englisch" flag={english} style={styles.nested} text="English" />
-                            {/* <MenuHelper href="https://sprachtest.de/einstufungstest-franzoesisch" flag={french} style={style.nested} text="Français" /> */}
                             <MenuHelper href="https://sprachtest.de/einstufungstest-spanisch" flag={spanish} style={styles.nested} text="Español" />
-                            {/* <MenuHelper href="https://sprachtest.de/einstufungstest-italienisch" flag={italian} style={style.nested} text="Italiano" /> */}
                             <Divider />
                         </List>
                     </Collapse>
