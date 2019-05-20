@@ -1,6 +1,7 @@
 const style = theme => ({
     list: {
         width: 250,
+        maxWidth: "25vh"
     },
     fullList: {
         width: 'auto',
