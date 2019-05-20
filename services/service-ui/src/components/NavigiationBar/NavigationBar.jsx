@@ -39,7 +39,6 @@ class NavigationBar extends React.Component {
       // https://stackoverflow.com/questions/44121069/how-to-pass-params-with-history-push-link-redirect-in-react-router-v4
       this.props.history.push({
         pathname: "/results",
-        // search: `?query=${e.target.value}&level=${this.state.level}&language=${this.state.language}`,
         search: `?query=${this.state.value}&level=${this.state.level}&language=${this.state.language}`,
         state: {
           searchValue: this.state.value.toLowerCase(),
