@@ -10,7 +10,7 @@ import german from '../../assets/img/menu_flags/german.jpg';
 import english from '../../assets/img/menu_flags/english.jpg';
 import spanish from '../../assets/img/menu_flags/spanish.jpg';
 
-function ListItemLink(props) {
+const ListItemLink = (props) => {
     return <ListItem button component="a" {...props} />;
 }
 
