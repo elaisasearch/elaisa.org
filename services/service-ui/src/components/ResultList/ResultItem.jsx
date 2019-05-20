@@ -9,9 +9,6 @@ import styles from '../../assets/jss/ResultItemStyle'
 const ResultItem = (props) => {
 
     const { website, title, desc, keywords, date, language, level } = props
-    console.log("Locale", language)
-
-    console.log("Level: ", level );
 
     const Title = () => {
         return <a href={website} style={styles.title}>{title}</a>
