@@ -6,41 +6,40 @@ import TextField from '@material-ui/core/TextField';
 import styles from '../../assets/jss/SearchBarNavigationBarStyle';
 
 
-class SearchBar extends React.Component {
+const SearchBar = (props) => {
 
-    handleChange = (e) => {
-        this.props.onChange(e.target.value);
+    const { classes, value } = props;
+
+    const handleChange = (e) => {
+        props.onChange(e.target.value);
     }
 
-    handleKeyDown = (e) => {
-        this.props.onKeyDown(e);
+    const handleKeyDown = (e) => {
+        props.onKeyDown(e);
     }
 
-    render() {
-        const { classes, value } = this.props;
-        return (
-            <div style={styles.root}>
-                <TextField
-                    onKeyDown={e => this.handleKeyDown(e)}
-                    onChange={e => this.handleChange(e)}
-                    id="outlined-full-width"
-                    style={{ margin: 8, borderColor: "grey" }}
-                    placeholder="Search for documents"
-                    fullWidth
-                    margin="normal"
-                    variant="outlined"
-                    defaultValue={value}
-                    InputProps={{
-                        classes: {
-                            root: classes.cssOutlinedInput,
-                            focused: classes.cssFocused,
-                            notchedOutline: classes.notchedOutline,
-                        },
-                    }}
-                />
-            </div>
-        );
-    }
+    return (
+        <div style={styles.root}>
+            <TextField
+                onKeyDown={e => handleKeyDown(e)}
+                onChange={e => handleChange(e)}
+                id="outlined-full-width"
+                style={{ margin: 8, borderColor: "grey" }}
+                placeholder="Search for documents"
+                fullWidth
+                margin="normal"
+                variant="outlined"
+                defaultValue={value}
+                InputProps={{
+                    classes: {
+                        root: classes.cssOutlinedInput,
+                        focused: classes.cssFocused,
+                        notchedOutline: classes.notchedOutline,
+                    },
+                }}
+            />
+        </div>
+    );
 }
 
 export default withStyles(styles)(SearchBar);
