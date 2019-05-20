@@ -12,12 +12,6 @@ const styles = {
     },
     resultListRoot: {
         marginRight: '10vh'
-    },
-    progress: {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '70vh'
     }
 }
 
