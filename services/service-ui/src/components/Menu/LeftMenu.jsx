@@ -21,10 +21,6 @@ class LeftMenu extends React.Component {
         });
     };
 
-    handleContactClick = () => {
-        console.log("blicked")
-    }
-
     render() {
         return (
             <div>
