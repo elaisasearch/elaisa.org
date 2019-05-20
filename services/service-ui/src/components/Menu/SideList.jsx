@@ -29,7 +29,7 @@ class SideList extends Component {
             <div className={style.list}>
                 <List
                     component="nav"
-                    style={{maxWidth: "25vh"}}
+                    style={{ maxWidth: "25vh" }}
                     subheader={<ListSubheader component="nav">Menu</ListSubheader>}
                 >
                     {/* Home */}
@@ -58,7 +58,7 @@ class SideList extends Component {
                         </List>
                     </Collapse>
                     {/* Home */}
-                     <ListItem>
+                    <ListItem>
                         <Switch />
                         <ListItemText inset primary="Darkmode" />
                     </ListItem>
