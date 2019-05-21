@@ -12,7 +12,7 @@ const NotFound = (props) => {
                 Please try again 🧐.
           </Typography>
             <Typography variant="caption">
-                Try to choose another language level than <b>{props.level}</b>
+                Try to choose another level than <b>{props.level}</b> or another language than <b>{props.language.toUpperCase()}</b>
             </Typography>
         </div>
     );

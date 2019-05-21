@@ -112,7 +112,7 @@ class Results extends React.Component {
       );
     } else {
       // Show the sad dog centered if there are no results
-      return <NotFound searchValue={this.state.searchValue} level={this.state.level} />
+      return <NotFound searchValue={this.state.searchValue} language={this.state.language} level={this.state.level} />
     }
   }
 
