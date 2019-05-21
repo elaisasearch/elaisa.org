@@ -13,7 +13,7 @@ const ResultList = (props) => {
 
         return <div style={styles.resultListRoot}>
             <Typography style={styles.resultDocsLength} variant="caption">{`${props.resultDocsLength} results for "${props.searchValue}"`}</Typography>
-            <List className={styles.root}>
+            <List>
                 {resultDocs.map(doc => (
                 <ResultItem website={doc.url} title={doc.title} desc={doc.meta.desc} keywords={doc.meta.keywords} date={doc.meta.date} language={doc.meta.language} level={doc.level} />
                 ))}
