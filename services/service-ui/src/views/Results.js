@@ -11,9 +11,6 @@ import styles from "../assets/jss/ResultsStyle";
 class Results extends React.Component {
 
   state = {
-    searchValue: this.props.location.state.searchValue,
-    language: this.props.location.state.language,
-    level: this.props.location.state.level,
     resultDocs: [],
     resultDocsLength: 0,
     error: false,
@@ -23,13 +20,17 @@ class Results extends React.Component {
     waiting: true
   };
 
+  searchValue = this.props.location.state.searchValue;
+  language = this.props.location.state.language;
+  level = this.props.location.state.level;
+
   componentDidMount() {
     // source: https://github.com/axios/axios
     // IMPORTANT: install this on chrome: https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi/related
     
 
     axios
-      .get(`http://localhost:8080/find&query=${this.state.searchValue}&level=${this.state.level}&language=${this.state.language}`, {
+      .get(`http://localhost:8080/find&query=${this.searchValue}&level=${this.level}&language=${this.language}`, {
         headers: {
           "Content-Type": "application/json",
           "Accept": "application/json"
@@ -106,7 +107,7 @@ class Results extends React.Component {
       return (
         <div style={{ display: "flex" }}>
           <ResultList
-            searchValue={this.state.searchValue}
+            searchValue={searchValue}
             resultDocsLength={this.state.resultDocsLength}
             resultDocs={this.state.resultDocs}
           />
@@ -119,11 +120,11 @@ class Results extends React.Component {
         <div style={styles.sadDog}>
           <img src={errorPic} alt="Error" style={{ width: "20%" }} />
           <Typography variant="h6">
-            Sorry, there are no results for "<b>{this.state.searchValue}</b>" 😔.
+            Sorry, there are no results for "<b>{searchValue}</b>" 😔.
             Please try again 🧐.
           </Typography>
           <Typography variant="caption">
-            Try to choose another language level than <b>{this.state.level}</b>
+            Try to choose another language level than <b>{this.level}</b>
           </Typography>
         </div>
       );
@@ -136,14 +137,14 @@ class Results extends React.Component {
         <NavigationBar
           results
           values={[
-            this.state.searchValue,
-            this.state.language,
-            this.state.level,
+            this.searchValue,
+            this.language,
+            this.level,
             this.state.resultDocsLength
           ]}
           id="navBar"
         />
-        {this.renderResults(this.state.searchValue)}
+        {this.renderResults(this.searchValue)}
       </div>
     );
   }
