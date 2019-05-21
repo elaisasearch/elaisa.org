@@ -3,10 +3,10 @@ import NavigationBar from "../components/NavigiationBar/NavigationBar";
 import ResultList from "../components/ResultList/ResultList";
 import axios from "axios";
 import WikiCard from "../components/WikiCard/WikiCard";
-import memeteam from "../assets/img/memeteam.png";
 import { Typography, CircularProgress } from "@material-ui/core";
 import errorPic from "../assets/img/error.png";
 import styles from "../assets/jss/ResultsStyle";
+import MemeTeam from '../components/MemeTeam/MemeTeam';
 
 class Results extends React.Component {
 
@@ -97,23 +97,7 @@ class Results extends React.Component {
     }
     // If search Value equals "memeteam" show team picture
     if (this.state.searchValue === "memeteam") {
-      return (
-        <div style={styles.polaroid}>
-          <a
-            href="https://github.com/dasmemeteam/language-level-search-engine"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img src={memeteam} alt="MemeTeam" style={styles.polaroidImage} />
-          </a>
-          <div style={styles.polaroidText}>
-            <p>Jenny, Paula, Alex</p>
-            <p>
-              <b>The MemeTeam</b>
-            </p>
-          </div>
-        </div>
-      );
+      return  <MemeTeam />;
     } else if (this.state.resultDocsLength !== 0) {
       // Otherwise show the results
       return (
