@@ -23,10 +23,9 @@ class Results extends React.Component {
       wiki_summary: "",
       waiting: true
     };
-    this.getResultDocs();
   }
 
-  getResultDocs = () => {
+  componentDidMount() {
     // source: https://github.com/axios/axios
     // IMPORTANT: install this on chrome: https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi/related
     
