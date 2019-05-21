@@ -1,7 +1,7 @@
 # language-level-search-engine
 Search engine depending on the language level
 
-<img src="services/service-ui/src/assets/img/logo.png" alt="Logo" width="250"/>
+<img src="services/service-ui/src/assets/img/logo.png" alt="Logo" width="250" style="display: block; margin-left: auto; margin-right: auto;"/>
 
 # Start App without Docker
 
