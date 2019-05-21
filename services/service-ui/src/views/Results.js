@@ -17,53 +17,65 @@ class Results extends React.Component {
     wiki_url: "",
     wiki_title: "",
     wiki_summary: "",
-    waiting: true
+    waiting: true,
+    searchValue: this.props.location.state.searchValue,
+    language: this.props.location.state.language,
+    level: this.props.location.state.level
   };
-
-  searchValue = this.props.location.state.searchValue;
-  language = this.props.location.state.language;
-  level = this.props.location.state.level;
 
   componentDidMount() {
-    // source: https://github.com/axios/axios
-    // IMPORTANT: install this on chrome: https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi/related
-    
+    this.searchResults(this.state.searchValue, this.state.level, this.state.language)
+  };
+
+  searchResults(searchValue, level, language) {
+    // show CircularProgress when user starts new search
+    this.setState({
+      waiting: true
+    });
 
     axios
-      .get(`http://localhost:8080/find&query=${this.searchValue}&level=${this.level}&language=${this.language}`, {
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        }
-      })
-      .then(response => {
-        // handle success
+    .get(`http://localhost:8080/find&query=${searchValue}&level=${level}&language=${language}`, {
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      }
+    })
+    .then(response => {
+      // handle success
 
-        // get the length of result docs
-        let length = 0
-        for (let d in JSON.parse(response.data.documents)) {
-          length++;
-        }
+      // get the length of result docs
+      let length = 0
+      for (let d in JSON.parse(response.data.documents)) {
+        length++;
+      }
 
-        this.setState({
-          resultDocs: JSON.parse(response.data.documents),
-          resultDocsLength: length,
-          wiki_url: response.data.wikipedia.url,
-          wiki_title: response.data.wikipedia.title,
-          wiki_summary: response.data.wikipedia.summary,
-          waiting: false
-        });
-        
-      })
-      .catch(error => {
-        console.log("API Error: ", error)
-        // handle error
-        this.setState({
-             error: true,
-             waiting: false
-            });
+      this.setState({
+        resultDocs: JSON.parse(response.data.documents),
+        resultDocsLength: length,
+        wiki_url: response.data.wikipedia.url,
+        wiki_title: response.data.wikipedia.title,
+        wiki_summary: response.data.wikipedia.summary,
+        waiting: false,
+        error: false,
+        searchValue: searchValue,
+        language: language,
+        level: level
       });
-  };
+    })
+    .catch(error => {
+      console.log("API Error: ", error)
+      // handle error
+      this.setState({
+        resultDocs: [],
+        resultDocsLength: 0,
+        waiting: false,
+        error: true,
+        searchValue: searchValue,
+        language: language,
+        level: level
+      });
+    });
+  }
 
   // Only render wiki card if there is a result
   renderWiki(error) {
@@ -78,13 +90,13 @@ class Results extends React.Component {
     }
   }
 
-  renderResults(searchValue) {
+  renderResults() {
     // while service is fetching data, show the progress circle
     if (this.state.waiting) {
        return <div style={styles.progress}><CircularProgress style={{color: "grey"}}/></div>
     }
     // If search Value equals "memeteam" show team picture
-    if (searchValue === "memeteam") {
+    if (this.state.searchValue === "memeteam") {
       return (
         <div style={styles.polaroid}>
           <a
@@ -107,7 +119,7 @@ class Results extends React.Component {
       return (
         <div style={{ display: "flex" }}>
           <ResultList
-            searchValue={searchValue}
+            searchValue={this.state.searchValue}
             resultDocsLength={this.state.resultDocsLength}
             resultDocs={this.state.resultDocs}
           />
@@ -120,7 +132,7 @@ class Results extends React.Component {
         <div style={styles.sadDog}>
           <img src={errorPic} alt="Error" style={{ width: "20%" }} />
           <Typography variant="h6">
-            Sorry, there are no results for "<b>{searchValue}</b>" 😔.
+            Sorry, there are no results for "<b>{this.state.searchValue}</b>" 😔.
             Please try again 🧐.
           </Typography>
           <Typography variant="caption">
@@ -136,15 +148,16 @@ class Results extends React.Component {
       <div>
         <NavigationBar
           results
+          click={this.searchResults.bind(this)}
           values={[
-            this.searchValue,
-            this.language,
-            this.level,
+            this.state.searchValue,
+            this.state.language,
+            this.state.level,
             this.state.resultDocsLength
           ]}
           id="navBar"
         />
-        {this.renderResults(this.searchValue)}
+        {this.renderResults()}
       </div>
     );
   }

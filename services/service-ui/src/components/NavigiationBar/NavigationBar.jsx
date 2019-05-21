@@ -43,8 +43,7 @@ class NavigationBar extends React.Component {
           language: this.state.language
         }
       });
-      window.location.reload()
-
+      this.props.click(this.state.value, this.state.level, this.state.language);
     }
   }
 
