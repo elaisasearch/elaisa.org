@@ -3,10 +3,10 @@ import NavigationBar from "../components/NavigiationBar/NavigationBar";
 import ResultList from "../components/ResultList/ResultList";
 import axios from "axios";
 import WikiCard from "../components/WikiCard/WikiCard";
-import { Typography, CircularProgress } from "@material-ui/core";
-import errorPic from "../assets/img/error.png";
+import { CircularProgress } from "@material-ui/core";
 import styles from "../assets/jss/ResultsStyle";
 import MemeTeam from '../components/MemeTeam/MemeTeam';
+import NotFound from '../components/NotFound/NotFound';
 
 class Results extends React.Component {
 
@@ -112,18 +112,7 @@ class Results extends React.Component {
       );
     } else {
       // Show the sad dog centered if there are no results
-      return (
-        <div style={styles.sadDog}>
-          <img src={errorPic} alt="Error" style={{ width: "20%" }} />
-          <Typography variant="h6">
-            Sorry, there are no results for "<b>{this.state.searchValue}</b>" 😔.
-            Please try again 🧐.
-          </Typography>
-          <Typography variant="caption">
-            Try to choose another language level than <b>{this.level}</b>
-          </Typography>
-        </div>
-      );
+      return <NotFound searchValue={this.state.searchValue} level={this.state.level} />
     }
   }
 
