@@ -3,6 +3,8 @@ Search engine depending on the language level
 
 <img src="services/service-ui/src/assets/img/logo.png" alt="Logo" width="250"/>
 
+**[Watch the Demo Video](https://www.youtube.com/watch?v=p2H1hCRi_5Y&feature=youtu.be)**
+
 # Start App without Docker
 
 1. `cd services/service-ui/ && yarn && yarn start`
@@ -49,8 +51,6 @@ Now the database is ready for production.
 
 ***Warning***
 *If you want to use your own builds, then you have to change the `docker-compose.yml` file and insert your `service-ui` container for the `ui` service!!*
-
-**[This Video shows the basic use](https://www.youtube.com/watch?v=p2H1hCRi_5Y&feature=youtu.be)**
 
 ### Architecture
 
