@@ -1,6 +1,8 @@
 # language-level-search-engine
 Search engine depending on the language level
 
+![Logo](services/service-ui/src/assets/img/logo.png)
+
 # Start App without Docker
 
 1. `cd services/service-ui/ && yarn && yarn start`
