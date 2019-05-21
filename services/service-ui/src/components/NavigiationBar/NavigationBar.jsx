@@ -14,13 +14,10 @@ import DropDownMenu from '../DropDownMenu/DropDownMenu';
 
 class NavigationBar extends React.Component {
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      value: props.values === undefined ? '' : props.values[0],
-      language: props.values === undefined ? '' : props.values[1],
-      level: props.values === undefined ? '' : props.values[2]
-    }
+  state = {
+    value: this.props.values === undefined ? '' : this.props.values[0],
+    language: this.props.values === undefined ? '' : this.props.values[1],
+    level: this.props.values === undefined ? '' : this.props.values[2]
   }
 
   keyPress = (e) => {
