@@ -9,21 +9,19 @@ import errorPic from "../assets/img/error.png";
 import styles from "../assets/jss/ResultsStyle";
 
 class Results extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      searchValue: props.location.state.searchValue,
-      language: props.location.state.language,
-      level: props.location.state.level,
-      resultDocs: [],
-      resultDocsLength: 0,
-      error: false,
-      wiki_url: "",
-      wiki_title: "",
-      wiki_summary: "",
-      waiting: true
-    };
-  }
+
+  state = {
+    searchValue: this.props.location.state.searchValue,
+    language: this.props.location.state.language,
+    level: this.props.location.state.level,
+    resultDocs: [],
+    resultDocsLength: 0,
+    error: false,
+    wiki_url: "",
+    wiki_title: "",
+    wiki_summary: "",
+    waiting: true
+  };
 
   componentDidMount() {
     // source: https://github.com/axios/axios
