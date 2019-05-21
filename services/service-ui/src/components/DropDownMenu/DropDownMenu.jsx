@@ -48,7 +48,7 @@ class DropDownMenu extends React.Component {
             {desc}
           </InputLabel>
           <Select
-            value={this.state.pickedData}
+            value={this.props.value === undefined ? this.state.pickedData : this.props.value}
             onChange={this.handleChange}
             input={
               <OutlinedInput
