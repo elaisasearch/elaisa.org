@@ -7,7 +7,7 @@ import * as serviceWorker from './serviceWorker';
 
 
 // views
-import App from './App';
+import App from './views/App';
 import Results from './views/Results';
 
 // Build the browser history
