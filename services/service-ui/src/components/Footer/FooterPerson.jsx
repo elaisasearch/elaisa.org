@@ -2,7 +2,7 @@ import React from 'react';
 import { Typography } from "@material-ui/core";
 
 const FooterPerson = (props) => (
-    <Typography variant="body1" color="inherit">
+    <Typography variant="body1" color="textSecondary">
         <b>{props.name}</b><br />
         {props.study} <br />
         {props.faculty} <br />

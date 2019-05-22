@@ -11,7 +11,7 @@ const Footer = () => (
             <FooterPerson name="Paula Leberer" study="Information Science" faculty="Faculty of Arts and Humandity" uni="Heinrich-Heine-University Düsseldorf" mail="paula.leberer@hhu.de" />
         </div>
         <div style={styles.legal}>
-            <Typography variant="caption" color="inherit">
+            <Typography variant="caption" color="default">
                 Elaisa - Language Level Search Engine - All rights reserved - 2019
             </Typography>
         </div>
