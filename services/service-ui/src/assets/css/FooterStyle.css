@@ -1,0 +1,23 @@
+.footer {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(242, 242, 242);
+    color: lightgrey;
+    text-align: center;
+    height: 20vh;
+}
+
+.content {
+    margin-top: 1vh;
+    flex: 1;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    padding: 2vh;
+}
+
+.legal {
+    padding-bottom: 1vh;
+    padding-top: 1vh;
+    background-color: rgb(217, 217, 217);
+}
