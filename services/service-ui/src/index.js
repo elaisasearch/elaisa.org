@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createBrowserHistory } from "history";
 import { Router, Switch, Route } from "react-router-dom";
-import './assets/jss/index.css';
+import './assets/css/index.css';
 import * as serviceWorker from './serviceWorker';
 
 
