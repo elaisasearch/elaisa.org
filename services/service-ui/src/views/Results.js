@@ -4,7 +4,7 @@ import ResultList from "../components/ResultList/ResultList";
 import axios from "axios";
 import WikiCard from "../components/WikiCard/WikiCard";
 import { CircularProgress } from "@material-ui/core";
-import styles from "../assets/jss/ResultsStyle";
+import  "../assets/css/ResultsStyle.css";
 import MemeTeam from '../components/MemeTeam/MemeTeam';
 import NotFound from '../components/NotFound/NotFound';
 
@@ -93,7 +93,7 @@ class Results extends React.Component {
   renderResults() {
     // while service is fetching data, show the progress circle
     if (this.state.waiting) {
-       return <div style={styles.progress}><CircularProgress style={{color: "grey"}}/></div>
+       return <div className="progress"><CircularProgress style={{color: "grey"}}/></div>
     }
     // If search Value equals "memeteam" show team picture
     if (this.state.searchValue === "memeteam") {
