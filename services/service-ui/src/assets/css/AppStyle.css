@@ -1,0 +1,15 @@
+.root {
+    display: flex;
+    min-height: 120vh;
+    flex-direction: column;
+}
+
+.app {
+    text-align: center;
+    flex: 1;
+}
+
+.logo {
+    width: 15%;
+    margin-top: 5%;
+}
