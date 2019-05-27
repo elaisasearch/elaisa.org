@@ -28,7 +28,7 @@ class NavigationBar extends React.Component {
   }
 
   email = "a.teusz@cognigy.com";
-  loggedIn = true;
+  loggedIn = false;
   firstname = "Alexander";
   lastname = "Teusz";
 
@@ -63,7 +63,7 @@ class NavigationBar extends React.Component {
   renderAvatar = () => {
     console.log(this.loggedIn)
     if (this.loggedIn) {
-      if (this.email) return <Avatars email={this.email}/>;
+      if (this.email) return <Avatars loggedIn email={this.email}/>;
       else return <Avatars firstname={this.firstname} lastname={this.lastname}>AT</Avatars>;
     } else {
       return <Avatars/>;
