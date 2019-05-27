@@ -17,6 +17,12 @@ const styles = {
     searchBar: {
       display: "flex", 
       flexGrow: 1
+    },
+    defaultContent: {
+      display: "flex",
+      flex: 1,
+      justifyContent: "space-around",
+      alignItems: "center"
     }
   };
 

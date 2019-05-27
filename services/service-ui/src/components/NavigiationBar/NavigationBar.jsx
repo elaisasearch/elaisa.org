@@ -4,21 +4,34 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button'
 import { withRouter } from "react-router-dom";
 
-
 //import styles
 import styles from '../../assets/jss/NavigationBarStyle';
+
 import LeftMenu from '../Menu/LeftMenu';
 import SearchBarNavigationBar from '../SearchBar/SearchBarNavigationBar';
-
+import Clock from './Clock';
+import Avatars from '../Profile/Avatars';
 import DropDownMenu from '../DropDownMenu/DropDownMenu';
 
 class NavigationBar extends React.Component {
 
-  state = {
-    value: this.props.values === undefined ? '' : this.props.values[0],
-    language: this.props.values === undefined ? '' : this.props.values[1],
-    level: this.props.values === undefined ? '' : this.props.values[2]
+  constructor(props) {
+    super(props);
+
+    // const { loggedIn, email, name } = props;
+
+    this.state = {
+      value: this.props.values === undefined ? '' : this.props.values[0],
+      language: this.props.values === undefined ? '' : this.props.values[1],
+      level: this.props.values === undefined ? '' : this.props.values[2]
+    }
   }
+
+  email = "a.teusz@cognigy.com";
+  loggedIn = false;
+  firstname = "Alexander";
+  lastname = "Teusz";
+
 
   keyPress = (e) => {
     // get the input when user cliks enter (13)
@@ -47,6 +60,16 @@ class NavigationBar extends React.Component {
     }
   }
 
+  renderAvatar = () => {
+    console.log(this.loggedIn)
+    if (this.loggedIn) {
+      if (this.email) return <Avatars loggedIn email={this.email}/>;
+      else return <Avatars firstname={this.firstname} lastname={this.lastname}>AT</Avatars>;
+    } else {
+      return <Avatars/>;
+    }
+  }
+
   renderSearchBar = (props) => {
     if (props.results) {
       return <div style={styles.searchBar}>
@@ -55,6 +78,10 @@ class NavigationBar extends React.Component {
         <DropDownMenu value={props.values[2]} desc="Language Level" items={["A1", "A2", "B1", "B2", "C1", "C2"]} values={["A1", "A2", "B1", "B2", "C1", "C2"]} onChange={e => this.setState({ level: e })} />
       </div>
     }
+    return <div style={styles.defaultContent}>
+      <Clock />
+      {this.renderAvatar()}
+    </div>;
   }
 
   renderFilterBar = (props) => {

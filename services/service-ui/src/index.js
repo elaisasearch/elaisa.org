@@ -10,6 +10,7 @@ import * as serviceWorker from './serviceWorker';
 import App from './views/App';
 import Results from './views/Results';
 import Page404 from './views/Page404';
+import SignIn from './views/SignIn';
 
 // Build the browser history
 var hist = createBrowserHistory();
@@ -17,6 +18,7 @@ var hist = createBrowserHistory();
 ReactDOM.render(
     <Router history={hist}>
         <Switch>
+            <Route path='/signin' component={SignIn} />
             <Route path='/results' component={Results} />
             <Route path='/' exact component={App} />
             <Route component={Page404} />
