@@ -13,8 +13,9 @@ class NewsSpider(scrapy.Spider):
         'hannahgale.co.uk', 
         'thewanderblogger.com' 
     ]
+
     start_urls = [
-        'https://www.bbc.com/news/world-europe-48417744',
+        'https://www.bbc.com/news/world-europe-48417744', #testing article, DONT DELETE
         'https://www.theguardian.com', #news
         'https://www.bbc.com', 
         'https://www.bbc.co.uk', #news
