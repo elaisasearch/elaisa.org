@@ -1,3 +1,7 @@
+import pandas as pd
+from pymongo import MongoClient
+import numpy as np
+
 def categorizeText(input_text):
     text = input_text.split()
 
