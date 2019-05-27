@@ -3,6 +3,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Gravatar from 'react-gravatar';
 import { Person } from '@material-ui/icons/';
 import { Menu, MenuItem, Button } from '@material-ui/core';
+import { Link } from 'react-router-dom'
 
 const Avatars = (props) => {
 
@@ -20,9 +21,22 @@ const Avatars = (props) => {
     if (props.email) {
       return <Gravatar email={props.email} />
     } else if (props.firstname && props.lastname) {
-      return `${props.firstname.slice(0,1)}${props.lastname.slice(0,1)}`
+      return `${props.firstname.slice(0, 1)}${props.lastname.slice(0, 1)}`
     }
-    return <Person />  
+    return <Person />
+  }
+
+  const renderMenu = (props) => {
+    if (props.loggedIn) {
+      return <Menu id="simple-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
+        <MenuItem onClick={handleClose}>Profile</MenuItem>
+        <MenuItem onClick={handleClose}>My account</MenuItem>
+        <MenuItem onClick={handleClose}>Logout</MenuItem>
+      </Menu>
+    }
+    return <Menu id="simple-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
+    <MenuItem component={Link} to="/signin">Sign in</MenuItem>
+  </Menu>
   }
 
   return <div>
@@ -35,11 +49,7 @@ const Avatars = (props) => {
         {renderAvatar(props)}
       </Avatar>
     </Button>
-    <Menu id="simple-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
-      <MenuItem onClick={handleClose}>Profile</MenuItem>
-      <MenuItem onClick={handleClose}>My account</MenuItem>
-      <MenuItem onClick={handleClose}>Logout</MenuItem>
-    </Menu>
+    {renderMenu(props)}
   </div>
 
 };
