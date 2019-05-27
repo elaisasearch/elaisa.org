@@ -4,6 +4,15 @@ import re
 
 class NewsSpider(scrapy.Spider):
     name = "news_de_DE"
+    allowed_domains = [
+        'spiegel.de',
+        'tagesschau.de',
+        'wdr.de',
+        'kindersache.de',
+        'zdf.de',
+        'faz.net'
+    ]
+    
     start_urls = [
         'http://www.spiegel.de/',
         'https://www.tagesschau.de/',
@@ -11,15 +20,6 @@ class NewsSpider(scrapy.Spider):
         'https://www.tagesschau.de/inland/ruestungsexporte-169.html',
         'https://www1.wdr.de/sport/fussball/vorbericht-bayer-leverkusen-in-hoffenheim-100.htmls',
         'http://www.spiegel.de/politik/ausland/brexit-eu-koennte-grossbritannien-verlaengerung-verweigern-a-1260391.html',
-        'https://www.kindersache.de/',
-        'https://www.zdf.de/nachrichten',
-        'https://www.faz.net/aktuell/'
-    ]
-
-    trustedUrls = [
-        'http://www.spiegel.de/',
-        'https://www.tagesschau.de/',
-        'https://www1.wdr.de/',
         'https://www.kindersache.de/',
         'https://www.zdf.de/nachrichten',
         'https://www.faz.net/aktuell/'
