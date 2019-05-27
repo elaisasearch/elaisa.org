@@ -41,6 +41,7 @@ def findDocuments(query, level, language):
     db = client[GLOBALS["mongo"]["database"]]
     col = db[GLOBALS["mongo"]["collections"]["crawled"]["news"][0]]
 
+    # TODO: Handle all terms of query
     terms = query.split()
     docs = getIdsFromWord(terms)
     docIds = [id[0] for id in docs]
