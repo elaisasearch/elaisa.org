@@ -14,10 +14,10 @@ import logo from '../assets/img/logo.png';
 const SignIn = () => {
 
     return (
-        <div className="root">
+        <div className="signIn">
             <div className="image" />
             <Paper className="paper">
-                <img className="logo" src={logo} className="logo" alt="Elaisa Search Engine Logo"></img>
+                <img className="logo" src={logo} alt="Elaisa Search Engine Logo"></img>
                 <Typography component="h1" variant="h5">
                     Sign in
                 </Typography>
