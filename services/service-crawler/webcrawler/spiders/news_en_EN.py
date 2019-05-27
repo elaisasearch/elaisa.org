@@ -5,27 +5,30 @@ from . import categorize
 
 class NewsSpider(scrapy.Spider):
     name = "news_en_EN"
-    start_urls = [
-        'https://www.theguardian.com/', #new
-        'https://www.firstnews.co.uk/', #news for children
-        'https://www.bbc.com/', 'https://www.bbc.co.uk/', #news
-        'https://www.bbc.co.uk/newsround', #news for children
-        'http://www.bbc.co.uk/learningenglish/english/', #BBC ESL site
-        'http://www.worldofwanderlust.com/', #travel blog
-        'http://hannahgale.co.uk/', #livestyle blow
-        'https://www.thewanderblogger.com/' #expat livestyle blog
+    allowed_domains = [
+        'theguardian.com', 
+        'bbc.com', 
+        'bbc.co.uk', 
+        'worldofwanderlust.com', 
+        'hannahgale.co.uk', 
+        'thewanderblogger.com' 
     ]
 
-    trustedUrls = [
-        'https://www.theguardian.com/', #new
-        'https://www.firstnews.co.uk/', #news for children
-        'https://www.bbc.com/', 'https://www.bbc.co.uk/', #news
-        'http://www.worldofwanderlust.com/', #travel blog
-        'http://hannahgale.co.uk/', #livestyle blow
-        'https://www.thewanderblogger.com/' #expat livestyle blog
+    start_urls = [
+        'https://www.bbc.com/news/world-europe-48417744', #testing article, DONT DELETE
+        'https://www.theguardian.com', #news
+        'https://www.bbc.com', 
+        'https://www.bbc.co.uk', #news
+        'https://www.bbc.co.uk/newsround', #news for children
+        'http://www.bbc.co.uk/learningenglish/english', #BBC ESL site
+        'http://www.worldofwanderlust.com', #travel blog
+        'http://hannahgale.co.uk', #livestyle blow
+        'https://www.thewanderblogger.com' #expat livestyle blog
     ]
 
     def parse(self, response):
+
+        
         url = response.url
         for data in response.css('html'):
 
@@ -36,17 +39,17 @@ class NewsSpider(scrapy.Spider):
 
                 # preprocess text for lowercase search and normalized data
                 text = " ".join(str(element) for element in data.css('p::text').getall())
-                preprocessedText = textacy.preprocess_text(
-                    text, 
-                    no_accents=True, 
-                    no_punct=True, 
-                    lowercase=True, 
-                    fix_unicode=True, 
-                    no_emails=True, 
-                    no_phone_numbers=True,
-                    no_contractions=True
-                )
-                preprocessedText = textacy.preprocess.normalize_whitespace(preprocessedText)
+                # preprocessedText = textacy.preprocess_text(
+                #     text, 
+                #     no_accents=True, 
+                #     no_punct=True, 
+                #     lowercase=True, 
+                #     fix_unicode=True, 
+                #     no_emails=True, 
+                #     no_phone_numbers=True,
+                #     no_contractions=True
+                # )
+                # preprocessedText = textacy.preprocess.normalize_whitespace(preprocessedText)
                 # TODO: add lemmatizing for words
 
                 # categorize documents
@@ -64,9 +67,9 @@ class NewsSpider(scrapy.Spider):
                     },
                     'title': data.css('title::text').get(),
                     'abstract': data.css('strong::text').get(),
-                    'text': preprocessedText,
+                    'text': text,
                     'level': categorize.categorizeText(text)
-                }
+                    }
             else:
                 continue
         for a in response.css('a::attr(href)'):
