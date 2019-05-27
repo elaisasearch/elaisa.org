@@ -4,7 +4,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button'
 import { withRouter } from "react-router-dom";
 
-
 //import styles
 import styles from '../../assets/jss/NavigationBarStyle';
 
@@ -49,10 +48,6 @@ class NavigationBar extends React.Component {
     }
   }
 
-  handleAvatarClick = () => {
-    console.log("clicked");
-  }
-
   renderSearchBar = (props) => {
     if (props.results) {
       return <div style={styles.searchBar}>
@@ -63,7 +58,7 @@ class NavigationBar extends React.Component {
     }
     return <div style={styles.defaultContent}>
       <Clock />
-      <Avatars name="Alexander Teusz" email="a.teusz@cognigy.com" handleAvatarClick={this.handleAvatarClick}/>
+      <Avatars name="Alexander Teusz" email="a.teusz@cognigy.com" />
     </div>;
   }
 
