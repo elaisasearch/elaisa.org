@@ -15,11 +15,23 @@ import DropDownMenu from '../DropDownMenu/DropDownMenu';
 
 class NavigationBar extends React.Component {
 
-  state = {
-    value: this.props.values === undefined ? '' : this.props.values[0],
-    language: this.props.values === undefined ? '' : this.props.values[1],
-    level: this.props.values === undefined ? '' : this.props.values[2]
+  constructor(props) {
+    super(props);
+
+    // const { loggedIn, email, name } = props;
+
+    this.state = {
+      value: this.props.values === undefined ? '' : this.props.values[0],
+      language: this.props.values === undefined ? '' : this.props.values[1],
+      level: this.props.values === undefined ? '' : this.props.values[2]
+    }
   }
+
+  email = "a.teusz@cognigy.com";
+  loggedIn = true;
+  firstname = "Alexander";
+  lastname = "Teusz";
+
 
   keyPress = (e) => {
     // get the input when user cliks enter (13)
@@ -48,6 +60,16 @@ class NavigationBar extends React.Component {
     }
   }
 
+  renderAvatar = () => {
+    console.log(this.loggedIn)
+    if (this.loggedIn) {
+      if (this.email) return <Avatars email={this.email}/>;
+      else return <Avatars firstname={this.firstname} lastname={this.lastname}>AT</Avatars>;
+    } else {
+      return <Avatars/>;
+    }
+  }
+
   renderSearchBar = (props) => {
     if (props.results) {
       return <div style={styles.searchBar}>
@@ -58,7 +80,7 @@ class NavigationBar extends React.Component {
     }
     return <div style={styles.defaultContent}>
       <Clock />
-      <Avatars name="Alexander Teusz" email="a.teusz@cognigy.com" />
+      {this.renderAvatar()}
     </div>;
   }
 

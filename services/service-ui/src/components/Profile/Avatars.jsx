@@ -19,9 +19,10 @@ const Avatars = (props) => {
   const renderAvatar = (props) => {
     if (props.email) {
       return <Gravatar email={props.email} />
+    } else if (props.firstname && props.lastname) {
+      return `${props.firstname.slice(0,1)}${props.lastname.slice(0,1)}`
     }
-    return <Person />
-    
+    return <Person />  
   }
 
   return <div>
