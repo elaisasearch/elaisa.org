@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -13,74 +13,100 @@ import UpIcon from '@material-ui/icons/KeyboardArrowUp';
 import '../assets/css/SignInStyle.css'
 import logo from '../assets/img/logo.png';
 
-const SignIn = () => {
+class SignIn extends Component {
 
-    return (
-        <div className="signIn">
-            <div className="image" />
-            <Paper className="paper">
-                <img className="signInLogo" src={logo} alt="Elaisa Search Engine Logo"></img>
-                <Typography component="h1" variant="h5">
-                    Sign in
-                </Typography>
-                <form className="form" noValidate>
-                    <TextField
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        id="email"
-                        label="Email Address"
-                        name="email"
-                        autoComplete="email"
-                        autoFocus
-                    />
-                    <TextField
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        name="password"
-                        label="Password"
-                        type="password"
-                        id="password"
-                        autoComplete="current-password"
-                    />
-                    <FormControlLabel
-                        control={<Checkbox value="remember" color="secondary" />}
-                        label="Remember me"
-                    />
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        color="secondary"
-                        className="submit"
-                    >
-                        Sign In
-                    </Button>
-                    <Grid container >
-                        <Grid item xs>
-                            <Link id="link" href="#" variant="body2">
-                                Forgot password?
-                            </Link>
-                        </Grid>
-                        <Grid item>
-                            <Link id="link" href="/signup" variant="body2">
-                                {"Don't have an account? Sign Up"}
-                            </Link>
-                        </Grid>
-                    </Grid>
-                </form>
-                <div className="fab">
-                    <Fab href="/" color="secondary">
-                        <UpIcon />
-                    </Fab>
-                </div>
+    state = {
+        email: "",
+        password: "",
+    }
 
-            </Paper>
-        </div>
-    );
+    handleSignIn = () => {
+        console.log(this.state);
+        
+         //TODO: post data to API to create user
+        /*
+        axios.post('', this.state, {
+
+        }).then((response) => {
+
+        }).catch((error) => {
+
+        });
+        */
+    }
+
+    render() {
+        return (
+            <div className="signIn">
+                <div className="image" />
+                <Paper className="paper">
+                    <img className="signInLogo" src={logo} alt="Elaisa Search Engine Logo"></img>
+                    <Typography component="h1" variant="h5">
+                        Sign in
+                    </Typography>
+                    <form className="form" noValidate>
+                        <TextField
+                            onChange={e => this.setState({ email: e.target.value })}
+                            variant="outlined"
+                            margin="normal"
+                            required
+                            fullWidth
+                            id="email"
+                            label="Email Address"
+                            name="email"
+                            autoComplete="email"
+                            autoFocus
+                        />
+                        <TextField
+                            onChange={e => this.setState({ password: e.target.value })}
+                            variant="outlined"
+                            margin="normal"
+                            required
+                            fullWidth
+                            name="password"
+                            label="Password"
+                            type="password"
+                            id="password"
+                            autoComplete="current-password"
+                        />
+                        <FormControlLabel
+                            control={<Checkbox value="remember" color="secondary" />}
+                            label="Remember me"
+                        />
+                        <Button
+                            // type="submit"
+                            fullWidth
+                            variant="contained"
+                            color="secondary"
+                            className="submit"
+                            onClick={this.handleSignIn.bind(this)}
+                            disabled={this.state.email.length === 0 || this.state.password.length === 0}
+                        >
+                            Sign In
+                        </Button>
+                        <Grid container >
+                            <Grid item xs>
+                                <Link id="link" href="#" variant="body2">
+                                    Forgot password?
+                                </Link>
+                            </Grid>
+                            <Grid item>
+                                <Link id="link" href="/signup" variant="body2">
+                                    {"Don't have an account? Sign Up"}
+                                </Link>
+                            </Grid>
+                        </Grid>
+                    </form>
+                    <div className="fab">
+                        <Fab href="/" color="secondary">
+                            <UpIcon />
+                        </Fab>
+                    </div>
+
+                </Paper>
+            </div>
+        );
+    }
 };
 
 export default SignIn;
