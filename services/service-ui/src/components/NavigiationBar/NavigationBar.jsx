@@ -9,6 +9,7 @@ import { withRouter } from "react-router-dom";
 import styles from '../../assets/jss/NavigationBarStyle';
 import LeftMenu from '../Menu/LeftMenu';
 import SearchBarNavigationBar from '../SearchBar/SearchBarNavigationBar';
+import Clock from './Clock';
 
 import DropDownMenu from '../DropDownMenu/DropDownMenu';
 
@@ -55,6 +56,7 @@ class NavigationBar extends React.Component {
         <DropDownMenu value={props.values[2]} desc="Language Level" items={["A1", "A2", "B1", "B2", "C1", "C2"]} values={["A1", "A2", "B1", "B2", "C1", "C2"]} onChange={e => this.setState({ level: e })} />
       </div>
     }
+    return <Clock />
   }
 
   renderFilterBar = (props) => {
