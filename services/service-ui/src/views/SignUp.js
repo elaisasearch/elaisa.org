@@ -12,6 +12,8 @@ import UpIcon from '@material-ui/icons/KeyboardArrowUp';
 import '../assets/css/SignUpStyle.css'
 import logo from '../assets/img/logo.png';
 
+import axios from 'axios';
+
 
 class SignIn extends Component {
 
@@ -24,6 +26,17 @@ class SignIn extends Component {
 
     handleSubmit() {
         console.log(this.state);
+
+        //TODO: post data to API to create user
+        /*
+        axios.post('', this.state, {
+
+        }).then((response) => {
+
+        }).catch((error) => {
+
+        });
+        */
     }
 
     render() {
