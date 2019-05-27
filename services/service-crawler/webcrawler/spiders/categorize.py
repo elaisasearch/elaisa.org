@@ -39,9 +39,10 @@ def categorizeText(input_text):
     #Einstufung anhand des höchsten Levels, das mehr als n verschiedene Wörter enthält
     n = 4
     levels, counts = np.unique(set_word_table['level'], return_counts=True)
-    levels.drop(['unknown'], axis=1)
+    print("\n\n\n\n\n ", levels, "\n\n\n")
     max_level = np.max(levels[counts > n])
     
+    # TODO : Satzlänge!
     #Einstufung des Schwierigkeitgrades der unbekannten Worte, Grenze: m
     # wenn Worte, die länger als m sind, werden als schwer eingestuft. dann einfach, wovon es mehr gibt
     count_easy = 0
@@ -77,7 +78,7 @@ def dict_count(text):
 
 ###############################################################################
 # Eingabe: set(text)
-# Ausgabe: DataFrame mit word und level (A1 - C2, unknown)
+# Ausgabe: DataFrame mit word und level (A1 - C2, unknown) für das gegebene Set des Textes
 def level_dataFrame(text):
         # Set, zum abgleichen in DB
     set_text = set(text)
