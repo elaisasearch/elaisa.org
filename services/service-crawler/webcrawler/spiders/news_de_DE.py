@@ -1,5 +1,5 @@
 import scrapy
-import textacy
+#import textacy
 import re 
 
 class NewsSpider(scrapy.Spider):
@@ -36,7 +36,7 @@ class NewsSpider(scrapy.Spider):
 
                 # preprocess text for lowercase search and normalized data
                 text = " ".join(str(element) for element in data.css('p::text').getall())
-                preprocessedText = textacy.preprocess_text(
+                """preprocessedText = textacy.preprocess_text(
                     text, 
                     no_accents=True, 
                     no_punct=True, 
@@ -47,7 +47,7 @@ class NewsSpider(scrapy.Spider):
                     no_contractions=True
                 )
                 preprocessedText = textacy.preprocess.normalize_whitespace(preprocessedText)
-                # TODO: add lemmatizing for words
+                # TODO: add lemmatizing for words"""
 
                 yield {
                     'url': url,
@@ -61,7 +61,7 @@ class NewsSpider(scrapy.Spider):
                     },
                     'title': data.css('title::text').get(),
                     'abstract': data.css('strong::text').get(),
-                    'text': preprocessedText
+                    'text': text
                 }
             else:
                 continue

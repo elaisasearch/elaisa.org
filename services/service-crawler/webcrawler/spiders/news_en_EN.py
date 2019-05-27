@@ -1,5 +1,5 @@
 import scrapy
-import textacy
+#import textacy
 import re 
 from . import categorize
 
@@ -36,7 +36,7 @@ class NewsSpider(scrapy.Spider):
 
                 # preprocess text for lowercase search and normalized data
                 text = " ".join(str(element) for element in data.css('p::text').getall())
-                preprocessedText = textacy.preprocess_text(
+                """preprocessedText = textacy.preprocess_text(
                     text, 
                     no_accents=True, 
                     no_punct=True, 
@@ -47,10 +47,11 @@ class NewsSpider(scrapy.Spider):
                     no_contractions=True
                 )
                 preprocessedText = textacy.preprocess.normalize_whitespace(preprocessedText)
-                # TODO: add lemmatizing for words
+                # TODO: add lemmatizing for words"""
 
                 # categorize documents
-                # categorize.categorizeText(text)
+                # [MainLevel, easy/hard]
+                levelMetaPackage = categorize.categorizeText(text)
                 
                 yield {
                     'url': url,
@@ -64,8 +65,11 @@ class NewsSpider(scrapy.Spider):
                     },
                     'title': data.css('title::text').get(),
                     'abstract': data.css('strong::text').get(),
-                    'text': preprocessedText,
-                    'level': categorize.categorizeText(text)
+                    'text': text,
+                    'level': levelMetaPackage[0],
+                    'level_meta' : {
+                            'difficulty' : levelMetaPackage[1]
+                            }
                 }
             else:
                 continue
