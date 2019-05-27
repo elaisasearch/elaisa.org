@@ -7,6 +7,10 @@ import numpy as np
 # Ausgabe: Liste [MainLevel, Difficulty] (some sort of language level)
 def categorizeText(input_text):
     #TODO, abfangen von leeren Texten 
+    if (not(isinstance(input_text, str)) or (len(input_text) <= 0)):
+        dicti = {"unknown": "NOT OKAY!", "A1": "THIS!", "A2" : "IS!", "B1": "NOT!", "B2": "A!", "C1": "TEXT!", "C2": "NO!"}
+        return ["NO!", "NO!", dicti]
+        
     text = input_text.split()
     text = [item.lower() for item in text]
 
@@ -33,13 +37,15 @@ def categorizeText(input_text):
         verteilung[lvl] = round(tmp_result)
         tmp_count = 0
     
-    for i in verteilung:
-        print(i , verteilung[i])
-    
     #Einstufung anhand des höchsten Levels, das mehr als n verschiedene Wörter enthält
+    # sehr unschön bisher!
     n = 4
     levels, counts = np.unique(set_word_table['level'], return_counts=True)
-    print("\n\n\n\n\n ", levels, "\n\n\n")
+    
+    if (len(levels) > 0):
+        tmp_index, = np.where(levels == "unknown") # löschen der Stellen, an denen die Werte für UNKNOWN Worte stehen, da diese kein Sprachniveau sind
+        levels = np.delete(levels, tmp_index)
+        counts = np.delete(counts, tmp_index)
     max_level = np.max(levels[counts > n])
     
     # TODO : Satzlänge!
