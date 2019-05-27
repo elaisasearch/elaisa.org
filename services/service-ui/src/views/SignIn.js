@@ -7,6 +7,8 @@ import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import Fab from '@material-ui/core/Fab';
+import UpIcon from '@material-ui/icons/KeyboardArrowUp';
 
 import '../assets/css/SignInStyle.css'
 import logo from '../assets/img/logo.png';
@@ -70,6 +72,12 @@ const SignIn = () => {
                         </Grid>
                     </Grid>
                 </form>
+                <div className="fab">
+                    <Fab href="/" color="secondary">
+                        <UpIcon />
+                    </Fab>
+                </div>
+
             </Paper>
         </div>
     );

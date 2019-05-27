@@ -33,3 +33,12 @@
 #link {
     color: black;
 }
+
+.fab {
+    display: flex;
+    flex: 1;
+    width: 90%;
+    flex-direction: column-reverse;
+    align-items: flex-end;
+    margin: 5%;
+}
