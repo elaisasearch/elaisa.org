@@ -6,7 +6,7 @@ import { Person } from '@material-ui/icons/';
 const Avatars = (props) => {
 
     if (props.email) {
-        return <Avatar alt={props.name}>
+        return <Avatar alt={props.name} onClick={props.handleAvatarClick}>
             <Gravatar email={props.email} />
         </Avatar>
     } else {

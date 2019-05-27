@@ -49,6 +49,10 @@ class NavigationBar extends React.Component {
     }
   }
 
+  handleAvatarClick = () => {
+    console.log("clicked");
+  }
+
   renderSearchBar = (props) => {
     if (props.results) {
       return <div style={styles.searchBar}>
@@ -59,7 +63,7 @@ class NavigationBar extends React.Component {
     }
     return <div style={styles.defaultContent}>
       <Clock />
-      <Avatars name="Alexander Teusz" email="a.teusz@cognigy.com" />
+      <Avatars name="Alexander Teusz" email="a.teusz@cognigy.com" handleAvatarClick={this.handleAvatarClick}/>
     </div>;
   }
 
