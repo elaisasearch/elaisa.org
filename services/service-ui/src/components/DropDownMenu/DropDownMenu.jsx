@@ -9,13 +9,9 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 
 const styles = theme => ({
-  root: {},
   formControl: {
     margin: theme.spacing.unit,
     minWidth: 160
-  },
-  selectEmpty: {
-    marginTop: theme.spacing.unit * 2
   }
 });
 
@@ -34,7 +30,6 @@ class DropDownMenu extends React.Component {
 
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
-    console.log("DropDown", event.target.value);
     this.props.onChange(event.target.value);
   };
 
@@ -42,7 +37,7 @@ class DropDownMenu extends React.Component {
     const { classes, items, desc, values } = this.props;
 
     return (
-      <form className={classes.root} autoComplete="off">
+      <form autoComplete="off">
         <FormControl variant="outlined" className={classes.formControl}>
           <InputLabel
             ref={ref => {
@@ -53,8 +48,7 @@ class DropDownMenu extends React.Component {
             {desc}
           </InputLabel>
           <Select
-            // value={value === undefined ? this.state.pickedData : value}
-            value={this.state.pickedData}
+            value={this.props.value === undefined ? this.state.pickedData : this.props.value}
             onChange={this.handleChange}
             input={
               <OutlinedInput

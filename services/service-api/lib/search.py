@@ -45,11 +45,9 @@ def findDocuments(query, level, language):
     docs = getIdsFromWord(terms)
     docIds = [id[0] for id in docs]
 
-    print(docIds)
-
     documents = []
     for id in docIds:
-        query = {"_id": ObjectId(id), "level": level}
+        query = {"_id": ObjectId(id), "level": level, "meta.language": language}
         results = col.find(query)
 
         for r in results: 

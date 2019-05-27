@@ -2,7 +2,7 @@ const styles = {
     root: {
     },
     margin: {
-      width: "70%",
+      width: "50%",
     },
     cssLabel: {
       '&$cssFocused': {

@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
 import { List, Divider, ListItem, ListItemIcon, ListItemText, Collapse, ListSubheader } from '@material-ui/core/';
 import { Share, ExpandLess, ExpandMore, Home } from '@material-ui/icons/';
-import style from '../../assets/jss/MenuStyle';
+import styles from '../../assets/jss/MenuStyle';
 import MenuHelper from './MenuHelper';
+import Switch from './Switch';
 
 // import language flags for menu
 import german from '../../assets/img/menu_flags/german.jpg';
 import english from '../../assets/img/menu_flags/english.jpg';
 import spanish from '../../assets/img/menu_flags/spanish.jpg';
-// import french from '../../assets/img/menu_flags/french.jpg';
-// import italian from '../../assets/img/menu_flags/italian.jpg';
 
-function ListItemLink(props) {
+const ListItemLink = (props) => {
     return <ListItem button component="a" {...props} />;
 }
 
@@ -27,7 +26,7 @@ class SideList extends Component {
 
     render() {
         return (
-            <div className={style.list}>
+            <div style={styles.list}>
                 <List
                     component="nav"
                     style={{maxWidth: "25vh"}}
@@ -50,14 +49,17 @@ class SideList extends Component {
                     </ListItem>
                     <Collapse in={this.state.open} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
-                            <MenuHelper href="https://sprachtest.de/einstufungstest-deutsch" flag={german} style={style.nested} text="Deutsch" />
-                            <MenuHelper href="https://sprachtest.de/einstufungstest-englisch" flag={english} style={style.nested} text="English" />
-                            {/* <MenuHelper href="https://sprachtest.de/einstufungstest-franzoesisch" flag={french} style={style.nested} text="Français" /> */}
-                            <MenuHelper href="https://sprachtest.de/einstufungstest-spanisch" flag={spanish} style={style.nested} text="Español" />
-                            {/* <MenuHelper href="https://sprachtest.de/einstufungstest-italienisch" flag={italian} style={style.nested} text="Italiano" /> */}
+                            <MenuHelper href="https://sprachtest.de/einstufungstest-deutsch" flag={german} style={styles.nested} text="Deutsch" />
+                            <MenuHelper href="https://sprachtest.de/einstufungstest-englisch" flag={english} style={styles.nested} text="English" />
+                            <MenuHelper href="https://sprachtest.de/einstufungstest-spanisch" flag={spanish} style={styles.nested} text="Español" />
                             <Divider />
                         </List>
                     </Collapse>
+                    {/* Home */}
+                    <ListItem>
+                        <Switch />
+                        <ListItemText inset primary="Darkmode" />
+                    </ListItem>
                 </List>
             </div>
         );

@@ -1,4 +1,4 @@
-const style = theme => ({
+const styles = theme => ({
     list: {
         width: 250,
     },
@@ -10,4 +10,4 @@ const style = theme => ({
     }
 });
 
-export default style;
+export default styles;
