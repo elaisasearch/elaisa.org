@@ -59,7 +59,7 @@ class NavigationBar extends React.Component {
     }
     return <div style={styles.defaultContent}>
       <Clock />
-      <Avatars name="Alexander Teusz" image="https://www.xing.com/image/7_3_8_25b95d9bd_29420022_3/alexander-teusz-foto.1024x1024.jpg" />
+      <Avatars name="Alexander Teusz" email="a.teusz@cognigy.com" />
     </div>;
   }
 
