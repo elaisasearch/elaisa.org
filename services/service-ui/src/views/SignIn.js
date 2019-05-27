@@ -19,7 +19,7 @@ const SignIn = () => {
         <div className="signIn">
             <div className="image" />
             <Paper className="paper">
-                <img className="logo" src={logo} alt="Elaisa Search Engine Logo"></img>
+                <img className="signInLogo" src={logo} alt="Elaisa Search Engine Logo"></img>
                 <Typography component="h1" variant="h5">
                     Sign in
                 </Typography>
