@@ -39,6 +39,7 @@ def categorizeText(input_text):
     #Einstufung anhand des höchsten Levels, das mehr als n verschiedene Wörter enthält
     n = 4
     levels, counts = np.unique(set_word_table['level'], return_counts=True)
+    levels.drop(['unknown'], axis=1)
     max_level = np.max(levels[counts > n])
     
     #Einstufung des Schwierigkeitgrades der unbekannten Worte, Grenze: m
