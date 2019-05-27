@@ -24,6 +24,7 @@ def categorizeText(input_text):
     verteilung = {}
     tmp_count = 0
     
+    #TODO : DEVIDE BY ZERO ?!?!?!
     #für jedes Wort aus dem Text, geordnet nach Level, 
     for lvl in ["unknown", "A1", "A2", "B1", "B2", "C1", "C2"]:
         for word in set_word_table.loc[set_word_table['level']== lvl, "word"]:
@@ -41,6 +42,7 @@ def categorizeText(input_text):
     max_level = np.max(levels[counts > n])
     
     #Einstufung des Schwierigkeitgrades der unbekannten Worte, Grenze: m
+    # wenn Worte, die länger als m sind, werden als schwer eingestuft. dann einfach, wovon es mehr gibt
     count_easy = 0
     count_hard = 0
     m = 6 # siehe Wolfram alpha 5.1
@@ -55,10 +57,9 @@ def categorizeText(input_text):
         difficulty = "hard"
     else:
         difficulty = "easy"
-    
 
-
-    return [max_level, difficulty]
+    # return Liste [mainLevel, Schwierigkeitsgrad, Sprachniveaus_Verteilung]
+    return [max_level, difficulty, verteilung]
 
 ###############################################################################
 # Eingabe: Liste mit Strings
