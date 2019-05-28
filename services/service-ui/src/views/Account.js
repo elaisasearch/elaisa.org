@@ -37,10 +37,12 @@ class Account extends Component {
                 this.props.history.push({
                     pathname: "/",
                     state: {
-                        email: this.state.email,
+                        email: email,
                         loggedIn: true
                     }
                 });
+            } else {
+                console.log("Old Password is wrong");
             }
         }).catch((error) => {
             console.log(error)
