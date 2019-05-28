@@ -8,6 +8,7 @@
     "axios": "^0.18.0",
     "history": "^4.9.0",
     "moment": "^2.24.0",
+    "notistack": "^0.8.5",
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
     "react-gravatar": "^2.6.3",
