@@ -3,6 +3,11 @@ from pymongo import MongoClient
 import numpy as np
 
 ###############################################################################
+# TODO
+# Eventuell Firmennamen etc. abfangen? als Sonstige oder so?
+# Satzlänge einkalkulieren
+#
+###############################################################################
 # Eingabe: String
 # Ausgabe: Liste [MainLevel, Difficulty] (some sort of language level)
 def categorizeText(input_text):
