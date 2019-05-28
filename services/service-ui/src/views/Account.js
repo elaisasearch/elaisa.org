@@ -9,11 +9,13 @@ import { Person } from '@material-ui/icons/';
 
 const Account = (props) => {
 
+    console.log(props.location.state);
+
     const { email, firstname, lastname } = props.location.state;
 
     const renderAvatar = (props) => {
         if (email) {
-            return <Gravatar email={email} />
+            return <Gravatar email={email} size={100}/>
         } else if (firstname && lastname) {
             return `${firstname.slice(0, 1)}${lastname.slice(0, 1)}`
         }
@@ -24,7 +26,7 @@ const Account = (props) => {
         <NavigationBar />
         <div className="accountView">
             <Paper className="accountPaper">
-                <Avatar alt={firstname}>
+                <Avatar alt={firstname} id="accountLogo">
                     {renderAvatar(props)}
                 </Avatar>
                 <Typography variant="h5" component="h3">

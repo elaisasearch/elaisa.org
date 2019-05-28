@@ -13,3 +13,9 @@
     justify-content: space-around;
     align-items: center;
 }
+
+#accountLogo {
+    width: 100px;
+    height: 100px;
+    
+}
