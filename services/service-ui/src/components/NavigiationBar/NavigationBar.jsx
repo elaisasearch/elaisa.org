@@ -19,16 +19,16 @@ class NavigationBar extends React.Component {
     super(props);
     
     // TODO: Need global state for login info
-    const { location } = this.props;
-    const { state } = location;
-    const { email, loggedIn } = state;
+    // const { location } = this.props;
+    // const { state } = location;
+    // const { email, loggedIn } = state;
 
     this.state = {
       value: this.props.values === undefined ? '' : this.props.values[0],
       language: this.props.values === undefined ? '' : this.props.values[1],
       level: this.props.values === undefined ? '' : this.props.values[2],
-      email: email,
-      loggedIn: loggedIn,
+      email: "teusz.alexander@gmail.com",
+      loggedIn: true,
       firstname: "Alexander",
       lastname: "Teusz"
     }
