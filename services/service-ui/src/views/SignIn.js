@@ -9,6 +9,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Fab from '@material-ui/core/Fab';
 import UpIcon from '@material-ui/icons/KeyboardArrowUp';
+import { withRouter } from "react-router-dom";
 
 import axios from 'axios';
 
@@ -24,15 +25,22 @@ class SignIn extends Component {
 
     handleSignIn = () => {
         console.log(this.state);
-        
+
         axios.post('http://0.0.0.0:8080/signin?email=test&password=test')
-        .then((response) => {
-            if (response.data === "Success") {
-                console.log("user logged in");
-            }
-        }).catch((error) => {
-            console.log(error)
-        });
+            .then((response) => {
+                if (response.data === "Success") {
+                    console.log("user logged in");
+                    this.props.history.push({
+                        pathname: "/",
+                        state: {
+                            email: this.state.email,
+                            loggedIn: true
+                        }
+                    });
+                }
+            }).catch((error) => {
+                console.log(error)
+            });
     }
 
     render() {
@@ -80,7 +88,7 @@ class SignIn extends Component {
                             color="secondary"
                             className="submit"
                             onClick={this.handleSignIn.bind(this)}
-                            disabled={this.state.email.length === 0 || this.state.password.length === 0}
+                            disabled={this.state.email.length === 0 || this.state.password.length === 0}
                         >
                             Sign In
                         </Button>
@@ -109,5 +117,5 @@ class SignIn extends Component {
     }
 };
 
-export default SignIn;
+export default withRouter(SignIn);
 
