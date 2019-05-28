@@ -27,4 +27,18 @@ def find(query, level, language):
         "documents": search.findDocuments(query, level, language)
     }
 
+@app.route('/signup', method="POST")
+def signUp():
+    firstname = request.params.get('firstname')
+    lastname = request.params.get('lastname')
+    email = request.params.get('email')
+    password = request.params.get('password')
+
+    return {
+        "firstname": firstname,
+        "lastname": lastname,
+        "email": email,
+        "password": password
+    }
+
 app.run(host='0.0.0.0', port=8080, debug=True)
