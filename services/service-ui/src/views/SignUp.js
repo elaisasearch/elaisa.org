@@ -8,6 +8,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Fab from '@material-ui/core/Fab';
 import UpIcon from '@material-ui/icons/KeyboardArrowUp';
+import { withRouter } from "react-router-dom";
 
 import '../assets/css/SignUpStyle.css'
 import logo from '../assets/img/logo.png';
@@ -30,6 +31,9 @@ class SignIn extends Component {
         .then((response) => {
             if (response.data === "Success") {
                 console.log("created user");
+                this.props.history.push({
+                    pathname: "/signin",
+                  });
             }
         }).catch((error) => {
             console.log(error)
@@ -135,5 +139,5 @@ class SignIn extends Component {
 
 };
 
-export default SignIn;
+export default withRouter(SignIn);
 
