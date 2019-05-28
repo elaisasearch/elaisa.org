@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import Fab from '@material-ui/core/Fab';
 import UpIcon from '@material-ui/icons/KeyboardArrowUp';
 import { withRouter } from "react-router-dom";
+import { SnackbarProvider, withSnackbar } from 'notistack';
 
 import '../assets/css/SignUpStyle.css'
 import logo from '../assets/img/logo.png';
@@ -16,7 +17,7 @@ import logo from '../assets/img/logo.png';
 import axios from 'axios';
 
 
-class SignIn extends Component {
+class SignUp extends Component {
 
     state = {
         firstName: "",
@@ -26,6 +27,7 @@ class SignIn extends Component {
     }
 
     handleSubmit() {
+        let variant = "";
 
         axios.post('http://0.0.0.0:8080/signup?firstname=Test&lastname=Test&email=teusz.alexander@gmail.com&password=test')
         .then((response) => {
@@ -35,8 +37,11 @@ class SignIn extends Component {
                     pathname: "/signin",
                   });
             }
+            variant = "error"
+            this.props.enqueueSnackbar('The user already exists', { variant });
         }).catch((error) => {
-            console.log(error)
+            variant = "error"
+            this.props.enqueueSnackbar(error.message, { variant });
         });
 
     }
@@ -139,5 +144,16 @@ class SignIn extends Component {
 
 };
 
-export default withRouter(SignIn);
+const SignUpSnackBar = withSnackbar(withRouter(SignUp));
+
+const SignUpIntegrationNotistack = () => {
+  return (
+    <SnackbarProvider maxSnack={3}>
+      <SignUpSnackBar />
+    </SnackbarProvider>
+  );
+}
+
+export default SignUpIntegrationNotistack;
+
 
