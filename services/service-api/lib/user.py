@@ -34,6 +34,7 @@ def createUser(firstname, lastname, email, password):
     except:
         return "Error"
 
+
 def loginUser(email, password):
     client = MongoClient(GLOBALS["mongo"]["client"])
     db = client[GLOBALS["mongo"]["database"]]
@@ -41,11 +42,12 @@ def loginUser(email, password):
 
     results = col.find({"email": email})
 
-    for user in results: 
+    for user in results:
         if bcrypt.checkpw(password.encode('utf-8'), user['password']):
             return "Success"
-        else: 
+        else:
             return "Error"
+
 
 def handlePasswordChange(email, oldPass, newPass):
     client = MongoClient(GLOBALS["mongo"]["client"])
