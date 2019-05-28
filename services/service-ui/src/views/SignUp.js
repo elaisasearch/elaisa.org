@@ -29,7 +29,9 @@ class SignUp extends Component {
     handleSubmit() {
         let variant = "";
 
-        axios.post('http://0.0.0.0:8080/signup?firstname=Test&lastname=Test&email=teusz.alexander@gmail.com&password=test')
+        let { firstName, lastName, email, password } = this.state;
+
+        axios.post(`http://0.0.0.0:8080/signup?firstname=${firstName}&lastname=${lastName}&email=${email}&password=${password}`)
         .then((response) => {
             if (response.data === "Success") {
                 console.log("created user");
