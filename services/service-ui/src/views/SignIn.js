@@ -26,7 +26,7 @@ class SignIn extends Component {
     handleSignIn = () => {
         console.log(this.state);
 
-        axios.post('http://0.0.0.0:8080/signin?email=test&password=test')
+        axios.post(`http://0.0.0.0:8080/signin?email=${this.state.email}&password=${this.state.password}`)
             .then((response) => {
                 if (response.data === "Success") {
                     console.log("user logged in");
@@ -37,6 +37,8 @@ class SignIn extends Component {
                             loggedIn: true
                         }
                     });
+                } else {
+                    console.log("Password or Username incorrect")
                 }
             }).catch((error) => {
                 console.log(error)
