@@ -26,3 +26,17 @@
 #accountEmail {
     margin-top: 2%;
 }
+
+.passwordDiv {
+    margin-top: 10%;
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    align-items: center;
+}
+
+.passwordTextfieldsDiv {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
