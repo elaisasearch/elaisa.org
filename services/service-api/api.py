@@ -1,6 +1,6 @@
 from bottle import Bottle, request, response, run
 # import lib files
-from lib import search, wikipedia
+from lib import search, wikipedia, user
 
 app = Bottle()
 
@@ -34,11 +34,13 @@ def signUp():
     email = request.params.get('email')
     password = request.params.get('password')
 
-    return {
-        "firstname": firstname,
-        "lastname": lastname,
-        "email": email,
-        "password": password
-    }
+    result = user.createUser(firstname, lastname, email, password)
+
+    if result == "Success":
+        response.status = 200
+        return "Success"
+    else:
+        response.status = 500
+        return "Error"
 
 app.run(host='0.0.0.0', port=8080, debug=True)
