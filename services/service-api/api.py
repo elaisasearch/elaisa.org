@@ -46,7 +46,7 @@ def signUp():
         return "Error"
 
 @app.route('/signin', method="POST")
-def signup():
+def signIn():
     email = request.params.get('email')
     password = request.params.get('password')
 
