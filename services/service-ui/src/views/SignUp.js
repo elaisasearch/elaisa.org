@@ -29,7 +29,7 @@ class SignIn extends Component {
         axios.post('http://localhost:8080/signup', {
             headers: {
                 "Content-Type": "application/json",
-                "Accept": "application/json"
+                "Accept": "application/json",
             },
             params: {
                 firstname: this.state.firstName,
