@@ -9,6 +9,7 @@ import { Person } from '@material-ui/icons/';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
+import axios from 'axios';
 
 class Account extends Component {
 
@@ -26,10 +27,24 @@ class Account extends Component {
         return <Person />
     }
 
-    handleChangeButton = () => {
+    handleChangeButton = (email) => {
         console.log(this.state);
 
-        // TODO add axios post request to store new password in mongo db
+        axios.post(`http://localhost:8080/changepassword?oldpassword=${this.state.oldPass}&newpassword=${this.state.newPass}&email=${email}`, {})
+        .then((response) => {
+            if (response.data === "Success") {
+                console.log("changed password");
+                this.props.history.push({
+                    pathname: "/",
+                    state: {
+                        email: this.state.email,
+                        loggedIn: true
+                    }
+                });
+            }
+        }).catch((error) => {
+            console.log(error)
+        });
     }
 
     render() {
@@ -77,7 +92,7 @@ class Account extends Component {
                                 style={{ margin: "3%" }}
                             />
                         </div>
-                        <Button variant="contained" onClick={this.handleChangeButton}>
+                        <Button variant="contained" onClick={e => this.handleChangeButton(email)}>
                             Change
                     </Button>
                     </div>
