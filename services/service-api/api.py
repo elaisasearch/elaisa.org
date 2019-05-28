@@ -39,24 +39,22 @@ def signUp():
     result = user.createUser(firstname, lastname, email, password)
 
     if result == "Success":
-        response.status = 200
         return "Success"
     else:
-        response.status = 500
         return "Error"
 
-@app.route('/signin', method="POST")
+@app.route('/signin', method=["OPTIONS", "POST"])
 def signIn():
     email = request.params.get('email')
     password = request.params.get('password')
 
+    print(email, password)
+
     result = user.loginUser(email, password)
 
     if result == "Success":
-        response.status = 200
         return "Success"
     else:
-        response.status = 500
         return "Error"
 
 
