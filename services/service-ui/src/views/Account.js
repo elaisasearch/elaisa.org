@@ -29,10 +29,10 @@ const Account = (props) => {
                 <Avatar alt={firstname} id="accountLogo">
                     {renderAvatar(props)}
                 </Avatar>
-                <Typography variant="h4" component="h3" id="accountName">
+                <Typography variant="h3" color="textSecondary" component="h3" id="accountName">
                     {firstname} {lastname}
                 </Typography>
-                <Typography variant="h7" id="accountEmail">
+                <Typography variant="h5" color="textSecondary" id="accountEmail">
                     {email}
                 </Typography>
             </Paper>
