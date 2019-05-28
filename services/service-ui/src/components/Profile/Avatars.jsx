@@ -30,13 +30,20 @@ const Avatars = (props) => {
     if (props.loggedIn) {
       return <Menu id="simple-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
         <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>My account</MenuItem>
+        <MenuItem component={Link} to={{
+          pathname: '/account',
+          state: {
+            email: props.email,
+            firstname: props.firstname,
+            lastname: props.lastname
+          }
+        }} >My account</MenuItem>
         <MenuItem onClick={handleClose}>Logout</MenuItem>
       </Menu>
     }
     return <Menu id="simple-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
-    <MenuItem component={Link} to="/signin">Sign in</MenuItem>
-  </Menu>
+      <MenuItem component={Link} to="/signin">Sign in</MenuItem>
+    </Menu>
   }
 
   return <div>
