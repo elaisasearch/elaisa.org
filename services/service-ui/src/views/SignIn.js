@@ -10,6 +10,8 @@ import Typography from '@material-ui/core/Typography';
 import Fab from '@material-ui/core/Fab';
 import UpIcon from '@material-ui/icons/KeyboardArrowUp';
 
+import axios from 'axios';
+
 import '../assets/css/SignInStyle.css'
 import logo from '../assets/img/logo.png';
 
@@ -23,16 +25,20 @@ class SignIn extends Component {
     handleSignIn = () => {
         console.log(this.state);
         
-         //TODO: post data to API to create user
-        /*
-        axios.post('', this.state, {
-
+        axios.post('http://localhost:8080/signin', {
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+            },
+            params: {
+                email: this.state.email,
+                password: this.state.password
+            }
         }).then((response) => {
-
+            console.log("SUCCEEEEEES")
         }).catch((error) => {
-
+            console.log("ERRRRROR")
         });
-        */
     }
 
     render() {
