@@ -63,7 +63,7 @@ class NavigationBar extends React.Component {
 
   renderAvatar = () => {
     if (this.state.loggedIn) {
-      if (this.state.email) return <Avatars loggedIn email={this.state.email}/>;
+      if (this.state.email) return <Avatars loggedIn email={this.state.email} firstname={this.state.firstname} lastname={this.state.lastname}/>;
       else return <Avatars firstname={this.state.firstname} lastname={this.state.lastname}>AT</Avatars>;
     } else {
       return <Avatars/>;
