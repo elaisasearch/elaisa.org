@@ -43,4 +43,19 @@ def signUp():
         response.status = 500
         return "Error"
 
+@app.route('/signin', method="POST")
+def signup():
+    email = request.params.get('email')
+    password = request.params.get('password')
+
+    result = user.loginUser(email, password)
+
+    if result == "Success":
+        response.status = 200
+        return "Success"
+    else:
+        response.status = 500
+        return "Error"
+
+
 app.run(host='0.0.0.0', port=8080, debug=True)
