@@ -1,32 +1,34 @@
-from pymongo import MongoClient
+from pymongo import MongoClient, ASCENDING
 
 
 GLOBALS = {
     "mongo": {
         "client": "mongodb://localhost:27017/",
         "database": "LanguageLevelSearchEngine",
-        "collections": "users" 
+        "collections": "users"
     }
 }
+
 
 def createUser(firstname, lastname, email, password):
     client = MongoClient(GLOBALS["mongo"]["client"])
     db = client[GLOBALS["mongo"]["database"]]
     col = db[GLOBALS["mongo"]["collections"]]
+    col.create_index([('email', ASCENDING)], unique=True)
 
-    try: 
+    try:
         col.insert_one(
             {
                 "firstname": firstname,
                 "lastname": lastname,
                 "email": email,
                 "password": password
-            }
+            },
         )
         return "Success"
-    except: 
+    except:
         return "Error"
-        
+
 def loginUser(email, password):
     client = MongoClient(GLOBALS["mongo"]["client"])
     db = client[GLOBALS["mongo"]["database"]]
@@ -43,5 +45,3 @@ def loginUser(email, password):
         return "Error"
     elif resultsLen == 1:
         return "Success"
-
-
