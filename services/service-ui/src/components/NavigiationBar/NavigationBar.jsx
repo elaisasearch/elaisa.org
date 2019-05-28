@@ -17,21 +17,22 @@ class NavigationBar extends React.Component {
 
   constructor(props) {
     super(props);
-
-    // const { loggedIn, email, name } = props;
+    
+    // TODO: Need global state for login info
+    const { location } = this.props;
+    const { state } = location;
+    const { email, loggedIn } = state;
 
     this.state = {
       value: this.props.values === undefined ? '' : this.props.values[0],
       language: this.props.values === undefined ? '' : this.props.values[1],
-      level: this.props.values === undefined ? '' : this.props.values[2]
+      level: this.props.values === undefined ? '' : this.props.values[2],
+      email: email,
+      loggedIn: loggedIn,
+      firstname: "Alexander",
+      lastname: "Teusz"
     }
   }
-
-  email = this.props.location.state.email || "";
-  loggedIn = this.props.location.state.loggedIn || false;
-  firstname = "Alexander";
-  lastname = "Teusz";
-
 
   keyPress = (e) => {
     // get the input when user cliks enter (13)
@@ -61,9 +62,9 @@ class NavigationBar extends React.Component {
   }
 
   renderAvatar = () => {
-    if (this.loggedIn) {
-      if (this.email) return <Avatars loggedIn email={this.email}/>;
-      else return <Avatars firstname={this.firstname} lastname={this.lastname}>AT</Avatars>;
+    if (this.state.loggedIn) {
+      if (this.state.email) return <Avatars loggedIn email={this.state.email}/>;
+      else return <Avatars firstname={this.state.firstname} lastname={this.state.lastname}>AT</Avatars>;
     } else {
       return <Avatars/>;
     }
