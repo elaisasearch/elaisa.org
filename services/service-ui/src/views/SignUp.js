@@ -25,18 +25,24 @@ class SignIn extends Component {
     }
 
     handleSubmit() {
-        console.log(this.state);
 
-        //TODO: post data to API to create user
-        /*
-        axios.post('', this.state, {
-
+        axios.post('http://localhost:8080/signup', {
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            params: {
+                firstname: this.state.firstName,
+                lastname: this.state.lastName,
+                email: this.state.email,
+                password: this.state.password
+            }
         }).then((response) => {
-
+            console.log("SUCCEEEEEES")
         }).catch((error) => {
-
+            console.log("ERRRRROR")
         });
-        */
+
     }
 
     render() {
@@ -52,7 +58,7 @@ class SignIn extends Component {
                         See your last searches and follow your progress in learning
                     </Typography>
                     <form className="form" noValidate>
-    
+
                         <div className="divNames">
                             <TextField
                                 onChange={e => this.setState({ firstName: e.target.value })}
@@ -121,7 +127,7 @@ class SignIn extends Component {
                         <div className="backLink">
                             <Link href="/signin" variant="body2" id="signInLink">
                                 Already have an account? Sign in
-                            </Link>  
+                            </Link>
                         </div>
                     </form>
                     <div className="fab">
@@ -129,12 +135,12 @@ class SignIn extends Component {
                             <UpIcon />
                         </Fab>
                     </div>
-    
+
                 </Paper>
             </div>
         );
     }
-    
+
 };
 
 export default SignIn;
