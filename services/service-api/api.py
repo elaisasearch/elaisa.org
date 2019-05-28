@@ -4,6 +4,7 @@ from lib import search, wikipedia, user
 
 app = Bottle()
 
+
 @app.hook('after_request')
 def enable_cors():
     """
@@ -14,11 +15,13 @@ def enable_cors():
     response.headers['Access-Control-Allow-Methods'] = 'PUT, GET, POST, DELETE, OPTIONS'
     response.headers['Access-Control-Allow-Headers'] = 'Origin, Accept, Content-Type, X-Requested-With, X-CSRF-Token'
 
+
 @app.route('/')
 def index():
     return "API - Language Level Search Engine"
 
-@app.route('/find', method=["OPTIONS","GET"])
+
+@app.route('/find', method=["OPTIONS", "GET"])
 def find():
     query = request.params.get('query')
     level = request.params.get('level')
@@ -28,6 +31,7 @@ def find():
         "wikipedia": wikipedia.getWikiEntry(query, language),
         "documents": search.findDocuments(query, level, language)
     }
+
 
 @app.route('/signup', method="POST")
 def signUp():
@@ -43,6 +47,7 @@ def signUp():
     else:
         return "Error"
 
+
 @app.route('/signin', method=["OPTIONS", "POST"])
 def signIn():
     email = request.params.get('email')
@@ -57,8 +62,9 @@ def signIn():
     else:
         return "Error"
 
+
 @app.route('/changepassword', method=["OPTIONS", "POST"])
-def changePassword(): 
+def changePassword():
     email = request.params.get('email')
     oldPass = request.params.get('oldpassword')
     newPass = request.params.get('newpassword')
