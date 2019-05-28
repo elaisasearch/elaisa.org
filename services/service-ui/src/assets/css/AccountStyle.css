@@ -10,12 +10,19 @@
     flex-direction: column;
     height: 80vh;
     width: 80vh;
-    justify-content: space-around;
     align-items: center;
 }
 
 #accountLogo {
     width: 100px;
     height: 100px;
-    
+    margin-top: 5%;
+}
+
+#accountName {
+    margin-top: 5%;
+}
+
+#accountEmail {
+    margin-top: 2%;
 }

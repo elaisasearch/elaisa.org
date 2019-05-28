@@ -29,11 +29,11 @@ const Account = (props) => {
                 <Avatar alt={firstname} id="accountLogo">
                     {renderAvatar(props)}
                 </Avatar>
-                <Typography variant="h5" component="h3">
+                <Typography variant="h4" component="h3" id="accountName">
                     {firstname} {lastname}
                 </Typography>
-                <Typography component="p">
-                    Paper can be used to build surface or other elements for your application.
+                <Typography variant="h7" id="accountEmail">
+                    {email}
                 </Typography>
             </Paper>
         </div>
