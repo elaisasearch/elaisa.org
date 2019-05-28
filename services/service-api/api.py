@@ -57,5 +57,18 @@ def signIn():
     else:
         return "Error"
 
+@app.route('/changepassword', method=["OPTIONS", "POST"])
+def changePassword(): 
+    email = request.params.get('email')
+    oldPass = request.params.get('oldpassword')
+    newPass = request.params.get('newpassword')
+
+    result = user.handlePasswordChange(email, oldPass, newPass)
+
+    if result == "Success":
+        return "Success"
+    else:
+        return "Error"
+
 
 app.run(host='0.0.0.0', port=8080, debug=True)

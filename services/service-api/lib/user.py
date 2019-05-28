@@ -46,3 +46,15 @@ def loginUser(email, password):
             return "Success"
         else: 
             return "Error"
+
+def handlePasswordChange(email, oldPass, newPass):
+    client = MongoClient(GLOBALS["mongo"]["client"])
+    db = client[GLOBALS["mongo"]["database"]]
+    col = db[GLOBALS["mongo"]["collections"]]
+
+    newPass_hash = bcrypt.hashpw(newPass.encode('utf-8'), bcrypt.gensalt(14))
+    try:
+        col.update_one({"email": email}, {"$set": {"password": newPass_hash}})
+        return "Success"
+    except:
+        return "Error"
