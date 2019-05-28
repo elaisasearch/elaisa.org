@@ -28,6 +28,8 @@ class Account extends Component {
 
     handleChangeButton = () => {
         console.log(this.state);
+
+        // TODO add axios post request to store new password in mongo db
     }
 
     render() {
