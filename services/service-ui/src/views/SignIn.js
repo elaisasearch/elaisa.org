@@ -25,19 +25,13 @@ class SignIn extends Component {
     handleSignIn = () => {
         console.log(this.state);
         
-        axios.post('http://localhost:8080/signin', {
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json",
-            },
-            params: {
-                email: this.state.email,
-                password: this.state.password
+        axios.post('http://0.0.0.0:8080/signin?email=test&password=test')
+        .then((response) => {
+            if (response.data === "Success") {
+                console.log("user logged in");
             }
-        }).then((response) => {
-            console.log("SUCCEEEEEES")
         }).catch((error) => {
-            console.log("ERRRRROR")
+            console.log(error)
         });
     }
 

@@ -26,21 +26,13 @@ class SignIn extends Component {
 
     handleSubmit() {
 
-        axios.post('http://localhost:8080/signup', {
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json",
-            },
-            params: {
-                firstname: this.state.firstName,
-                lastname: this.state.lastName,
-                email: this.state.email,
-                password: this.state.password
+        axios.post('http://0.0.0.0:8080/signup?firstname=Test&lastname=Test&email=teusz.alexander@gmail.com&password=test')
+        .then((response) => {
+            if (response.data === "Success") {
+                console.log("created user");
             }
-        }).then((response) => {
-            console.log("SUCCEEEEEES")
         }).catch((error) => {
-            console.log("ERRRRROR")
+            console.log(error)
         });
 
     }
