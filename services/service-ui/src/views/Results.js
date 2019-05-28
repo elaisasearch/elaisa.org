@@ -34,10 +34,15 @@ class Results extends React.Component {
     });
 
     axios
-    .get(`http://localhost:8080/find&query=${searchValue}&level=${level}&language=${language}`, {
+    .get(`http://localhost:8080/find`, {
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json"
+      },
+      params: {
+        query: searchValue,
+        level: level,
+        language: language
       }
     })
     .then(response => {

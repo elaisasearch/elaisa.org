@@ -18,9 +18,11 @@ response.headers['Access-Control-Allow-Headers'] = 'Origin, Accept, Content-Type
 def index():
     return "API - Language Level Search Engine"
 
-@app.route('/find&query=<query>&level=<level>&language=<language>', method=["OPTIONS","GET"])
-def find(query, level, language):
-    response.headers['Content-type'] = 'application/json'
+@app.route('/find', method=["OPTIONS","GET"])
+def find():
+    query = request.params.get('query')
+    level = request.params.get('level')
+    language = request.params.get('language')
 
     return {
         "wikipedia": wikipedia.getWikiEntry(query, language),
