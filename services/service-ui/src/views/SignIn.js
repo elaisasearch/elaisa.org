@@ -10,6 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import Fab from '@material-ui/core/Fab';
 import UpIcon from '@material-ui/icons/KeyboardArrowUp';
 import { withRouter } from "react-router-dom";
+import { SnackbarProvider, withSnackbar } from 'notistack';
 
 import axios from 'axios';
 
@@ -24,7 +25,7 @@ class SignIn extends Component {
     }
 
     handleSignIn = () => {
-        console.log(this.state);
+        let variant = "";
 
         axios.post(`http://0.0.0.0:8080/signin?email=${this.state.email}&password=${this.state.password}`)
             .then((response) => {
@@ -37,11 +38,16 @@ class SignIn extends Component {
                             loggedIn: true
                         }
                     });
+                
+                variant = "success";
+                this.props.enqueueSnackbar('Successfully logged in user', { variant });
                 } else {
-                    console.log("Password or Username incorrect")
+                    variant = "error"
+                    this.props.enqueueSnackbar('Password or Username incorrect', { variant });
                 }
             }).catch((error) => {
-                console.log(error)
+                variant = "error"
+                this.props.enqueueSnackbar('There was an API error. Please try again later', { variant });
             });
     }
 
@@ -119,5 +125,15 @@ class SignIn extends Component {
     }
 };
 
-export default withRouter(SignIn);
+const SignInSnackBar = withSnackbar(withRouter(SignIn));
+
+const IntegrationNotistack = () => {
+  return (
+    <SnackbarProvider maxSnack={3}>
+      <SignInSnackBar />
+    </SnackbarProvider>
+  );
+}
+
+export default IntegrationNotistack;
 
