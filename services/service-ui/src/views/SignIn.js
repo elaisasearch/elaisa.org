@@ -47,7 +47,7 @@ class SignIn extends Component {
                 }
             }).catch((error) => {
                 variant = "error"
-                this.props.enqueueSnackbar('There was an API error. Please try again later', { variant });
+                this.props.enqueueSnackbar(error.message, { variant });
             });
     }
 
