@@ -51,6 +51,7 @@ class Account extends Component {
 
         let email, firstname, lastname = "";
 
+        // TODO: State is not defined since it isn't global. Use REDUX
         try {
             let { location } = this.props;
             let { state } = location;
