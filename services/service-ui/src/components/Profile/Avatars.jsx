@@ -29,7 +29,7 @@ const Avatars = (props) => {
   const renderMenu = (props) => {
     if (props.loggedIn) {
       return <Menu id="simple-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
+        <MenuItem component={Link} to="/profile">Profile</MenuItem>
         <MenuItem component={Link} to={{
           pathname: '/account',
           state: {
