@@ -13,6 +13,7 @@ import Page404 from './views/Page404';
 import SignIn from './views/SignIn';
 import SignUp from './views/SignUp';
 import Account from './views/Account';
+import Profile from './views/Profile';
 
 // Build the browser history
 var hist = createBrowserHistory();
@@ -20,6 +21,7 @@ var hist = createBrowserHistory();
 ReactDOM.render(
     <Router history={hist}>
         <Switch>
+            <Route path='/profile' component={Profile} />
             <Route path='/account' component={Account} />
             <Route path='/signup' component={SignUp} />
             <Route path='/signin' component={SignIn} />
