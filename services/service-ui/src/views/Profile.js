@@ -11,12 +11,12 @@ class Profile extends Component {
                 <div style={{marginTop: "5%"}}>
                     <PieChart dataPoints={
                         [
-                            { y: 32, label: "Health" },
-                            { y: 22, label: "Finance" },
-                            { y: 15, label: "Education" },
-                            { y: 19, label: "Career" },
-                            { y: 5, label: "Family" },
-                            { y: 7, label: "Real Estate" }
+                            { y: 7, label: "A1" },
+                            { y: 5, label: "A2" },
+                            { y: 19, label: "B1" },
+                            { y: 65, label: "B2" },
+                            { y: 3, label: "C1" },
+                            { y: 1, label: "C2" }
                         ]
                     } />
                 </div>
