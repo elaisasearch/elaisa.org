@@ -4,7 +4,7 @@ import { createBrowserHistory } from "history";
 import { Router, Switch, Route } from "react-router-dom";
 import './assets/css/index.css';
 import * as serviceWorker from './serviceWorker';
-
+import { createStore } from 'redux';
 
 // views
 import App from './views/App';
@@ -15,8 +15,15 @@ import SignUp from './views/SignUp';
 import Account from './views/Account';
 import Profile from './views/Profile';
 
+// reducer 
+import reducer from './store/reducer';
+
+
 // Build the browser history
 var hist = createBrowserHistory();
+
+// create redux store
+const store = createStore(reducer);
 
 ReactDOM.render(
     <Router history={hist}>
