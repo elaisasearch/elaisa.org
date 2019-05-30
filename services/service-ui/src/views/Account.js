@@ -50,10 +50,10 @@ class Account extends Component {
 
     render() {
 
-        const { email, firstname, lastname } = this.props;
+        const { loggedIn, email, firstname, lastname } = this.props;
 
         return <div>
-            <NavigationBar />
+            <NavigationBar loggedIn={loggedIn} email={email} firstname={firstname} lastname={lastname}/>
             <div className="accountView">
                 <Paper className="accountPaper">
                     <Avatar alt={firstname} id="accountLogo">
