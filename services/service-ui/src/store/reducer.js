@@ -6,7 +6,16 @@ const initialState = {
 }
 
 const reducer = (state = initialState, action) => {
-    return state;
+    switch (action.type) {
+        case 'SIGN_IN':
+            return {
+                ...state,
+                loggedIn: true,
+                email: action.email
+            }
+        default:
+            return state
+    }
 }
 
 export default reducer;
