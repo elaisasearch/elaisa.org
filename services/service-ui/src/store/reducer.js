@@ -13,6 +13,11 @@ const reducer = (state = initialState, action) => {
                 loggedIn: true,
                 email: action.email
             }
+        case 'SIGN_OUT': 
+            return {
+                ...state,
+                loggedIn: false
+            }
         default:
             return state
     }
