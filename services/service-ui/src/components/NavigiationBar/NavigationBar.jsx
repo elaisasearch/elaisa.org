@@ -54,6 +54,7 @@ class NavigationBar extends React.Component {
 
   renderAvatar = (props) => {
 
+    // redux state
     const { loggedIn, email, firstname, lastname } = props;
 
     if (loggedIn) {
