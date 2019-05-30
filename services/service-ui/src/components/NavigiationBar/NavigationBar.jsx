@@ -18,28 +18,23 @@ class NavigationBar extends React.Component {
   constructor(props) {
     super(props);
     
-    // TODO: Need global state for login info
-    let email = "";
-    let loggedIn = false;
+    // // TODO: Need global state for login info
+    // let email = "";
+    // let loggedIn = false;
 
-    try {
-      let { location } = this.props;
-      let { state } = location;
-      email = state.email;
-      loggedIn = state.loggedIn;
-    } catch (e) {
-      email = "";
-    }
-
+    // try {
+    //   let { location } = this.props;
+    //   let { state } = location;
+    //   email = state.email;
+    //   loggedIn = state.loggedIn;
+    // } catch (e) {
+    //   email = "";
+    // }
 
     this.state = {
       value: this.props.values === undefined ? '' : this.props.values[0],
       language: this.props.values === undefined ? '' : this.props.values[1],
-      level: this.props.values === undefined ? '' : this.props.values[2],
-      email: email,
-      loggedIn: loggedIn,
-      firstname: "Alexander",
-      lastname: "Teusz"
+      level: this.props.values === undefined ? '' : this.props.values[2]
     }
   }
 
@@ -70,10 +65,13 @@ class NavigationBar extends React.Component {
     }
   }
 
-  renderAvatar = () => {
-    if (this.state.loggedIn) {
-      if (this.state.email) return <Avatars loggedIn email={this.state.email} firstname={this.state.firstname} lastname={this.state.lastname}/>;
-      else return <Avatars firstname={this.state.firstname} lastname={this.state.lastname}>AT</Avatars>;
+  renderAvatar = (props) => {
+
+    const { loggedIn, email, firstname, lastname } = props;
+
+    if (loggedIn) {
+      if (email) return <Avatars loggedIn email={email} firstname={firstname} lastname={lastname}/>;
+      else return <Avatars firstname={firstname} lastname={lastname}>AT</Avatars>;
     } else {
       return <Avatars/>;
     }
@@ -89,7 +87,7 @@ class NavigationBar extends React.Component {
     }
     return <div style={styles.defaultContent}>
       <Clock />
-      {this.renderAvatar()}
+      {this.renderAvatar(props)}
     </div>;
   }
 
