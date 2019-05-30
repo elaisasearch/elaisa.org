@@ -32,11 +32,7 @@ class SignIn extends Component {
                 if (response.data === "Success") {
                     console.log("user logged in");
                     this.props.history.push({
-                        pathname: "/",
-                        state: {
-                            email: this.state.email,
-                            loggedIn: true
-                        }
+                        pathname: "/"
                     });
                 
                 variant = "success";
