@@ -4,7 +4,8 @@ import { createBrowserHistory } from "history";
 import { Router, Switch, Route } from "react-router-dom";
 import './assets/css/index.css';
 import * as serviceWorker from './serviceWorker';
-
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
 
 // views
 import App from './views/App';
@@ -15,21 +16,30 @@ import SignUp from './views/SignUp';
 import Account from './views/Account';
 import Profile from './views/Profile';
 
+// reducer 
+import reducer from './store/reducer';
+
+
 // Build the browser history
 var hist = createBrowserHistory();
 
+// create redux store
+const store = createStore(reducer);
+
 ReactDOM.render(
-    <Router history={hist}>
-        <Switch>
-            <Route path='/profile' component={Profile} />
-            <Route path='/account' component={Account} />
-            <Route path='/signup' component={SignUp} />
-            <Route path='/signin' component={SignIn} />
-            <Route path='/results' component={Results} />
-            <Route path='/' exact component={App} />
-            <Route component={Page404} />
-        </Switch>
-    </Router>,
+    <Provider store={store}>
+        <Router history={hist}>
+            <Switch>
+                <Route path='/profile' component={Profile} />
+                <Route path='/account' component={Account} />
+                <Route path='/signup' component={SignUp} />
+                <Route path='/signin' component={SignIn} />
+                <Route path='/results' component={Results} />
+                <Route path='/' exact component={App} />
+                <Route component={Page404} />
+            </Switch>
+        </Router>
+    </Provider>,
     document.getElementById('root')
 );
 

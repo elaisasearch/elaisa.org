@@ -11,6 +11,7 @@ import Fab from '@material-ui/core/Fab';
 import UpIcon from '@material-ui/icons/KeyboardArrowUp';
 import { withRouter } from "react-router-dom";
 import { SnackbarProvider, withSnackbar } from 'notistack';
+import { connect } from 'react-redux';
 
 import axios from 'axios';
 
@@ -31,12 +32,13 @@ class SignIn extends Component {
             .then((response) => {
                 if (response.data === "Success") {
                     console.log("user logged in");
+
+                    // redux action
+                    this.props.onSignIn(this.state.email);
+
+                    // navigate to App.js
                     this.props.history.push({
-                        pathname: "/",
-                        state: {
-                            email: this.state.email,
-                            loggedIn: true
-                        }
+                        pathname: "/"
                     });
                 
                 variant = "success";
@@ -125,7 +127,14 @@ class SignIn extends Component {
     }
 };
 
-const SignInSnackBar = withSnackbar(withRouter(SignIn));
+// redux action
+const mapDispatchToProps = dispatch => {
+    return {
+        onSignIn: (email) => dispatch({type: 'SIGN_IN', email: email})
+    };
+};
+
+const SignInSnackBar = withSnackbar(withRouter(connect(null, mapDispatchToProps)(SignIn)));
 
 const IntegrationNotistack = () => {
   return (

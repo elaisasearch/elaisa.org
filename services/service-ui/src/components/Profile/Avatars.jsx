@@ -4,6 +4,7 @@ import Gravatar from 'react-gravatar';
 import { Person } from '@material-ui/icons/';
 import { Menu, MenuItem, Button } from '@material-ui/core';
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux';
 
 const Avatars = (props) => {
 
@@ -30,15 +31,8 @@ const Avatars = (props) => {
     if (props.loggedIn) {
       return <Menu id="simple-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
         <MenuItem component={Link} to="/profile">Profile</MenuItem>
-        <MenuItem component={Link} to={{
-          pathname: '/account',
-          state: {
-            email: props.email,
-            firstname: props.firstname,
-            lastname: props.lastname
-          }
-        }} >My account</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
+        <MenuItem component={Link} to="/account">My account</MenuItem>
+        <MenuItem onClick={props.onSignOut} component={Link} to="/">Logout</MenuItem>
       </Menu>
     }
     return <Menu id="simple-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
@@ -61,5 +55,11 @@ const Avatars = (props) => {
 
 };
 
+// redux action
+const mapDispatchToProps = dispatch => {
+  return {
+      onSignOut: () => dispatch({type: 'SIGN_OUT'})
+  };
+};
 
-export default Avatars;
+export default connect(null, mapDispatchToProps)(Avatars);

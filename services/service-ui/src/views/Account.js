@@ -9,9 +9,10 @@ import { Person } from '@material-ui/icons/';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { SnackbarProvider, withSnackbar } from 'notistack';
-
-
 import axios from 'axios';
+// redux
+import { connect } from 'react-redux';
+
 
 class Account extends Component {
 
@@ -49,23 +50,10 @@ class Account extends Component {
 
     render() {
 
-        let email, firstname, lastname = "";
-
-        // TODO: State is not defined since it isn't global. Use REDUX
-        try {
-            let { location } = this.props;
-            let { state } = location;
-            email = state.email;
-            firstname = state.firstname;
-            lastname = state.lastname;
-          } catch (e) {
-            email = "";
-            firstname = "";
-            lastname = "";
-          }
+        const { loggedIn, email, firstname, lastname } = this.props;
 
         return <div>
-            <NavigationBar />
+            <NavigationBar loggedIn={loggedIn} email={email} firstname={firstname} lastname={lastname}/>
             <div className="accountView">
                 <Paper className="accountPaper">
                     <Avatar alt={firstname} id="accountLogo">
@@ -117,7 +105,16 @@ class Account extends Component {
     }
 }
 
-const AccountSnackBar = withSnackbar(Account);
+const mapStateToProps = state => {
+    return {
+        loggedIn: state.loggedIn,
+        email: state.email,
+        firstname: state.firstname,
+        lastname: state.lastname
+    };
+};
+
+const AccountSnackBar = withSnackbar(connect(mapStateToProps)(Account));
 
 const AccountIntegrationNotistack = () => {
   return (
@@ -125,7 +122,7 @@ const AccountIntegrationNotistack = () => {
       <AccountSnackBar />
     </SnackbarProvider>
   );
-}
+};
 
 export default AccountIntegrationNotistack;
 

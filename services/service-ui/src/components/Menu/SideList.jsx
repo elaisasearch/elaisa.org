@@ -4,6 +4,7 @@ import { Share, ExpandLess, ExpandMore, Home } from '@material-ui/icons/';
 import styles from '../../assets/jss/MenuStyle';
 import MenuHelper from './MenuHelper';
 import Switch from './Switch';
+import { Link } from 'react-router-dom'
 
 // import language flags for menu
 import german from '../../assets/img/menu_flags/german.jpg';
@@ -11,7 +12,7 @@ import english from '../../assets/img/menu_flags/english.jpg';
 import spanish from '../../assets/img/menu_flags/spanish.jpg';
 
 const ListItemLink = (props) => {
-    return <ListItem button component="a" {...props} />;
+    return <ListItem button component={Link} {...props} />;
 }
 
 class SideList extends Component {
@@ -33,7 +34,7 @@ class SideList extends Component {
                     subheader={<ListSubheader component="nav">Menu</ListSubheader>}
                 >
                     {/* Home */}
-                    <ListItemLink href="/" >
+                    <ListItemLink to="/" >
                         <ListItemIcon>
                             <Home />
                         </ListItemIcon>
