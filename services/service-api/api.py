@@ -1,9 +1,9 @@
 from bottle import Bottle, request, response, run
 # import lib files
 from lib import search, wikipedia, user
+import json
 
 app = Bottle()
-
 
 @app.hook('after_request')
 def enable_cors():
@@ -43,7 +43,7 @@ def signUp():
     result = user.createUser(firstname, lastname, email, password)
 
     if result == "Success":
-        return "Success"
+        return
     else:
         return "Error"
 
@@ -53,14 +53,9 @@ def signIn():
     email = request.params.get('email')
     password = request.params.get('password')
 
-    print(email, password)
+    result =  user.loginUser(email, password)
 
-    result = user.loginUser(email, password)
-
-    if result == "Success":
-        return "Success"
-    else:
-        return "Error"
+    return json.loads(result)
 
 
 @app.route('/changepassword', method=["OPTIONS", "POST"])

@@ -1,6 +1,8 @@
 from pymongo import MongoClient, ASCENDING
 import bcrypt
-
+import json
+from bson.objectid import ObjectId
+from json import JSONEncoder
 
 GLOBALS = {
     "mongo": {
@@ -9,6 +11,14 @@ GLOBALS = {
         "collections": "users"
     }
 }
+
+class MongoEncoder(JSONEncoder):
+    def default(self, obj, **kwargs):
+        if isinstance(obj, ObjectId):
+            return str(obj)
+        else:
+            return JSONEncoder.default(obj, **kwargs)
+
 
 
 def createUser(firstname, lastname, email, password):
@@ -40,13 +50,26 @@ def loginUser(email, password):
     db = client[GLOBALS["mongo"]["database"]]
     col = db[GLOBALS["mongo"]["collections"]]
 
+    userObject = {}
+
     results = col.find({"email": email})
 
     for user in results:
         if bcrypt.checkpw(password.encode('utf-8'), user['password']):
-            return "Success"
+            userObject = {
+                "response": "Success",
+                "user": {
+                    "email": user['email'],
+                    "firstname": user['firstname'],
+                    "lastname": user['lastname']
+                }
+            }
         else:
-            return "Error"
+            userObject = {
+                "response": "Error"
+            }
+
+    return json.dumps(userObject, cls=MongoEncoder)
 
 
 def handlePasswordChange(email, oldPass, newPass):
