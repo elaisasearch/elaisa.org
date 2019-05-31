@@ -32,11 +32,11 @@ const Avatars = (props) => {
       return <Menu id="simple-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
         <MenuItem component={Link} to="/profile">Profile</MenuItem>
         <MenuItem component={Link} to="/account">My account</MenuItem>
-        <MenuItem onClick={handleClose} component={Link} to="/">Logout</MenuItem>
+        <MenuItem onClick={props.onSignOut} component={Link} to="/">Logout</MenuItem>
       </Menu>
     }
     return <Menu id="simple-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
-      <MenuItem onClick={props.onSignOut} component={Link} to="/signin">Sign in</MenuItem>
+      <MenuItem component={Link} to="/signin">Sign in</MenuItem>
     </Menu>
   }
 
