@@ -30,11 +30,15 @@ class SignIn extends Component {
 
         axios.post(`http://0.0.0.0:8080/signin?email=${this.state.email}&password=${this.state.password}`)
             .then((response) => {
-                if (response.data === "Success") {
+                if (response.data.response === "Success") {
                     console.log("user logged in");
 
+                    const { email, firstname, lastname } = response.data.user;
+
+                    console.log(response.data.user)
+
                     // redux action
-                    this.props.onSignIn(this.state.email);
+                    this.props.onSignIn(email, firstname, lastname);
 
                     // navigate to App.js
                     this.props.history.push({
@@ -130,7 +134,7 @@ class SignIn extends Component {
 // redux action
 const mapDispatchToProps = dispatch => {
     return {
-        onSignIn: (email) => dispatch({type: 'SIGN_IN', email: email})
+        onSignIn: (email, firstname, lastname) => dispatch({type: 'SIGN_IN', email: email, firstname: firstname, lastname: lastname})
     };
 };
 
