@@ -13,3 +13,17 @@
     width: 15%;
     margin-top: 5%;
 }
+
+.mobile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+}
+
+.mobile-logo {
+    width: 50%;
+    margin-top: 10%;
+}

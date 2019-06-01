@@ -6,34 +6,42 @@ import '../assets/css/AppStyle.css'
 // logo
 import logo from '../assets/img/logo.png';
 // redux 
-import { connect } from 'react-redux';
+import { connect } from 'react-redux';
+// device detection
+import { isMobile } from 'react-device-detect';
 
-class App extends Component {
+const App = (props) => {
 
-  render() {
+  // redux state
+  const { loggedIn, email, firstname, lastname } = props;
 
-    // redux state
-    const { loggedIn, email, firstname, lastname } = this.props;
-
-    return (
-      <div className="root">
-        <div className="app">
-          <NavigationBar loggedIn={loggedIn} email={email} firstname={firstname} lastname={lastname}/>
-          <img id="logo" src={logo} className="logo" alt="Elaisa Search Engine Logo"></img>
-          <SearchBar />
-        </div>
-        <Footer />
-      </div>
-    );
+  // show error if user opens app on mobile
+  if (isMobile) {
+    return <div className="mobile">
+      <img id="logo" src={logo} className="mobile-logo" alt="Elaisa Search Engine Logo"></img>
+      <h3>This content is unavailable on mobile. Please open Elaisa on your computer.</h3>
+    </div>
   }
+
+  return (
+    <div className="root">
+      <div className="app">
+        <NavigationBar loggedIn={loggedIn} email={email} firstname={firstname} lastname={lastname} />
+        <img id="logo" src={logo} className="logo" alt="Elaisa Search Engine Logo"></img>
+        <SearchBar />
+      </div>
+      <Footer />
+    </div>
+  );
 }
+
 
 const mapStateToProps = state => {
   return {
-      loggedIn: state.loggedIn,
-      email: state.email,
-      firstname: state.firstname,
-      lastname: state.lastname
+    loggedIn: state.loggedIn,
+    email: state.email,
+    firstname: state.firstname,
+    lastname: state.lastname
   };
 };
 
