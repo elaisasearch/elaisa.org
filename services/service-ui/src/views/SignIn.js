@@ -11,7 +11,7 @@ import Fab from '@material-ui/core/Fab';
 import UpIcon from '@material-ui/icons/KeyboardArrowUp';
 import { withRouter } from "react-router-dom";
 import { SnackbarProvider, withSnackbar } from 'notistack';
-import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 
 import axios from 'axios';
 
@@ -23,6 +23,13 @@ class SignIn extends Component {
     state = {
         email: "",
         password: "",
+    }
+
+    keyPress = (e) => {
+        // get the input when user cliks enter (13)
+        if (e.keyCode === 13) {
+            this.handleSignIn()
+        }
     }
 
     handleSignIn = () => {
@@ -44,9 +51,9 @@ class SignIn extends Component {
                     this.props.history.push({
                         pathname: "/"
                     });
-                
-                variant = "success";
-                this.props.enqueueSnackbar('Successfully logged in user', { variant });
+
+                    variant = "success";
+                    this.props.enqueueSnackbar('Successfully logged in user', { variant });
                 } else {
                     variant = "error"
                     this.props.enqueueSnackbar('Password or Username incorrect', { variant });
@@ -80,6 +87,7 @@ class SignIn extends Component {
                             autoFocus
                         />
                         <TextField
+                            onKeyDown={this.keyPress}
                             onChange={e => this.setState({ password: e.target.value })}
                             variant="outlined"
                             margin="normal"
@@ -134,18 +142,18 @@ class SignIn extends Component {
 // redux action
 const mapDispatchToProps = dispatch => {
     return {
-        onSignIn: (email, firstname, lastname) => dispatch({type: 'SIGN_IN', email: email, firstname: firstname, lastname: lastname})
+        onSignIn: (email, firstname, lastname) => dispatch({ type: 'SIGN_IN', email: email, firstname: firstname, lastname: lastname })
     };
 };
 
 const SignInSnackBar = withSnackbar(withRouter(connect(null, mapDispatchToProps)(SignIn)));
 
 const IntegrationNotistack = () => {
-  return (
-    <SnackbarProvider maxSnack={3}>
-      <SignInSnackBar />
-    </SnackbarProvider>
-  );
+    return (
+        <SnackbarProvider maxSnack={3}>
+            <SignInSnackBar />
+        </SnackbarProvider>
+    );
 }
 
 export default IntegrationNotistack;
