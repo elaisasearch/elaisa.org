@@ -1,0 +1,8 @@
+.contentPaper1 {
+    width: 45%;
+    height: 45vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1%;
+}
