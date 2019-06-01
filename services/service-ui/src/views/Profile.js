@@ -26,7 +26,18 @@ class Profile extends Component {
                                 { y: 1, label: "C2" }
                             ]
                         } 
-                        title="Test Title"
+                        title="Level"
+                        />
+                    </Paper>
+                    <Paper className="contentPaper2">
+                        <PieChart dataPoints={
+                            [
+                                { y: 56, label: "English" },
+                                { y: 24, label: "German" },
+                                { y: 20, label: "Spanish" }
+                            ]
+                        } 
+                        title="Language"
                         />
                     </Paper>
                 </div>
