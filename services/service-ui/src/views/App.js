@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import NavigationBar from '../components/NavigiationBar/NavigationBar';
 import SearchBar from '../components/SearchBar/SearchBar';
 import Footer from '../components/Footer/Footer';
