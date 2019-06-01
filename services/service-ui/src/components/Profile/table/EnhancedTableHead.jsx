@@ -8,11 +8,11 @@ import PropTypes from 'prop-types';
 
 
 const headRows = [
-    { id: 'name', numeric: false, disablePadding: true, label: 'Dessert (100g serving)' },
-    { id: 'calories', numeric: true, disablePadding: false, label: 'Calories' },
-    { id: 'fat', numeric: true, disablePadding: false, label: 'Fat (g)' },
-    { id: 'carbs', numeric: true, disablePadding: false, label: 'Carbs (g)' },
-    { id: 'protein', numeric: true, disablePadding: false, label: 'Protein (g)' },
+    { id: 'searchvalue', numeric: false, disablePadding: true, label: 'Search Term' },
+    { id: 'language', numeric: false, disablePadding: false, label: 'Language' },
+    { id: 'level', numeric: false, disablePadding: false, label: 'Level' },
+    { id: 'date', numeric: true, disablePadding: false, label: 'Date' },
+    // { id: 'protein', numeric: true, disablePadding: false, label: 'Protein (g)' },
   ];
 
 function EnhancedTableHead(props) {
