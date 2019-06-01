@@ -1,15 +1,17 @@
 import React from 'react';
 import CanvasJSReact from '../canvas/canvasjs.react';
 
-const CanvasJS = CanvasJSReact.CanvasJS;
 const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 const PieChart = (props) => {
 
-    const { dataPoints } = props;
+    const { dataPoints, title } = props;
 
     const options = {
         animationEnabled: true,
+        title:{
+            text: title
+        },
         data: [{
             type: "pie",
             showInLegend: false,
@@ -20,12 +22,7 @@ const PieChart = (props) => {
         }]
     }
     return (
-        <div>
-            <CanvasJSChart options={options}
-            /* onRef={ref => this.chart = ref} */
-            />
-            {/*You can get reference to the chart instance as shown above using onRef. This allows you to access all chart properties and methods*/}
-        </div>
+        <CanvasJSChart options={options} />
     );
 }
 
