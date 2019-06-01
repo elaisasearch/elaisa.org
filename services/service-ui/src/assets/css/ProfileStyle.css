@@ -15,3 +15,9 @@
     justify-content: center;
     padding: 1%;
 }
+
+.contentTable {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5%;
+}

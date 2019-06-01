@@ -4,6 +4,7 @@ import NavigationBar from '../components/NavigiationBar/NavigationBar';
 import { connect } from 'react-redux';
 import { Paper } from '@material-ui/core';
 import '../assets/css/ProfileStyle.css';
+import EnhancedTable from '../components/Profile/table/EnhancedTable';
 
 class Profile extends Component {
     render() {
@@ -41,6 +42,10 @@ class Profile extends Component {
                         />
                     </Paper>
                 </div>
+                <div className="contentTable">
+                    <EnhancedTable title="Search History"/>
+                </div>
+                
             </div>
         );
     }
