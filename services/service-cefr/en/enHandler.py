@@ -70,7 +70,7 @@ client = MongoClient('localhost', 27017)
 db = client['LanguageLevelSearchEngine']
 collection = db['vocab_english']
 
-for i in range(0,5):
+for i in range(0,6):
     for vokabel in complete_list[i]:
         tmpdict = {"word" : str(vokabel.lower()), "languageLevel" : str(language_level[i])}
         collection.insert_one(tmpdict)
