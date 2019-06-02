@@ -26,8 +26,11 @@ def find():
     query = request.params.get('query')
     level = request.params.get('level')
     language = request.params.get('language')
+    loggedIn = request.params.get('loggedin')
+    email = request.params.get('email')
 
-    # TODO: write searchvalue into database for profile analytics
+    if loggedIn == "true":
+        user.writeSearchDataIntoDatabase(query, level, language, email)
 
     return {
         "wikipedia": wikipedia.getWikiEntry(query, language),

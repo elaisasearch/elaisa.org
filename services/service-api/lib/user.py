@@ -3,12 +3,16 @@ import bcrypt
 import json
 from bson.objectid import ObjectId
 from json import JSONEncoder
+import datetime
 
 GLOBALS = {
     "mongo": {
         "client": "mongodb://localhost:27017/",
         "database": "LanguageLevelSearchEngine",
-        "collections": "users"
+        "collections": [
+            "users",
+            "search_history"
+        ]
     }
 }
 
@@ -24,7 +28,7 @@ class MongoEncoder(JSONEncoder):
 def createUser(firstname, lastname, email, password):
     client = MongoClient(GLOBALS["mongo"]["client"])
     db = client[GLOBALS["mongo"]["database"]]
-    col = db[GLOBALS["mongo"]["collections"]]
+    col = db[GLOBALS["mongo"]["collections"][0]]
     col.create_index([('email', ASCENDING)], unique=True)
 
     # hash password
@@ -48,7 +52,7 @@ def createUser(firstname, lastname, email, password):
 def loginUser(email, password):
     client = MongoClient(GLOBALS["mongo"]["client"])
     db = client[GLOBALS["mongo"]["database"]]
-    col = db[GLOBALS["mongo"]["collections"]]
+    col = db[GLOBALS["mongo"]["collections"][0]]
 
     userObject = {}
 
@@ -75,7 +79,7 @@ def loginUser(email, password):
 def handlePasswordChange(email, oldPass, newPass):
     client = MongoClient(GLOBALS["mongo"]["client"])
     db = client[GLOBALS["mongo"]["database"]]
-    col = db[GLOBALS["mongo"]["collections"]]
+    col = db[GLOBALS["mongo"]["collections"][0]]
 
     newPass_hash = bcrypt.hashpw(newPass.encode('utf-8'), bcrypt.gensalt(14))
     try:
@@ -83,3 +87,22 @@ def handlePasswordChange(email, oldPass, newPass):
         return "Success"
     except:
         return "Error"
+
+
+def writeSearchDataIntoDatabase(query, level, language, email):
+    client = MongoClient(GLOBALS["mongo"]["client"])
+    db = client[GLOBALS["mongo"]["database"]]
+    col = db[GLOBALS["mongo"]["collections"][1]]
+
+    date = datetime.datetime.now().strftime("%d.%m.%Y %H:%M")
+
+    try:
+        col.insert_one({
+            "email": email,
+            "level": level,
+            "language": language,
+            "query": query,
+            "date": date
+        })
+    except:
+        return
