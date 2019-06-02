@@ -16,7 +16,7 @@ const PieChart = (props) => {
             type: "pie",
             showInLegend: false,
             legendText: "{label}",
-            toolTipContent: "{label}: <strong>{y}%</strong>",
+            toolTipContent: "{label}: <strong>{y}</strong>",
             indexLabelPlacement: "inside",
             dataPoints: dataPoints
         }]
