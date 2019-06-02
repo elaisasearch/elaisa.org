@@ -77,4 +77,15 @@ def changePassword():
         return "Error"
 
 
+@app.route('/searchhistory', method=["OPTIONS", "GET"])
+def getSearchHistory():
+    email = request.params.get('email')
+
+    results = user.getSearchHistoryForUser(email)
+
+    if results["response"] == "Success":
+        return results
+    else: 
+        return "Error"
+
 app.run(host='0.0.0.0', port=8080, debug=True)

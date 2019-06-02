@@ -4,6 +4,7 @@ import json
 from bson.objectid import ObjectId
 from json import JSONEncoder
 import datetime
+import pickle
 
 GLOBALS = {
     "mongo": {
@@ -16,6 +17,7 @@ GLOBALS = {
     }
 }
 
+
 class MongoEncoder(JSONEncoder):
     def default(self, obj, **kwargs):
         if isinstance(obj, ObjectId):
@@ -23,6 +25,11 @@ class MongoEncoder(JSONEncoder):
         else:
             return JSONEncoder.default(obj, **kwargs)
 
+class SetEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, set):
+            return list(obj)
+        return json.JSONEncoder.default(self, obj)
 
 
 def createUser(firstname, lastname, email, password):
@@ -106,3 +113,32 @@ def writeSearchDataIntoDatabase(query, level, language, email):
         })
     except:
         return
+
+def getSearchHistoryForUser(email):
+    client = MongoClient(GLOBALS["mongo"]["client"])
+    db = client[GLOBALS["mongo"]["database"]]
+    col = db[GLOBALS["mongo"]["collections"][1]]
+
+    try:
+        historyData = col.find({
+            "email": email
+        })
+    
+        data = []
+        for d in historyData:
+            data.append({
+                "email": d["email"],
+                "level": d["level"],
+                "language": d["language"],
+                "query": d["query"],
+                "date": d["date"]
+            })
+
+        return {
+            "response": "Success",
+            "history": data
+        }
+    except:
+        return {
+            "response": "Error"
+        }
