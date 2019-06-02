@@ -54,6 +54,8 @@ class Profile extends Component {
 
     renderContent() {
 
+        const ref = React.createRef();
+
         const { language, level } = this.state.statistics;
         const { a1, a2, b1, b2, c1, c2 } = level;
         const { de, en, es } = language
