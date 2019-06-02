@@ -125,6 +125,7 @@ def getSearchHistoryForUser(email):
         })
     
         data = []
+        en, es, de, a1, a2, b1, b2, c1, c2 = 0, 0, 0, 0, 0, 0, 0, 0, 0
         for d in historyData:
             data.append({
                 "email": d["email"],
@@ -133,9 +134,33 @@ def getSearchHistoryForUser(email):
                 "query": d["query"],
                 "date": d["date"]
             })
+            if d["language"] == "en": en += 1
+            if d["language"] == "es": es += 1
+            if d["language"] == "de": de += 1
+            if d["level"] == "A1": a1 += 1
+            if d["level"] == "A2": a2 += 1
+            if d["level"] == "B1": b1 += 1
+            if d["level"] == "B2": b2 += 1
+            if d["level"] == "C1": c1 += 1
+            if d["level"] == "C2": c2 += 1
 
         return {
             "response": "Success",
+            "statistics": {
+                "language": {
+                    "en": en,
+                    "es": es,
+                    "de": de
+                },
+                "level": {
+                    "a1": a1,
+                    "a2": a2,
+                    "b1": b1,
+                    "b2": b2,
+                    "c1": c1,
+                    "c2": c2
+                }
+            },
             "history": data
         }
     except:
