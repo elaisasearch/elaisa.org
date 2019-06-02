@@ -37,10 +37,10 @@ function getSorting(order, orderBy) {
   return order === 'desc' ? (a, b) => desc(a, b, orderBy) : (a, b) => -desc(a, b, orderBy);
 }
 
-const useStyles = theme => ({
+const useStyles = {
   root: {
-    width: '100%',
-    marginTop: "5%" // theme.spacing(3),
+    minWidth: "95%",
+    marginTop: "1%"
   },
   paper: {
     width: '100%',
@@ -52,10 +52,10 @@ const useStyles = theme => ({
   tableWrapper: {
     overflowX: 'auto',
   },
-});
+};
 
 function EnhancedTable(props) {
-  const classes = useStyles();
+  const classes = useStyles;
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('calories');
   const [selected, setSelected] = React.useState([]);
@@ -121,12 +121,12 @@ function EnhancedTable(props) {
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
   return (
-    <div className={classes.root}>
-      <Paper className={classes.paper}>
+    <div style={useStyles.root}>
+      <Paper style={useStyles.paper}>
         <EnhancedTableToolbar title={props.title} numSelected={selected.length} />
-        <div className={classes.tableWrapper}>
+        <div style={useStyles.tableWrapper}>
           <Table
-            className={classes.table}
+            style={useStyles.table}
             aria-labelledby="tableTitle"
             size={dense ? 'small' : 'medium'}
           >
