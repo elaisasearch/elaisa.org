@@ -7,7 +7,7 @@ import '../assets/css/ProfileStyle.css';
 import EnhancedTable from '../components/Profile/table/EnhancedTable';
 import axios from 'axios';
 import { CircularProgress } from "@material-ui/core";
-
+import PDFGenerator from '../components/Profile/PDFGenerator';
 
 class Profile extends Component {
 
@@ -54,8 +54,6 @@ class Profile extends Component {
 
     renderContent() {
 
-        const ref = React.createRef();
-
         const { language, level } = this.state.statistics;
         const { a1, a2, b1, b2, c1, c2 } = level;
         const { de, en, es } = language
@@ -100,7 +98,7 @@ class Profile extends Component {
                 <EnhancedTable title="Search History" data={this.state.history} />
             </div>
             <div className="pdfButton">
-                <Button variant="contained">Generate PDF</Button>
+                <PDFGenerator language={language} level={level} firstname={this.props.firstname} lastname={this.props.lastname}/>
             </div>
         </div>
     }
