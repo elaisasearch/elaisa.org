@@ -44,7 +44,6 @@ const useStyles = {
   },
   paper: {
     width: '100%',
-    marginBottom: "2%" //theme.spacing(2),
   },
   table: {
     minWidth: "90%",
