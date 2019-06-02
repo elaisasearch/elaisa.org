@@ -5,8 +5,29 @@ import { connect } from 'react-redux';
 import { Paper } from '@material-ui/core';
 import '../assets/css/ProfileStyle.css';
 import EnhancedTable from '../components/Profile/table/EnhancedTable';
+import axios from 'axios';
 
 class Profile extends Component {
+
+    state = {
+        history: []
+    }
+
+    componentWillMount() {
+        axios.get('http://localhost:8080/searchhistory', {
+            params: {
+                email: this.props.email
+            }
+        }).then((response) => {
+            this.setState({
+                history: response.data.history
+            })
+        }).catch((error) => {
+            console.log(error.message)
+        })
+    }
+
+
     render() {
 
         // redux state
@@ -43,7 +64,7 @@ class Profile extends Component {
                     </Paper>
                 </div>
                 <div className="contentTable">
-                    <EnhancedTable title="Search History"/>
+                    <EnhancedTable title="Search History" data={this.state.history}/>
                 </div>
                 
             </div>

@@ -13,12 +13,6 @@ function createData(name, calories, fat, carbs) {
   return { name, calories, fat, carbs };
 }
 
-const rows = [
-  createData('summer', "EN", "B2", "Yesterday"),
-  createData('police', "EN", "B2", "30.05.19"),
-  createData('memeteam', "EN", "C1", "24.05.19"),
-];
-
 function desc(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
     return -1;
@@ -68,6 +62,16 @@ function EnhancedTable(props) {
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+
+  // cerate rows from api data
+  const { data } = props;
+  let rows = []
+
+  for (let d of data) {
+    rows.push(createData(d.query, d.language.toUpperCase(), d.level, d.date))
+  }
+
+  rows = rows.reverse()
 
   function handleRequestSort(event, property) {
     const isDesc = orderBy === property && order === 'desc';
