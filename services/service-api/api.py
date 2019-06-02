@@ -27,6 +27,8 @@ def find():
     level = request.params.get('level')
     language = request.params.get('language')
 
+    # TODO: write searchvalue into database for profile analytics
+
     return {
         "wikipedia": wikipedia.getWikiEntry(query, language),
         "documents": search.findDocuments(query, level, language)
