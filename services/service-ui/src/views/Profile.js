@@ -13,29 +13,51 @@ class Profile extends Component {
 
     state = {
         history: [],
+        statistics: {
+            language: {
+                de: 0,
+                en: 0,
+                es: 0
+            },
+            level: {
+                a1: 0,
+                a2: 0,
+                b1: 0,
+                b2: 0,
+                c1: 0,
+                c2: 0
+            }
+        },
         waiting: true
     }
 
-    componentWillMount() {
-        axios.get('http://localhost:8080/searchhistory', {
-            params: {
-                email: this.props.email
-            }
-        }).then((response) => {
+    async componentDidMount() {
+        try {
+            const response = await axios.get('http://localhost:8080/searchhistory', {
+                params: {
+                    email: this.props.email
+                }
+            });
+
             this.setState({
                 history: response.data.history,
-                waiting: false
+                waiting: false,
+                statistics: response.data.statistics
             })
-        }).catch((error) => {
-            console.log(error.message)
+        }catch(error) {
             this.setState({
                 waiting: false
-            })
-        })
+            });
+        }
     }
 
 
     renderContent() {
+
+        const { language, level } = this.state.statistics;
+        const { a1, a2, b1, b2, c1, c2 } = level;
+        const { de, en, es } = language
+
         // while service is fetching data, show the progress circle
         if (this.state.waiting) {
             return <div className="progress"><CircularProgress style={{ color: "grey" }} /></div>
@@ -45,12 +67,12 @@ class Profile extends Component {
                 <Paper className="contentPaper1">
                     <PieChart dataPoints={
                         [
-                            { y: 7, label: "A1" },
-                            { y: 5, label: "A2" },
-                            { y: 19, label: "B1" },
-                            { y: 65, label: "B2" },
-                            { y: 3, label: "C1" },
-                            { y: 1, label: "C2" }
+                            { y: a1, label: "A1" },
+                            { y: a2, label: "A2" },
+                            { y: b1, label: "B1" },
+                            { y: b2, label: "B2" },
+                            { y: c1, label: "C1" },
+                            { y: c2, label: "C2" }
                         ]
                     }
                         title="Level"
@@ -59,9 +81,9 @@ class Profile extends Component {
                 <Paper className="contentPaper2">
                     <PieChart dataPoints={
                         [
-                            { y: 56, label: "English" },
-                            { y: 24, label: "German" },
-                            { y: 20, label: "Spanish" }
+                            { y: en, label: "English" },
+                            { y: de, label: "German" },
+                            { y: es, label: "Spanish" }
                         ]
                     }
                         title="Language"
@@ -75,6 +97,8 @@ class Profile extends Component {
     }
 
     render() {
+
+        console.log(this.state)
 
         // redux state
         const { loggedIn, email, firstname, lastname } = this.props;
