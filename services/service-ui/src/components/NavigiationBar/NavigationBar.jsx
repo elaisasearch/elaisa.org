@@ -18,20 +18,12 @@ class NavigationBar extends React.Component {
   constructor(props) {
     super(props);
 
-    // const { loggedIn, email, name } = props;
-
     this.state = {
       value: this.props.values === undefined ? '' : this.props.values[0],
       language: this.props.values === undefined ? '' : this.props.values[1],
       level: this.props.values === undefined ? '' : this.props.values[2]
     }
   }
-
-  email = "a.teusz@cognigy.com";
-  loggedIn = false;
-  firstname = "Alexander";
-  lastname = "Teusz";
-
 
   keyPress = (e) => {
     // get the input when user cliks enter (13)
@@ -60,11 +52,14 @@ class NavigationBar extends React.Component {
     }
   }
 
-  renderAvatar = () => {
-    console.log(this.loggedIn)
-    if (this.loggedIn) {
-      if (this.email) return <Avatars loggedIn email={this.email}/>;
-      else return <Avatars firstname={this.firstname} lastname={this.lastname}>AT</Avatars>;
+  renderAvatar = (props) => {
+
+    // redux state
+    const { loggedIn, email, firstname, lastname } = props;
+
+    if (loggedIn) {
+      if (email) return <Avatars loggedIn email={email} firstname={firstname} lastname={lastname}/>;
+      else return <Avatars firstname={firstname} lastname={lastname}>AT</Avatars>;
     } else {
       return <Avatars/>;
     }
@@ -80,7 +75,7 @@ class NavigationBar extends React.Component {
     }
     return <div style={styles.defaultContent}>
       <Clock />
-      {this.renderAvatar()}
+      {this.renderAvatar(props)}
     </div>;
   }
 

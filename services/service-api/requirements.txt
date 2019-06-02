@@ -1,3 +1,4 @@
 pymongo
 bottle
 wikipedia
+bcrypt

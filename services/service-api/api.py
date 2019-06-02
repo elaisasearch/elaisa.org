@@ -1,6 +1,7 @@
 from bottle import Bottle, request, response, run
 # import lib files
-from lib import search, wikipedia
+from lib import search, wikipedia, user
+import json
 
 app = Bottle()
 
@@ -12,19 +13,79 @@ def enable_cors():
     """
     response.headers['Access-Control-Allow-Origin'] = '*'
     response.headers['Access-Control-Allow-Methods'] = 'PUT, GET, POST, DELETE, OPTIONS'
-response.headers['Access-Control-Allow-Headers'] = 'Origin, Accept, Content-Type, X-Requested-With, X-CSRF-Token'
+    response.headers['Access-Control-Allow-Headers'] = 'Origin, Accept, Content-Type, X-Requested-With, X-CSRF-Token'
+
 
 @app.route('/')
 def index():
     return "API - Language Level Search Engine"
 
-@app.route('/find&query=<query>&level=<level>&language=<language>', method=["OPTIONS","GET"])
-def find(query, level, language):
-    response.headers['Content-type'] = 'application/json'
+
+@app.route('/find', method=["OPTIONS", "GET"])
+def find():
+    query = request.params.get('query')
+    level = request.params.get('level')
+    language = request.params.get('language')
+    loggedIn = request.params.get('loggedin')
+    email = request.params.get('email')
+
+    if loggedIn == "true":
+        user.writeSearchDataIntoDatabase(query, level, language, email)
 
     return {
         "wikipedia": wikipedia.getWikiEntry(query, language),
         "documents": search.findDocuments(query, level, language)
     }
+
+
+@app.route('/signup', method="POST")
+def signUp():
+    firstname = request.params.get('firstname')
+    lastname = request.params.get('lastname')
+    email = request.params.get('email')
+    password = request.params.get('password')
+
+    result = user.createUser(firstname, lastname, email, password)
+
+    if result == "Success":
+        return
+    else:
+        return "Error"
+
+
+@app.route('/signin', method=["OPTIONS", "POST"])
+def signIn():
+    email = request.params.get('email')
+    password = request.params.get('password')
+
+    result =  user.loginUser(email, password)
+
+    return json.loads(result)
+
+
+@app.route('/changepassword', method=["OPTIONS", "POST"])
+def changePassword():
+    email = request.params.get('email')
+    oldPass = request.params.get('oldpassword')
+    newPass = request.params.get('newpassword')
+
+    result = user.handlePasswordChange(email, oldPass, newPass)
+
+    if result == "Success":
+        return "Success"
+    else:
+        return "Error"
+
+
+@app.route('/searchhistory', method=["OPTIONS", "GET"])
+def getSearchHistory():
+    email = request.params.get('email')
+
+    results = user.getSearchHistoryForUser(email)
+
+    if results["response"] == "Success":
+        return results
+    else: 
+        return "Error"
 
 app.run(host='0.0.0.0', port=8080, debug=True)

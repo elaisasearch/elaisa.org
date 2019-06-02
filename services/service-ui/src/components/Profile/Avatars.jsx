@@ -1,9 +1,10 @@
 import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Gravatar from 'react-gravatar';
-import { Person } from '@material-ui/icons/';
-import { Menu, MenuItem, Button } from '@material-ui/core';
+import { Person, ExitToApp, Home, Dashboard } from '@material-ui/icons/';
+import { Menu, MenuItem, Button, Divider, ListItemIcon, ListItemText} from '@material-ui/core';
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux';
 
 const Avatars = (props) => {
 
@@ -29,14 +30,35 @@ const Avatars = (props) => {
   const renderMenu = (props) => {
     if (props.loggedIn) {
       return <Menu id="simple-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>My account</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
+        <MenuItem component={Link} to="/profile">
+        <ListItemIcon>
+            <Dashboard />
+          </ListItemIcon>
+          <ListItemText primary="Profile" />
+        </MenuItem>
+        <MenuItem component={Link} to="/account">
+        <ListItemIcon>
+            <Person />
+          </ListItemIcon>
+          <ListItemText primary="Account" />
+        </MenuItem>
+        <Divider />
+        <MenuItem onClick={props.onSignOut} component={Link} to="/">
+        <ListItemIcon>
+            <ExitToApp />
+          </ListItemIcon>
+          <ListItemText primary="Sign out" />
+        </MenuItem>
       </Menu>
     }
     return <Menu id="simple-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
-    <MenuItem component={Link} to="/signin">Sign in</MenuItem>
-  </Menu>
+      <MenuItem component={Link} to="/signin">
+      <ListItemIcon>
+            <Home />
+          </ListItemIcon>
+          <ListItemText primary="Sign In" />
+      </MenuItem>
+    </Menu>
   }
 
   return <div>
@@ -54,5 +76,11 @@ const Avatars = (props) => {
 
 };
 
+// redux action
+const mapDispatchToProps = dispatch => {
+  return {
+      onSignOut: () => dispatch({type: 'SIGN_OUT'})
+  };
+};
 
-export default Avatars;
+export default connect(null, mapDispatchToProps)(Avatars);
