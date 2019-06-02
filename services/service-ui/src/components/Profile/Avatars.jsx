@@ -2,7 +2,7 @@ import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Gravatar from 'react-gravatar';
 import { Person } from '@material-ui/icons/';
-import { Menu, MenuItem, Button } from '@material-ui/core';
+import { Menu, MenuItem, Button, Divider } from '@material-ui/core';
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
 
@@ -32,6 +32,7 @@ const Avatars = (props) => {
       return <Menu id="simple-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
         <MenuItem component={Link} to="/profile">Profile</MenuItem>
         <MenuItem component={Link} to="/account">Account</MenuItem>
+        <Divider />
         <MenuItem onClick={props.onSignOut} component={Link} to="/">Logout</MenuItem>
       </Menu>
     }
