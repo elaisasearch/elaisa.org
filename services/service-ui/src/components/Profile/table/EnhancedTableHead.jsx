@@ -9,11 +9,10 @@ import PropTypes from 'prop-types';
 
 const headRows = [
     { id: 'searchvalue', numeric: false, disablePadding: true, label: 'Search Term' },
-    { id: 'language', numeric: false, disablePadding: false, label: 'Language' },
-    { id: 'level', numeric: false, disablePadding: false, label: 'Level' },
+    { id: 'language', numeric: true, disablePadding: false, label: 'Language' },
+    { id: 'level', numeric: true, disablePadding: false, label: 'Level' },
     { id: 'date', numeric: true, disablePadding: false, label: 'Date' },
-    // { id: 'protein', numeric: true, disablePadding: false, label: 'Protein (g)' },
-  ];
+];
 
 function EnhancedTableHead(props) {
     const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props;
