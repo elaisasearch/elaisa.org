@@ -7,6 +7,7 @@ import { CircularProgress } from "@material-ui/core";
 import  "../assets/css/ResultsStyle.css";
 import MemeTeam from '../components/MemeTeam/MemeTeam';
 import NotFound from '../components/NotFound/NotFound';
+import { connect } from 'react-redux';
 
 class Results extends React.Component {
 
@@ -32,7 +33,7 @@ class Results extends React.Component {
     this.setState({
       waiting: true
     });
-
+    
     axios
     .get(`http://localhost:8080/find`, {
       headers: {
@@ -42,7 +43,9 @@ class Results extends React.Component {
       params: {
         query: searchValue,
         level: level,
-        language: language
+        language: language,
+        email: this.props.email,
+        loggedin: this.props.loggedIn
       }
     })
     .then(response => {
@@ -141,4 +144,11 @@ class Results extends React.Component {
   }
 }
 
-export default Results;
+const mapStateToProps = state => {
+  return {
+    email: state.email,
+    loggedIn: state.loggedIn
+  }
+}
+
+export default connect(mapStateToProps)(Results);
