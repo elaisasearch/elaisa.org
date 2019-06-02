@@ -47,7 +47,7 @@ const Avatars = (props) => {
         <ListItemIcon>
             <ExitToApp />
           </ListItemIcon>
-          <ListItemText primary="Sign our" />
+          <ListItemText primary="Sign out" />
         </MenuItem>
       </Menu>
     }
