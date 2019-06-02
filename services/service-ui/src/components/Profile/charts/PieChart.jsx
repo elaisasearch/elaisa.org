@@ -5,13 +5,10 @@ const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 const PieChart = (props) => {
 
-    const { dataPoints, title } = props;
+    const { dataPoints } = props;
 
     const options = {
         animationEnabled: true,
-        title:{
-            text: title
-        },
         data: [{
             type: "pie",
             showInLegend: false,

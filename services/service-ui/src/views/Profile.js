@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PieChart from '../components/Profile/charts/PieChart';
 import NavigationBar from '../components/NavigiationBar/NavigationBar';
 import { connect } from 'react-redux';
-import { Paper } from '@material-ui/core';
+import { Paper, Typography } from '@material-ui/core';
 import '../assets/css/ProfileStyle.css';
 import EnhancedTable from '../components/Profile/table/EnhancedTable';
 import axios from 'axios';
@@ -44,7 +44,7 @@ class Profile extends Component {
                 waiting: false,
                 statistics: response.data.statistics
             })
-        }catch(error) {
+        } catch (error) {
             this.setState({
                 waiting: false
             });
@@ -65,6 +65,9 @@ class Profile extends Component {
         return <div>
             <div className="content">
                 <Paper className="contentPaper1">
+                    <Typography variant="h5" color="inherit" component="h5">
+                        Level
+                    </Typography>
                     <PieChart dataPoints={
                         [
                             { y: a1, label: "A1" },
@@ -75,10 +78,12 @@ class Profile extends Component {
                             { y: c2, label: "C2" }
                         ]
                     }
-                        title="Level"
                     />
                 </Paper>
                 <Paper className="contentPaper2">
+                    <Typography variant="h5" color="inherit" component="h5">
+                        Language
+                    </Typography>
                     <PieChart dataPoints={
                         [
                             { y: en, label: "English" },
@@ -86,7 +91,6 @@ class Profile extends Component {
                             { y: es, label: "Spanish" }
                         ]
                     }
-                        title="Language"
                     />
                 </Paper>
             </div>
