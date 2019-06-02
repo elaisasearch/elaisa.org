@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PieChart from '../components/Profile/charts/PieChart';
 import NavigationBar from '../components/NavigiationBar/NavigationBar';
 import { connect } from 'react-redux';
-import { Paper, Typography } from '@material-ui/core';
+import { Paper, Typography, Button } from '@material-ui/core';
 import '../assets/css/ProfileStyle.css';
 import EnhancedTable from '../components/Profile/table/EnhancedTable';
 import axios from 'axios';
@@ -96,6 +96,9 @@ class Profile extends Component {
             </div>
             <div className="contentTable">
                 <EnhancedTable title="Search History" data={this.state.history} />
+            </div>
+            <div className="pdfButton">
+                <Button variant="contained">Generate PDF</Button>
             </div>
         </div>
     }

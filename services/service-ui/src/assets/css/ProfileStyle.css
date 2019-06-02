@@ -23,3 +23,10 @@
     justify-content: center;
     margin-bottom: 5%;
 }
+
+.pdfButton {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin-bottom: 5%;
+}
