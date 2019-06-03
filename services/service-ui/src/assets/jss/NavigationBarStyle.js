@@ -27,6 +27,11 @@ const styles = {
     },
     searchButton: {
       marginLeft: "1%"
+    },
+    elaisaText: {
+      width: "5%",
+      marginLeft: "4.5vh",
+      marginRight: "1%"
     }
   };
 
