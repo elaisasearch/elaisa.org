@@ -7,6 +7,10 @@ import numpy as np
 # Eventuell Firmennamen etc. abfangen? als Sonstige oder so?
 # Satzlänge einkalkulieren
 #
+# Example: 
+# text = "Dude. Amazon, Apple, Microsoft, Germany, Italy, Mafia, Pizza."
+# doc = textacy.Doc(text)
+# result = list(textacy.extract.named_entities(doc, exclude_types='numeric'))
 ###############################################################################
 # Eingabe: String
 # Ausgabe: Liste [MainLevel, Difficulty] (some sort of language level)
