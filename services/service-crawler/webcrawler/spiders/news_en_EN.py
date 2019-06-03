@@ -76,7 +76,7 @@ class NewsSpider(scrapy.Spider):
                             'B2' : levelMetaPackage[2]["B2"],
                             'C1' : levelMetaPackage[2]["C1"],
                             'C2' : levelMetaPackage[2]["C2"],
-                            'unknown%' : levelMetaPackage[2]["unknown"]
+                            'unknown' : levelMetaPackage[2]["unknown"]
                             }
                 }
             else:
