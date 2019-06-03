@@ -1,4 +1,4 @@
 scrapy
 pymongo
-textacy
+textacy=0.6.3
 pandas
