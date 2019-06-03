@@ -57,6 +57,8 @@ class Results extends React.Component {
         length++;
       }
 
+      console.log(JSON.parse(response.data.documents)[0].level_meta)
+
       this.setState({
         resultDocs: JSON.parse(response.data.documents),
         resultDocsLength: length,
