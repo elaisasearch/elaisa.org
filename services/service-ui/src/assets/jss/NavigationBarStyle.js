@@ -16,13 +16,17 @@ const styles = {
     },
     searchBar: {
       display: "flex", 
-      flexGrow: 1
+      flexGrow: 1,
+      alignItems: "center"
     },
     defaultContent: {
       display: "flex",
       flex: 1,
       justifyContent: "space-around",
       alignItems: "center"
+    },
+    searchButton: {
+      marginLeft: "1%"
     }
   };
 
