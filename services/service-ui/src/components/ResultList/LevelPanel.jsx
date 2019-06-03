@@ -39,6 +39,7 @@ const LevelPanel = (props) => {
 
     const { A1, A2, B1, B2, C1, C2, unknown, difficulty } = props.level_meta;
 
+    // show difficulty with first letter uppercase
     const firstUpperDifficulty = difficulty.charAt(0).toUpperCase() + difficulty.slice(1)
 
     const renderDifficulty = () => {
