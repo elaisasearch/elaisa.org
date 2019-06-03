@@ -9,7 +9,6 @@ import LevelPanel from './LevelPanel';
 const ResultItem = (props) => {
 
     const { website, title, desc, keywords, date, language, level, level_meta } = props;
-    const { difficulty } = level_meta;
 
     const Title = () => {
         return <a href={website} style={styles.title}>{title}</a>
