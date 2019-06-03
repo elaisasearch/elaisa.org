@@ -1,4 +1,5 @@
 import scrapy
+import thinc
 import textacy
 import re 
 from . import categorize
@@ -47,10 +48,11 @@ class NewsSpider(scrapy.Spider):
                     no_contractions=True
                 )
                 preprocessedText = textacy.preprocess.normalize_whitespace(preprocessedText)
-                # TODO: add lemmatizing for words
+                # TODO: add lemmatizing for words"""
 
                 # categorize documents
-                # categorize.categorizeText(text)
+                # [MainLevel, easy/hard]
+                levelMetaPackage = categorize.categorizeText(preprocessedText)
                 
                 yield {
                     'url': url,
@@ -65,7 +67,17 @@ class NewsSpider(scrapy.Spider):
                     'title': data.css('title::text').get(),
                     'abstract': data.css('strong::text').get(),
                     'text': preprocessedText,
-                    'level': categorize.categorizeText(text)
+                    'level': levelMetaPackage[0],
+                    'level_meta' : {
+                            'difficulty' : levelMetaPackage[1],
+                            'A1%' : levelMetaPackage[2]["A1"],
+                            'A2%' : levelMetaPackage[2]["A2"],
+                            'B1%' : levelMetaPackage[2]["B1"],
+                            'B2%' : levelMetaPackage[2]["B2"],
+                            'C1%' : levelMetaPackage[2]["C1"],
+                            'C2%' : levelMetaPackage[2]["C2"],
+                            'unknown%' : levelMetaPackage[2]["unknown"]
+                            }
                 }
             else:
                 continue
