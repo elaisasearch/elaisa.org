@@ -14,8 +14,6 @@ const ResultItem = (props) => {
         return <a href={website} style={styles.title}>{title}</a>
     }
 
-
-
     return (
         <ListItem style={styles}>
             <div style={styles.levelDiv}>{level}</div>
@@ -39,7 +37,7 @@ const ResultItem = (props) => {
                         </React.Fragment>
                     }
                 />
-                <div style={{marginTop: "1.5%"}}>
+                <div style={{ marginTop: "1.5%" }}>
                     <LevelPanel level_meta={level_meta} />
                 </div>
             </div>
