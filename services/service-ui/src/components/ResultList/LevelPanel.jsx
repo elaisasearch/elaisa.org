@@ -9,7 +9,7 @@ import {Divider} from '@material-ui/core';
 
 const ExpansionPanel = withStyles({
     root: {
-        border: '1px solid rgba(0, 0, 0, .125)',
+        // border: '1px solid rgba(0, 0, 0, .125)',
         boxShadow: 'none',
         '&:not(:last-child)': {
             borderBottom: 0,
@@ -20,12 +20,16 @@ const ExpansionPanel = withStyles({
         '&$expanded': {
             margin: 'auto',
         },
+        background: "transparent"
     },
     expanded: {},
 })(MuiExpansionPanel);
 
 const ExpansionPanelSummary = withStyles({
-    root: {},
+    root: {
+        padding: 0,
+        minHeight: 0
+    },
     content: {
         '&$expanded': {
             margin: '12px 0',
@@ -50,7 +54,7 @@ const LevelPanel = (props) => {
         }
     }
 
-    return <div style={{ maxWidth: "20vh" }}>
+    return <div style={{ maxWidth: "20vh", marginTop: "-10px" }}>
         <ExpansionPanel>
             <ExpansionPanelSummary
                 expandIcon={<ExpandMoreIcon />}

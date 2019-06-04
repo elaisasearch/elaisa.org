@@ -1,6 +1,6 @@
 const styles = {
     display: 'flex',
-    marginBottom: '2%',
+    marginBottom: '1%',
     subtitle: {
         color: 'green'
     },

@@ -37,7 +37,7 @@ const ResultItem = (props) => {
                         </React.Fragment>
                     }
                 />
-                <div style={{ marginTop: "1.5%" }}>
+                <div>
                     <LevelPanel level_meta={level_meta} />
                 </div>
             </div>
