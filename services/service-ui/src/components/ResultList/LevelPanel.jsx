@@ -1,11 +1,10 @@
 import React from 'react';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { withStyles } from '@material-ui/core/styles';
 import MuiExpansionPanel from '@material-ui/core/ExpansionPanel';
 import MuiExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import {Divider} from '@material-ui/core';
+import MuiExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 
 const ExpansionPanel = withStyles({
     root: {
@@ -38,6 +37,13 @@ const ExpansionPanelSummary = withStyles({
     expanded: {},
 })(MuiExpansionPanelSummary);
 
+const ExpansionPanelDetails = withStyles({
+    root: {
+      padding: 0,
+      marginTop: "-20px"
+    },
+  })(MuiExpansionPanelDetails);
+
 
 const LevelPanel = (props) => {
 
@@ -54,36 +60,38 @@ const LevelPanel = (props) => {
         }
     }
 
-    return <div style={{ maxWidth: "20vh", marginTop: "-10px" }}>
+    return <div style={{ maxWidth: "50vh", marginTop: "-10px" }}>
         <ExpansionPanel>
             <ExpansionPanelSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1a-content"
                 id="panel1a-header"
             >
-                <Typography component="span" style={{color: renderDifficulty()}}>
-                    {firstUpperDifficulty}
+                <Typography component="span">
+                    Difficulty
                 </Typography>
             </ExpansionPanelSummary>
-            <ExpansionPanelDetails>
-                <Typography>
-                    <p>A1: <b style={{marginLeft: "4em"}}>{A1}%</b></p>
-                    <Divider />
-                    <p>A2: <b style={{marginLeft: "4em"}}>{A2}%</b></p>
-                    <Divider />
-                    <p>B1: <b style={{marginLeft: "4em"}}>{B1}%</b></p>
-                    <Divider />
-                    <p>B2: <b style={{marginLeft: "4em"}}>{B2}%</b></p>
-                    <Divider />
-                    <p>C1: <b style={{marginLeft: "4em"}}>{C1}%</b></p>
-                    <Divider />
-                    <p>C2: <b style={{marginLeft: "4em"}}>{C2}%</b></p>
-                    <Divider />
-                    <p>Unknown: <b style={{marginLeft: "1em"}}>{unknown}%</b></p>
-                </Typography>
+            <ExpansionPanelDetails style={{display: "flex", flexDirection: "column"}}>
+                <div>
+                    <Typography>
+                        <p><b>Language Level distribution:</b></p>
+                        <p>A1: <b>{A1}%</b> | A2: <b>{A2}%</b> | B1: <b>{B1}%</b> | B2: <b>{B2}%</b> | C1: <b>{C1}%</b> | C2: <b>{C2}%</b> | Unknown: <b>{unknown}%</b></p>
+                    </Typography>
+                </div>
+                <div style={{marginTop: "-15px"}}>
+                    <Typography component="span">
+                        <p style={{ color: "black" }}><b>Word length: </b><b style={{color: renderDifficulty()}}>{firstUpperDifficulty}</b></p>
+                    </Typography>
+                </div>
             </ExpansionPanelDetails>
         </ExpansionPanel>
     </div>
 };
 
 export default LevelPanel;
+
+/*
+                <Typography component="span" style={{ color: renderDifficulty() }}>
+                    <p style={{color: "black"}}>Word length: </p>{firstUpperDifficulty}
+                </Typography>
+*/
