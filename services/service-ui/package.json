@@ -8,6 +8,7 @@
     "@react-pdf/renderer": "^1.6.2",
     "axios": "^0.18.0",
     "clsx": "^1.0.4",
+    "documentation": "^11.0.0",
     "history": "^4.9.0",
     "moment": "^2.24.0",
     "notistack": "^0.8.5",
