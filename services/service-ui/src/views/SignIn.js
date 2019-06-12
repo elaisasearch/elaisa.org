@@ -18,6 +18,11 @@ import axios from 'axios';
 import '../assets/css/SignInStyle.css'
 import logo from '../assets/img/logo.png';
 
+/**
+ * SignIn view class.
+ * @param {object} props the given properties.
+ * @returns {JSX} signIn view jsx components.
+*/
 class SignIn extends Component {
 
     state = {
@@ -25,6 +30,10 @@ class SignIn extends Component {
         password: "",
     }
 
+    /**
+     * Checks the user's login data with API post request and stores to redux.
+     * @param {event} event the clicked key event
+    */
     keyPress = (e) => {
         // get the input when user cliks enter (13)
         if (e.keyCode === 13) {
@@ -32,6 +41,9 @@ class SignIn extends Component {
         }
     }
 
+    /**
+     * Checks the user's login data with API post request and stores to redux.
+    */
     handleSignIn = () => {
         let variant = "";
 
@@ -139,7 +151,11 @@ class SignIn extends Component {
     }
 };
 
-// redux action
+/**
+ * Maps redux signIn action to props.
+ * @param {object} dispatch the current redux store.
+ * @returns {any} redux action to props mapping.
+*/
 const mapDispatchToProps = dispatch => {
     return {
         onSignIn: (email, firstname, lastname) => dispatch({ type: 'SIGN_IN', email: email, firstname: firstname, lastname: lastname })
@@ -148,6 +164,10 @@ const mapDispatchToProps = dispatch => {
 
 const SignInSnackBar = withSnackbar(withRouter(connect(null, mapDispatchToProps)(SignIn)));
 
+/**
+ * Adds Notification Snack Bar.
+ * @returns {JSX} the SignIn View Snack Bar Integration.
+*/
 const IntegrationNotistack = () => {
     return (
         <SnackbarProvider maxSnack={3}>
