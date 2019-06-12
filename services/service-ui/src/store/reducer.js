@@ -5,6 +5,12 @@ const initialState = {
     lastname: "Beutlin"
 }
 
+/**
+ * Redux store actions.
+ * @param {object} state current redux state (initialState).
+ * @param {object} action the action state for use
+ * @returns {object} redux state changes.
+*/
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case 'SIGN_IN':
