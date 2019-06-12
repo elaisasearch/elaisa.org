@@ -16,7 +16,11 @@ import logo from '../assets/img/logo.png';
 
 import axios from 'axios';
 
-
+/**
+ * SignUp view class.
+ * @param {object} props the given properties.
+ * @returns {JSX} signUp view jsx components.
+*/
 class SignUp extends Component {
 
     state = {
@@ -26,6 +30,9 @@ class SignUp extends Component {
         password: ""
     }
 
+    /**
+     * checks user's sign up data with API request and changes url path.
+    */
     handleSubmit() {
         let variant = "";
 
@@ -48,6 +55,10 @@ class SignUp extends Component {
 
     }
 
+    /**
+     * Renders JSX content.
+     * @returns {JSX} SignUp.js.
+    */
     render() {
         return (
             <div className="signIn">
@@ -148,6 +159,10 @@ class SignUp extends Component {
 
 const SignUpSnackBar = withSnackbar(withRouter(SignUp));
 
+/**
+ * Adds Notification Snack Bar.
+ * @returns {JSX} the SignUp View Snack Bar Integration.
+*/
 const SignUpIntegrationNotistack = () => {
   return (
     <SnackbarProvider maxSnack={3}>
