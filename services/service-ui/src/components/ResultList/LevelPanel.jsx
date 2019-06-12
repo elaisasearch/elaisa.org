@@ -107,9 +107,3 @@ const LevelPanel = (props) => {
 };
 
 export default LevelPanel;
-
-/*
-                <Typography component="span" style={{ color: renderDifficulty() }}>
-                    <p style={{color: "black"}}>Word length: </p>{firstUpperDifficulty}
-                </Typography>
-*/
