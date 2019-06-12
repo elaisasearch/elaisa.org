@@ -30,6 +30,11 @@ const styles = StyleSheet.create({
     }
 });
 
+/**
+ * The PDF Document for export.
+ * @param {object} props the given properties
+ * @returns {JSX} PDF document
+*/
 const MyDocument = (props) => (
     <Document>
         <Page size="A4" style={styles.page}>
@@ -51,6 +56,11 @@ const MyDocument = (props) => (
     </Document>
 );
 
+/**
+ * The PDF Generator link to download file.
+ * @param {object} props the given properties
+ * @returns {JSX} PDF Download Link
+*/
 const PDFGenerator = (props) => {
 
     console.log(new Date().toLocaleDateString)
