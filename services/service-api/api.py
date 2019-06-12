@@ -1,3 +1,7 @@
+"""
+The Application Programming Interface (API) for the entire Search Engine.
+"""
+
 from bottle import Bottle, request, response, run
 # import lib files
 from lib import search, wikipedia, user
@@ -18,11 +22,24 @@ def enable_cors():
 
 @app.route('/')
 def index():
+    """
+    Root api requst url.
+    :return: String
+    """
     return "API - Language Level Search Engine"
 
 
 @app.route('/find', method=["OPTIONS", "GET"])
 def find():
+    """
+    Takes the user input and returns the found documents as dictionary.
+    :query: String
+    :level: String
+    :language: String
+    :loggedIn: Boolean
+    :email: String
+    :return: Dictionary
+    """
     query = request.params.get('query')
     level = request.params.get('level')
     language = request.params.get('language')
@@ -40,6 +57,14 @@ def find():
 
 @app.route('/signup', method="POST")
 def signUp():
+    """
+    Takes the user information and signs up the new user in the database by calling the createUser() function.
+    :firtname: String
+    :lastname: String
+    :email: String
+    :password: String
+    :return: String
+    """
     firstname = request.params.get('firstname')
     lastname = request.params.get('lastname')
     email = request.params.get('email')
@@ -55,6 +80,12 @@ def signUp():
 
 @app.route('/signin', method=["OPTIONS", "POST"])
 def signIn():
+    """
+    Takes the user input and checks if the credentials are right by calling loginUser() from user.py.
+    :email: String
+    :password: String
+    :return: Dictionary
+    """
     email = request.params.get('email')
     password = request.params.get('password')
 
@@ -65,6 +96,13 @@ def signIn():
 
 @app.route('/changepassword', method=["OPTIONS", "POST"])
 def changePassword():
+    """
+    Changes the user's password with the new user's input. First, the method checks the old password (coming soon).
+    :email: String
+    :oldPass: String
+    :newPass: String
+    :return: String
+    """
     email = request.params.get('email')
     oldPass = request.params.get('oldpassword')
     newPass = request.params.get('newpassword')
@@ -79,6 +117,11 @@ def changePassword():
 
 @app.route('/searchhistory', method=["OPTIONS", "GET"])
 def getSearchHistory():
+    """
+    Takes the user email and returns the user's search history.
+    :email: String
+    :return: Dictionary
+    """
     email = request.params.get('email')
 
     results = user.getSearchHistoryForUser(email)
