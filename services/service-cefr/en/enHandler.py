@@ -1,19 +1,26 @@
 ﻿# -*- coding: utf-8 -*-
 """
-Created on Mon Apr 15 18:39:16 2019
-Skript, zur Extraktion der Begriffe für die englische Sprache
-@author: Jenny
+Script to extract the terms for the english language
 """
+
 import re
 from pymongo import MongoClient
 
 language_level = ["A1", "A2", "B1", "B2", "C1", "C2"]
 #language_level = ["B2"]
 # OLD :A1 = []A2 = []B1 = []B2 = []C1 = []C2 = []
+"""
+In the end, it will contain the entire cefr words data.
+"""
 complete_list = []
 
 
 def extraction_from_pdf(level):
+    """
+    Takes the level from the language_level list and extracts all vocabularies from the cefr files. Then it stores the results in new text files.
+    :level: String
+    :return: List
+    """
     dateiname = "files/Level " + level + " Word List.txt"
     input_text = open(dateiname, "rb")
 
@@ -36,6 +43,11 @@ def extraction_from_pdf(level):
 
 
 def listen_verarbeitung(complete_list):
+    """
+    takes the complete_list and overwrites it with the sorted cefr word data.
+    :complete_list: List
+    :return: List
+    """
     A1_set = set(complete_list[0])
     A2_set = set(complete_list[1])
     B1_set = set(complete_list[2])
@@ -59,10 +71,16 @@ def listen_verarbeitung(complete_list):
     
     complete_list = (A1, A2, B1, B2, C1, C2)
     return complete_list
-    
+
+"""
+Add the extracted cefr words to the complete_list, for every language level in the language_level list.
+"""    
 for level in language_level:
     complete_list.append(extraction_from_pdf(level))
 
+"""
+Overwrite the current complete list with the processed list data.
+"""
 complete_list = listen_verarbeitung(complete_list)
 
 
