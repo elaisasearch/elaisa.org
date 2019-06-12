@@ -9,6 +9,11 @@ import axios from 'axios';
 import { CircularProgress } from "@material-ui/core";
 import PDFGenerator from '../components/Profile/PDFGenerator';
 
+/**
+ * Profile view for statistics.
+ * @param {object} props the given properties.
+ * @returns {JSX} profile view components.
+*/
 class Profile extends Component {
 
     state = {
@@ -31,6 +36,9 @@ class Profile extends Component {
         waiting: true
     }
 
+    /**
+     * Loads the users search history from API and stores to state.
+    */
     async componentDidMount() {
         try {
             const response = await axios.get('http://localhost:8080/searchhistory', {
@@ -51,7 +59,10 @@ class Profile extends Component {
         }
     }
 
-
+    /**
+     * Returns Profile view if API request is finished.
+     * @returns {JSX} Progress bar or statistics components.
+    */
     renderContent() {
 
         const { language, level } = this.state.statistics;
@@ -98,11 +109,15 @@ class Profile extends Component {
                 <EnhancedTable title="Search History" data={this.state.history} />
             </div>
             <div className="pdfButton">
-                <PDFGenerator language={language} level={level} firstname={this.props.firstname} lastname={this.props.lastname}/>
+                <PDFGenerator language={language} level={level} firstname={this.props.firstname} lastname={this.props.lastname} />
             </div>
         </div>
     }
 
+    /**
+     * Renders JSX content.
+     * @returns {JSX} Profile.js.
+    */
     render() {
 
         console.log(this.state)
@@ -119,6 +134,11 @@ class Profile extends Component {
     }
 }
 
+/**
+ * Redux store to props mapping.
+ * @param {object} state the current redux store.
+ * @returns {object} the props containing the redux state.
+*/
 const mapStateToProps = state => {
     return {
         loggedIn: state.loggedIn,
