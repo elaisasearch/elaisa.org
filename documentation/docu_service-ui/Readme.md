@@ -2,86 +2,374 @@
 
 ### Table of Contents
 
--   [ExpansionPanel][1]
--   [ExpansionPanelSummary][2]
--   [ExpansionPanelDetails][3]
--   [LevelPanel][4]
-    -   [Parameters][5]
--   [renderDifficulty][6]
--   [ResultItem][7]
-    -   [Parameters][8]
--   [Title][9]
--   [ResultList][10]
-    -   [Parameters][11]
--   [renderList][12]
-    -   [Parameters][13]
--   [SearchBar][14]
-    -   [Parameters][15]
-    -   [keyPress][16]
-        -   [Parameters][17]
-    -   [searchButtonPressed][18]
-    -   [handleChangeLevel][19]
-        -   [Parameters][20]
-    -   [handleChangeLanguage][21]
-        -   [Parameters][22]
-    -   [render][23]
--   [SearchBar][24]
-    -   [Parameters][25]
-    -   [keyPress][26]
-        -   [Parameters][27]
-    -   [searchButtonPressed][28]
-    -   [handleChangeLevel][29]
-        -   [Parameters][30]
-    -   [handleChangeLanguage][31]
-        -   [Parameters][32]
-    -   [render][33]
--   [handleChange][34]
-    -   [Parameters][35]
--   [handleKeyDown][36]
+-   [DropDownMenu][1]
+    -   [Parameters][2]
+    -   [componentDidMount][3]
+    -   [handleChange][4]
+        -   [Parameters][5]
+    -   [render][6]
+-   [Footer][7]
+-   [FooterPerson][8]
+    -   [Parameters][9]
+-   [MemeTeam][10]
+-   [LeftMenu][11]
+    -   [handleClick][12]
+    -   [toggleDrawer][13]
+        -   [Parameters][14]
+    -   [render][15]
+-   [ListItemLink][16]
+    -   [Parameters][17]
+-   [ListItemLink][18]
+    -   [Parameters][19]
+-   [MenuHelper][20]
+    -   [Parameters][21]
+-   [render][22]
+-   [Clock][23]
+    -   [Parameters][24]
+    -   [componentDidMount][25]
+    -   [componentWillUnmount][26]
+    -   [tick][27]
+    -   [render][28]
+-   [NotFound][29]
+    -   [Parameters][30]
+-   [Avatars][31]
+    -   [Parameters][32]
+-   [handleClick][33]
+    -   [Parameters][34]
+-   [handleClose][35]
+-   [renderAvatar][36]
     -   [Parameters][37]
--   [WikiCard][38]
+-   [renderMenu][38]
     -   [Parameters][39]
--   [WikiCardTemplate][40]
+-   [mapDispatchToProps][40]
     -   [Parameters][41]
-    -   [Parameters][42]
--   [Account][43]
-    -   [Parameters][44]
--   [mapStateToProps][45]
-    -   [Parameters][46]
--   [mapStateToProps][47]
-    -   [Parameters][48]
--   [mapStateToProps][49]
-    -   [Parameters][50]
--   [mapStateToProps][51]
-    -   [Parameters][52]
--   [AccountIntegrationNotistack][53]
--   [App][54]
-    -   [Parameters][55]
--   [Page404][56]
--   [Profile][57]
-    -   [Parameters][58]
-    -   [renderContent][59]
-    -   [render][60]
--   [Results][61]
+-   [mapDispatchToProps][42]
+    -   [Parameters][43]
+-   [PieChart][44]
+    -   [Parameters][45]
+-   [MyDocument][46]
+    -   [Parameters][47]
+-   [PDFGenerator][48]
+    -   [Parameters][49]
+-   [ExpansionPanel][50]
+-   [ExpansionPanelSummary][51]
+-   [ExpansionPanelDetails][52]
+-   [LevelPanel][53]
+    -   [Parameters][54]
+-   [renderDifficulty][55]
+-   [ResultItem][56]
+    -   [Parameters][57]
+-   [Title][58]
+-   [ResultList][59]
+    -   [Parameters][60]
+-   [renderList][61]
     -   [Parameters][62]
-    -   [componentDidMount][63]
-    -   [searchResults][64]
-        -   [Parameters][65]
-    -   [renderWiki][66]
-        -   [Parameters][67]
-    -   [renderResults][68]
-    -   [render][69]
--   [SignIn][70]
-    -   [Parameters][71]
-    -   [handleSignIn][72]
-    -   [Parameters][73]
--   [mapDispatchToProps][74]
-    -   [Parameters][75]
--   [IntegrationNotistack][76]
--   [SignUp][77]
-    -   [Parameters][78]
-    -   [render][79]
--   [SignUpIntegrationNotistack][80]
+-   [SearchBar][63]
+    -   [Parameters][64]
+    -   [keyPress][65]
+        -   [Parameters][66]
+    -   [searchButtonPressed][67]
+    -   [handleChangeLevel][68]
+        -   [Parameters][69]
+    -   [handleChangeLanguage][70]
+        -   [Parameters][71]
+    -   [render][72]
+-   [SearchBar][73]
+    -   [Parameters][74]
+    -   [keyPress][75]
+        -   [Parameters][76]
+    -   [searchButtonPressed][77]
+    -   [handleChangeLevel][78]
+        -   [Parameters][79]
+    -   [handleChangeLanguage][80]
+        -   [Parameters][81]
+    -   [render][82]
+-   [handleChange][83]
+    -   [Parameters][84]
+-   [handleKeyDown][85]
+    -   [Parameters][86]
+-   [WikiCard][87]
+    -   [Parameters][88]
+-   [WikiCardTemplate][89]
+    -   [Parameters][90]
+    -   [Parameters][91]
+-   [Account][92]
+    -   [Parameters][93]
+-   [mapStateToProps][94]
+    -   [Parameters][95]
+-   [mapStateToProps][96]
+    -   [Parameters][97]
+-   [mapStateToProps][98]
+    -   [Parameters][99]
+-   [mapStateToProps][100]
+    -   [Parameters][101]
+-   [AccountIntegrationNotistack][102]
+-   [App][103]
+    -   [Parameters][104]
+-   [Page404][105]
+-   [Profile][106]
+    -   [Parameters][107]
+    -   [renderContent][108]
+    -   [render][109]
+-   [Results][110]
+    -   [Parameters][111]
+    -   [componentDidMount][112]
+    -   [searchResults][113]
+        -   [Parameters][114]
+    -   [renderWiki][115]
+        -   [Parameters][116]
+    -   [renderResults][117]
+    -   [render][118]
+-   [SignIn][119]
+    -   [Parameters][120]
+    -   [handleSignIn][121]
+    -   [Parameters][122]
+-   [IntegrationNotistack][123]
+-   [SignUp][124]
+    -   [Parameters][125]
+    -   [render][126]
+-   [SignUpIntegrationNotistack][127]
+
+## DropDownMenu
+
+**Extends React.Component**
+
+The Dropdown component for choosing language and level in search bar and navigation bar.
+
+### Parameters
+
+-   `props` **[object][128]** the given properties.
+
+### componentDidMount
+
+Set the label with if the component is loaded.
+
+### handleChange
+
+Change the chosen dropdown value in state.
+
+#### Parameters
+
+-   `event` **[object][128]** the click event in the dropdown menu.
+
+### render
+
+Render the dropdown menu as form.
+
+## Footer
+
+The Footer component with legal infos.
+
+## FooterPerson
+
+Person information component for footer.
+
+### Parameters
+
+-   `props` **[object][128]** the given properties.
+
+Returns **JSX** the typography styled for person.
+
+## MemeTeam
+
+A Fun picture component if the user searches for 'memeteam'.
+
+Returns **JSX** the memeteam group picture as polaroid.
+
+## LeftMenu
+
+**Extends React.Component**
+
+The Menu button.
+
+### handleClick
+
+Set the state for open or close menu.
+
+### toggleDrawer
+
+Open the drawer.
+
+#### Parameters
+
+-   `side`  
+-   `open`  
+
+### render
+
+Render the Menu button with IconButton.
+
+## ListItemLink
+
+Link Item for Menu to change view.
+
+### Parameters
+
+-   `props` **[object][128]** the given properties.
+
+Returns **JSX** the button with 'a' href component.
+
+## ListItemLink
+
+Link Item for Menu to change view.
+
+### Parameters
+
+-   `props` **[object][128]** the given properties.
+
+Returns **JSX** the button with 'a' href component.
+
+## MenuHelper
+
+The langauge flag menu item.
+
+### Parameters
+
+-   `props` **[object][128]** the given properties.
+
+Returns **JSX** ListItemLink for language level test websites.
+
+## 
+
+Set the state for open or close the list in the menu drawer.
+
+## render
+
+Renders the menu list with all items.
+
+Returns **JSX** the entire menu list with all items.
+
+## Clock
+
+**Extends React.Component**
+
+The clock ticking in the Navigation Bar.
+
+### Parameters
+
+-   `props` **[object][128]** the given properties.
+
+Returns **JSX** locale string date.
+
+### componentDidMount
+
+Set intervall to 1 second after component did mount.
+
+### componentWillUnmount
+
+Clear the intervall if the user changes the view.
+
+### tick
+
+Change the time every second.
+
+### render
+
+Render the date time.
+
+Returns **JSX** the locale date time string.
+
+## NotFound
+
+The not found component for the Results view.
+
+### Parameters
+
+-   `props` **[object][128]** the given properties
+
+Returns **JSX** Error text and image.
+
+## Avatars
+
+The Avatar component for Navigation bar.
+
+### Parameters
+
+-   `props` **[object][128]** the given properties.
+
+Returns **JSX** the button avatar for profile picture.
+
+## handleClick
+
+Change anchor and open menu.
+
+### Parameters
+
+-   `event` **[object][128]** the click event.
+
+## handleClose
+
+Change anchor and close menu.
+
+## renderAvatar
+
+Get avatar from Gravatar.com.
+
+### Parameters
+
+-   `props` **[object][128]** the given properties.
+
+Returns **JSX** render avatar icon given if the user is logged in or not.
+
+## renderMenu
+
+Avatar menu with profile options.
+
+### Parameters
+
+-   `props` **[object][128]** the given properties.
+
+Returns **JSX** render profile menu given if the user is logged in or not. Wether signIn or view profile stats and options.
+
+## mapDispatchToProps
+
+Maps redux signOut action to props.
+
+### Parameters
+
+-   `dispatch` **[object][128]** the current redux store.
+
+Returns **any** redux action to props mapping.
+
+## mapDispatchToProps
+
+Maps redux signIn action to props.
+
+### Parameters
+
+-   `dispatch` **[object][128]** the current redux store.
+
+Returns **any** redux action to props mapping.
+
+## PieChart
+
+The pie chart component for user statistics.
+
+### Parameters
+
+-   `props` **[object][128]** the given properties.
+
+Returns **JSX** pie chart.
+
+## MyDocument
+
+The PDF Document for export.
+
+### Parameters
+
+-   `props` **[object][128]** the given properties
+
+Returns **JSX** PDF document
+
+## PDFGenerator
+
+The PDF Generator link to download file.
+
+### Parameters
+
+-   `props` **[object][128]** the given properties
+
+Returns **JSX** PDF Download Link
 
 ## ExpansionPanel
 
@@ -101,7 +389,7 @@ The Level Panel component for difficulty infos.
 
 ### Parameters
 
--   `props` **[object][81]** the given properties.
+-   `props` **[object][128]** the given properties.
 
 Returns **JSX** Expansion Panel component.
 
@@ -109,7 +397,7 @@ Returns **JSX** Expansion Panel component.
 
 Return color for difficulty given the difficulty value.
 
-Returns **[string][82]** color.
+Returns **[string][129]** color.
 
 ## ResultItem
 
@@ -117,7 +405,7 @@ The Result Item component to show each result.
 
 ### Parameters
 
--   `props` **[object][81]** the given properties.
+-   `props` **[object][128]** the given properties.
 
 Returns **JSX** Result item component.
 
@@ -133,7 +421,7 @@ The Result list to show all result items.
 
 ### Parameters
 
--   `props` **[object][81]** the given properties.
+-   `props` **[object][128]** the given properties.
 
 Returns **JSX** Result list component.
 
@@ -143,7 +431,7 @@ Render the list given the result docs.
 
 ### Parameters
 
--   `resultDocs` **[object][81]** the found result documents.
+-   `resultDocs` **[object][128]** the found result documents.
 
 Returns **JSX** result list.
 
@@ -155,7 +443,7 @@ The Search Bar component.
 
 ### Parameters
 
--   `props` **[object][81]** the given properties.
+-   `props` **[object][128]** the given properties.
 
 Returns **JSX** Search Bar component.
 
@@ -166,7 +454,7 @@ Checks the user's login data with API post request and stores to redux.
 #### Parameters
 
 -   `e`  
--   `event` **[event][83]** the clicked key event
+-   `event` **[event][130]** the clicked key event
 
 ### searchButtonPressed
 
@@ -178,7 +466,7 @@ Updates state when user changes level dropdown menu.
 
 #### Parameters
 
--   `value` **[string][82]** the dropdown level value.
+-   `value` **[string][129]** the dropdown level value.
 
 ### handleChangeLanguage
 
@@ -186,7 +474,7 @@ Updates state when user changes language dropdown menu.
 
 #### Parameters
 
--   `value` **[string][82]** the dropdown language value.
+-   `value` **[string][129]** the dropdown language value.
 
 ### render
 
@@ -200,7 +488,7 @@ The Search Bar for Navigation Bar component.
 
 ### Parameters
 
--   `props` **[object][81]** the given properties.
+-   `props` **[object][128]** the given properties.
 
 Returns **JSX** Search Bar  Navigation Bar component.
 
@@ -211,7 +499,7 @@ Checks the user's login data with API post request and stores to redux.
 #### Parameters
 
 -   `e`  
--   `event` **[event][83]** the clicked key event
+-   `event` **[event][130]** the clicked key event
 
 ### searchButtonPressed
 
@@ -223,7 +511,7 @@ Updates state when user changes level dropdown menu.
 
 #### Parameters
 
--   `value` **[string][82]** the dropdown level value.
+-   `value` **[string][129]** the dropdown level value.
 
 ### handleChangeLanguage
 
@@ -231,7 +519,7 @@ Updates state when user changes language dropdown menu.
 
 #### Parameters
 
--   `value` **[string][82]** the dropdown language value.
+-   `value` **[string][129]** the dropdown language value.
 
 ### render
 
@@ -246,7 +534,7 @@ Calls the parent component's function onChange() with new search value.
 ### Parameters
 
 -   `e`  
--   `event` **[object][81]** the written search value.
+-   `event` **[object][128]** the written search value.
 
 ## handleKeyDown
 
@@ -255,7 +543,7 @@ Calls the parent component's function onKeyDown() to search new results
 ### Parameters
 
 -   `e`  
--   `event` **[object][81]** the written search value.
+-   `event` **[object][128]** the written search value.
 
 ## WikiCard
 
@@ -263,7 +551,7 @@ The Wikipedia Card component.
 
 ### Parameters
 
--   `props` **[object][81]** the given properties.
+-   `props` **[object][128]** the given properties.
 
 Returns **JSX** Wikipedia Card Template component.
 
@@ -273,7 +561,7 @@ The Wikipedia Card Template component.
 
 ### Parameters
 
--   `props` **[object][81]** the given properties.
+-   `props` **[object][128]** the given properties.
 
 Returns **JSX** Wikipedia Card Template component with design.
 
@@ -283,10 +571,10 @@ Redux store actions.
 
 ### Parameters
 
--   `state` **[object][81]** current redux state (initialState).
--   `action` **[object][81]** the action state for use
+-   `state` **[object][128]** current redux state (initialState).
+-   `action` **[object][128]** the action state for use
 
-Returns **[object][81]** redux state changes.
+Returns **[object][128]** redux state changes.
 
 ## Account
 
@@ -296,7 +584,7 @@ Account view class.
 
 ### Parameters
 
--   `props` **[object][81]** the given properties.
+-   `props` **[object][128]** the given properties.
 
 Returns **JSX** account view jsx components.
 
@@ -306,19 +594,9 @@ Redux store to props mapping.
 
 ### Parameters
 
--   `state` **[object][81]** the current redux store.
+-   `state` **[object][128]** the current redux store.
 
-Returns **[object][81]** the props containing the redux state.
-
-## mapStateToProps
-
-Redux store to props mapping.
-
-### Parameters
-
--   `state` **[object][81]** the current redux store.
-
-Returns **[object][81]** returns the props containing the redux state.
+Returns **[object][128]** the props containing the redux state.
 
 ## mapStateToProps
 
@@ -326,9 +604,9 @@ Redux store to props mapping.
 
 ### Parameters
 
--   `state` **[object][81]** the current redux store.
+-   `state` **[object][128]** the current redux store.
 
-Returns **[object][81]** the props containing the redux state.
+Returns **[object][128]** returns the props containing the redux state.
 
 ## mapStateToProps
 
@@ -336,9 +614,19 @@ Redux store to props mapping.
 
 ### Parameters
 
--   `state` **[object][81]** the current redux store.
+-   `state` **[object][128]** the current redux store.
 
-Returns **[object][81]** the props containing the redux state.
+Returns **[object][128]** the props containing the redux state.
+
+## mapStateToProps
+
+Redux store to props mapping.
+
+### Parameters
+
+-   `state` **[object][128]** the current redux store.
+
+Returns **[object][128]** the props containing the redux state.
 
 ## AccountIntegrationNotistack
 
@@ -352,7 +640,7 @@ This is the search engines main function.
 
 ### Parameters
 
--   `props` **[object][81]** the given properties.
+-   `props` **[object][128]** the given properties.
 
 Returns **JSX** returns the search engine's home view components.
 
@@ -370,7 +658,7 @@ Profile view for statistics.
 
 ### Parameters
 
--   `props` **[object][81]** the given properties.
+-   `props` **[object][128]** the given properties.
 
 Returns **JSX** profile view components.
 
@@ -398,7 +686,7 @@ Results view class.
 
 ### Parameters
 
--   `props` **[object][81]** the given properties.
+-   `props` **[object][128]** the given properties.
 
 Returns **JSX** results view jsx components.
 
@@ -412,9 +700,9 @@ Loads the search results from API and stores to state.
 
 #### Parameters
 
--   `searchValue` **[string][82]** the user's search term.
--   `level` **[string][82]** the user's chosen language level.
--   `language` **[string][82]** the user's chosen language.
+-   `searchValue` **[string][129]** the user's search term.
+-   `level` **[string][129]** the user's chosen language level.
+-   `language` **[string][129]** the user's chosen language.
 
 ### renderWiki
 
@@ -422,7 +710,7 @@ Only render wiki card if there is a result.
 
 #### Parameters
 
--   `error` **[object][81]** if error is true, the wiki won't show up.
+-   `error` **[object][128]** if error is true, the wiki won't show up.
 
 Returns **JSX** Progress bar or statistics components.
 
@@ -446,7 +734,7 @@ SignIn view class.
 
 ### Parameters
 
--   `props` **[object][81]** the given properties.
+-   `props` **[object][128]** the given properties.
 
 Returns **JSX** signIn view jsx components.
 
@@ -460,17 +748,7 @@ Checks the user's login data with API post request and stores to redux.
 
 ### Parameters
 
--   `event` **[event][83]** the clicked key event
-
-## mapDispatchToProps
-
-Maps redux signIn action to props.
-
-### Parameters
-
--   `dispatch` **[object][81]** the current redux store.
-
-Returns **any** redux action to props mapping.
+-   `event` **[event][130]** the clicked key event
 
 ## IntegrationNotistack
 
@@ -486,7 +764,7 @@ SignUp view class.
 
 ### Parameters
 
--   `props` **[object][81]** the given properties.
+-   `props` **[object][128]** the given properties.
 
 Returns **JSX** signUp view jsx components.
 
@@ -506,168 +784,262 @@ Adds Notification Snack Bar.
 
 Returns **JSX** the SignUp View Snack Bar Integration.
 
-[1]: #expansionpanel
+[1]: #dropdownmenu
 
-[2]: #expansionpanelsummary
+[2]: #parameters
 
-[3]: #expansionpaneldetails
+[3]: #componentdidmount
 
-[4]: #levelpanel
+[4]: #handlechange
 
-[5]: #parameters
+[5]: #parameters-1
 
-[6]: #renderdifficulty
+[6]: #render
 
-[7]: #resultitem
+[7]: #footer
 
-[8]: #parameters-1
+[8]: #footerperson
 
-[9]: #title
+[9]: #parameters-2
 
-[10]: #resultlist
+[10]: #memeteam
 
-[11]: #parameters-2
+[11]: #leftmenu
 
-[12]: #renderlist
+[12]: #handleclick
 
-[13]: #parameters-3
+[13]: #toggledrawer
 
-[14]: #searchbar
+[14]: #parameters-3
 
-[15]: #parameters-4
+[15]: #render-1
 
-[16]: #keypress
+[16]: #listitemlink
 
-[17]: #parameters-5
+[17]: #parameters-4
 
-[18]: #searchbuttonpressed
+[18]: #listitemlink-1
 
-[19]: #handlechangelevel
+[19]: #parameters-5
 
-[20]: #parameters-6
+[20]: #menuhelper
 
-[21]: #handlechangelanguage
+[21]: #parameters-6
 
-[22]: #parameters-7
+[22]: #render-2
 
-[23]: #render
+[23]: #clock
 
-[24]: #searchbar-1
+[24]: #parameters-7
 
-[25]: #parameters-8
+[25]: #componentdidmount-1
 
-[26]: #keypress-1
+[26]: #componentwillunmount
 
-[27]: #parameters-9
+[27]: #tick
 
-[28]: #searchbuttonpressed-1
+[28]: #render-3
 
-[29]: #handlechangelevel-1
+[29]: #notfound
 
-[30]: #parameters-10
+[30]: #parameters-8
 
-[31]: #handlechangelanguage-1
+[31]: #avatars
 
-[32]: #parameters-11
+[32]: #parameters-9
 
-[33]: #render-1
+[33]: #handleclick-1
 
-[34]: #handlechange
+[34]: #parameters-10
 
-[35]: #parameters-12
+[35]: #handleclose
 
-[36]: #handlekeydown
+[36]: #renderavatar
 
-[37]: #parameters-13
+[37]: #parameters-11
 
-[38]: #wikicard
+[38]: #rendermenu
 
-[39]: #parameters-14
+[39]: #parameters-12
 
-[40]: #wikicardtemplate
+[40]: #mapdispatchtoprops
 
-[41]: #parameters-15
+[41]: #parameters-13
 
-[42]: #parameters-16
+[42]: #mapdispatchtoprops-1
 
-[43]: #account
+[43]: #parameters-14
 
-[44]: #parameters-17
+[44]: #piechart
 
-[45]: #mapstatetoprops
+[45]: #parameters-15
 
-[46]: #parameters-18
+[46]: #mydocument
 
-[47]: #mapstatetoprops-1
+[47]: #parameters-16
 
-[48]: #parameters-19
+[48]: #pdfgenerator
 
-[49]: #mapstatetoprops-2
+[49]: #parameters-17
 
-[50]: #parameters-20
+[50]: #expansionpanel
 
-[51]: #mapstatetoprops-3
+[51]: #expansionpanelsummary
 
-[52]: #parameters-21
+[52]: #expansionpaneldetails
 
-[53]: #accountintegrationnotistack
+[53]: #levelpanel
 
-[54]: #app
+[54]: #parameters-18
 
-[55]: #parameters-22
+[55]: #renderdifficulty
 
-[56]: #page404
+[56]: #resultitem
 
-[57]: #profile
+[57]: #parameters-19
 
-[58]: #parameters-23
+[58]: #title
 
-[59]: #rendercontent
+[59]: #resultlist
 
-[60]: #render-2
+[60]: #parameters-20
 
-[61]: #results
+[61]: #renderlist
 
-[62]: #parameters-24
+[62]: #parameters-21
 
-[63]: #componentdidmount
+[63]: #searchbar
 
-[64]: #searchresults
+[64]: #parameters-22
 
-[65]: #parameters-25
+[65]: #keypress
 
-[66]: #renderwiki
+[66]: #parameters-23
 
-[67]: #parameters-26
+[67]: #searchbuttonpressed
 
-[68]: #renderresults
+[68]: #handlechangelevel
 
-[69]: #render-3
+[69]: #parameters-24
 
-[70]: #signin
+[70]: #handlechangelanguage
 
-[71]: #parameters-27
+[71]: #parameters-25
 
-[72]: #handlesignin
+[72]: #render-4
 
-[73]: #parameters-28
+[73]: #searchbar-1
 
-[74]: #mapdispatchtoprops
+[74]: #parameters-26
 
-[75]: #parameters-29
+[75]: #keypress-1
 
-[76]: #integrationnotistack
+[76]: #parameters-27
 
-[77]: #signup
+[77]: #searchbuttonpressed-1
 
-[78]: #parameters-30
+[78]: #handlechangelevel-1
 
-[79]: #render-4
+[79]: #parameters-28
 
-[80]: #signupintegrationnotistack
+[80]: #handlechangelanguage-1
 
-[81]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
+[81]: #parameters-29
 
-[82]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+[82]: #render-5
 
-[83]: https://developer.mozilla.org/docs/Web/API/Event
+[83]: #handlechange-1
+
+[84]: #parameters-30
+
+[85]: #handlekeydown
+
+[86]: #parameters-31
+
+[87]: #wikicard
+
+[88]: #parameters-32
+
+[89]: #wikicardtemplate
+
+[90]: #parameters-33
+
+[91]: #parameters-34
+
+[92]: #account
+
+[93]: #parameters-35
+
+[94]: #mapstatetoprops
+
+[95]: #parameters-36
+
+[96]: #mapstatetoprops-1
+
+[97]: #parameters-37
+
+[98]: #mapstatetoprops-2
+
+[99]: #parameters-38
+
+[100]: #mapstatetoprops-3
+
+[101]: #parameters-39
+
+[102]: #accountintegrationnotistack
+
+[103]: #app
+
+[104]: #parameters-40
+
+[105]: #page404
+
+[106]: #profile
+
+[107]: #parameters-41
+
+[108]: #rendercontent
+
+[109]: #render-6
+
+[110]: #results
+
+[111]: #parameters-42
+
+[112]: #componentdidmount-2
+
+[113]: #searchresults
+
+[114]: #parameters-43
+
+[115]: #renderwiki
+
+[116]: #parameters-44
+
+[117]: #renderresults
+
+[118]: #render-7
+
+[119]: #signin
+
+[120]: #parameters-45
+
+[121]: #handlesignin
+
+[122]: #parameters-46
+
+[123]: #integrationnotistack
+
+[124]: #signup
+
+[125]: #parameters-47
+
+[126]: #render-8
+
+[127]: #signupintegrationnotistack
+
+[128]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
+
+[129]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+
+[130]: https://developer.mozilla.org/docs/Web/API/Event
