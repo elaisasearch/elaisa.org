@@ -3,6 +3,10 @@ import { Typography } from "@material-ui/core";
 import NavigationBar from "../components/NavigiationBar/NavigationBar";
 import styles from '../assets/jss/Page404Style';
 
+/**
+ * The Page404 view.
+ * @returns {JSX} Page404 view components jsx.
+ */
 const Page404 = () => (
     <div >
         <NavigationBar
