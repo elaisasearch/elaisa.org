@@ -15,6 +15,10 @@ const styles = theme => ({
   }
 });
 
+/**
+ * The Dropdown component for choosing language and level in search bar and navigation bar.
+ * @param {object} props the given properties.
+*/
 class DropDownMenu extends React.Component {
   state = {
     pickedData: "",
@@ -22,17 +26,27 @@ class DropDownMenu extends React.Component {
     labelWidth: 0
   };
 
+  /**
+   * Set the label with if the component is loaded.
+  */
   componentDidMount() {
     this.setState({
       labelWidth: ReactDOM.findDOMNode(this.InputLabelRef).offsetWidth
     });
   }
 
+  /**
+   * Change the chosen dropdown value in state.
+   * @param {object} event the click event in the dropdown menu.
+  */
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
     this.props.onChange(event.target.value);
   };
 
+  /**
+   * Render the dropdown menu as form.
+  */
   render() {
     const { classes, items, desc, values } = this.props;
 

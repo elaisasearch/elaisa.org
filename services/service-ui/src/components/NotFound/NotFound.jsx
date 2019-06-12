@@ -3,6 +3,11 @@ import styles from "../../assets/jss/NotFoundStyle";
 import errorPic from "../../assets/img/error.png";
 import { Typography } from "@material-ui/core";
 
+/**
+ * The not found component for the Results view.
+ * @param {object} props the given properties
+ * @returns {JSX} Error text and image.
+*/
 const NotFound = (props) => {
     return (
         <div style={styles.root}>

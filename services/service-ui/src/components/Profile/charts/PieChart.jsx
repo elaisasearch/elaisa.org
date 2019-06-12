@@ -3,6 +3,11 @@ import CanvasJSReact from '../canvas/canvasjs.react';
 
 const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
+/**
+ * The pie chart component for user statistics.
+ * @param {object} props the given properties.
+ * @returns {JSX} pie chart.
+*/
 const PieChart = (props) => {
 
     const { dataPoints } = props;

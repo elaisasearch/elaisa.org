@@ -11,6 +11,11 @@ import german from '../../assets/img/menu_flags/german.jpg';
 import english from '../../assets/img/menu_flags/english.jpg';
 import spanish from '../../assets/img/menu_flags/spanish.jpg';
 
+/**
+ * Link Item for Menu to change view.
+ * @param {object} props the given properties.
+ * @returns {JSX} the button with 'a' href component.
+*/
 const ListItemLink = (props) => {
     return <ListItem button component={Link} {...props} />;
 }
@@ -21,10 +26,17 @@ class SideList extends Component {
         open: false
     }
 
+    /**
+     * Set the state for open or close the list in the menu drawer.
+    */
     handleClick = () => {
         this.setState(state => ({ open: !state.open }));
     };
-
+    
+    /**
+     * Renders the menu list with all items.
+     * @returns {JSX} the entire menu list with all items.
+    */
     render() {
         return (
             <div style={styles.list}>

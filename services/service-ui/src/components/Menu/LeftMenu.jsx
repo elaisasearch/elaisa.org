@@ -4,6 +4,9 @@ import { Drawer, IconButton } from '@material-ui/core/';
 // Side List for Menu
 import SideList from './SideList';
 
+/**
+ * The Menu button.
+*/
 class LeftMenu extends React.Component {
 
     state = {
@@ -11,16 +14,25 @@ class LeftMenu extends React.Component {
         open: false
     };
 
+    /**
+     * Set the state for open or close menu.
+    */
     handleClick = () => {
         this.setState(state => ({ open: !state.open }));
     };
 
+    /**
+     * Open the drawer.
+    */
     toggleDrawer = (side, open) => () => {
         this.setState({
             [side]: open,
         });
     };
 
+    /**
+     * Render the Menu button with IconButton.
+    */
     render() {
         return (
             <div>

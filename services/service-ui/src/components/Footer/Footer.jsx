@@ -3,6 +3,9 @@ import '../../assets/css/FooterStyle.css'
 import { Typography } from "@material-ui/core";
 import FooterPerson from './FooterPerson';
 
+/**
+ * The Footer component with legal infos.
+*/
 const Footer = () => (
     <footer className="footer">
         <div className="content">

@@ -2,6 +2,10 @@ import React from "react";
 import memeteam from "../../assets/img/memeteam.png";
 import "../../assets/css/MemeTeamStyle.css";
 
+/**
+ * A Fun picture component if the user searches for 'memeteam'.
+ * @returns {JSX} the memeteam group picture as polaroid.
+*/
 const MemeTeam = () => {
     return (
         <div className="polaroid">

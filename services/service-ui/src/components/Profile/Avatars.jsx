@@ -6,18 +6,35 @@ import { Menu, MenuItem, Button, Divider, ListItemIcon, ListItemText} from '@mat
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
 
+/**
+ * The Avatar component for Navigation bar.
+ * @param {object} props the given properties.
+ * @returns {JSX} the button avatar for profile picture.
+*/
 const Avatars = (props) => {
 
   const [anchorEl, setAnchorEl] = React.useState(null);
 
+  /**
+   * Change anchor and open menu.
+   * @param {object} event the click event.
+  */
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   }
 
+  /**
+   * Change anchor and close menu.
+  */
   const handleClose = () => {
     setAnchorEl(null);
   }
 
+  /**
+   * Get avatar from Gravatar.com.
+   * @param {object} props the given properties.
+   * @returns {JSX} render avatar icon given if the user is logged in or not.
+  */
   const renderAvatar = (props) => {
     if (props.email) {
       return <Gravatar email={props.email} />
@@ -27,6 +44,11 @@ const Avatars = (props) => {
     return <Person />
   }
 
+  /**
+   * Avatar menu with profile options.
+   * @param {object} props the given properties.
+   * @returns {JSX} render profile menu given if the user is logged in or not. Wether signIn or view profile stats and options.
+  */
   const renderMenu = (props) => {
     if (props.loggedIn) {
       return <Menu id="simple-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
@@ -76,7 +98,11 @@ const Avatars = (props) => {
 
 };
 
-// redux action
+/**
+ * Maps redux signOut action to props.
+ * @param {object} dispatch the current redux store.
+ * @returns {any} redux action to props mapping.
+*/
 const mapDispatchToProps = dispatch => {
   return {
       onSignOut: () => dispatch({type: 'SIGN_OUT'})
