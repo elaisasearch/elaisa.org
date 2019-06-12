@@ -9,6 +9,11 @@ import MemeTeam from '../components/MemeTeam/MemeTeam';
 import NotFound from '../components/NotFound/NotFound';
 import { connect } from 'react-redux';
 
+/**
+ * Results view class.
+ * @param {object} props the given properties.
+ * @returns {JSX} results view jsx components.
+*/
 class Results extends React.Component {
 
   state = {
@@ -24,10 +29,19 @@ class Results extends React.Component {
     level: this.props.location.state.level
   };
 
+  /**
+   * call searchResults() after component did mount.
+  */
   componentDidMount() {
     this.searchResults(this.state.searchValue, this.state.level, this.state.language)
   };
 
+  /**
+   * Loads the search results from API and stores to state.
+   * @param {string} searchValue the user's search term.
+   * @param {string} level the user's chosen language level.
+   * @param {string} language the user's chosen language.
+  */
   searchResults(searchValue, level, language) {
     // show CircularProgress when user starts new search
     this.setState({
@@ -87,7 +101,11 @@ class Results extends React.Component {
     });
   }
 
-  // Only render wiki card if there is a result
+  /**
+   * Only render wiki card if there is a result.
+   * @param {object} error if error is true, the wiki won't show up.
+   * @returns {JSX} Progress bar or statistics components.
+  */
   renderWiki(error) {
     if (!error) {
       return (
@@ -100,6 +118,10 @@ class Results extends React.Component {
     }
   }
 
+  /**
+   * Returns Results view if API request is finished.
+   * @returns {JSX} Progress bar or statistics components.
+  */
   renderResults() {
     // while service is fetching data, show the progress circle
     if (this.state.waiting) {
@@ -126,6 +148,10 @@ class Results extends React.Component {
     }
   }
 
+  /**
+   * Renders JSX content.
+   * @returns {JSX} Results.js.
+  */
   render() {
     return (
       <div>
@@ -146,6 +172,11 @@ class Results extends React.Component {
   }
 }
 
+/**
+ * Redux store to props mapping.
+ * @param {object} state the current redux store.
+ * @returns {object} the props containing the redux state.
+*/
 const mapStateToProps = state => {
   return {
     email: state.email,
