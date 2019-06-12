@@ -10,6 +10,11 @@ import { connect } from 'react-redux';
 // device detection
 import { isMobile } from 'react-device-detect';
 
+/**
+ * This is the search engines main function.
+ * @param {object} props the given properties.
+ * @returns {JSX} returns the search engine's home view components.
+ */
 const App = (props) => {
 
   // redux state
@@ -35,7 +40,11 @@ const App = (props) => {
   );
 }
 
-
+/**
+ * Redux store to props mapping.
+ * @param {object} state the current redux store.
+ * @returns {object} returns the props containing the redux state.
+ */
 const mapStateToProps = state => {
   return {
     loggedIn: state.loggedIn,
