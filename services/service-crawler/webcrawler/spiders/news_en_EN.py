@@ -1,3 +1,7 @@
+"""
+Webcrawler for english news sites.
+"""
+
 import scrapy
 import thinc
 import textacy
@@ -5,7 +9,14 @@ import re
 from . import categorize
 
 class NewsSpider(scrapy.Spider):
+    """
+    The NewsSpider searches for english news sites and crawls the information. Later in the pipeline, this data will be stored in the mongo database.
+    """
+
+    # The spider's name.
     name = "news_en_EN"
+
+    # The urls with whom the spider starts crawling.
     start_urls = [
         'https://www.theguardian.com/', #new
         'https://www.firstnews.co.uk/', #news for children
@@ -17,6 +28,7 @@ class NewsSpider(scrapy.Spider):
         'https://www.thewanderblogger.com/' #expat livestyle blog
     ]
 
+    # The only wanted urls the spider should use for crawling.
     trustedUrls = [
         'https://www.theguardian.com/', #new
         'https://www.firstnews.co.uk/', #news for children
@@ -27,6 +39,11 @@ class NewsSpider(scrapy.Spider):
     ]
 
     def parse(self, response):
+        """
+        Parses the start_urls and returns the data as dictionary
+        :self: NewsSpider
+        :response: ScrapyResponse
+        """
         url = response.url
         for data in response.css('html'):
 
@@ -81,5 +98,7 @@ class NewsSpider(scrapy.Spider):
                 }
             else:
                 continue
+
+        # Follow every link on the current webpage.
         for a in response.css('a::attr(href)'):
             yield response.follow(a, callback=self.parse)
