@@ -27,6 +27,9 @@ class DuplicatesPipeline(object):
 
 
 class MongoPipeline(object):
+    """
+    Takes the crawled data and stores it into the mongo database for every crawled webpage.
+    """
 
     collection_name = ""
 
@@ -49,6 +52,9 @@ class MongoPipeline(object):
         self.client.close()
 
     def process_item(self, item, spider):
+        """
+        Check the spider's name to store the current crawled webpage in the right mongo collection.
+        """
         if spider.name == "news_de_DE":
             self.collection_name = 'news_de_DE'
         elif spider.name == "news_en_EN": 
