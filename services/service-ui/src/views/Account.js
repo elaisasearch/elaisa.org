@@ -11,9 +11,13 @@ import Button from '@material-ui/core/Button';
 import { SnackbarProvider, withSnackbar } from 'notistack';
 import axios from 'axios';
 // redux
-import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 
-
+/**
+ * Account view class.
+ * @param {object} props the given properties.
+ * @returns {JSX} account view jsx components.
+*/
 class Account extends Component {
 
     state = {
@@ -34,18 +38,18 @@ class Account extends Component {
         let variant = "";
 
         axios.post(`http://localhost:8080/changepassword?oldpassword=${this.state.oldPass}&newpassword=${this.state.newPass}&email=${email}`, {})
-        .then((response) => {
-            if (response.data === "Success") {
-                variant = "success";
-                this.props.enqueueSnackbar('Successfully changed password', { variant });
-            } else {
+            .then((response) => {
+                if (response.data === "Success") {
+                    variant = "success";
+                    this.props.enqueueSnackbar('Successfully changed password', { variant });
+                } else {
+                    variant = "error";
+                    this.props.enqueueSnackbar('The old password is wrong', { variant });
+                }
+            }).catch((error) => {
                 variant = "error";
-                this.props.enqueueSnackbar('The old password is wrong', { variant });
-            }
-        }).catch((error) => {
-            variant = "error";
-            this.props.enqueueSnackbar(error.message, { variant });
-        });
+                this.props.enqueueSnackbar(error.message, { variant });
+            });
     }
 
     render() {
@@ -53,7 +57,7 @@ class Account extends Component {
         const { loggedIn, email, firstname, lastname } = this.props;
 
         return <div>
-            <NavigationBar loggedIn={loggedIn} email={email} firstname={firstname} lastname={lastname}/>
+            <NavigationBar loggedIn={loggedIn} email={email} firstname={firstname} lastname={lastname} />
             <div className="accountView">
                 <Paper className="accountPaper">
                     <Avatar alt={firstname} id="accountLogo">
@@ -105,6 +109,11 @@ class Account extends Component {
     }
 }
 
+/**
+ * Redux store to props mapping.
+ * @param {object} state the current redux store.
+ * @returns {object} the props containing the redux state.
+*/
 const mapStateToProps = state => {
     return {
         loggedIn: state.loggedIn,
@@ -116,12 +125,16 @@ const mapStateToProps = state => {
 
 const AccountSnackBar = withSnackbar(connect(mapStateToProps)(Account));
 
+/**
+ * Adds Notification Snack Bar.
+ * @returns {JSX} the Account View Snack Bar Integration.
+*/
 const AccountIntegrationNotistack = () => {
-  return (
-    <SnackbarProvider maxSnack={3}>
-      <AccountSnackBar />
-    </SnackbarProvider>
-  );
+    return (
+        <SnackbarProvider maxSnack={3}>
+            <AccountSnackBar />
+        </SnackbarProvider>
+    );
 };
 
 export default AccountIntegrationNotistack;
