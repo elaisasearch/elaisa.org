@@ -1,3 +1,7 @@
+"""
+Handles the database methods for finding documents.
+"""
+
 from pymongo import MongoClient
 import json
 from bson.objectid import ObjectId
@@ -37,6 +41,13 @@ class MongoEncoder(JSONEncoder):
 
 
 def findDocuments(query, level, language):
+    """
+    Takes the search values and searches the database for results.
+    :query: String
+    :level: String
+    :language: String
+    :return: JSON
+    """
     client = MongoClient(GLOBALS["mongo"]["client"])
     db = client[GLOBALS["mongo"]["database"]]
     col = db[GLOBALS["mongo"]["collections"]["crawled"]["news"][0]]
@@ -58,6 +69,11 @@ def findDocuments(query, level, language):
 
 
 def getIdsFromWord(terms):
+    """
+    Takes the search terms and gets the document IDs for findDocuments().
+    :terms: List
+    :return: Dictionary
+    """
     client = MongoClient(GLOBALS["mongo"]["client"])
     db = client[GLOBALS["mongo"]["database"]]
     # TODO: Allow multiple terms search
