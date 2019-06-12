@@ -1,9 +1,20 @@
+"""
+Webcrawler for german news sites.
+"""
+
 import scrapy
 #import textacy
 import re 
 
 class NewsSpider(scrapy.Spider):
+    """
+    The NewsSpider searches for german news sites and crawls the information. Later in the pipeline, this data will be stored in the mongo database.
+    """
+
+    # The spider's name.
     name = "news_de_DE"
+
+    # The urls with whom the spider starts crawling.
     start_urls = [
         'http://www.spiegel.de/',
         'https://www.tagesschau.de/',
@@ -16,6 +27,7 @@ class NewsSpider(scrapy.Spider):
         'https://www.faz.net/aktuell/'
     ]
 
+    # The only wanted urls the spider should use for crawling.
     trustedUrls = [
         'http://www.spiegel.de/',
         'https://www.tagesschau.de/',
@@ -26,6 +38,11 @@ class NewsSpider(scrapy.Spider):
     ]
 
     def parse(self, response):
+        """
+        Parses the start_urls and returns the data as dictionary
+        :self: NewsSpider
+        :response: ScrapyResponse
+        """
         url = response.url
         for data in response.css('html'):
 
@@ -65,5 +82,7 @@ class NewsSpider(scrapy.Spider):
                 }
             else:
                 continue
+            
+        # Follow every link on the current webpage.
         for a in response.css('a::attr(href)'):
             yield response.follow(a, callback=self.parse)
