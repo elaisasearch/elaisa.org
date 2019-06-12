@@ -9,7 +9,11 @@ import DropDownMenu from '../DropDownMenu/DropDownMenu';
 import styles from '../../assets/jss/SearchBarStyle';
 import { Button } from '@material-ui/core';
 
-
+/**
+ * The Search Bar component.
+ * @param {object} props the given properties.
+ * @returns {JSX} Search Bar component.
+*/
 class SearchBar extends React.Component {
 
   constructor(props) {
@@ -22,6 +26,10 @@ class SearchBar extends React.Component {
     };
   }
 
+  /**
+   * Checks the user's login data with API post request and stores to redux.
+   * @param {event} event the clicked key event
+  */
   keyPress = (e) => {
     // get the input when user cliks enter (13)
     if (e.keyCode === 13) {
@@ -29,6 +37,9 @@ class SearchBar extends React.Component {
     }
   }
 
+  /**
+   * Changes url path after user pressed search button with all information filled in.
+  */
   searchButtonPressed = () => {
     if (this.state.value.length === 0) {
       alert("Please type in a search value")
@@ -49,13 +60,26 @@ class SearchBar extends React.Component {
     }
   }
 
+  /**
+   * Updates state when user changes level dropdown menu.
+   * @param {string} value the dropdown level value.
+  */
   handleChangeLevel = value => {
     this.setState({ level: value })
   }
+
+  /**
+   * Updates state when user changes language dropdown menu.
+   * @param {string} value the dropdown language value.
+  */
   handleChangeLanguage = value => {
     this.setState({ language: value });
   }
 
+  /**
+   * Renders JSX content.
+   * @returns {JSX} SearchBar.jsx.
+  */
   render() {
     const { classes } = this.props;
     return (

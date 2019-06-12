@@ -4,11 +4,20 @@ import ResultItem from './ResultItem';
 import { Typography } from '@material-ui/core';
 import styles from "../../assets/jss/ResultListStyle";
 
-
+/**
+ * The Result list to show all result items.
+ * @param {object} props the given properties.
+ * @return {JSX} Result list component.
+*/
 const ResultList = (props) => {
 
     const { resultDocs } = props;
 
+    /**
+     * Render the list given the result docs.
+     * @param {object} resultDocs the found result documents.
+     * @return {JSX} result list.
+    */
     const renderList = (resultDocs) => {
 
         return <div style={styles.resultListRoot}>

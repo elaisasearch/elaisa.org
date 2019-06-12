@@ -6,10 +6,19 @@ import moment from 'moment';
 import styles from '../../assets/jss/ResultItemStyle'
 import LevelPanel from './LevelPanel';
 
+/**
+ * The Result Item component to show each result.
+ * @param {object} props the given properties.
+ * @return {JSX} Result item component.
+*/
 const ResultItem = (props) => {
 
     const { website, title, desc, keywords, date, language, level, level_meta } = props;
 
+    /**
+     * Result Item Title.
+     * @return {JSX} title with link to article.
+    */
     const Title = () => {
         return <a href={website} style={styles.title}>{title}</a>
     }

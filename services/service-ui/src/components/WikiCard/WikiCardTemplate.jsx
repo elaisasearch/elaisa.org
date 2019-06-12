@@ -6,6 +6,11 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import styles from '../../assets/jss/WikiCardTemplateStyle';
 
+/**
+ * The Wikipedia Card Template component.
+ * @param {object} props the given properties.
+ * @returns {JSX} Wikipedia Card Template component with design.
+*/
 const  WikiCardTemplate = (props) => {
   const { url, title, summary } = props;
 

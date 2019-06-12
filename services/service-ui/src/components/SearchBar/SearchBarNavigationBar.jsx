@@ -5,15 +5,27 @@ import TextField from '@material-ui/core/TextField';
 // styles 
 import styles from '../../assets/jss/SearchBarNavigationBarStyle';
 
-
+/**
+ * The Search Bar for Navigation Bar component.
+ * @param {object} props the given properties.
+ * @returns {JSX} Search Bar  Navigation Bar component.
+*/
 const SearchBar = (props) => {
 
     const { classes, value } = props;
 
+    /**
+     * Calls the parent component's function onChange() with new search value.
+     * @param {object} event the written search value.
+    */
     const handleChange = (e) => {
         props.onChange(e.target.value);
     }
 
+    /**
+     * Calls the parent component's function onKeyDown() to search new results
+     * @param {object} event the written search value.
+    */
     const handleKeyDown = (e) => {
         props.onKeyDown(e);
     }

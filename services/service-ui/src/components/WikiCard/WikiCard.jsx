@@ -1,6 +1,11 @@
 import React from 'react';
 import WikiCardTemplate from './WikiCardTemplate';
 
+/**
+ * The Wikipedia Card component.
+ * @param {object} props the given properties.
+ * @returns {JSX} Wikipedia Card Template component.
+*/
 const WikiCard = (props) => {
 
     return (

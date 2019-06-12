@@ -6,6 +6,9 @@ import MuiExpansionPanel from '@material-ui/core/ExpansionPanel';
 import MuiExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import MuiExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 
+/**
+ * The design for Expansion Panel for level difficulty infos.
+*/
 const ExpansionPanel = withStyles({
     root: {
         // border: '1px solid rgba(0, 0, 0, .125)',
@@ -24,6 +27,9 @@ const ExpansionPanel = withStyles({
     expanded: {},
 })(MuiExpansionPanel);
 
+/**
+ * The design for Expansion Panel Summary for level difficulty infos.
+*/
 const ExpansionPanelSummary = withStyles({
     root: {
         padding: 0,
@@ -37,6 +43,9 @@ const ExpansionPanelSummary = withStyles({
     expanded: {},
 })(MuiExpansionPanelSummary);
 
+/**
+ * The design for Expansion Panel Details for level difficulty infos.
+*/
 const ExpansionPanelDetails = withStyles({
     root: {
       padding: 0,
@@ -45,6 +54,11 @@ const ExpansionPanelDetails = withStyles({
   })(MuiExpansionPanelDetails);
 
 
+/**
+ * The Level Panel component for difficulty infos.
+ * @param {object} props the given properties.
+ * @return {JSX} Expansion Panel component.
+*/
 const LevelPanel = (props) => {
 
     const { A1, A2, B1, B2, C1, C2, unknown, difficulty } = props.level_meta;
@@ -52,6 +66,10 @@ const LevelPanel = (props) => {
     // show difficulty with first letter uppercase
     const firstUpperDifficulty = difficulty.charAt(0).toUpperCase() + difficulty.slice(1)
 
+    /**
+     * Return color for difficulty given the difficulty value.
+     * @return {string} color.
+    */
     const renderDifficulty = () => {
         if (difficulty === "easy") {
             return "green"
