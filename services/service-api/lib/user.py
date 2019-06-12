@@ -1,3 +1,7 @@
+"""
+Handles the user methods for signing and logging user.
+"""
+
 from pymongo import MongoClient, ASCENDING
 import bcrypt
 import json
@@ -19,6 +23,9 @@ GLOBALS = {
 
 
 class MongoEncoder(JSONEncoder):
+    """
+    Mongo DB results encoder.
+    """
     def default(self, obj, **kwargs):
         if isinstance(obj, ObjectId):
             return str(obj)
@@ -26,6 +33,9 @@ class MongoEncoder(JSONEncoder):
             return JSONEncoder.default(obj, **kwargs)
 
 class SetEncoder(json.JSONEncoder):
+    """
+    Set encoder for results in JSON.
+    """
     def default(self, obj):
         if isinstance(obj, set):
             return list(obj)
@@ -33,6 +43,14 @@ class SetEncoder(json.JSONEncoder):
 
 
 def createUser(firstname, lastname, email, password):
+    """
+    Takes the user infos and creates a new user in the database.
+    :firstname: String
+    :lastname: String
+    :email: String
+    :password: String
+    :return: String
+    """
     client = MongoClient(GLOBALS["mongo"]["client"])
     db = client[GLOBALS["mongo"]["database"]]
     col = db[GLOBALS["mongo"]["collections"][0]]
@@ -57,6 +75,12 @@ def createUser(firstname, lastname, email, password):
 
 
 def loginUser(email, password):
+    """
+    Takes the user credentials and tries to login the user.
+    :email: String
+    :password: String
+    :return: JSON
+    """
     client = MongoClient(GLOBALS["mongo"]["client"])
     db = client[GLOBALS["mongo"]["database"]]
     col = db[GLOBALS["mongo"]["collections"][0]]
@@ -84,6 +108,13 @@ def loginUser(email, password):
 
 
 def handlePasswordChange(email, oldPass, newPass):
+    """
+    Changes the password for the user in the database (hashed).
+    :email: String
+    :oldPass: String
+    :newPass: String
+    :return: String
+    """
     client = MongoClient(GLOBALS["mongo"]["client"])
     db = client[GLOBALS["mongo"]["database"]]
     col = db[GLOBALS["mongo"]["collections"][0]]
@@ -97,6 +128,14 @@ def handlePasswordChange(email, oldPass, newPass):
 
 
 def writeSearchDataIntoDatabase(query, level, language, email):
+    """
+    Stores the user's search data for search history.
+    :query: String
+    :level: String
+    :language: String
+    :email: String
+    :return: None
+    """
     client = MongoClient(GLOBALS["mongo"]["client"])
     db = client[GLOBALS["mongo"]["database"]]
     col = db[GLOBALS["mongo"]["collections"][1]]
@@ -115,6 +154,11 @@ def writeSearchDataIntoDatabase(query, level, language, email):
         return
 
 def getSearchHistoryForUser(email):
+    """
+    Get's the user's search history from user mail.
+    :email: String
+    :return: Dictionary
+    """
     client = MongoClient(GLOBALS["mongo"]["client"])
     db = client[GLOBALS["mongo"]["database"]]
     col = db[GLOBALS["mongo"]["collections"][1]]
