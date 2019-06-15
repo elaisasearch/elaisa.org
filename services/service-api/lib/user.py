@@ -9,18 +9,14 @@ from bson.objectid import ObjectId
 from json import JSONEncoder
 import datetime
 import pickle
+# from api import GLOBALS
 
-GLOBALS = {
-    "mongo": {
-        "client": "mongodb://localhost:27017/",
-        "database": "LanguageLevelSearchEngine",
-        "collections": [
-            "users",
-            "search_history"
-        ]
-    }
-}
-
+"""
+Load the global configurations for database connection and collections.
+"""
+# TODO: Better but not the final solution
+with open('/Users/alex/Documents/coding/dasmemeteam/language-level-search-engine/bin/globals.json') as f: 
+    GLOBALS = json.load(f)
 
 class MongoEncoder(JSONEncoder):
     """
@@ -53,7 +49,7 @@ def createUser(firstname, lastname, email, password):
     """
     client = MongoClient(GLOBALS["mongo"]["client"])
     db = client[GLOBALS["mongo"]["database"]]
-    col = db[GLOBALS["mongo"]["collections"][0]]
+    col = db[GLOBALS["mongo"]["collections"]["user"][0]]
     col.create_index([('email', ASCENDING)], unique=True)
 
     # hash password
@@ -83,7 +79,7 @@ def loginUser(email, password):
     """
     client = MongoClient(GLOBALS["mongo"]["client"])
     db = client[GLOBALS["mongo"]["database"]]
-    col = db[GLOBALS["mongo"]["collections"][0]]
+    col = db[GLOBALS["mongo"]["collections"]["user"][0]]
 
     userObject = {}
 
@@ -117,7 +113,7 @@ def handlePasswordChange(email, oldPass, newPass):
     """
     client = MongoClient(GLOBALS["mongo"]["client"])
     db = client[GLOBALS["mongo"]["database"]]
-    col = db[GLOBALS["mongo"]["collections"][0]]
+    col = db[GLOBALS["mongo"]["collections"]["user"][0]]
 
     newPass_hash = bcrypt.hashpw(newPass.encode('utf-8'), bcrypt.gensalt(14))
     try:
@@ -138,7 +134,7 @@ def writeSearchDataIntoDatabase(query, level, language, email):
     """
     client = MongoClient(GLOBALS["mongo"]["client"])
     db = client[GLOBALS["mongo"]["database"]]
-    col = db[GLOBALS["mongo"]["collections"][1]]
+    col = db[GLOBALS["mongo"]["collections"]["user"][1]]
 
     date = datetime.datetime.now().strftime("%d.%m.%Y %H:%M")
 
@@ -161,7 +157,7 @@ def getSearchHistoryForUser(email):
     """
     client = MongoClient(GLOBALS["mongo"]["client"])
     db = client[GLOBALS["mongo"]["database"]]
-    col = db[GLOBALS["mongo"]["collections"][1]]
+    col = db[GLOBALS["mongo"]["collections"]["user"][1]]
 
     try:
         historyData = col.find({

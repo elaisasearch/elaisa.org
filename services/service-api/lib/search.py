@@ -6,27 +6,15 @@ from pymongo import MongoClient
 import json
 from bson.objectid import ObjectId
 from json import JSONEncoder
+# from api import GLOBALS
 
-# get database info
-# BUG: no such file or dictionary ERROR ...
-#f = open("../../../bin/globals.json", "r")
+"""
+Load the global configurations for database connection and collections.
+"""
+# TODO: Better but not the final solution
+with open('/Users/alex/Documents/coding/dasmemeteam/language-level-search-engine/bin/globals.json') as f: 
+    GLOBALS = json.load(f)
 
-GLOBALS = {
-    "mongo": {
-        "client": "mongodb://localhost:27017/",
-        "database": "LanguageLevelSearchEngine",
-        "collections": {
-            "inverted_index": [
-                "inverted_index_en_EN"
-            ],
-            "crawled": {
-                "news": [
-                    "news_en_EN"
-                ]
-            }
-        }
-    }
-}
 
 # JSON Encoder
 # https://stackoverflow.com/questions/28251835/from-pymongo-objectid-import-objectid-importerror-no-module-named-objectid
