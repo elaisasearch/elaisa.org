@@ -2,10 +2,12 @@
 The Application Programming Interface (API) for the entire Search Engine.
 """
 
+import json
 from bottle import Bottle, request, response, run
 # import lib files
-from lib import search, wikipedia, user
-import json
+from lib.search import findDocuments, getIdsFromWord
+from lib.wikipedia import getWikiEntry
+from lib.user import createUser, getSearchHistoryForUser, handlePasswordChange, loginUser, writeSearchDataIntoDatabase
 
 app = Bottle()
 
@@ -47,11 +49,11 @@ def find():
     email = request.params.get('email')
 
     if loggedIn == "true":
-        user.writeSearchDataIntoDatabase(query, level, language, email)
+        writeSearchDataIntoDatabase(query, level, language, email)
 
     return {
-        "wikipedia": wikipedia.getWikiEntry(query, language),
-        "documents": search.findDocuments(query, level, language)
+        "wikipedia": getWikiEntry(query, language),
+        "documents": findDocuments(query, level, language)
     }
 
 
@@ -70,7 +72,7 @@ def signUp():
     email = request.params.get('email')
     password = request.params.get('password')
 
-    result = user.createUser(firstname, lastname, email, password)
+    result = createUser(firstname, lastname, email, password)
 
     if result == "Success":
         return
@@ -89,7 +91,7 @@ def signIn():
     email = request.params.get('email')
     password = request.params.get('password')
 
-    result =  user.loginUser(email, password)
+    result =  loginUser(email, password)
 
     return json.loads(result)
 
@@ -107,7 +109,7 @@ def changePassword():
     oldPass = request.params.get('oldpassword')
     newPass = request.params.get('newpassword')
 
-    result = user.handlePasswordChange(email, oldPass, newPass)
+    result = handlePasswordChange(email, oldPass, newPass)
 
     if result == "Success":
         return "Success"
@@ -124,7 +126,7 @@ def getSearchHistory():
     """
     email = request.params.get('email')
 
-    results = user.getSearchHistoryForUser(email)
+    results = getSearchHistoryForUser(email)
 
     if results["response"] == "Success":
         return results
