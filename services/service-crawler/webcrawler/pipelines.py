@@ -58,14 +58,26 @@ class InvertedIndexPipeline(object):
         return texts, words
 
     def storeIndexInMongo(self, finvindex):
+        """
+        Stores the index for each word in the current document in the database
+        :finvindex: Dictionary
+        """
         # Connect to mongo db
         self.client = pymongo.MongoClient(self.mongo_uri)
         self.db = self.client[self.mongo_db]
         collection = self.db["inverted_index_en_EN"]
 
-        # TODO: Append word to existing db items and don't create a new one for the same word
+        """
+        For every word in our current document, iterate through all document IDs of this word
+        and update the database object, where the 'word' value equals this current word in the for loop.
+        1. The upsert=True says that we create a new object in the database, if there is no obj with the current word.
+        2. The $addToSet key says, that we only add the current docId from the document IDs list, if it doesn't already exists.
+            - source: https://stackoverflow.com/questions/38970835/mongodb-add-element-to-array-if-not-exists
+        """
         for word, docs in finvindex.items():
-            collection.insert_one({"word": word, "documents": list(docs)})
+            # for each id in document IDs, check if it already is stored; otherwise store it.
+            for d in docs: 
+                collection.update({"word": word},{"$addToSet": {"documents": d}}, upsert=True)
 
     def main(self):
         texts, words = self.parseMongo()
