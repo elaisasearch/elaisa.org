@@ -41,6 +41,14 @@ class NewsSpider(scrapy.Spider):
         'https://www.thewanderblogger.com/' #expat livestyle blog
     ]
 
+    def checkIfUrlIsTrusted(self, url, trustedUrls):
+        for tUrl in trustedUrls: 
+            matchUrl = re.match(r'{}.*'.format(tUrl), url)
+            if matchUrl:
+                return True
+            else: 
+                return False
+
     def parse(self, response):
         """
         Parses the start_urls and returns the data as dictionary
@@ -49,16 +57,16 @@ class NewsSpider(scrapy.Spider):
         """
         url = response.url
 
-        # check if the current url was already seen by the crawler
-        if url not in self.seen_urls:
-            
+        # check if current url is in trusted list
+        trusted = self.checkIfUrlIsTrusted(url, self.trustedUrls)
+
+        # check if the current url was already seen by the crawler and if it is trusted
+        if url not in self.seen_urls and trusted:
+
             # append the current url to seen
             self.seen_urls.append(url)
 
             for data in response.css('html'):
-
-                # TODO: check if current url is in trusted Urls, so that we only parse news sites
-                #re.match(r'{}'.format(url))
 
                 if data.css('html::attr(lang)').get() == "en":
 
