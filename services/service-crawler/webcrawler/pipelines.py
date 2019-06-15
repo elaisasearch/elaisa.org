@@ -25,6 +25,7 @@ class DuplicatesPipeline(object):
             self.titles_seen.add(item['url'])
             return item
 
+
 class InvertedIndexPipeline(object):
     """
     Adds the crawled document to the inverted index
@@ -70,17 +71,16 @@ class InvertedIndexPipeline(object):
         texts, words = self.parseMongo()
 
         finvindex = {word: set((txt, wrdindx)
-                       for txt, wrds in texts.items()
-                       for wrdindx in (i for i, w in enumerate(wrds) if word == w)
-                       if word in wrds)
-             for word in words}
+                               for txt, wrds in texts.items()
+                               for wrdindx in (i for i, w in enumerate(wrds) if word == w)
+                               if word in wrds)
+                     for word in words}
 
         self.storeIndexInMongo(finvindex)
 
     def process_item(self, item, spider):
         self.main()
         return item
-    
 
 
 class MongoPipeline(object):
@@ -114,7 +114,7 @@ class MongoPipeline(object):
         """
         if spider.name == "news_de_DE":
             self.collection_name = 'news_de_DE'
-        elif spider.name == "news_en_EN": 
+        elif spider.name == "news_en_EN":
             self.collection_name = 'news_en_EN'
         else:
             self.collection_name = 'crawled_items'
