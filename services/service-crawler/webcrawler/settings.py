@@ -71,6 +71,7 @@ MONGO_DATABASE = "LanguageLevelSearchEngine"
 ITEM_PIPELINES = {
     'webcrawler.pipelines.DuplicatesPipeline': 300,
     'webcrawler.pipelines.MongoPipeline': 500,
+    'webcrawler.pipelines.InvertedIndexPipeline': 700,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)

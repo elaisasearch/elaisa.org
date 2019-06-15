@@ -25,6 +25,63 @@ class DuplicatesPipeline(object):
             self.titles_seen.add(item['url'])
             return item
 
+class InvertedIndexPipeline(object):
+    """
+    Adds the crawled document to the inverted index
+    """
+
+    def __init__(self, mongo_uri, mongo_db):
+        self.mongo_uri = mongo_uri
+        self.mongo_db = mongo_db
+
+    @classmethod
+    def from_crawler(cls, crawler):
+        return cls(
+            # Get the mongo db config from settings.py
+            mongo_uri=crawler.settings.get('MONGO_URI'),
+            mongo_db=crawler.settings.get('MONGO_DATABASE', 'items')
+        )
+
+    def parseMongo(self):
+        # Connect to mongo db
+        self.client = pymongo.MongoClient(self.mongo_uri)
+        self.db = self.client[self.mongo_db]
+        collection = self.db["news_en_EN"]
+
+        # Return the texts and words from the database objects
+        texts, words = {}, set()
+        for news in collection.find():
+            txt = news["text"].split()
+            words |= set(txt)
+            texts[str(news["_id"])] = txt
+        return texts, words
+
+    def storeIndexInMongo(self, finvindex):
+        # Connect to mongo db
+        self.client = pymongo.MongoClient(self.mongo_uri)
+        self.db = self.client[self.mongo_db]
+        collection = self.db["inverted_index_en_EN"]
+
+        # TODO: Append word to existing db items and don't create a new one for the same word
+        for word, docs in finvindex.items():
+            collection.insert_one({"word": word, "documents": list(docs)})
+
+    def main(self):
+        texts, words = self.parseMongo()
+
+        finvindex = {word: set((txt, wrdindx)
+                       for txt, wrds in texts.items()
+                       for wrdindx in (i for i, w in enumerate(wrds) if word == w)
+                       if word in wrds)
+             for word in words}
+
+        self.storeIndexInMongo(finvindex)
+
+    def process_item(self, item, spider):
+        self.main()
+        return item
+    
+
 
 class MongoPipeline(object):
     """
