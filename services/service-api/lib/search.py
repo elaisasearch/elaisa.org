@@ -43,7 +43,13 @@ def findDocuments(query, level, language):
     # TODO: Handle all terms of query
     terms = query.split()
     docs = getIdsFromWord(terms)
-    docIds = [id[0] for id in docs]
+
+    """
+    Only store a set of all IDs. If this is no set, there maybe will be several equal IDs
+    since the indexer stores the same ID again in the 'documents' list, if the indexed word
+    happens at several points.
+    """
+    docIds = set([id[0] for id in docs])
 
     documents = []
     for id in docIds:

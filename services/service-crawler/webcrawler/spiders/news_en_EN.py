@@ -16,6 +16,16 @@ class NewsSpider(scrapy.Spider):
     # The spider's name.
     name = "news_en_EN"
 
+    # The only wanted domains the spider should use for crawling.
+    allowed_domains = [
+        'theguardian.com', 
+        'bbc.com', 
+        'bbc.co.uk', 
+        'worldofwanderlust.com', 
+        'hannahgale.co.uk', 
+        'thewanderblogger.com' 
+    ]
+
     # The already seen urls
     seen_urls = []
 
@@ -31,24 +41,6 @@ class NewsSpider(scrapy.Spider):
         'https://www.thewanderblogger.com/' #expat livestyle blog
     ]
 
-    # The only wanted urls the spider should use for crawling.
-    trustedUrls = [
-        'https://www.theguardian.com/', #new
-        'https://www.firstnews.co.uk/', #news for children
-        'https://www.bbc.com/', 'https://www.bbc.co.uk/', #news
-        'http://www.worldofwanderlust.com/', #travel blog
-        'http://hannahgale.co.uk/', #livestyle blow
-        'https://www.thewanderblogger.com/' #expat livestyle blog
-    ]
-
-    def checkIfUrlIsTrusted(self, url, trustedUrls):
-        for tUrl in trustedUrls: 
-            matchUrl = re.match(r'{}.*'.format(tUrl), url)
-            if matchUrl:
-                return True
-            else: 
-                return False
-
     def parse(self, response):
         """
         Parses the start_urls and returns the data as dictionary
@@ -57,11 +49,8 @@ class NewsSpider(scrapy.Spider):
         """
         url = response.url
 
-        # check if current url is in trusted list
-        trusted = self.checkIfUrlIsTrusted(url, self.trustedUrls)
-
-        # check if the current url was already seen by the crawler and if it is trusted
-        if url not in self.seen_urls and trusted:
+        # check if the current url was already seen by the crawler
+        if url not in self.seen_urls:
 
             # append the current url to seen
             self.seen_urls.append(url)
