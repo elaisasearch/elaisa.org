@@ -7,8 +7,7 @@ import re
 from pymongo import MongoClient
 
 language_level = ["A1", "A2", "B1", "B2", "C1", "C2"]
-#language_level = ["B2"]
-# OLD :A1 = []A2 = []B1 = []B2 = []C1 = []C2 = []
+
 """
 In the end, it will contain the entire cefr words data.
 """
