@@ -19,11 +19,7 @@ class NewsSpider(scrapy.Spider):
     # The only wanted domains the spider should use for crawling.
     allowed_domains = [
         'theguardian.com', 
-        'bbc.com', 
-        'bbc.co.uk', 
-        'worldofwanderlust.com', 
-        'hannahgale.co.uk', 
-        'thewanderblogger.com' 
+        'dogonews.com'
     ]
 
     # The already seen urls
@@ -31,14 +27,8 @@ class NewsSpider(scrapy.Spider):
 
     # The urls with whom the spider starts crawling.
     start_urls = [
-        'https://www.theguardian.com/', #new
-        'https://www.firstnews.co.uk/', #news for children
-        'https://www.bbc.com/', 'https://www.bbc.co.uk/', #news
-        'https://www.bbc.co.uk/newsround', #news for children
-        'http://www.bbc.co.uk/learningenglish/english/', #BBC ESL site
-        'http://www.worldofwanderlust.com/', #travel blog
-        'http://hannahgale.co.uk/', #livestyle blow
-        'https://www.thewanderblogger.com/' #expat livestyle blog
+        'https://www.theguardian.com/music/2019/jun/15/madonna-becomes-latest-artist-to-call-out-instagram',
+        'https://www.dogonews.com/2019/5/30/all-white-giant-panda-caught-on-camera-for-the-first-time' 
     ]
 
     def parse(self, response):
