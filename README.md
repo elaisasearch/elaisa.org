@@ -13,7 +13,6 @@ Search engine depending on the language level
 3. Mongo DB should run on `localhost:27017`
 4. `cd services/service-cefr/en && python enHandler.py`
 5. `cd services/service-crawler && scrapy crawl news_en_EN`
-6. `cd services/service-index && python indexer.py`
 
 Now you can visit the application on `localhost:3000` and search for english documents.
 
@@ -43,11 +42,8 @@ This will show the content of the UI image in your terminal.
 1. Start UI and DB
 2. Navigate to the `service-crawler`
 3. Start the crawler with `scrapy crawl <spider>` 
-4. Index the crawled documents
-    1. Navigate to the `service-index`
-    2. Run `python indexer.py`
 
-Now the database is ready for production.
+Now the database is ready for production. You can run the `service-crawler` permament since it automatically inserts the crawled and indexed documents to the database. **But the crawler needs a lot of computer power as it does several tasks parallel (NLP, crawling, indexing).**
 
 ***Warning***
 *If you want to use your own builds, then you have to change the `docker-compose.yml` file and insert your `service-ui` container for the `ui` service!!*
