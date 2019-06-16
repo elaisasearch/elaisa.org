@@ -12,7 +12,7 @@ from json import JSONEncoder
 Load the global configurations for database connection and collections.
 """
 # TODO: Better but not the final solution
-with open('/Users/alex/Documents/coding/dasmemeteam/language-level-search-engine/bin/globals.json') as f: 
+with open("C:/Users/Jenny/OneDrive - Heinrich-Heine-Universitat Dusseldorf/SS 19/Information Retrieval/programmierstuff/MASTER/language-level-search-engine/bin/globals.json") as f: 
     GLOBALS = json.load(f)
 
 
