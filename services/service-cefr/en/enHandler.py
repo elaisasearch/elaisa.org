@@ -42,7 +42,7 @@ def extraction_from_pdf(level):
     return liste
 
 
-def listen_verarbeitung(complete_list):
+def list_processing(complete_list):
     """
     takes the complete_list and overwrites it with the sorted cefr word data.
     :complete_list: List
@@ -81,7 +81,7 @@ for level in language_level:
 """
 Overwrite the current complete list with the processed list data.
 """
-complete_list = listen_verarbeitung(complete_list)
+complete_list = list_processing(complete_list)
 
 
 client = MongoClient('localhost', 27017)
