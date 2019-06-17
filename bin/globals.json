@@ -14,7 +14,10 @@
             "user": [
                 "users",
                 "search_history"
-            ]
+            ],
+            "cefr": [
+                "vocab_english"
+            ] 
         }
     }
 }
