@@ -112,7 +112,7 @@ def level_dataFrame(text):
     # Serververbindung
     client = MongoClient(GLOBALS["mongo"]["client"])
     db = client[GLOBALS["mongo"]["database"]]
-    collection = db[GLOBALS["mongo"]["collections"]["cefr"]]
+    collection = db[GLOBALS["mongo"]["collections"]["cefr"][0]]
 
     # set_Tabelle mit   | Vokabel | Level |
     for w in set_text:
