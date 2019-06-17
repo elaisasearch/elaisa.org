@@ -124,9 +124,7 @@ class MongoPipeline(object):
         """
         Check the spider's name to store the current crawled webpage in the right mongo collection.
         """
-        if spider.name == "news_de_DE":
-            self.collection_name = 'news_de_DE'
-        elif spider.name == "news_en_EN":
+        if spider.name == "news_en_EN":
             self.collection_name = 'news_en_EN'
         else:
             self.collection_name = 'crawled_items'
