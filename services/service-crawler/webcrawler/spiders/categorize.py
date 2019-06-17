@@ -1,6 +1,17 @@
 import pandas as pd
 from pymongo import MongoClient
 import numpy as np
+import json
+import os
+
+"""
+Load the global configurations for database connection and collections.
+    - source: https://stackoverflow.com/questions/7165749/open-file-in-a-relative-location-in-python
+"""
+scriptDir = os.path.dirname(__file__) 
+relPath = '../../../../bin/globals.json'
+with open(os.path.join(scriptDir, relPath)) as f: 
+    GLOBALS = json.load(f)
 
 ###############################################################################
 # TODO
@@ -99,10 +110,10 @@ def level_dataFrame(text):
     set_text = set(text)
     set_word_table = pd.DataFrame(columns=['word', 'level'])
     # Serververbindung
-    client = MongoClient('localhost', 27017)
-    db = client['LanguageLevelSearchEngine']
-    collection = db['vocab_english']
-    
+    client = MongoClient(GLOBALS["mongo"]["client"])
+    db = client[GLOBALS["mongo"]["database"]]
+    collection = db[GLOBALS["mongo"]["collections"]["cefr"]]
+
     # set_Tabelle mit   | Vokabel | Level |
     for w in set_text:
         level = collection.find_one(
