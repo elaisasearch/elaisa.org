@@ -55,13 +55,15 @@ class NewsSpider(scrapy.Spider):
                         text, 
                         no_accents=True, 
                         no_punct=True, 
-                        lowercase=True, 
+                        lowercase=False, 
                         fix_unicode=True, 
                         no_emails=True, 
                         no_phone_numbers=True,
+                        no_numbers=True,
                         no_contractions=True
                     )
                     preprocessedText = textacy.preprocess.normalize_whitespace(preprocessedText)
+                    
                     # TODO: add lemmatizing for words"""
 
                     # categorize documents
@@ -81,6 +83,7 @@ class NewsSpider(scrapy.Spider):
                         'title': data.css('title::text').get(),
                         'abstract': data.css('strong::text').get(),
                         'text': preprocessedText,
+                        'original_text' : text,
                         'level': levelMetaPackage[0],
                         'level_meta' : {
                                 'difficulty' : levelMetaPackage[1],
@@ -91,7 +94,9 @@ class NewsSpider(scrapy.Spider):
                                 'C1' : levelMetaPackage[2]["C1"],
                                 'C2' : levelMetaPackage[2]["C2"],
                                 'unknown' : levelMetaPackage[2]["unknown"]
-                                }
+                                },
+                        'comment' : "added name_entity recognizition"
+                        
                     }
                 else:
                     continue

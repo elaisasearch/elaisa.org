@@ -1,6 +1,7 @@
 import pandas as pd
 from pymongo import MongoClient
 import numpy as np
+import textacy
 
 ###############################################################################
 # TODO
@@ -15,12 +16,26 @@ import numpy as np
 # Eingabe: String
 # Ausgabe: Liste [MainLevel, Difficulty] (some sort of language level)
 def categorizeText(input_text):
-    #TODO, abfangen von leeren Texten 
+    # abfangen von leeren Texten 
     if (not(isinstance(input_text, str)) or (len(input_text) <= 0)):
         dicti = {"unknown": "NOT OKAY!", "A1": "THIS!", "A2" : "IS!", "B1": "NOT!", "B2": "A!", "C1": "TEXT!", "C2": "NO!"}
         return ["NO!", "NO!", dicti]
         
     text = input_text.split()
+    
+    #####
+    doc = textacy.Doc(input_text)
+
+    result = list(textacy.extract.named_entities(doc, exclude_types='numeric'))
+    
+    for i in result:
+        text = list(filter(lambda a: a != i, text))
+        
+    print("\n\n\n\n\n\n\n\n", result, "\n\n\n\n\n\n\n\n")
+    print("\n\n\n\n\n\n\n\n", text, "\n\n\n\n\n\n\n\n")
+    #####
+    
+    
     text = [item.lower() for item in text]
 
     # Dict-Counter, der Worte
@@ -58,6 +73,7 @@ def categorizeText(input_text):
     max_level = np.max(levels[counts > n])
     
     # TODO : Satzlänge!
+    
     #Einstufung des Schwierigkeitgrades der unbekannten Worte, Grenze: m
     # wenn Worte, die länger als m sind, werden als schwer eingestuft. dann einfach, wovon es mehr gibt
     count_easy = 0
