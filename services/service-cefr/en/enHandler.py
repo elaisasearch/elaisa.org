@@ -15,7 +15,7 @@ In the end, it will contain the entire cefr words data.
 complete_list = []
 
 
-def extraction_from_pdf(level):
+def extractionFromPdf(level):
     """
     Takes the level from the language_level list and extracts all vocabularies from the cefr files. Then it stores the results in new text files.
     :level: String
@@ -42,7 +42,7 @@ def extraction_from_pdf(level):
     return liste
 
 
-def listen_verarbeitung(complete_list):
+def processList(complete_list):
     """
     takes the complete_list and overwrites it with the sorted cefr word data.
     :complete_list: List
@@ -76,12 +76,12 @@ def listen_verarbeitung(complete_list):
 Add the extracted cefr words to the complete_list, for every language level in the language_level list.
 """    
 for level in language_level:
-    complete_list.append(extraction_from_pdf(level))
+    complete_list.append(extractionFromPdf(level))
 
 """
 Overwrite the current complete list with the processed list data.
 """
-complete_list = listen_verarbeitung(complete_list)
+complete_list = processList(complete_list)
 
 
 client = MongoClient('localhost', 27017)
