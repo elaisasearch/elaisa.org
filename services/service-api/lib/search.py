@@ -6,13 +6,15 @@ from pymongo import MongoClient
 import json
 from bson.objectid import ObjectId
 from json import JSONEncoder
-# from api import GLOBALS
+import os
 
 """
 Load the global configurations for database connection and collections.
+    - source: https://stackoverflow.com/questions/7165749/open-file-in-a-relative-location-in-python
 """
-# TODO: Better but not the final solution
-with open('/Users/alex/Documents/coding/dasmemeteam/language-level-search-engine/bin/globals.json') as f: 
+scriptDir = os.path.dirname(__file__) 
+relPath = '../../../bin/globals.json'
+with open(os.path.join(scriptDir, relPath)) as f: 
     GLOBALS = json.load(f)
 
 
