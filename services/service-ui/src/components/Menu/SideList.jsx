@@ -3,7 +3,6 @@ import { List, Divider, ListItem, ListItemIcon, ListItemText, Collapse, ListSubh
 import { Share, ExpandLess, ExpandMore, Home } from '@material-ui/icons/';
 import styles from '../../assets/jss/MenuStyle';
 import MenuHelper from './MenuHelper';
-import Switch from './Switch';
 import { Link } from 'react-router-dom'
 
 // import language flags for menu
@@ -67,12 +66,7 @@ class SideList extends Component {
                             <MenuHelper href="https://sprachtest.de/einstufungstest-spanisch" flag={spanish} style={styles.nested} text="Español" />
                             <Divider />
                         </List>
-                    </Collapse>
-                    {/* Home */}
-                    <ListItem>
-                        <Switch />
-                        <ListItemText inset primary="Darkmode" />
-                    </ListItem>
+                    </Collapse>        
                 </List>
             </div>
         );
