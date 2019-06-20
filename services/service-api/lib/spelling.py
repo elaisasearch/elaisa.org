@@ -8,6 +8,7 @@ from textblob import TextBlob, Word
 def checkSpelling(text):
     """
     Checks if the text is spelled correctly. If not, it returns the probable right text
+        - source: https://textblob.readthedocs.io/en/dev/quickstart.html#spelling-correction
     :text: String
     """
     word = Word(text)
