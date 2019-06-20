@@ -9,6 +9,7 @@ import MemeTeam from '../components/MemeTeam/MemeTeam';
 import NotFound from '../components/NotFound/NotFound';
 import { connect } from 'react-redux';
 
+
 /**
  * Results view class.
  * @param {object} props the given properties.
@@ -26,7 +27,8 @@ class Results extends React.Component {
     waiting: true,
     searchValue: this.props.location.state.searchValue,
     language: this.props.location.state.language,
-    level: this.props.location.state.level
+    level: this.props.location.state.level,
+    correct_spelled_query: ""
   };
 
   /**
@@ -55,7 +57,7 @@ class Results extends React.Component {
         "Accept": "application/json"
       },
       params: {
-        query: searchValue,
+        query: searchValue.toLocaleLowerCase(),
         level: level,
         language: language,
         email: this.props.email,
@@ -63,28 +65,40 @@ class Results extends React.Component {
       }
     })
     .then(response => {
-      // handle success
+      if (response.data.correct_query) {
+        this.setState({
+          resultDocs: [],
+          resultDocsLength: 0,
+          waiting: false,
+          error: true,
+          searchValue: searchValue,
+          language: language,
+          level: level,
+          correct_spelled_query: response.data.correct_query
+        });
+      } else if (response.data.documents) {
+        // get the length of result docs
+        let length = 0
+        for (let d in JSON.parse(response.data.documents)) {
+          length++;
+        }
 
-      // get the length of result docs
-      let length = 0
-      for (let d in JSON.parse(response.data.documents)) {
-        length++;
+        console.log(JSON.parse(response.data.documents)[0].level_meta)
+
+        this.setState({
+          resultDocs: JSON.parse(response.data.documents),
+          resultDocsLength: length,
+          wiki_url: response.data.wikipedia.url,
+          wiki_title: response.data.wikipedia.title,
+          wiki_summary: response.data.wikipedia.summary,
+          waiting: false,
+          error: false,
+          searchValue: searchValue,
+          language: language,
+          level: level,
+          correct_spelled_query: ""
+        });
       }
-
-      console.log(JSON.parse(response.data.documents)[0].level_meta)
-
-      this.setState({
-        resultDocs: JSON.parse(response.data.documents),
-        resultDocsLength: length,
-        wiki_url: response.data.wikipedia.url,
-        wiki_title: response.data.wikipedia.title,
-        wiki_summary: response.data.wikipedia.summary,
-        waiting: false,
-        error: false,
-        searchValue: searchValue,
-        language: language,
-        level: level
-      });
     })
     .catch(error => {
       console.log("API Error: ", error)
@@ -119,6 +133,13 @@ class Results extends React.Component {
   }
 
   /**
+   * Repeats the search with correct searchValue if the user clicks the button on the NotFound view.
+  */
+  onClickSpellCheckForNewSearch() {
+    this.searchResults(this.state.correct_spelled_query, this.state.level, this.state.language)
+  }
+
+  /**
    * Returns Results view if API request is finished.
    * @returns {JSX} Progress bar or statistics components.
   */
@@ -144,7 +165,7 @@ class Results extends React.Component {
       );
     } else {
       // Show the sad dog centered if there are no results
-      return <NotFound searchValue={this.state.searchValue} language={this.state.language} level={this.state.level} />
+      return <NotFound searchValue={this.state.searchValue} language={this.state.language} level={this.state.level} correctSpelledQuery={this.state.correct_spelled_query} onClickSpellCheck={this.onClickSpellCheckForNewSearch.bind(this)}/>
     }
   }
 
