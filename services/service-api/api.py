@@ -8,6 +8,7 @@ from bottle import Bottle, request, response, run
 from lib.search import findDocuments, getIdsFromWord
 from lib.wikipedia import getWikiEntry
 from lib.user import createUser, getSearchHistoryForUser, handlePasswordChange, loginUser, writeSearchDataIntoDatabase
+from lib.spelling import checkSpelling
 
 app = Bottle()
 
@@ -51,10 +52,21 @@ def find():
     if loggedIn == "true":
         writeSearchDataIntoDatabase(query, level, language, email)
 
-    return {
-        "wikipedia": getWikiEntry(query, language),
-        "documents": findDocuments(query, level, language)
-    }
+    """
+    Check if query is spelled correctly. The result will be a string and if the string 
+    don't equals the query, the query was spelled wrong.
+    """
+    spellCheck = checkSpelling(query)
+
+    if spellCheck == query:
+        return {
+            "wikipedia": getWikiEntry(query, language),
+            "documents": findDocuments(query, level, language)
+        }
+    else: 
+        return {
+            "correct_query": str(spellCheck)
+        }
 
 
 @app.route('/signup', method="POST")
