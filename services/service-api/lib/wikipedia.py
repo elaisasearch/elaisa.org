@@ -12,11 +12,18 @@ def getWikiEntry(term, language):
     :return: Dictionary
     """
 
-    wikipedia.set_lang(language)
-    page = wikipedia.page(term)
-    
-    return {
-        "url": page.url,
-        "title": page.title,
-        "summary": page.summary
-    }
+    try:
+        wikipedia.set_lang(language)
+        page = wikipedia.page(term)
+        
+        return {
+            "url": page.url,
+            "title": page.title,
+            "summary": page.summary
+        }
+    except:
+        return {
+            "url": "",
+            "title": "",
+            "summary": ""
+        }
