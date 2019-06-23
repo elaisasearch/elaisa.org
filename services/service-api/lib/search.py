@@ -76,4 +76,7 @@ def getIdsFromWord(terms):
     objdb = db[GLOBALS["mongo"]["collections"]
                ["inverted_index"][0]].find({'word': terms[0]}).skip(0)
     entries = [entry for entry in objdb]
-    return entries[0]["documents"]
+    try:
+        return entries[0]["documents"]
+    except:
+        return []
