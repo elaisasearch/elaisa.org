@@ -3,7 +3,7 @@ Search engine depending on the language level
 
 <img src="services/service-ui/src/assets/img/logo.png" alt="Logo" width="250"/>
 
-**[Watch the Demo Video](https://www.youtube.com/watch?v=p2H1hCRi_5Y&feature=youtu.be)**
+**[Watch the Demo Video](https://youtu.be/YIEMu38yRok)**
 
 # Start App without Docker
 
