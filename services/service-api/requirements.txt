@@ -2,4 +2,4 @@ pymongo
 bottle
 wikipedia
 bcrypt
-textblob=0.15.3
+textblob==0.15.3
