@@ -58,7 +58,6 @@ function EnhancedTable(props) {
   const [orderBy, setOrderBy] = React.useState('calories');
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
-  const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
   // cerate rows from api data
@@ -126,7 +125,7 @@ function EnhancedTable(props) {
           <Table
             style={useStyles.table}
             aria-labelledby="tableTitle"
-            size={dense ? 'small' : 'medium'}
+            size='small'
           >
             <EnhancedTableHead
               numSelected={selected.length}
