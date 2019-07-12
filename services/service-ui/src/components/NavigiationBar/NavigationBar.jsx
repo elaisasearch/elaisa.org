@@ -69,7 +69,7 @@ class NavigationBar extends React.Component {
   renderSearchBar = (props) => {
     if (props.results) {
       return <div style={styles.searchBar}>
-        <img src={elaisaText} style={styles.elaisaText} alt="Elaisa Search Engine Logo"></img>
+        <Button href="/" style={styles.elaisaButton}><img src={elaisaText} style={styles.elaisaText} alt="Elaisa Search Engine Logo"></img></Button>
         <SearchBarNavigationBar value={props.values[0]} onChange={e => this.setState({ value: e })} onKeyDown={this.keyPress} />
         <DropDownMenu value={this.state.language} desc="Result Language" items={["Deutsch", "English", "Español"]} values={["de", "en", "es"]} onChange={e => this.setState({ language: e })} />
         <DropDownMenu value={this.state.level} desc="Language Level" items={["A1", "A2", "B1", "B2", "C1", "C2"]} values={["A1", "A2", "B1", "B2", "C1", "C2"]} onChange={e => this.setState({ level: e })} />
