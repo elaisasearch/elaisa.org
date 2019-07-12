@@ -20,7 +20,7 @@ const Page404 = () => (
                 Sorry, but I can't find this page.
           </Typography>
             <div style={styles.gif}>
-                <iframe src="https://giphy.com/embed/6uGhT1O4sxpi8" style={styles.iFrame} frameBorder="0"></iframe>
+                <iframe src="https://giphy.com/embed/6uGhT1O4sxpi8" style={styles.iFrame} frameBorder="0" title="Not found"></iframe>
             </div>
         </div>
     </div>
