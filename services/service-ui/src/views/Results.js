@@ -79,11 +79,7 @@ class Results extends React.Component {
       } else if (response.data.documents) {
         // get the length of result docs
         let length = 0
-        for (let d in JSON.parse(response.data.documents)) {
-          length++;
-        }
-
-        console.log(JSON.parse(response.data.documents)[0].level_meta)
+        JSON.parse(response.data.documents).forEach(() => length++)
 
         this.setState({
           resultDocs: JSON.parse(response.data.documents),
