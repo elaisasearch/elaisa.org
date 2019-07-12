@@ -1,23 +1,13 @@
 import React, { Component } from 'react';
 import { List, Divider, ListItem, ListItemIcon, ListItemText, Collapse, ListSubheader } from '@material-ui/core/';
-import { Share, ExpandLess, ExpandMore, Home } from '@material-ui/icons/';
+import { Share, ExpandLess, ExpandMore } from '@material-ui/icons/';
 import styles from '../../assets/jss/MenuStyle';
 import MenuHelper from './MenuHelper';
-import { Link } from 'react-router-dom'
 
 // import language flags for menu
 import german from '../../assets/img/menu_flags/german.jpg';
 import english from '../../assets/img/menu_flags/english.jpg';
 import spanish from '../../assets/img/menu_flags/spanish.jpg';
-
-/**
- * Link Item for Menu to change view.
- * @param {object} props the given properties.
- * @returns {JSX} the button with 'a' href component.
-*/
-const ListItemLink = (props) => {
-    return <ListItem button component={Link} {...props} />;
-}
 
 class SideList extends Component {
 
@@ -44,13 +34,6 @@ class SideList extends Component {
                     style={{maxWidth: "25vh"}}
                     subheader={<ListSubheader component="nav">Menu</ListSubheader>}
                 >
-                    {/* Home */}
-                    <ListItemLink to="/" >
-                        <ListItemIcon>
-                            <Home />
-                        </ListItemIcon>
-                        <ListItemText inset primary="Home" />
-                    </ListItemLink>
                     {/* Level of Speaking Tests MENU */}
                     <ListItem button onClick={this.handleClick}>
                         <ListItemIcon>
