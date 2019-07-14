@@ -21,12 +21,12 @@ const App = (props) => {
   const { loggedIn, email, firstname, lastname } = props;
 
   // show error if user opens app on mobile
-  if (isMobile) {
-    return <div className="mobile">
-      <img id="logo" src={logo} className="mobile-logo" alt="Elaisa Search Engine Logo"></img>
-      <h3>This content is unavailable on mobile. Please open Elaisa on your computer.</h3>
-    </div>
-  }
+  // if (isMobile) {
+  //   return <div className="mobile">
+  //     <img id="logo" src={logo} className="mobile-logo" alt="Elaisa Search Engine Logo"></img>
+  //     <h3>This content is unavailable on mobile. Please open Elaisa on your computer.</h3>
+  //   </div>
+  // }
 
   return (
     <div className="root">
