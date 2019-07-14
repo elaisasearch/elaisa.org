@@ -7,6 +7,7 @@ import DropDownMenu from '../DropDownMenu/DropDownMenu';
 
 // styles 
 import styles from '../../assets/jss/SearchBarStyle';
+import '../../assets/css/SearchBarStyleCSS.css';
 import { Button } from '@material-ui/core';
 
 /**
@@ -84,7 +85,7 @@ class SearchBar extends React.Component {
     const { classes } = this.props;
     return (
       <div>
-        <div style={styles.root}>
+        <div className="seachBarRoot">
           <div style={styles.pickers}>
             <DropDownMenu desc="Result Language" items={["Deutsch", "English", "Español"]} values={["de","en","es"]} onChange={e => this.setState({ language: e })} />
             <DropDownMenu desc="Language Level" items={["A1", "A2", "B1", "B2", "C1", "C2"]} values={["A1", "A2", "B1", "B2", "C1", "C2"]} onChange={e => this.setState({ level: e })} />
@@ -92,7 +93,8 @@ class SearchBar extends React.Component {
           <TextField
             onKeyDown={this.keyPress}
             onChange={e => this.setState({ value: e.target.value })}
-            style={styles.margin}
+            //style={styles.margin}
+            className="bar"
             InputLabelProps={{
               classes: {
                 root: classes.cssLabel,

@@ -1,9 +1,6 @@
 const styles = {
     root: {
     },
-    margin: {
-      width: "50%",
-    },
     cssLabel: {
       '&$cssFocused': {
         color: "grey",
