@@ -7,8 +7,6 @@ import '../assets/css/AppStyle.css'
 import logo from '../assets/img/logo.png';
 // redux 
 import { connect } from 'react-redux';
-// device detection
-import { isMobile } from 'react-device-detect';
 
 /**
  * This is the search engines main function.
@@ -19,14 +17,6 @@ const App = (props) => {
 
   // redux state
   const { loggedIn, email, firstname, lastname } = props;
-
-  // show error if user opens app on mobile
-  // if (isMobile) {
-  //   return <div className="mobile">
-  //     <img id="logo" src={logo} className="mobile-logo" alt="Elaisa Search Engine Logo"></img>
-  //     <h3>This content is unavailable on mobile. Please open Elaisa on your computer.</h3>
-  //   </div>
-  // }
 
   return (
     <div className="root">
