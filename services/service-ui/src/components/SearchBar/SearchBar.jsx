@@ -118,7 +118,7 @@ class SearchBar extends React.Component {
           justifyContent: "center",
           alignItems: "center"
         }}>
-          <Button id="searchButton" style={styles.searchButton} variant="contained" onClick={this.searchButtonPressed}>Search</Button>
+          <Button id="searchButton" variant="contained" onClick={this.searchButtonPressed}>Search</Button>
         </div>
 
       </div>

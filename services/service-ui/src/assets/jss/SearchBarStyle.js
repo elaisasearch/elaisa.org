@@ -17,9 +17,6 @@ const styles = {
       display: "flex",
       justifyContent: "center",
       marginTop: "5%"
-    },
-    searchButton: {
-      marginTop:"1%"
     }
 };
 
