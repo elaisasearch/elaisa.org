@@ -1,0 +1,28 @@
+.resultDocsLength {
+    margin-left: 2vh;
+    margin-top: 2vh;
+}
+
+.resultListRoot {
+    margin-right: 10vh;
+    margin-left: 10vh;
+}
+
+
+/* iPhone X*/
+@media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 812px)
+and (-webkit-device-pixel-ratio : 3) {
+    .resultDocsLength {
+        align-items: center;
+        margin-bottom: 10%;
+    }
+    
+    .resultListRoot {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        margin-top: 10%;
+    }
+}
