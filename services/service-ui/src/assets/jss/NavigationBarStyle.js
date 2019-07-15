@@ -14,11 +14,6 @@ const styles = {
       display: "flex", 
       flexGrow: 1
     },
-    searchBar: {
-      display: "flex", 
-      flexGrow: 1,
-      alignItems: "center"
-    },
     defaultContent: {
       display: "flex",
       flex: 1,

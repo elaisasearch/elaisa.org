@@ -7,6 +7,8 @@ import { isMobile } from "react-device-detect";
 
 //import styles
 import styles from '../../assets/jss/NavigationBarStyle';
+import '../../assets/css/NavigationBarStyle.css';
+
 
 import LeftMenu from '../Menu/LeftMenu';
 import SearchBarNavigationBar from '../SearchBar/SearchBarNavigationBar';
@@ -70,11 +72,11 @@ class NavigationBar extends React.Component {
   renderSearchBar = (props) => {
     if (props.results) {
       if (isMobile) {
-        return <div style={styles.searchBar}>
+        return <div className="searchBar">
           <Button href="/" style={styles.elaisaButton}><img src={logo} style={styles.elaisaText} alt="Elaisa Search Engine Logo"></img></Button>
         </div>
       } else {
-        return <div style={styles.searchBar}>
+        return <div className="searchBar">
           <Button href="/" style={styles.elaisaButton}><img src={logo} style={styles.elaisaText} alt="Elaisa Search Engine Logo"></img></Button>
           <SearchBarNavigationBar value={props.values[0]} onChange={e => this.setState({ value: e })} onKeyDown={this.keyPress} />
           <DropDownMenu value={this.state.language} desc="Result Language" items={["Deutsch", "English", "Español"]} values={["de", "en", "es"]} onChange={e => this.setState({ language: e })} />
