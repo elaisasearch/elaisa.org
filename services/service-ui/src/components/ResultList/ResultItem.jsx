@@ -3,7 +3,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { Typography } from '@material-ui/core';
 import moment from 'moment';
-import styles from '../../assets/jss/ResultItemStyle'
+import '../../assets/css/ResultItemStyle.css'
 import LevelPanel from './LevelPanel';
 
 /**
@@ -20,27 +20,27 @@ const ResultItem = (props) => {
      * @return {JSX} title with link to article.
     */
     const Title = () => {
-        return <a href={website} style={styles.title}>{title}</a>
+        return <a href={website}>{title}</a>
     }
 
     return (
-        <ListItem style={styles}>
-            <div style={styles.levelDiv}>{level}</div>
+        <ListItem id="listItemRoot">
+            <div id="levelDiv">{level}</div>
             <div>
                 <Title />
                 <ListItemText
-                    style={styles.listItem}
+                    id="listItem"
                     secondary={
                         <React.Fragment>
-                            <Typography component="span" style={styles.date}>
+                            <Typography component="span" id="date">
                                 {/* TODO: only shows the english date */}
                                 {moment(date).locale(language).format('LLLL') === "Invalid date" ? "" : moment(date).locale(language).format('LLL')}
                             </Typography>
-                            <Typography component="span" style={styles.subtitle}>
+                            <Typography component="span" id="subtitle">
                                 {website}
                             </Typography>
                             {desc}
-                            <Typography component="span" style={styles.keywords}>
+                            <Typography component="span" id="keywords">
                                 {keywords}
                             </Typography>
                         </React.Fragment>
