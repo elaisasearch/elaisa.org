@@ -4,7 +4,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import styles from '../../assets/jss/WikiCardTemplateStyle';
+import '../../assets/css/WikiCardTemplateStyle.css';
 
 /**
  * The Wikipedia Card Template component.
@@ -15,9 +15,9 @@ const  WikiCardTemplate = (props) => {
   const { url, title, summary } = props;
 
   return (
-    <Card style={styles.card}>
+    <Card id="card">
       <CardContent>
-        <Typography style={styles.title} color="textSecondary" gutterBottom>
+        <Typography id="title" color="textSecondary" gutterBottom>
           Wikipedia
         </Typography>
         <Typography variant="h5" component="h2">
