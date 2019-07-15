@@ -150,7 +150,7 @@ class Results extends React.Component {
     } else if (this.state.resultDocsLength !== 0) {
       // Otherwise show the results
       return (
-        <div style={{ display: "flex" }}>
+        <div className="resultList">
           <ResultList
             searchValue={this.state.searchValue}
             resultDocsLength={this.state.resultDocsLength}
