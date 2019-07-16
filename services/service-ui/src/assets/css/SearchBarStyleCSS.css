@@ -8,6 +8,41 @@
     margin-top: 1%;
 }
 
+/* iPhone 5/5s */ 
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 568px) 
+and (orientation : portrait) {
+    .seachBarRoot {
+        margin-top: 10%;
+    }
+    
+    .bar {
+        width: 90%;
+    }
+
+    #searchButton {
+        margin-top: 10%;
+    }
+}
+
+/* iPhone 6/7/8 */ 
+@media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 667px) {
+    .seachBarRoot {
+        margin-top: 10%;
+    }
+    
+    .bar {
+        width: 90%;
+    }
+
+    #searchButton {
+        margin-top: 10%;
+    }
+}
+
 /* iPhone X*/
 @media only screen 
 and (min-device-width : 375px) 

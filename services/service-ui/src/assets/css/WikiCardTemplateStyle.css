@@ -21,6 +21,37 @@
     margin-bottom: 12;
 }
 
+/* iPhone 5/5s */ 
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 568px) 
+and (orientation : portrait) {
+    #card {
+        box-shadow: none !important;
+        min-width: 100%;
+        max-width: 100%;
+        max-height: 100%;
+        margin-top: 5%;
+        margin-right: auto;
+        margin-left: auto;
+    } 
+}
+
+/* iPhone 6/7/8 */ 
+@media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 667px) {
+    #card {
+        box-shadow: none !important;
+        min-width: 100%;
+        max-width: 100%;
+        max-height: 100%;
+        margin-top: 5%;
+        margin-right: auto;
+        margin-left: auto;
+    }
+}
+
 /* iPhone X*/
 @media only screen 
 and (min-device-width : 375px) 

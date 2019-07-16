@@ -22,6 +22,25 @@
     background-color: rgb(217, 217, 217);
 }
 
+/* iPhone 5/5s */ 
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 568px) 
+and (orientation : portrait) {
+    .footer {
+        display: none;
+   } 
+}
+
+/* iPhone 6/7/8 */ 
+@media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 667px) {
+    .footer {
+         display: none;
+    } 
+}
+
 /* iPhone X*/
 @media only screen 
 and (min-device-width : 375px) 

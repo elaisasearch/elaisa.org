@@ -28,6 +28,35 @@
     font-size: 12px
 }
 
+/* iPhone 5/5s */ 
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 568px) 
+and (orientation : portrait) {
+    #listItemRoot {
+        display: flex;
+        margin-bottom: 5%;
+    }
+
+    #levelDiv {
+        display: none;
+    }
+}
+
+/* iPhone 6/7/8 */ 
+@media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 667px) {
+    #listItemRoot {
+        display: flex;
+        margin-bottom: 5%;
+    }
+
+    #levelDiv {
+        display: none;
+    }
+}
+
 /* iPhone X*/
 @media only screen 
 and (min-device-width : 375px) 

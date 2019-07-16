@@ -8,6 +8,40 @@
     margin-left: 10vh;
 }
 
+/* iPhone 5/5s */ 
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 568px) 
+and (orientation : portrait) {
+    .resultDocsLength {
+        align-items: center;
+        margin-bottom: 10%;
+    }
+    
+    .resultListRoot {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        margin-top: 10%;
+    }
+}
+
+/* iPhone 6/7/8 */ 
+@media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 667px) {
+    .resultDocsLength {
+        align-items: center;
+        margin-bottom: 10%;
+    }
+    
+    .resultListRoot {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        margin-top: 10%;
+    }
+}
 
 /* iPhone X*/
 @media only screen 

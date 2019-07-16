@@ -8,6 +8,28 @@
   display: flex;
 }
 
+/* iPhone 5/5s */ 
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 568px) 
+and (orientation : portrait) {
+  .resultList {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+}
+
+/* iPhone 6/7/8 */ 
+@media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 667px) {
+  .resultList {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+}
 
 /* iPhone X*/
 @media only screen 
