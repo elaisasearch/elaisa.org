@@ -78,3 +78,21 @@ and (orientation : portrait) {
         margin-top: 10%;
     }
 }
+
+/* iPad Hochformat */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : portrait) {
+    .seachBarRoot {
+        margin-top: 10%;
+    }
+    
+    .bar {
+        width: 81%;
+    }
+
+    #searchButton {
+        margin-top: 5%;
+    }
+}

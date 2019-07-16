@@ -42,3 +42,15 @@ and (-webkit-device-pixel-ratio : 3) {
         align-items: center;
     }
 }
+
+/* iPad Hochformat */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : portrait) {
+  .resultList {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+}
