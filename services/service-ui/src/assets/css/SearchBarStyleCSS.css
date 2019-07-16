@@ -60,3 +60,21 @@ and (-webkit-device-pixel-ratio : 3) {
         margin-top: 10%;
     }
 }
+
+/* iPhone 6/7/8 Plus */
+@media only screen 
+and (min-device-width : 414px) 
+and (max-device-width : 736px) 
+and (orientation : portrait) {
+    .seachBarRoot {
+        margin-top: 10%;
+    }
+    
+    .bar {
+        width: 81%;
+    }
+
+    #searchButton {
+        margin-top: 10%;
+    }
+}
