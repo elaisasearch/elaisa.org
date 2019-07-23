@@ -1,4 +1,4 @@
-# language-level-search-engine
+# Elaisa - A language level search engine
 Search engine depending on the language level
 
 <img src="services/service-ui/src/assets/img/logo.png" alt="Logo" width="250"/>
