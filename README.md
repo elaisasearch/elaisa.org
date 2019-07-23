@@ -5,6 +5,16 @@ Search engine depending on the language level
 
 **[Watch the Demo Video](https://youtu.be/YIEMu38yRok)**
 
+## Sample Views
+
+**Home Screen**
+
+<img src="./docs/pics/home-content.png" alt="Logo" width="100%"/>
+
+**Results Screen**
+
+<img src="./docs/pics/results.png" alt="Logo" width="100%"/>
+
 # Start App without Docker
 
 1. `cd services/service-ui/ && yarn && yarn start`
