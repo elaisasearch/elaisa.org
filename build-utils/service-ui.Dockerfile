@@ -1,24 +1,20 @@
 # Dockerfile for service-ui
 
-FROM node:10.15.3
-MAINTAINER Alexander Teusz <teusz.alexander@gmail.com>
+# stage 1: build our react app
+FROM node:dubnium-alpine as builder
 
-# Create app directory
-RUN mkdir -p /app
+COPY services/service-ui/package*.json /app/
 WORKDIR /app
 
-# Copy package.json into workdir
-COPY services/service-ui/package*.json /app
-
-# Install all dependencies
 RUN yarn install
 
-# Only copy necessary folders
-COPY services/service-ui/src /app/src
-COPY services/service-ui/public /app/public
-
-
-# Build the application
+COPY services/service-ui/ /app
 RUN yarn build
 
-CMD [ "yarn", "start" ]
+
+# stage 2: build an image with NGINX that we will use in production
+FROM nginx:stable-alpine
+
+WORKDIR /app
+
+COPY --from=builder /app/build /usr/share/nginx/html
