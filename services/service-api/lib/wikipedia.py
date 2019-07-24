@@ -23,7 +23,7 @@ def getWikiEntry(term, language):
         }
     except:
         return {
-            "url": page.url,
-            "title": page.title,
-            "summary": page.summary
+            "url": "",
+            "title": "",
+            "summary": ""
         }
