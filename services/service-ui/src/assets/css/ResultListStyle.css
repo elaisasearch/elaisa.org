@@ -34,6 +34,15 @@ and (orientation : portrait) {
         flex-direction: column;
         margin-top: 10%;
     }
+
+    #pagination {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 2vh;
+        margin-top: 10vh;
+        position: inherit;
+    }
 }
 
 /* iPhone 6/7/8 */ 
@@ -50,6 +59,15 @@ and (max-device-width : 667px) {
         display: flex;
         flex-direction: column;
         margin-top: 10%;
+    }
+
+    #pagination {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 2vh;
+        margin-top: 10vh;
+        position: inherit;
     }
 }
 
@@ -69,6 +87,15 @@ and (-webkit-device-pixel-ratio : 3) {
         flex-direction: column;
         margin-top: 10%;
     }
+
+    #pagination {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 2vh;
+        margin-top: 10vh;
+        position: inherit;
+    }
 }
 
 /* iPad Hochformat */
@@ -86,5 +113,14 @@ and (orientation : portrait) {
         display: flex;
         flex-direction: column;
         margin-top: 10%;
+    }
+
+    #pagination {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 2vh;
+        margin-top: 10vh;
+        position: inherit;
     }
 }
