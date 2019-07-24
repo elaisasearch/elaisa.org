@@ -4,11 +4,11 @@ import ResultList from "../components/ResultList/ResultList";
 import axios from "axios";
 import WikiCard from "../components/WikiCard/WikiCard";
 import { CircularProgress } from "@material-ui/core";
-import  "../assets/css/ResultsStyle.css";
+import "../assets/css/ResultsStyle.css";
 import MemeTeam from '../components/MemeTeam/MemeTeam';
 import NotFound from '../components/NotFound/NotFound';
-import { connect } from 'react-redux';
-
+import { connect } from 'react-redux';
+import Pagination from '../components/ResultList/Pagination';
 
 /**
  * Results view class.
@@ -49,23 +49,56 @@ class Results extends React.Component {
     this.setState({
       waiting: true
     });
-    
+
     axios
-    .get(`http://localhost:8080/find`, {
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      },
-      params: {
-        query: searchValue.toLocaleLowerCase(),
-        level: level,
-        language: language,
-        email: this.props.email,
-        loggedin: this.props.loggedIn
-      }
-    })
-    .then(response => {
-      if (response.data.correct_query) {
+      .get(`http://localhost:8080/find`, {
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        params: {
+          query: searchValue.toLocaleLowerCase(),
+          level: level,
+          language: language,
+          email: this.props.email,
+          loggedin: this.props.loggedIn
+        }
+      })
+      .then(response => {
+        if (response.data.correct_query) {
+          this.setState({
+            resultDocs: [],
+            resultDocsLength: 0,
+            waiting: false,
+            error: true,
+            searchValue: searchValue,
+            language: language,
+            level: level,
+            correct_spelled_query: response.data.correct_query
+          });
+        } else if (response.data.documents) {
+          // get the length of result docs
+          let length = 0
+          JSON.parse(response.data.documents).forEach(() => length++)
+
+          this.setState({
+            resultDocs: JSON.parse(response.data.documents),
+            resultDocsLength: length,
+            wiki_url: response.data.wikipedia.url,
+            wiki_title: response.data.wikipedia.title,
+            wiki_summary: response.data.wikipedia.summary,
+            waiting: false,
+            error: false,
+            searchValue: searchValue,
+            language: language,
+            level: level,
+            correct_spelled_query: ""
+          });
+        }
+      })
+      .catch(error => {
+        console.log("API Error: ", error)
+        // handle error
         this.setState({
           resultDocs: [],
           resultDocsLength: 0,
@@ -73,42 +106,9 @@ class Results extends React.Component {
           error: true,
           searchValue: searchValue,
           language: language,
-          level: level,
-          correct_spelled_query: response.data.correct_query
+          level: level
         });
-      } else if (response.data.documents) {
-        // get the length of result docs
-        let length = 0
-        JSON.parse(response.data.documents).forEach(() => length++)
-
-        this.setState({
-          resultDocs: JSON.parse(response.data.documents),
-          resultDocsLength: length,
-          wiki_url: response.data.wikipedia.url,
-          wiki_title: response.data.wikipedia.title,
-          wiki_summary: response.data.wikipedia.summary,
-          waiting: false,
-          error: false,
-          searchValue: searchValue,
-          language: language,
-          level: level,
-          correct_spelled_query: ""
-        });
-      }
-    })
-    .catch(error => {
-      console.log("API Error: ", error)
-      // handle error
-      this.setState({
-        resultDocs: [],
-        resultDocsLength: 0,
-        waiting: false,
-        error: true,
-        searchValue: searchValue,
-        language: language,
-        level: level
       });
-    });
   }
 
   /**
@@ -142,11 +142,11 @@ class Results extends React.Component {
   renderResults() {
     // while service is fetching data, show the progress circle
     if (this.state.waiting) {
-       return <div className="progress"><CircularProgress style={{color: "grey"}}/></div>
+      return <div className="progress"><CircularProgress style={{ color: "grey" }} /></div>
     }
     // If search Value equals "memeteam" show team picture
     if (this.state.searchValue === "memeteam") {
-      return  <MemeTeam />;
+      return <MemeTeam />;
     } else if (this.state.resultDocsLength !== 0) {
       // Otherwise show the results
       return (
@@ -157,11 +157,12 @@ class Results extends React.Component {
             resultDocs={this.state.resultDocs}
           />
           {this.renderWiki(this.state.error)}
+          <Pagination resultLength={this.state.resultDocsLength} />
         </div>
       );
     } else {
       // Show the sad dog centered if there are no results
-      return <NotFound searchValue={this.state.searchValue} language={this.state.language} level={this.state.level} correctSpelledQuery={this.state.correct_spelled_query} onClickSpellCheck={this.onClickSpellCheckForNewSearch.bind(this)}/>
+      return <NotFound searchValue={this.state.searchValue} language={this.state.language} level={this.state.level} correctSpelledQuery={this.state.correct_spelled_query} onClickSpellCheck={this.onClickSpellCheckForNewSearch.bind(this)} />
     }
   }
 
