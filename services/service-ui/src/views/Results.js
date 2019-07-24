@@ -113,11 +113,11 @@ class Results extends React.Component {
 
   /**
    * Only render wiki card if there is a result.
-   * @param {object} error if error is true, the wiki won't show up.
+   * @param {object} noWikiArticle if noWikiArticle is true, the wiki won't show up.
    * @returns {JSX} Progress bar or statistics components.
   */
-  renderWiki(error) {
-    if (!error) {
+  renderWiki(noWikiArticle) {
+    if (!noWikiArticle) {
       return (
         <WikiCard
           url={this.state.wiki_url}
@@ -156,7 +156,7 @@ class Results extends React.Component {
             resultDocsLength={this.state.resultDocsLength}
             resultDocs={this.state.resultDocs}
           />
-          {this.renderWiki(this.state.error)}
+          {this.renderWiki(this.state.wiki_title.length === 0)}
           <Pagination resultLength={this.state.resultDocsLength} />
         </div>
       );
