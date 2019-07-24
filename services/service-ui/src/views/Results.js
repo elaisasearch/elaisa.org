@@ -8,7 +8,6 @@ import "../assets/css/ResultsStyle.css";
 import MemeTeam from '../components/MemeTeam/MemeTeam';
 import NotFound from '../components/NotFound/NotFound';
 import { connect } from 'react-redux';
-import Pagination from '../components/ResultList/Pagination';
 
 /**
  * Results view class.
@@ -157,7 +156,6 @@ class Results extends React.Component {
             resultDocs={this.state.resultDocs}
           />
           {this.renderWiki(this.state.wiki_title.length === 0)}
-          <Pagination resultLength={this.state.resultDocsLength} />
         </div>
       );
     } else {

@@ -9,6 +9,15 @@
     margin-top: 2vh;
 }
 
+#pagination {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2vh;
+    margin-top: 10vh;
+    position: absolute;
+}
+
 /* iPhone 5/5s */ 
 @media only screen 
 and (min-device-width : 320px) 
