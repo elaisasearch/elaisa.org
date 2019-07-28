@@ -165,9 +165,17 @@ class PageRankPipeline(object):
     def getCrawledWebpages(self):
         return self.db[self.collection_name].find()
 
+    def getLenOfCrawledWebpages(self):
+        counter = 0
+        dbCol = self.db[self.collection_name].find()
+
+        for _ in dbCol: 
+            counter += 1
+        return counter
+
     # source: https://github.com/nicholaskajoh/devsearch/blob/master/devsearch/pagerank.py
     def process_item(self, item, spider):
-        N = len(self.getCrawledWebpages())
+        N = self.getLenOfCrawledWebpages()
         initial_pr = 1 / N
         item['pagerank'] = initial_pr
 
