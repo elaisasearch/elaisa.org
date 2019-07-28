@@ -40,7 +40,7 @@ const ResultList = (props) => {
                 }
             </TableBody>
             <div id="pagination">
-                <img src={logo} alt="elaisa logo" width="10%"/>
+                <img src={logo} alt="elaisa logo" width="5%"/>
                 <TablePagination  
                     rowsPerPageOptions={[]}
                     component="div"
