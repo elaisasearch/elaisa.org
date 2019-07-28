@@ -108,7 +108,9 @@ class NewsSpider(scrapy.Spider):
                                 'C1': levelMetaPackage[2]["C1"],
                                 'C2': levelMetaPackage[2]["C2"],
                                 'unknown': levelMetaPackage[2]["unknown"]
-                            }
+                            },
+                            'links': [link.extract() for link in response.css('a::attr(href)')],
+                            'pagerank': 1
                         }
                     else: 
                         continue

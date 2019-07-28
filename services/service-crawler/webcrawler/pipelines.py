@@ -166,6 +166,9 @@ class PageRankPipeline(object):
         return self.db[self.collection_name].find()
 
     def getLenOfCrawledWebpages(self):
+        """
+        Returns the number of webpages in the db
+        """
         counter = 0
         dbCol = self.db[self.collection_name].find()
 
@@ -173,9 +176,31 @@ class PageRankPipeline(object):
             counter += 1
         return counter
 
+    def getBacklinkPages(self, page):
+        """
+        Returns all pages that link to the current page
+        :page: Dictionary
+        """
+        return [page for p in self.getCrawledWebpages() if page['url'] in p['links']]
+
+    def updatePageRank(self, page, pagerank):
+        """
+        Updates the webpage's pagerank in the db
+        :page: Dictionary
+        :pagerank: Float
+        """
+        self.db[self.collection_name].update_one({'_id': page['_id']}, {"$set": {"pagerank": pagerank}})
+
     # source: https://github.com/nicholaskajoh/devsearch/blob/master/devsearch/pagerank.py
     def process_item(self, item, spider):
+        """
+        Updates the pagerank for each crawled webpage in the mongo database
+        """
+
+        # get the number of all pages in the db
         N = self.getLenOfCrawledWebpages()
+
+        # set the initial pagerank for the current item
         initial_pr = 1 / N
         item['pagerank'] = initial_pr
 
@@ -183,18 +208,22 @@ class PageRankPipeline(object):
             pr_change_sum = 0
 
             for page in self.getCrawledWebpages():
-                current_pagerank = page.pagerank
+                current_pagerank = page['pagerank']
                 new_pagerank = 0
-                backlink_pages = Page.objects.filter(
-                    links=PageLink.objects.filter(url=page.url).first()
-                )
+
+                # get all pages who link to our current webpage
+                backlink_pages = self.getBacklinkPages(page)
+
+                # calculate the new pagerank
                 for backlink_page in backlink_pages:
-                    new_pagerank += (backlink_page.pagerank /
-                                     len(backlink_page.links))
+                    new_pagerank += (backlink_page['pagerank'] /
+                                     len(backlink_page['links']))
                 damping_factor = 0.85
                 new_pagerank = ((1 - damping_factor) / N) + \
                     (damping_factor * new_pagerank)
-                page.update(pagerank=new_pagerank)
+
+                # update pagerank for current page
+                self.updatePageRank(page, new_pagerank)
 
                 pr_change = abs(
                     new_pagerank - current_pagerank) / current_pagerank
