@@ -76,8 +76,9 @@ class InvertedIndexPipeline(object):
         """
         for word, docs in finvindex.items():
             # for each id in document IDs, check if it already is stored; otherwise store it.
-            for d in docs: 
-                collection.update({"word": word},{"$addToSet": {"documents": d}}, upsert=True)
+            for d in docs:
+                collection.update({"word": word}, {"$addToSet": {
+                                  "documents": d}}, upsert=True)
 
     def main(self):
         texts, words = self.parseMongo()
@@ -130,4 +131,69 @@ class MongoPipeline(object):
             self.collection_name = 'crawled_items'
 
         self.db[self.collection_name].insert_one(dict(item))
+        return item
+
+
+class PageRankPipeline(object):
+    """
+    Ranks each crawled item (website) with Google's PageRank algorithm.
+    """
+
+    # connect to database
+
+    collection_name = "news_en_EN"
+    max_iterations = 3
+
+    def __init__(self, mongo_uri, mongo_db):
+        self.mongo_uri = mongo_uri
+        self.mongo_db = mongo_db
+
+    @classmethod
+    def from_crawler(cls, crawler):
+        return cls(
+            mongo_uri=crawler.settings.get('MONGO_URI'),
+            mongo_db=crawler.settings.get('MONGO_DATABASE', 'items')
+        )
+
+    def open_spider(self, spider):
+        self.client = pymongo.MongoClient(self.mongo_uri)
+        self.db = self.client[self.mongo_db]
+
+    def close_spider(self, spider):
+        self.client.close()
+
+    def getCrawledWebpages(self):
+        return self.db[self.collection_name].find()
+
+    # source: https://github.com/nicholaskajoh/devsearch/blob/master/devsearch/pagerank.py
+    def process_item(self, item, spider):
+        N = len(self.getCrawledWebpages())
+        initial_pr = 1 / N
+        item['pagerank'] = initial_pr
+
+        for _ in range(1, self.max_iterations + 1):
+            pr_change_sum = 0
+
+            for page in self.getCrawledWebpages():
+                current_pagerank = page.pagerank
+                new_pagerank = 0
+                backlink_pages = Page.objects.filter(
+                    links=PageLink.objects.filter(url=page.url).first()
+                )
+                for backlink_page in backlink_pages:
+                    new_pagerank += (backlink_page.pagerank /
+                                     len(backlink_page.links))
+                damping_factor = 0.85
+                new_pagerank = ((1 - damping_factor) / N) + \
+                    (damping_factor * new_pagerank)
+                page.update(pagerank=new_pagerank)
+
+                pr_change = abs(
+                    new_pagerank - current_pagerank) / current_pagerank
+                pr_change_sum += pr_change
+
+            average_pr_change = pr_change_sum / N
+            if average_pr_change < 0.0001:
+                break
+        
         return item

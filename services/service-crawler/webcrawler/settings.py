@@ -70,6 +70,7 @@ MONGO_DATABASE = "LanguageLevelSearchEngine"
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
     'webcrawler.pipelines.DuplicatesPipeline': 300,
+    'webcrawler.pipelines.PageRankPipeline': 400
     'webcrawler.pipelines.MongoPipeline': 500,
     'webcrawler.pipelines.InvertedIndexPipeline': 700,
 }
