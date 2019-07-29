@@ -6,6 +6,7 @@ WORKDIR /app
 
 # Copy api files into workdir
 COPY services/service-api /app
+COPY bin/globals.json /app/lib
 
 # Install any needed packages specified in requirements.txt
 RUN pip install --trusted-host pypi.python.org -r requirements.txt
