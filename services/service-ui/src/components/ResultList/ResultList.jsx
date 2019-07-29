@@ -30,10 +30,22 @@ const ResultList = (props) => {
     */
     const renderList = (resultDocs) => {
 
+        /**
+         * Sort the result documents by its PageRank.
+         * @param {object} resultDocs the found result documents.
+         * @return {JSX} sorted list of resultDocs.
+        */
+        let resultDocsSortedByPageRank = resultDocs.slice(0);
+        resultDocsSortedByPageRank.sort((a,b) => {
+            let x = a.pagerank;
+            let y = b.pagerank;
+            return x < y ? -1 : x > y ? 1 : 0;
+        });
+
         return <div className="resultListRoot">
             <Typography className="resultDocsLength" variant="caption">{`${resultDocsLength} results for "${searchValue}"`}</Typography>
             <TableBody>
-                {resultDocs.map(doc => (
+                {resultDocsSortedByPageRank.map(doc => (
                     <ResultItem website={doc.url} title={doc.title} desc={doc.meta.desc} keywords={doc.meta.keywords} date={doc.meta.date} language={doc.meta.language} level={doc.level} level_meta={doc.level_meta} />
                 ))
                     .slice(page * 10, page * 10 + 10)
