@@ -38,7 +38,7 @@ class SignUp extends Component {
 
         let { firstName, lastName, email, password } = this.state;
 
-        axios.post(`http://0.0.0.0:8080/signup?firstname=${firstName}&lastname=${lastName}&email=${email}&password=${password}`)
+        axios.post(`http://elaisa.org:8080/signup?firstname=${firstName}&lastname=${lastName}&email=${email}&password=${password}`)
         .then((response) => {
             if (response.data === "Success") {
                 console.log("created user");
