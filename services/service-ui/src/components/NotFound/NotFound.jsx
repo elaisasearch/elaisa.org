@@ -1,8 +1,8 @@
 import React from "react";
-import styles from "../../assets/jss/NotFoundStyle";
 import errorPic from "../../assets/img/error.png";
 import { Typography } from "@material-ui/core";
 import { Button } from '@material-ui/core';
+import '../../assets/css/NotFoundStyle.css'
 
 /**
  * The not found component for the Results view.
@@ -16,12 +16,12 @@ const NotFound = (props) => {
     if (correctSpelledQuery.length > 0) {
         return (
             <div>
-                <Button style={styles.spelling} onClick={onClickSpellCheck}>
+                <Button className='spelling' onClick={onClickSpellCheck}>
                     <Typography variant="caption" color="primary">
                         Did you mean "<b>{correctSpelledQuery}</b>?".
                     </Typography>
                 </Button>
-                <div style={styles.notFound}>
+                <div className='notFound'>
                     <img src={errorPic} alt="Error" style={{ width: "20%" }} />
                     <Typography variant="h6">
                         Sorry, there are no results for "<b>{searchValue}</b>" 😔.
@@ -36,7 +36,7 @@ const NotFound = (props) => {
     }
 
     return (
-        <div style={styles.notFound}>
+        <div className='notFound'>
             <img src={errorPic} alt="Error" style={{ width: "20%" }} />
             <Typography variant="h6">
                 Sorry, there are no results for "<b>{searchValue}</b>" 😔.
