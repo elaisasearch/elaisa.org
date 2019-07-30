@@ -22,8 +22,8 @@ const NotFound = (props) => {
                     </Typography>
                 </Button>
                 <div className='notFound'>
-                    <img src={errorPic} alt="Error" style={{ width: "20%" }} />
-                    <Typography variant="h6">
+                    <img src={errorPic} alt="Error" id='notfoundimage'/>
+                    <Typography variant="h6" id='notfoundtitle'>
                         Sorry, there are no results for "<b>{searchValue}</b>" 😔.
                         Please try again 🧐.
                     </Typography>
@@ -37,8 +37,8 @@ const NotFound = (props) => {
 
     return (
         <div className='notFound'>
-            <img src={errorPic} alt="Error" style={{ width: "20%" }} />
-            <Typography variant="h6">
+            <img src={errorPic} alt="Error" id='notfoundimage' />
+            <Typography variant="h6" id='notfoundtitle'>
                 Sorry, there are no results for "<b>{searchValue}</b>" 😔.
                 Please try again 🧐.
           </Typography>
