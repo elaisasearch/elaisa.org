@@ -1,17 +1,60 @@
 version: "3"
 services: 
+  # mongo database
   db:
     image: mongo:4.0.3
     ports:
       - 27017:27017
     restart: always
+
+  # python bottle api
   api: 
     image: service-api:1.0.0
-    ports:
-      - 8080:8080
     restart: always
+    labels:
+      traefik.backend.loadbalancer.method: 'true'
+      traefik.frontend.rule: 'Host:api.elaisa.org'
+      traefik.port: '8080'
+      traefik.docker.network: frontend
+
+  # reactjs web application user interface
   ui:
     image: service-ui:1.0.0
-    ports:
-      - 80:3000
     restart: always
+    labels:
+      traefik.backend.loadbalancer.method: 'true'
+      traefik.frontend.rule: 'Host:elaisa.org'
+      traefik.port: '3000'
+      traefik.docker.network: frontend
+    networks:
+      - frontend
+
+  # reverse proxy
+  traefik:
+      image: 'traefik:1.7.9-alpine'
+      command: '--api --docker --docker.swarmmode --docker.watch --metrics.prometheus --entryPoints=''Name:http Address::80'' --defaultentrypoints=http'
+      ports:
+        - '80:80'
+        - '443:443'
+        - '18080:8080'
+      volumes:
+        - '/var/run/docker.sock:/var/run/docker.sock'
+        # use traefik file for ssl | soure: https://docs.traefik.io/user-guide/docker-and-lets-encrypt/
+        - /opt/traefik/traefik.toml:/traefik.toml
+        - /opt/traefik/acme.json:/acme.json
+      deploy:
+        restart_policy:
+          condition: any
+        mode: global
+        placement:
+          constraints:
+            - node.role == manager
+        labels:
+          traefik.enable: 'false'
+      networks:
+        - frontend
+
+# the services network
+networks: 
+  frontend:
+    external: true
