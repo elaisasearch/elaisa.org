@@ -44,7 +44,27 @@ services:
   # reverse proxy
   traefik:
       image: 'traefik:1.7.9-alpine'
-      command: '--api --docker --docker.swarmmode --docker.watch --metrics.prometheus --entryPoints=''Name:http Address::80'' --defaultentrypoints=http'
+      command:
+        - --api 
+        - --docker 
+        - --docker.swarmmode 
+        - --docker.watch 
+        - --debug=false
+        - --logLevel=ERROR
+        #- --defaultentrypoints=https,http
+        #- --entryPoints=Name:http Address::80 Redirect.EntryPoint:https
+        #- --entryPoints=Name:https Address::443 TLS
+        #- --retry
+        #- --docker.endpoint=unix:///var/run/docker.sock
+        #- --docker.domain=elaisa.org
+        #- --docker.watch=true
+        #- --docker.exposedbydefault=false
+        #- --acme.email=teusz.alexander@gmail.com
+        #- --acme.storage=acme.json
+        #- --acme.entryPoint=https
+        #- --acme.onHostRule=true
+        #- --acme.httpchallenge.entrypoint=http
+        #- --acme.dnschallenge.provider=united-domains
       ports:
         - '80:80'
         - '443:443'
@@ -52,8 +72,7 @@ services:
       volumes:
         - /var/run/docker.sock:/var/run/docker.sock
         # use traefik file for ssl | soure: https://docs.traefik.io/user-guide/docker-and-lets-encrypt/
-        #  - /opt/traefik/traefik.toml:/traefik.toml
-        #- /opt/traefik/acme.json:/acme.json
+        - /opt/traefik/acme.json:/acme.json
       deploy:
         restart_policy:
           condition: any
@@ -62,6 +81,7 @@ services:
           constraints:
             - node.role == manager
         labels:
+          # we don't want traefik to be available trough itself from the outsite world
           traefik.enable: 'false'
       networks:
         - frontend
