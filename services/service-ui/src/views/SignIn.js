@@ -47,7 +47,7 @@ class SignIn extends Component {
     handleSignIn = () => {
         let variant = "";
 
-        axios.post(`http://elaisa.org:8080/signin?email=${this.state.email}&password=${this.state.password}`)
+        axios.post(`http://api.elaisa.org/signin?email=${this.state.email}&password=${this.state.password}`)
             .then((response) => {
                 if (response.data.response === "Success") {
                     console.log("user logged in");
