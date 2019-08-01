@@ -1,31 +1,37 @@
-version: "3"
+version: "3.5"
 services: 
   # mongo database
   db:
     image: mongo:4.0.3
     ports:
       - 27017:27017
-    restart: always
+    deploy:
+      restart_policy:
+        condition: any
 
   # python bottle api
   api: 
-    image: service-api:1.0.0
-    restart: always
-    labels:
-      traefik.backend.loadbalancer.method: 'true'
-      traefik.frontend.rule: 'Host:api.elaisa.org'
-      traefik.port: '8080'
-      traefik.docker.network: frontend
+    image: alexteusz/languagelevelsearchengine-service-api:2.1.1
+    deploy:
+      restart_policy:
+        condition: any
+      labels:
+        traefik.frontend.rule: 'Host:api.elaisa.org'
+        traefik.port: '8080'
+        traefik.docker.network: frontend
+    networks:
+      - frontend
 
   # reactjs web application user interface
   ui:
-    image: service-ui:1.0.0
-    restart: always
-    labels:
-      traefik.backend.loadbalancer.method: 'true'
-      traefik.frontend.rule: 'Host:elaisa.org'
-      traefik.port: '3000'
-      traefik.docker.network: frontend
+    image: alexteusz/languagelevelsearchengine-service-ui:latest
+    deploy:
+      restart_policy:
+        condition: any
+      labels:
+        traefik.frontend.rule: 'Host:elaisa.org'
+        traefik.port: '80'
+        traefik.docker.network: frontend
     networks:
       - frontend
 
@@ -38,10 +44,10 @@ services:
         - '443:443'
         - '18080:8080'
       volumes:
-        - '/var/run/docker.sock:/var/run/docker.sock'
+        - /var/run/docker.sock:/var/run/docker.sock
         # use traefik file for ssl | soure: https://docs.traefik.io/user-guide/docker-and-lets-encrypt/
-        - /opt/traefik/traefik.toml:/traefik.toml
-        - /opt/traefik/acme.json:/acme.json
+        #  - /opt/traefik/traefik.toml:/traefik.toml
+        #- /opt/traefik/acme.json:/acme.json
       deploy:
         restart_policy:
           condition: any
@@ -54,6 +60,8 @@ services:
       networks:
         - frontend
 
+# before starting the stack, this network has to be installed: 
+# - docker network create --attachable --driver overlay frontend
 # the services network
 networks: 
   frontend:
