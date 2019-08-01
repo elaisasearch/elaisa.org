@@ -1,0 +1,85 @@
+version: "3.5"
+services: 
+  # mongo database
+  db:
+    image: mongo:4.0.3
+    deploy:
+      restart_policy:
+        condition: any
+    volumes:
+      - 'mongodb:/data/db'
+    ports:
+      # external:internal
+      - '2717:27017'
+    networks:
+      - database
+
+  # python bottle api
+  api: 
+    image: alexteusz/languagelevelsearchengine-service-api:2.1.1
+    deploy:
+      restart_policy:
+        condition: any
+      labels:
+        traefik.frontend.rule: 'Host:api.elaisa.org'
+        traefik.port: '8080'
+        traefik.docker.network: frontend
+    networks:
+      - frontend
+      - database
+
+  # reactjs web application user interface
+  ui:
+    image: alexteusz/languagelevelsearchengine-service-ui:latest
+    deploy:
+      restart_policy:
+        condition: any
+      labels:
+        traefik.frontend.rule: 'Host:elaisa.org,www.elaisa.org'
+        traefik.port: '80'
+        traefik.docker.network: frontend
+    networks:
+      - frontend
+
+  # reverse proxy
+  traefik:
+      image: 'traefik:1.7.9-alpine'
+      command: '--api --docker --docker.swarmmode --docker.watch --metrics.prometheus --entryPoints=''Name:http Address::80'' --defaultentrypoints=http'
+      ports:
+        - '80:80'
+        - '443:443'
+        - '18080:8080'
+      volumes:
+        - /var/run/docker.sock:/var/run/docker.sock
+        # use traefik file for ssl | soure: https://docs.traefik.io/user-guide/docker-and-lets-encrypt/
+        #  - /opt/traefik/traefik.toml:/traefik.toml
+        #- /opt/traefik/acme.json:/acme.json
+      deploy:
+        restart_policy:
+          condition: any
+        mode: global
+        placement:
+          constraints:
+            - node.role == manager
+        labels:
+          traefik.enable: 'false'
+      networks:
+        - frontend
+
+# before starting the stack, this network has to be installed: 
+# - docker network create --attachable --driver overlay frontend
+# - docker network create --driver overlay --attachable --opt encrypted=true database
+# the services network
+networks: 
+  frontend:
+    external: true
+  database:
+    external: true
+
+# before starting the stack (one time), execute this command to create
+# a docker volume for our mongodb data. The data witin this volume will
+# persist on the host and will survive restarts of containers
+# - docker volume create mongodb
+volumes:
+  mongodb:
+    external: true
