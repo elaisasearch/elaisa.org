@@ -49,8 +49,11 @@ services:
         - --docker 
         - --docker.swarmmode 
         - --docker.watch 
+        - --metrics.prometheus
         - --debug=false
         - --logLevel=ERROR
+        - --entryPoints=Name:http Address::80
+        - --defaultentrypoints=http
         #- --defaultentrypoints=https,http
         #- --entryPoints=Name:http Address::80 Redirect.EntryPoint:https
         #- --entryPoints=Name:https Address::443 TLS
