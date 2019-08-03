@@ -98,7 +98,7 @@ Note:\
 
 If you have questions, don't hesitate to contact me:
 
-Email: teusz.alexander@gmail.com\
+Email: info@elaisa.org\
 Twitter: [@AlexTeusz](https://twitter.com/AlexTeusz)
 
 ### Architecture
