@@ -1,4 +1,5 @@
 version: "3.5"
+
 services: 
   # mongo database
   db:
@@ -98,6 +99,8 @@ networks:
     external: true
   database:
     external: true
+  prometheus: 
+    external: true
 
 # before starting the stack (one time), execute this command to create
 # a docker volume for our mongodb data. The data witin this volume will
@@ -105,4 +108,10 @@ networks:
 # - docker volume create mongodb
 volumes:
   mongodb:
+    external: true
+  # stores time-series db for metrics
+  prometheus:
+    external: true
+  # stores configuration, users, data-sources for grafana
+  grafana:
     external: true
