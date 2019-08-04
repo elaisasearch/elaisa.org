@@ -8,6 +8,7 @@ WORKDIR /app
 
 # Copy api files into workdir
 COPY services/service-crawler /app
+COPY bin/globals.json /app/webcrawler/spiders/
 
 # Install any needed packages specified in requirements.txt
 RUN pip install --trusted-host pypi.python.org -r requirements.txt
@@ -16,7 +17,7 @@ RUN pip install --trusted-host pypi.python.org -r requirements.txt
 EXPOSE 80
 
 # Run api.py when the container launches
-CMD [ "scrapy", "crawl", "news_de_DE" ]
+CMD [ "scrapy", "crawl", "news_en_EN" ]
 
 # TODO: needs a running mongo db 
 # https://docs.docker.com/samples/library/mongo/
