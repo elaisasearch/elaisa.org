@@ -15,6 +15,15 @@ services:
     networks:
       - database
 
+  # scrapy webcrawler for filling the database   
+  crawler:
+    image: alexteusz/languagelevelsearchengine-service-crawler:latest
+    deploy:
+      restart_policy:
+        condition: any
+    networks:
+      - database
+
   # python bottle api
   api: 
     image: alexteusz/languagelevelsearchengine-service-api:2.1.1
