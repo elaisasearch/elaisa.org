@@ -18,3 +18,5 @@ FROM nginx:stable-alpine
 WORKDIR /app
 
 COPY --from=builder /app/build /usr/share/nginx/html
+# include the new nginx default config file 
+COPY config/nginx/default.conf /etc/nginx/conf.d/
