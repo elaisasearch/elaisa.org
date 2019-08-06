@@ -63,7 +63,7 @@ With these commands you create the **frontend** network for UI and API and the *
 Mongo DB Volume:
 - [`docker volume create mongodb`](https://docs.docker.com/engine/reference/commandline/volume_create/)
 
-The entire database if now stored in `mongodb:/data/db`.
+The entire database is now stored in `mongodb:/data/db`.
 
 **Deploy the Docker Stack:**
 
@@ -84,11 +84,12 @@ elaisa_ui           replicated          1/1
 If every service says `1/1` in the **REPLICAS** column, everything is running. The **NAME** column tells you which stack is used but you can also check it by typing in: 
 - [`docker stack ls`](https://docs.docker.com/engine/reference/commandline/stack_ls/)
 
+This will show you the following.
+
 ```bash
 NAME                SERVICES            ORCHESTRATOR
 elaisa              4                   Swarm
 ```
-This will show you the following.
 
 Note:\
 *There are only two ports shown in the service ls column. This is caused be the use of **[traefik](https://docs.traefik.io/)**. All incoming requests are handled by this reverse-proxy server over port 80. The mongo db is running internal on port 27017 and external on port 2717. Therefore you can visit the mongo db with the following connection string: `mongodb://elaisa.org:2717`.*
