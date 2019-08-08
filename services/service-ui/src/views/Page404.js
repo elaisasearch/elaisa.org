@@ -1,7 +1,7 @@
 import React from 'react';
 import { Typography } from "@material-ui/core";
 import NavigationBar from "../components/NavigiationBar/NavigationBar";
-import styles from '../assets/jss/Page404Style';
+import '../assets/css/Page404Style.css';
 
 /**
  * The Page404 view.
@@ -12,15 +12,15 @@ const Page404 = () => (
         <NavigationBar
             id="navBar"
         />
-        <div style={styles.root}>
-            <Typography style={styles.typo} variant="h3">
+        <div id="root-404">
+            <Typography id="typo" variant="h3">
                 404 Page not found
         </Typography>
-            <Typography style={styles.typo} variant="title">
+            <Typography id="typo" variant="title">
                 Sorry, but I can't find this page.
           </Typography>
-            <div style={styles.gif}>
-                <iframe src="https://giphy.com/embed/6uGhT1O4sxpi8" style={styles.iFrame} frameBorder="0" title="Not found"></iframe>
+            <div id="gif">
+                <iframe src="https://giphy.com/gifs/X2iqesUkZULQs/html5" frameBorder="0" title="Not found"></iframe>
             </div>
         </div>
     </div>
