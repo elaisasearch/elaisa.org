@@ -72,11 +72,33 @@ def getIdsFromWord(terms):
     """
     client = MongoClient(GLOBALS["mongo"]["client"])
     db = client[GLOBALS["mongo"]["database"]]
-    # TODO: Allow multiple terms search
-    objdb = db[GLOBALS["mongo"]["collections"]
-               ["inverted_index"][0]].find({'word': terms[0]}).skip(0)
-    entries = [entry for entry in objdb]
+    objdb = db[GLOBALS["mongo"]["collections"]["inverted_index"][0]]
+
+    # find the document IDs
+    results = objdb.find( boolescheAlgebra(terms) ).skip(0)
+    entries = [entry for entry in results]
+
     try:
         return entries[0]["documents"]
     except:
         return []
+
+
+def boolescheAlgebra(terms):
+    """
+    Takes the search terms and build the boolesche query for providing multiple term search.
+    :terms: List
+    :return: Dictionary
+    """
+    query = []
+
+    if 'or' in terms:
+        terms.remove('or')
+
+        for w in terms: 
+            query.append({'word': {'$eq': w}})
+
+        return { '$or': query}
+    elif 'and' in terms:
+        terms.remove('and')
+        return { 'word': terms[0]}
