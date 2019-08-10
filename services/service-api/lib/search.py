@@ -92,13 +92,22 @@ def boolescheAlgebra(terms):
     """
     query = []
 
-    if 'or' in terms:
-        terms.remove('or')
+    # Check the boolesche term. OR, AND
+    if any(elem in terms for elem in ['or', 'oder', 'e']):
+        # Delete boolesche term from terms
+        if 'or' in terms: terms.remove('or')
+        elif 'oder' in terms: terms.remove('oder')
+        elif 'e' in terms: terms.remove('e')
 
+        # create db query
         for w in terms: 
             query.append({'word': {'$eq': w}})
 
         return { '$or': query}
-    elif 'and' in terms:
-        terms.remove('and')
+
+    elif any(elem in terms for elem in ['and', 'und', 'y']):
+        if 'and' in terms: terms.remove('and')
+        elif 'und' in terms: terms.remove('und')
+        elif 'y' in terms: terms.remove('y')
+
         return { 'word': terms[0]}
