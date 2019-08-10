@@ -51,7 +51,7 @@ def findDocuments(query, level, language):
     since the indexer stores the same ID again in the 'documents' list, if the indexed word
     happens at several points.
     """
-    docIds = set([id[0] for id in docs])
+    docIds = set(docs)
 
     documents = []
     for id in docIds:
@@ -74,23 +74,8 @@ def getIdsFromWord(terms):
     db = client[GLOBALS["mongo"]["database"]]
     objdb = db[GLOBALS["mongo"]["collections"]["inverted_index"][0]]
 
-    # find the document IDs
-    results = objdb.find( boolescheAlgebra(terms) ).skip(0)
-    entries = [entry for entry in results]
-
-    try:
-        return entries[0]["documents"]
-    except:
-        return []
-
-
-def boolescheAlgebra(terms):
-    """
-    Takes the search terms and build the boolesche query for providing multiple term search.
-    :terms: List
-    :return: Dictionary
-    """
     query = []
+    found_ids = []
 
     # Check the boolesche term. OR, AND
     if any(elem in terms for elem in ['or', 'oder', 'e']):
@@ -100,14 +85,46 @@ def boolescheAlgebra(terms):
         elif 'e' in terms: terms.remove('e')
 
         # create db query
+        # source: https://docs.mongodb.com/manual/reference/operator/query/or/
         for w in terms: 
             query.append({'word': {'$eq': w}})
 
-        return { '$or': query}
+        results = objdb.find({ '$or': query}).skip(0)
+        entries = [entry for entry in results]
+
+        # delete position number from document ID list. ['asdgf356345d', 327] -> 'asdgf356345d'
+        found_ids = [ent[0] for ent in entries[0]["documents"]]
 
     elif any(elem in terms for elem in ['and', 'und', 'y']):
         if 'and' in terms: terms.remove('and')
         elif 'und' in terms: terms.remove('und')
         elif 'y' in terms: terms.remove('y')
 
-        return { 'word': terms[0]}
+        # Query the database for each term in terms
+        found_results = []
+        for w in terms: 
+            db_found = objdb.find({"word": w})
+            found_results.append(db_found)
+
+        # Extract the found entries from the mongo db cursor; for each result in found_results
+        found_entries = []
+        for fr in found_results:
+            tmp = [e for e in fr]
+            found_entries.append(tmp)
+        
+        # Extract only the IDs and store them in lists for each term in terms
+        found_ids = []
+        for fe in found_entries:
+            # delete position number from document ID list. ['asdgf356345d', 327] -> 'asdgf356345d'
+            tmp = [e[0] for e in fe[0]["documents"]]
+            found_ids.append(tmp)
+
+        # Only store the common IDs in a new set
+        # TODO: Allow more than two terms for AND
+        found_ids = list(set(found_ids[0]).intersection(found_ids[1]))
+
+    # Finally return all found IDs
+    try:
+        return found_ids
+    except:
+        return []
