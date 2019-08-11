@@ -35,7 +35,28 @@
 .content2 {
     display: flex;
     flex: 1;
-    background: rgb(231, 73, 39, 0.8);
+    background: rgb(245, 102, 59);
+    flex-direction: column;
+}
+
+.languages-content {
+    flex: 1;
+    display: none;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.language-text {
+    display: flex;
+    flex-direction: column;
+    flex: 0.8;
+}
+
+.link-list {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    margin-left: 10%;
 }
 
 .person-info-content {
@@ -87,9 +108,18 @@ and (orientation : portrait) {
         margin-left: 5%;
         margin-right: 5%;
     }
-    
+
     .person-info-content {
         flex-direction: column;
+    }
+
+    .languages-content {
+        flex-direction: column-reverse;
+    }
+
+    .link-list {
+        align-items: baseline;
+        margin-left: 0;
     }
 }
 
@@ -111,6 +141,15 @@ and (max-device-width : 667px) {
     .person-info-content {
         flex-direction: column;
     }
+
+    .languages-content {
+        flex-direction: column-reverse;
+    }
+
+    .link-list {
+        align-items: baseline;
+        margin-left: 0;
+    }
 }
 
 /* iPhone X*/
@@ -131,5 +170,14 @@ and (-webkit-device-pixel-ratio : 3) {
 
     .person-info-content {
         flex-direction: column;
+    }
+
+    .languages-content {
+        flex-direction: column-reverse;
+    }
+
+    .link-list {
+        align-items: baseline;
+        margin-left: 0;
     }
 }
