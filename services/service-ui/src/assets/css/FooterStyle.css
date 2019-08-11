@@ -110,7 +110,7 @@ and (orientation : portrait) {
     }
 
     .person-info-content {
-        flex-direction: column;
+        display: none;
     }
 
     .languages-content {
@@ -139,7 +139,7 @@ and (max-device-width : 667px) {
     }
 
     .person-info-content {
-        flex-direction: column;
+        display: none;
     }
 
     .languages-content {
@@ -169,7 +169,7 @@ and (-webkit-device-pixel-ratio : 3) {
     }
 
     .person-info-content {
-        flex-direction: column;
+        display: none;
     }
 
     .languages-content {
