@@ -1,19 +1,50 @@
 .footer {
-    display: flex;
+    display: none;
     flex-direction: column;
     background-color: rgb(242, 242, 242);
     color: lightgrey;
     text-align: center;
-    height: 20vh;
+    height: 220vh;
 }
 
-.content {
-    margin-top: 1vh;
+.content1 {
+    display: flex;
     flex: 1;
+    background: rgba(245, 140, 59, 0.7);
+    flex-direction: column;
+}
+
+#show-content2-button {
+    margin: 0 auto;
+    margin-bottom: 1%;
+}
+
+.world-map-content {
+    flex: 1;
+    display: none;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.world-map-text {
+    display: flex;
+    flex-direction: column;
+    flex: 0.8;
+}
+
+.content2 {
+    display: flex;
+    flex: 1;
+    background: rgb(231, 73, 39, 0.8);
+}
+
+.person-info-content {
+    flex: 0;
     display: flex;
     justify-content: space-around;
     flex-direction: row;
     padding: 2vh;
+    background: rgba(202, 18, 42, 0.8);
 }
 
 .legal {
@@ -21,6 +52,25 @@
     padding-top: 1vh;
     background-color: rgb(217, 217, 217);
 }
+
+/* Animation */
+.animate-element {
+    display: flex;
+    animation: slide 1.5s ease;
+}
+
+@keyframes slide {
+    0% {
+        transform: scale(0.0);
+        opacity: 0;
+    }
+    
+    100% {
+        transform: scale(1.0);
+        opacity: 1;
+    }
+}
+
 
 /* iPhone 5/5s */ 
 @media only screen 

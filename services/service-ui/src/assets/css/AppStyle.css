@@ -1,6 +1,7 @@
 .root {
     display: flex;
-    min-height: 120vh;
+    /* min-height: 320vh; */
+    min-height: 100vh;
     flex-direction: column;
 }
 
@@ -26,6 +27,11 @@
 .mobile-logo {
     width: 50%;
     margin-top: 10%;
+}
+
+#show-footer-button {
+    margin: 0 auto;
+    margin-bottom: 1%;
 }
 
 /* iPhone 6/7/8 */ 

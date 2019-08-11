@@ -7,7 +7,7 @@ import { Typography } from "@material-ui/core";
  * @returns {JSX} the typography styled for person.
 */
 const FooterPerson = (props) => (
-    <Typography variant="body1" color="textSecondary">
+    <Typography variant="body1" style={{color: 'lightgrey'}}>
         <b>{props.name}</b><br />
         {props.study} <br />
         {props.faculty} <br />
