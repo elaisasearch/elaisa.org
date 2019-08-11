@@ -80,6 +80,17 @@ and (orientation : portrait) {
     .footer {
         display: none;
    } 
+
+   .world-map-content {
+        flex-direction: column;
+        margin-top: 5%;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+    
+    .person-info-content {
+        flex-direction: column;
+    }
 }
 
 /* iPhone 6/7/8 */ 
@@ -89,6 +100,17 @@ and (max-device-width : 667px) {
     .footer {
          display: none;
     } 
+
+    .world-map-content {
+        flex-direction: column;
+        margin-top: 5%;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    .person-info-content {
+        flex-direction: column;
+    }
 }
 
 /* iPhone X*/
@@ -98,5 +120,16 @@ and (max-device-width : 812px)
 and (-webkit-device-pixel-ratio : 3) {
     .footer {
         display: none;
+    }
+
+    .world-map-content {
+        flex-direction: column;
+        margin-top: 5%;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    .person-info-content {
+        flex-direction: column;
     }
 }
