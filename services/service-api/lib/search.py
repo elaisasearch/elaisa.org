@@ -95,7 +95,13 @@ def getIdsFromWord(terms):
         # delete position number from document ID list. ['asdgf356345d', 327] -> 'asdgf356345d'
         found_ids = [ent[0] for ent in entries[0]["documents"]]
 
-    elif any(elem in terms for elem in ['and', 'und', 'y']):
+    elif any(elem in terms for elem in ['and', 'und', 'y'])  or not any(elem in terms for elem in ['and', 'und', 'y', 'oder', 'e', 'or']):
+        """
+        Check if terms list contains any value of ['and', 'und', 'y'] or non of list ['and', 'und', 'y', 'oder', 'e', 'or'].
+        Thus, the user can use the AND operator with 'summer and hot' or just 'summer hot'
+        """
+
+        # delete the operator from terms list
         if 'and' in terms: terms.remove('and')
         elif 'und' in terms: terms.remove('und')
         elif 'y' in terms: terms.remove('y')
