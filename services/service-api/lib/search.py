@@ -95,7 +95,7 @@ def getIdsFromWord(terms):
         # delete position number from document ID list. ['asdgf356345d', 327] -> 'asdgf356345d'
         found_ids = [ent[0] for ent in entries[0]["documents"]]
 
-    elif any(elem in terms for elem in ['and', 'und', 'y'])  or not any(elem in terms for elem in ['and', 'und', 'y', 'oder', 'e', 'or']):
+    elif any(elem in terms for elem in ['and', 'und', 'y'])  or not any(elem in terms for elem in ['and', 'und', 'y', 'oder', 'e', 'or']) and len(terms) > 1:
         """
         Check if terms list contains any value of ['and', 'und', 'y'] or non of list ['and', 'und', 'y', 'oder', 'e', 'or'].
         Thus, the user can use the AND operator with 'summer and hot' or just 'summer hot'
@@ -128,6 +128,14 @@ def getIdsFromWord(terms):
         # Only store the common IDs in a new set
         # TODO: Allow more than two terms for AND
         found_ids = list(set(found_ids[0]).intersection(found_ids[1]))
+
+    # If the user only searches for one term
+    else:
+        results = objdb.find({ 'word': terms[0]}).skip(0)
+        entries = [entry for entry in results]
+
+        # delete position number from document ID list. ['asdgf356345d', 327] -> 'asdgf356345d'
+        found_ids = [ent[0] for ent in entries[0]["documents"]]
 
     # Finally return all found IDs
     try:
