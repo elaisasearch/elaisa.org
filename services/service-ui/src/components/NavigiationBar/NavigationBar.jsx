@@ -12,7 +12,6 @@ import '../../assets/css/NavigationBarStyle.css';
 
 import LeftMenu from '../Menu/LeftMenu';
 import SearchBarNavigationBar from '../SearchBar/SearchBarNavigationBar';
-import Clock from './Clock';
 import Avatars from '../Profile/Avatars';
 import DropDownMenu from '../DropDownMenu/DropDownMenu';
 import logo from '../../assets/img/logo.png';
@@ -86,7 +85,6 @@ class NavigationBar extends React.Component {
       }
     }
     return <div style={styles.defaultContent}>
-      {/* <Clock /> */}
       {this.renderAvatar(props)}
     </div>;
   }
