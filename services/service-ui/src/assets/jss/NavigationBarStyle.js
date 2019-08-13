@@ -18,8 +18,8 @@ const styles = {
     defaultContent: {
       display: "flex",
       flex: 1,
-      justifyContent: "space-around",
-      alignItems: "center"
+      flexDirection: "column",
+      alignItems: "flex-end"
     },
     searchButton: {
       marginLeft: "1%"

@@ -86,7 +86,7 @@ class NavigationBar extends React.Component {
       }
     }
     return <div style={styles.defaultContent}>
-      <Clock />
+      {/* <Clock /> */}
       {this.renderAvatar(props)}
     </div>;
   }
