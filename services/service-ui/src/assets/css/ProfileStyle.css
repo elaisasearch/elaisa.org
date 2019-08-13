@@ -1,3 +1,8 @@
+.content {
+    display: flex;
+    justify-content: center;
+}
+
 .contentPaper1 {
     width: 45%;
     height: 45vh;
