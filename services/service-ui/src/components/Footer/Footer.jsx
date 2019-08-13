@@ -4,8 +4,7 @@ import { Typography } from "@material-ui/core";
 import FooterPerson from './FooterPerson';
 import IconButton from '@material-ui/core/IconButton';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
-import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
-import { default as scrollTo, scrollToTop } from '../../handlers/scrollHandler';
+import { default as scrollToFooterContent2 } from '../../handlers/scrollHandler';
 import worldmap from '../../assets/img/world-map.svg';
 import bubble from '../../assets/img/chat-bubble.svg';
 
@@ -16,7 +15,7 @@ const Footer = () => (
     <footer className="footer">
 
 
-        <div className="content1" id="conetent1">
+        <div className="content1" id="content1">
             <div className="world-map-content">
                 <img src={worldmap} alt="world map" width="50%" />
                 <div className="world-map-text">
@@ -34,7 +33,7 @@ const Footer = () => (
                 </div>
             </div>
 
-            <IconButton onClick={e => scrollTo("content2")} aria-label="show-footer" id="show-content2-button" size="large">
+            <IconButton onClick={e => scrollToFooterContent2()} aria-label="show-footer" id="show-content2-button" size="large">
                 <ArrowDownwardIcon fontSize="large" />
             </IconButton>
         </div>
@@ -60,9 +59,6 @@ const Footer = () => (
                 </div>
                 <img src={bubble} alt="chat bubbles" width="30%" />
             </div>
-            <IconButton onClick={e => scrollToTop()} aria-label="show-footer" id="show-content2-button" size="large">
-                <ArrowUpwardIcon fontSize="large" />
-            </IconButton>
         </div>
 
 

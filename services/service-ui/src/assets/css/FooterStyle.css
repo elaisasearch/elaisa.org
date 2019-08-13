@@ -4,12 +4,14 @@
     background-color: rgb(242, 242, 242);
     color: lightgrey;
     text-align: center;
-    height: 220vh;
+    height: 120vh;
+    flex: 1;
 }
 
 .content1 {
     display: flex;
     flex: 1;
+    height: 100vh !important;
     background: rgba(245, 140, 59, 0.7);
     flex-direction: column;
 }
@@ -33,8 +35,9 @@
 }
 
 .content2 {
-    display: flex;
+    display: none;
     flex: 1;
+    height: 100vh !important;
     background: rgb(245, 102, 59);
     flex-direction: column;
 }
@@ -60,7 +63,6 @@
 }
 
 .person-info-content {
-    flex: 0;
     display: flex;
     justify-content: space-around;
     flex-direction: row;
