@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PieChart from '../components/Profile/charts/PieChart';
 import NavigationBar from '../components/NavigiationBar/NavigationBar';
 import { connect } from 'react-redux';
-import { Paper, Typography } from '@material-ui/core';
+import { Paper, Typography, Divider } from '@material-ui/core';
 import '../assets/css/ProfileStyle.css';
 import EnhancedTable from '../components/Profile/table/EnhancedTable';
 import axios from 'axios';
@@ -128,6 +128,7 @@ class Profile extends Component {
         return (
             <div>
                 <NavigationBar loggedIn={loggedIn} email={email} firstname={firstname} lastname={lastname} />
+                <Divider />
                 {this.renderContent()}
             </div>
         );
