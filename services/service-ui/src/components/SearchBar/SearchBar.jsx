@@ -120,7 +120,7 @@ class SearchBar extends React.Component {
                 </InputAdornment>
               ),
             }}
-            label="Search for documents in a specific language"
+            label="Search for documents"
             variant="outlined"
             id="custom-css-outlined-input"
           />
