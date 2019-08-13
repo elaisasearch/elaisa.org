@@ -9,7 +9,6 @@ import DropDownMenu from '../DropDownMenu/DropDownMenu';
 // styles 
 import styles from '../../assets/jss/SearchBarStyle';
 import '../../assets/css/SearchBarStyleCSS.css';
-import { Button } from '@material-ui/core';
 
 /**
  * The Search Bar component.
