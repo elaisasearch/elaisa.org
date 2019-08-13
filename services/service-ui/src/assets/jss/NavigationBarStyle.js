@@ -3,7 +3,8 @@ const styles = {
       flexGrow: 1,
     },
     appBar: {
-      backgroundColor: "transparent"
+      backgroundColor: "transparent",
+      boxShadow: "none"
     },
     menu: {
       color: "black"
