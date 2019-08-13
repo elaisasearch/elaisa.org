@@ -1,7 +1,8 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField'
+import { TextField, InputAdornment, IconButton } from '@material-ui/core/'
 import { withRouter } from "react-router-dom";
+import Search from '@material-ui/icons/Search'
 
 import DropDownMenu from '../DropDownMenu/DropDownMenu';
 
@@ -87,7 +88,7 @@ class SearchBar extends React.Component {
       <div>
         <div className="seachBarRoot">
           <div style={styles.pickers}>
-            <DropDownMenu desc="Result Language" items={["Deutsch", "English", "Español"]} values={["de","en","es"]} onChange={e => this.setState({ language: e })} />
+            <DropDownMenu desc="Result Language" items={["Deutsch", "English", "Español"]} values={["de", "en", "es"]} onChange={e => this.setState({ language: e })} />
             <DropDownMenu desc="Language Level" items={["A1", "A2", "B1", "B2", "C1", "C2"]} values={["A1", "A2", "B1", "B2", "C1", "C2"]} onChange={e => this.setState({ level: e })} />
           </div>
           <TextField
@@ -108,20 +109,23 @@ class SearchBar extends React.Component {
                 focused: classes.cssFocused,
                 notchedOutline: classes.notchedOutline,
               },
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    edge="end"
+                    aria-label="toggle search"
+                    onClick={this.searchButtonPressed}
+                  >
+                    <Search />
+                  </IconButton>
+                </InputAdornment>
+              ),
             }}
             label="Search for documents in a specific language"
             variant="outlined"
             id="custom-css-outlined-input"
           />
         </div>
-        <div style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center"
-        }}>
-          <Button id="searchButton" variant="contained" onClick={this.searchButtonPressed}>Search</Button>
-        </div>
-
       </div>
     );
   }
