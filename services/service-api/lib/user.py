@@ -21,6 +21,16 @@ with open(os.path.join(scriptDir, relPath)) as f:
     GLOBALS = json.load(f)
 
 
+# Global connection to database
+client = MongoClient(
+    GLOBALS["mongo"]["auth"]["host"],
+    username= GLOBALS["mongo"]["auth"]["username"],
+    password= GLOBALS["mongo"]["auth"]["password"],
+    authSource= GLOBALS["mongo"]["auth"]["authSource"],
+    authMechanism= GLOBALS["mongo"]["auth"]["authMechanism"]
+)
+
+
 class MongoEncoder(JSONEncoder):
     """
     Mongo DB results encoder.
@@ -50,7 +60,6 @@ def createUser(firstname, lastname, email, password):
     :password: String
     :return: String
     """
-    client = MongoClient(GLOBALS["mongo"]["client"])
     db = client[GLOBALS["mongo"]["database"]]
     col = db[GLOBALS["mongo"]["collections"]["user"][0]]
     col.create_index([('email', ASCENDING)], unique=True)
@@ -80,7 +89,6 @@ def loginUser(email, password):
     :password: String
     :return: JSON
     """
-    client = MongoClient(GLOBALS["mongo"]["client"])
     db = client[GLOBALS["mongo"]["database"]]
     col = db[GLOBALS["mongo"]["collections"]["user"][0]]
 
@@ -114,7 +122,6 @@ def handlePasswordChange(email, oldPass, newPass):
     :newPass: String
     :return: String
     """
-    client = MongoClient(GLOBALS["mongo"]["client"])
     db = client[GLOBALS["mongo"]["database"]]
     col = db[GLOBALS["mongo"]["collections"]["user"][0]]
 
@@ -135,7 +142,6 @@ def writeSearchDataIntoDatabase(query, level, language, email):
     :email: String
     :return: None
     """
-    client = MongoClient(GLOBALS["mongo"]["client"])
     db = client[GLOBALS["mongo"]["database"]]
     col = db[GLOBALS["mongo"]["collections"]["user"][1]]
 
@@ -158,7 +164,6 @@ def getSearchHistoryForUser(email):
     :email: String
     :return: Dictionary
     """
-    client = MongoClient(GLOBALS["mongo"]["client"])
     db = client[GLOBALS["mongo"]["database"]]
     col = db[GLOBALS["mongo"]["collections"]["user"][1]]
 
