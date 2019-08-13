@@ -3,7 +3,7 @@ import NavigationBar from "../components/NavigiationBar/NavigationBar";
 import ResultList from "../components/ResultList/ResultList";
 import axios from "axios";
 import WikiCard from "../components/WikiCard/WikiCard";
-import { CircularProgress } from "@material-ui/core";
+import { CircularProgress, Divider } from "@material-ui/core";
 import "../assets/css/ResultsStyle.css";
 import MemeTeam from '../components/MemeTeam/MemeTeam';
 import NotFound from '../components/NotFound/NotFound';
@@ -182,6 +182,7 @@ class Results extends React.Component {
           ]}
           id="navBar"
         />
+        <Divider />
         {this.renderResults()}
       </div>
     );
