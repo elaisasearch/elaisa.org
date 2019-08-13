@@ -22,6 +22,15 @@ with open(os.path.join(scriptDir, relPath)) as f:
 # https://stackoverflow.com/questions/28251835/from-pymongo-objectid-import-objectid-importerror-no-module-named-objectid
 
 
+# Global connection to database
+client = MongoClient(
+    GLOBALS["mongo"]["auth"]["host"],
+    username= GLOBALS["mongo"]["auth"]["username"],
+    password= GLOBALS["mongo"]["auth"]["password"],
+    authSource= GLOBALS["mongo"]["auth"]["authSource"],
+    authMechanism= GLOBALS["mongo"]["auth"]["authMechanism"]
+)
+
 class MongoEncoder(JSONEncoder):
     def default(self, obj, **kwargs):
         if isinstance(obj, ObjectId):
@@ -38,7 +47,6 @@ def findDocuments(query, level, language):
     :language: String
     :return: JSON
     """
-    client = MongoClient(GLOBALS["mongo"]["client"])
     db = client[GLOBALS["mongo"]["database"]]
     col = db[GLOBALS["mongo"]["collections"]["crawled"]["news"][0]]
 
@@ -70,7 +78,6 @@ def getIdsFromWord(terms):
     :terms: List
     :return: Dictionary
     """
-    client = MongoClient(GLOBALS["mongo"]["client"])
     db = client[GLOBALS["mongo"]["database"]]
     objdb = db[GLOBALS["mongo"]["collections"]["inverted_index"][0]]
 
