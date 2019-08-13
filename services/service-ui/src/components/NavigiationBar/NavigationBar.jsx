@@ -89,16 +89,6 @@ class NavigationBar extends React.Component {
     </div>;
   }
 
-  renderFilterBar = (props) => {
-    if (props.results) {
-      return <div style={styles.filterBar}>
-        <Button>All</Button>
-        <Button>News</Button>
-        <Button>Blogs</Button>
-      </div>
-    }
-  }
-
   render() {
     return (
 
@@ -110,7 +100,6 @@ class NavigationBar extends React.Component {
             </div>
             {this.renderSearchBar(this.props)}
           </Toolbar>
-          {/* {this.renderFilterBar(this.props)} */}
         </AppBar>
       </div>
     );
