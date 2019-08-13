@@ -23,6 +23,7 @@ with open(os.path.join(scriptDir, relPath)) as f:
 
 
 # Global connection to database
+# source: https://api.mongodb.com/python/current/examples/authentication.html
 client = MongoClient(
     GLOBALS["mongo"]["auth"]["host"],
     username= GLOBALS["mongo"]["auth"]["username"],
