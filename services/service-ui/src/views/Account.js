@@ -12,6 +12,7 @@ import { SnackbarProvider, withSnackbar } from 'notistack';
 import axios from 'axios';
 // redux
 import { connect } from 'react-redux';
+import { Divider } from '@material-ui/core';
 
 /**
  * Account view class.
@@ -58,6 +59,7 @@ class Account extends Component {
 
         return <div>
             <NavigationBar loggedIn={loggedIn} email={email} firstname={firstname} lastname={lastname} />
+            <Divider />
             <div className="accountView">
                 <Paper className="accountPaper">
                     <Avatar alt={firstname} id="accountLogo">
