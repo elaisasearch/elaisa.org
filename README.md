@@ -3,15 +3,7 @@ Search engine depending on the language level
 
 <img src="services/service-ui/src/assets/img/logo.png" alt="Logo" width="250"/>
 
-## Sample Views
-
-**Home Screen**
-
-<img src="./docs/pics/home-content.png" alt="Logo" width="100%"/>
-
-**Results Screen**
-
-<img src="./docs/pics/results.png" alt="Logo" width="100%"/>
+**[TAKE A LOOK AT THE DEMO PICTURES](./docs/README.md)**
 
 # Start App without Docker
 
