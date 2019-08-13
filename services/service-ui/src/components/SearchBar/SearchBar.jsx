@@ -91,6 +91,7 @@ class SearchBar extends React.Component {
             <DropDownMenu desc="Language Level" items={["A1", "A2", "B1", "B2", "C1", "C2"]} values={["A1", "A2", "B1", "B2", "C1", "C2"]} onChange={e => this.setState({ level: e })} />
           </div>
           <TextField
+            autoFocus
             onKeyDown={this.keyPress}
             onChange={e => this.setState({ value: e.target.value })}
             //style={styles.margin}
