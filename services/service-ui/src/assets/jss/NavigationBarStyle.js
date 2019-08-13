@@ -21,9 +21,6 @@ const styles = {
       flexDirection: "column",
       alignItems: "flex-end"
     },
-    searchButton: {
-      marginLeft: "1%"
-    },
     elaisaText: {
       width: "90%",
       maxWidth: "100px",

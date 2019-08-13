@@ -1,6 +1,7 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
+import { TextField, InputAdornment, IconButton } from '@material-ui/core/';
+import Search from '@material-ui/icons/Search';
 
 // styles 
 import styles from '../../assets/jss/SearchBarNavigationBarStyle';
@@ -12,7 +13,7 @@ import styles from '../../assets/jss/SearchBarNavigationBarStyle';
 */
 const SearchBar = (props) => {
 
-    const { classes, value } = props;
+    const { classes, value, handleClickSearch } = props;
 
     /**
      * Calls the parent component's function onChange() with new search value.
@@ -48,6 +49,17 @@ const SearchBar = (props) => {
                         focused: classes.cssFocused,
                         notchedOutline: classes.notchedOutline,
                     },
+                    endAdornment: (
+                        <InputAdornment position="end">
+                          <IconButton
+                            edge="end"
+                            aria-label="toggle search"
+                            onClick={handleClickSearch}
+                          >
+                            <Search />
+                          </IconButton>
+                        </InputAdornment>
+                      ),
                 }}
             />
         </div>
