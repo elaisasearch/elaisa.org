@@ -1,6 +1,12 @@
 {
     "mongo": {
-        "client": "mongodb://db:27017/",
+        "auth": {
+            "host": "",
+            "username": "",
+            "password": "",
+            "authSource": "admin",
+            "authMechanism": "SCRAM-SHA-256"
+        },
         "database": "LanguageLevelSearchEngine",
         "collections": {
             "inverted_index": [
