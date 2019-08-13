@@ -28,10 +28,10 @@ const App = (props) => {
         <NavigationBar loggedIn={loggedIn} email={email} firstname={firstname} lastname={lastname} />
         <img id="logo" src={logo} className="logo" alt="Elaisa Search Engine Logo"></img>
         <SearchBar />
-      </div>
-      <IconButton onClick={ e => scrollToFooter("content1")} aria-label="show-footer" id="show-footer-button" size="large">
+        <IconButton onClick={ e => scrollToFooter()} aria-label="show-footer" id="show-footer-button" size="large">
           <ArrowDownwardIcon fontSize="large" />
         </IconButton>
+      </div>
       <Footer />
     </div>
   );

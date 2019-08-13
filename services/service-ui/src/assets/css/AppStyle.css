@@ -7,7 +7,7 @@
 
 .app {
     text-align: center;
-    flex: 1;
+    height: 100vh !important;
 }
 
 .logo {
@@ -30,8 +30,12 @@
 }
 
 #show-footer-button {
-    margin: 0 auto;
-    margin-bottom: 1%;
+    position: absolute; 
+    left: 0; 
+    right: 0; 
+    margin-left: auto; 
+    margin-right: auto; 
+    bottom: 1%;
 }
 
 /* iPhone 6/7/8 */ 
