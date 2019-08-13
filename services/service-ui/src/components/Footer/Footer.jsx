@@ -4,7 +4,7 @@ import { Typography } from "@material-ui/core";
 import FooterPerson from './FooterPerson';
 import IconButton from '@material-ui/core/IconButton';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
-import { default as scrollToFooterContent2 } from '../../handlers/scrollHandler';
+import { scrollToFooterContent2 } from '../../handlers/scrollHandler';
 import worldmap from '../../assets/img/world-map.svg';
 import bubble from '../../assets/img/chat-bubble.svg';
 
