@@ -41,13 +41,19 @@ class SignUp extends Component {
         axios.post(`http://api.elaisa.org/signup?firstname=${firstName}&lastname=${lastName}&email=${email}&password=${password}`)
         .then((response) => {
             if (response.data === "Success") {
-                console.log("created user");
-                this.props.history.push({
-                    pathname: "/signin",
-                  });
+
+                setTimeout(() => {
+                    this.props.history.push({
+                        pathname: "/signin",
+                      });
+                }, 2000)
+
+                variant = "success";
+                this.props.enqueueSnackbar('Successfully created the user', { variant });
+            } else if (response.data === "Error") {
+                variant = "error"
+                this.props.enqueueSnackbar('The user already exists', { variant });
             }
-            variant = "error"
-            this.props.enqueueSnackbar('The user already exists', { variant });
         }).catch((error) => {
             variant = "error"
             this.props.enqueueSnackbar(error.message, { variant });
