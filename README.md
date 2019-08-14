@@ -57,6 +57,18 @@ Mongo DB Volume:
 
 The entire database is now stored in `mongodb:/data/db`.
 
+**Create Docker Secrets:**
+
+You could deploy the elaisa stack without Docker Secrets, but then everyone could visit the mongo db without authenticating theirselves. Therefore, you have to [create](https://docs.docker.com/engine/reference/commandline/secret_create/) the following two secrets for the mongo db root user: 
+
+- `printf <secret> | docker secret create mongodb_root_username -`
+- `printf <secret> | docker secret create mongodb_root_password -`
+
+After defining these two secrets, you have to deploy the stack in the next step -> 
+
+*[Detailed Mongo DB configuration here](./config/mongodb/README.md)*
+
+
 **Deploy the Docker Stack:**
 
 Now wer're ready to deploy our application.
