@@ -87,7 +87,7 @@ def signUp():
     result = createUser(firstname, lastname, email, password)
 
     if result == "Success":
-        return
+        return "Success"
     else:
         return "Error"
 
