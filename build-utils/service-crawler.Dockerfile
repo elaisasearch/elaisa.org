@@ -8,7 +8,7 @@ WORKDIR /app
 
 # Copy api files into workdir
 COPY services/service-crawler /app
-COPY bin/globals.json /app/webcrawler/spiders/
+COPY bin/globals.json /app/webcrawler/
 
 # Install any needed packages specified in requirements.txt
 RUN pip install --trusted-host pypi.python.org -r requirements.txt

@@ -9,6 +9,18 @@
 #     https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
+import json
+import os
+
+"""
+Load the global configurations for database connection and collections.
+    - source: https://stackoverflow.com/questions/7165749/open-file-in-a-relative-location-in-python
+"""
+scriptDir = os.path.dirname(__file__) 
+relPath = 'globals.json'
+with open(os.path.join(scriptDir, relPath)) as f: 
+    GLOBALS = json.load(f)
+
 BOT_NAME = 'webcrawler'
 
 SPIDER_MODULES = ['webcrawler.spiders']
@@ -22,7 +34,14 @@ NEWSPIDER_MODULE = 'webcrawler.spiders'
 ROBOTSTXT_OBEY = True
 
 # Mongo DB
-MONGO_URI= "mongodb://db:27017/"
+#MONGO_URI= "mongodb://db:27017/"
+MONGO_URI = "mongodb://{}:{}@{}/?authSource={}&authMechanism={}".format(
+    GLOBALS["mongo"]["auth"]["username"],
+    GLOBALS["mongo"]["auth"]["password"],
+    GLOBALS["mongo"]["auth"]["host"],
+    GLOBALS["mongo"]["auth"]["authSource"],
+    GLOBALS["mongo"]["auth"]["authMechanism"]
+    )
 MONGO_DATABASE = "LanguageLevelSearchEngine"
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
