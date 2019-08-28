@@ -66,10 +66,13 @@ export default function SplashDialog(props) {
                 scroll='paper'
             >
                 <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-                    How to use Elaisa?
+                    Welcome to Elaisa
                 </DialogTitle>
                 <Divider />
                 <DialogContent>
+                    <Typography paragraph variant='subheading'>
+                        Hi and welcome to Elaisa, your language level search engine. I want to give you an advice on how to use it to receive the best results for your needs.
+                    </Typography>
                     <Typography paragraph variant='caption'>
                         You can search for articles and documents in the langauges Spanish, German and English. To only get the best articles for you, specify your current level of speaking for each langauge.
                     </Typography>
