@@ -3,7 +3,6 @@ import { withStyles } from '@material-ui/core/styles';
 import { TextField, InputAdornment, IconButton } from '@material-ui/core/'
 import { withRouter } from "react-router-dom";
 import Search from '@material-ui/icons/Search'
-
 import DropDownMenu from '../DropDownMenu/DropDownMenu';
 
 // styles 
@@ -46,6 +45,9 @@ class SearchBar extends React.Component {
       alert("Please type in a search value")
     } else if (this.state.level === undefined || this.state.language === undefined || this.state.language.length === 0 || this.state.level.length === 0) {
       alert("Please define your level and a language")
+    // handle missing spanish and german articles
+    } else if (this.state.language === 'de' || this.state.language === 'es') {
+      alert(`Sorry, but this language isn't supported yet...`)
     } else {
       // https://stackoverflow.com/questions/44121069/how-to-pass-params-with-history-push-link-redirect-in-react-router-v4
       this.props.history.push({
