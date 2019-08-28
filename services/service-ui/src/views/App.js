@@ -45,7 +45,7 @@ const App = (props) => {
         setSplashDialogOpen(true);
       }
     }
-    , 3000
+    , 1500
   );
 
   return (
