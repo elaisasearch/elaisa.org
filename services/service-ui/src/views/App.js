@@ -7,11 +7,13 @@ import IconButton from '@material-ui/core/IconButton';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import scrollToFooter from '../handlers/scrollHandler';
 import SplashDialog from '../components/SplashDialog/SplashDialog';
+import LegalNoticeDialog from '../components/SplashDialog/LegalNoticeDialog';
 
 // logo
 import logo from '../assets/img/logo.png';
 // redux 
 import { connect } from 'react-redux';
+import { Button } from '@material-ui/core';
 
 /**
  * This is the search engines main function.
@@ -22,9 +24,14 @@ const App = (props) => {
 
   // handle the splash dialog open state
   const [splashDialogOpen, setSplashDialogOpen] = useState(false);
+  const [legalNoticeDialogOpen, setLegalNoticeDialogOpen] = useState(false);
 
   const handleClose = () => {
     setSplashDialogOpen(false);
+  }
+
+  const handleCloseLegalNoticeDialog = () => {
+    setLegalNoticeDialogOpen(false);
   }
 
   // redux state
@@ -44,6 +51,7 @@ const App = (props) => {
   return (
     <div className="root">
       <SplashDialog open={splashDialogOpen} handleClose={handleClose} />
+      <LegalNoticeDialog open={legalNoticeDialogOpen} handleClose={handleCloseLegalNoticeDialog} />
       <div className="app">
         <NavigationBar loggedIn={loggedIn} email={email} firstname={firstname} lastname={lastname} />
         <img id="logo" src={logo} className="logo" alt="Elaisa Search Engine Logo"></img>
@@ -51,6 +59,11 @@ const App = (props) => {
         <IconButton onClick={e => scrollToFooter()} aria-label="show-footer" id="show-footer-button" size="large">
           <ArrowDownwardIcon fontSize="large" />
         </IconButton>
+        <div className='legal-info'>
+          <Button id='legal-notice-button' onClick={e => setLegalNoticeDialogOpen(true)}>
+            Legal Notice
+          </Button>
+        </div>
       </div>
       <Footer />
     </div>

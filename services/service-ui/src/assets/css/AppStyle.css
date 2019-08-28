@@ -35,7 +35,26 @@
     right: 0; 
     margin-left: auto; 
     margin-right: auto; 
-    bottom: 1%;
+    bottom: 5vh;
+}
+
+.legal-info {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    bottom: 0;
+    height: 3vh;
+    background: lightgray;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+#legal-notice-button { 
+    font-size: 60%;
+    margin-right: 5vh;
 }
 
 /* iPhone 6/7/8 */ 
