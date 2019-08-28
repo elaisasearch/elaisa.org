@@ -34,8 +34,8 @@ const App = (props) => {
   setTimeout(
     () => {
       if (splashDialogWasOpen === false) {
+        onOpenedSplashDialog()
         setSplashDialogOpen(true);
-        onOpenedSplashDialog(true)
       }
     }
     , 3000
