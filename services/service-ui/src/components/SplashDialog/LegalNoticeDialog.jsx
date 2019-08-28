@@ -80,9 +80,21 @@ export default function SplashDialog(props) {
                         <b>Represented by:</b> <br />
                         Alexander Teusz
                     </Typography>
+                    <Divider />
+                    <br />
+                    <Typography paragraph variant='headline'>
+                        Disclaimer
+                    </Typography>
                     <Typography paragraph>
-                        <b>Disclaimer:</b> <br />
                         Despite careful content control, we assume no liability for the content of external links. The content of the linked pages are the sole responsibility of their operators.
+                    </Typography>
+                    <Typography paragraph>
+                        <b>Liability for content</b> <br />
+                        The contents of our pages were created with great care. For the accuracy, completeness and timeliness of the contents, however, we can not guarantee. As a service provider we are responsible according to § 7 Abs.1 TMG for own contents on these sides according to the general laws. According to §§ 8 to 10 TMG, however, we as a service provider are not obliged to monitor transmitted or stored external information or to investigate circumstances that indicate an illegal activity. Obligations to remove or block the use of information under general law remain unaffected. However, liability in this regard is only possible from the moment of knowledge of a specific infringement. Upon notification of appropriate violations, we will remove this content immediately.
+                    </Typography>
+                    <Typography paragraph>
+                        <b>Copyright</b> <br />
+                        The content and works on these pages created by the site operators are subject to German copyright law. The duplication, processing, distribution and any kind of exploitation outside the limits of copyright require the written consent of the respective author or creator. Downloads and copies of this site are for private, non-commercial use only. As far as the contents on this side were not created by the operator, the copyrights of third parties are considered. In particular contents of third parties are marked as such. Should you still be aware of a copyright infringement, we ask for a note. Upon notification of violations, we will remove such content immediately.
                     </Typography>
                     <Typography paragraph>
                         <b>Note for warnings:</b> <br />
