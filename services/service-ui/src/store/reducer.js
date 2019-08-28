@@ -2,7 +2,8 @@ const initialState = {
     loggedIn: false,
     email: "frodo.beutlin@hobbits.com",
     firstname: "Frodo",
-    lastname: "Beutlin"
+    lastname: "Beutlin",
+    splashDialogWasOpen: false
 }
 
 /**
@@ -25,6 +26,11 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 loggedIn: false
+            }
+        case 'OPENED_SPLASH':
+            return {
+                ...state,
+                splashDialogWasOpen: true
             }
         default:
             return state

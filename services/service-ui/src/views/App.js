@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import NavigationBar from '../components/NavigiationBar/NavigationBar';
 import SearchBar from '../components/SearchBar/SearchBar';
 import Footer from '../components/Footer/Footer';
@@ -6,6 +6,7 @@ import '../assets/css/AppStyle.css'
 import IconButton from '@material-ui/core/IconButton';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import scrollToFooter from '../handlers/scrollHandler';
+import SplashDialog from '../components/SplashDialog/SplashDialog';
 
 // logo
 import logo from '../assets/img/logo.png';
@@ -19,16 +20,35 @@ import { connect } from 'react-redux';
  */
 const App = (props) => {
 
+  // handle the splash dialog open state
+  const [splashDialogOpen, setSplashDialogOpen] = useState(false);
+
+  const handleClose = () => {
+    setSplashDialogOpen(false);
+  }
+
   // redux state
-  const { loggedIn, email, firstname, lastname } = props;
+  const { loggedIn, email, firstname, lastname, onOpenedSplashDialog, splashDialogWasOpen } = props;
+
+  // open the splash screen after 3 seconds if it wasn't already open
+  setTimeout(
+    () => {
+      if (splashDialogWasOpen === false) {
+        setSplashDialogOpen(true);
+        onOpenedSplashDialog(true)
+      }
+    }
+    , 3000
+  );
 
   return (
     <div className="root">
+      <SplashDialog open={splashDialogOpen} handleClose={handleClose} />
       <div className="app">
         <NavigationBar loggedIn={loggedIn} email={email} firstname={firstname} lastname={lastname} />
         <img id="logo" src={logo} className="logo" alt="Elaisa Search Engine Logo"></img>
         <SearchBar />
-        <IconButton onClick={ e => scrollToFooter()} aria-label="show-footer" id="show-footer-button" size="large">
+        <IconButton onClick={e => scrollToFooter()} aria-label="show-footer" id="show-footer-button" size="large">
           <ArrowDownwardIcon fontSize="large" />
         </IconButton>
       </div>
@@ -47,10 +67,22 @@ const mapStateToProps = state => {
     loggedIn: state.loggedIn,
     email: state.email,
     firstname: state.firstname,
-    lastname: state.lastname
+    lastname: state.lastname,
+    splashDialogWasOpen: state.splashDialogWasOpen
   };
 };
 
-export default connect(mapStateToProps)(App);
+/**
+ * Maps redux signIn action to props.
+ * @param {object} dispatch the current redux store.
+ * @returns {any} redux action to props mapping.
+*/
+const mapDispatchToProps = dispatch => {
+  return {
+    onOpenedSplashDialog: () => dispatch({ type: 'OPENED_SPLASH' })
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
 
 
