@@ -56,7 +56,6 @@ class TranslationWrapper extends React.Component {
 
         if (hasLanguageChanged && validateLanguage(curLangCode)) {
             localStorage.setItem("languageCode", curLangCode);
-            // store.dispatch(setUILanguage(curLangCode));
         }
     }
 
