@@ -6,6 +6,7 @@ import { Menu, MenuItem, Button, Divider, ListItemIcon, ListItemText} from '@mat
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
 import '../../assets/css/AvatarsStyle.css';
+import { Translate } from 'react-localize-redux';
 
 /**
  * The Avatar component for Navigation bar.
@@ -57,20 +58,20 @@ const Avatars = (props) => {
         <ListItemIcon>
             <Dashboard />
           </ListItemIcon>
-          <ListItemText primary="Profile" />
+          <ListItemText primary={<Translate id='UI__USER__MENU__PROFILE' />} />
         </MenuItem>
         <MenuItem component={Link} to="/account">
         <ListItemIcon>
             <Person />
           </ListItemIcon>
-          <ListItemText primary="Account" />
+          <ListItemText primary={<Translate id='UI__USER__MENU__ACCOUNT' />} />
         </MenuItem>
         <Divider />
         <MenuItem onClick={props.onSignOut} component={Link} to="/">
         <ListItemIcon>
             <ExitToApp />
           </ListItemIcon>
-          <ListItemText primary="Sign out" />
+          <ListItemText primary={<Translate id='UI__USER__MENU__SIGN_OUT' />} />
         </MenuItem>
       </Menu>
     }
@@ -79,7 +80,7 @@ const Avatars = (props) => {
       <ListItemIcon>
             <Home />
           </ListItemIcon>
-          <ListItemText primary="Sign In" />
+          <ListItemText primary={<Translate id='UI__BUTTION__SIGN_IN' />} />
       </MenuItem>
     </Menu>
   }

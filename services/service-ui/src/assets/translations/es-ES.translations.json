@@ -5,6 +5,10 @@
     "UI__SEARCHBAR": "Search for documents",
     "UI__BUTTION__SIGN_IN": "Sign In",
 
+    "UI__USER__MENU__PROFILE": "Profile",
+    "UI__USER__MENU__ACCOUNT": "Account",
+    "UI__USER__MENU__SIGN_OUT": "Sign out",
+
     "UI__SEARCH__ALERT_MISSING_SEARCH_VALUE": "Please type in a search value",
     "UI__SEARCH__ALERT_MISSING_LEVEL_LANGUAGE_VALUE": "Please define your level and a language",
     "UI__SEARCH__ALERT_LANGUAGE_NOT_SUPPORTED": "Sorry, but this language isn't supported yet...",
