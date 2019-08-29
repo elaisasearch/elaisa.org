@@ -4,6 +4,7 @@ import { TextField, InputAdornment, IconButton } from '@material-ui/core/'
 import { withRouter } from "react-router-dom";
 import Search from '@material-ui/icons/Search'
 import DropDownMenu from '../DropDownMenu/DropDownMenu';
+import { Translate } from "react-localize-redux";
 
 // styles 
 import styles from '../../assets/jss/SearchBarStyle';
@@ -89,8 +90,8 @@ class SearchBar extends React.Component {
       <div>
         <div className="seachBarRoot">
           <div style={styles.pickers}>
-            <DropDownMenu desc="Result Language" items={["Deutsch", "English", "Español"]} values={["de", "en", "es"]} onChange={e => this.setState({ language: e })} />
-            <DropDownMenu desc="Language Level" items={["A1", "A2", "B1", "B2", "C1", "C2"]} values={["A1", "A2", "B1", "B2", "C1", "C2"]} onChange={e => this.setState({ level: e })} />
+            <DropDownMenu desc={<Translate id='UI__DROPDOWN__LANGUAGE' />} items={["Deutsch", "English", "Español"]} values={["de", "en", "es"]} onChange={e => this.setState({ language: e })} />
+            <DropDownMenu desc={<Translate id='UI__DROPDOWN__LEVEL' />} items={["A1", "A2", "B1", "B2", "C1", "C2"]} values={["A1", "A2", "B1", "B2", "C1", "C2"]} onChange={e => this.setState({ level: e })} />
           </div>
           <TextField
             autoFocus
@@ -122,7 +123,7 @@ class SearchBar extends React.Component {
                 </InputAdornment>
               ),
             }}
-            label="Search for documents"
+            label={<Translate id='UI__SEARCHBAR' />}
             variant="outlined"
             id="custom-css-outlined-input"
           />
