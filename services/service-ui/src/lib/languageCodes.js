@@ -5,7 +5,7 @@ export const esES = 'es-ES';
 const languages = [
 	{ name: 'English', code: enUS },
 	{ name: 'Deutsch', code: deDE },
-	{ name: 'Spanish', code: esES }
+	{ name: 'Español', code: esES }
 ];
 
 export default languages;
