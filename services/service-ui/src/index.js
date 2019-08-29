@@ -4,9 +4,9 @@ import { createBrowserHistory } from "history";
 import { Router, Switch, Route } from "react-router-dom";
 import './assets/css/index.css';
 import * as serviceWorker from './serviceWorker';
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
-import { LocalizeProvider } from 'react-localize-redux';
+import { LocalizeProvider, localizeReducer } from 'react-localize-redux';
 
 // views
 // import App from './views/App';
@@ -25,15 +25,21 @@ import reducer from './store/reducer';
 // Build the browser history
 var hist = createBrowserHistory();
 
+// localization reducer
+const rootReducer = combineReducers({
+    localize: localizeReducer,
+    reducer
+});
+
 // create redux store
 const store = createStore(
-    reducer,
+    rootReducer,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
 ReactDOM.render(
     <Provider store={store}>
-        <LocalizeProvider>
+        <LocalizeProvider store={store}>
             <Router history={hist}>
                 <Switch>
                     <Route path='/profile' component={Profile} />
