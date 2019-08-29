@@ -3,7 +3,8 @@ const initialState = {
     email: "frodo.beutlin@hobbits.com",
     firstname: "Frodo",
     lastname: "Beutlin",
-    splashDialogWasOpen: false
+    splashDialogWasOpen: false,
+    uiLanguage: "en-US"
 }
 
 /**
@@ -31,6 +32,11 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 splashDialogWasOpen: true
+            }
+        case 'SET_UI_LANGUAGE':
+            return {
+                ...state,
+                uiLanguage: action.language
             }
         default:
             return state
