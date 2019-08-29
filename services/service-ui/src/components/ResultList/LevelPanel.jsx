@@ -94,7 +94,7 @@ const LevelPanel = (props) => {
                 <div>
                     <Typography>
                         <p><b><Translate id='UI__RESULTS_PAGE__DIFFICUTLY__LANGUAGE_LEVEL_DIST' /></b></p>
-                        <p>A1: <b>{A1}%</b> | A2: <b>{A2}%</b> | B1: <b>{B1}%</b> | B2: <b>{B2}%</b> | C1: <b>{C1}%</b> | C2: <b>{C2}%</b> | Unknown: <b>{unknown}%</b></p>
+                        <p>A1: <b>{A1}%</b> | A2: <b>{A2}%</b> | B1: <b>{B1}%</b> | B2: <b>{B2}%</b> | C1: <b>{C1}%</b> | C2: <b>{C2}%</b> | <Translate id='UI__RESULTS_PAGE__DIFFICUTLY__UNKNOWN' /> <b>{unknown}%</b></p>
                     </Typography>
                 </div>
                 <div style={{marginTop: "-15px"}}>
