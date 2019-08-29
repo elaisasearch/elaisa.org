@@ -6,10 +6,11 @@ import { connect } from 'react-redux';
 
 const LanguageSelect = (props) => {
 
-    const {currentLanguage, setActiveLanguage} = props;
+    const {currentLanguage, setActiveLanguage, setUILanguage} = props;
 
     const handleChange = (event) => {
         setActiveLanguage(event.target.value);
+        setUILanguage(event.target.value);
     }
 
     return (
@@ -26,8 +27,28 @@ const LanguageSelect = (props) => {
     );
 };
 
-const mapStateToProps = state => ({
-    currentLanguage: getActiveLanguage(state.localize).code
-  });
 
-export default withLocalize(connect(mapStateToProps)(LanguageSelect));
+/**
+ * Redux store to props mapping.
+ * @param {object} state the current redux store.
+ * @returns {object} returns the props containing the redux state.
+ */
+const mapStateToProps = state => {
+    return {
+      uiLanguage: state.uiLanguage,
+      currentLanguage: getActiveLanguage(state.localize).code
+    };
+  };
+  
+  /**
+   * Maps redux signIn action to props.
+   * @param {object} dispatch the current redux store.
+   * @returns {any} redux action to props mapping.
+  */
+  const mapDispatchToProps = dispatch => {
+    return {
+      setUILanguage: (language) => dispatch({ type: 'SET_UI_LANGUAGE', language })
+    };
+  };
+
+export default withLocalize(connect(mapStateToProps, mapDispatchToProps)(LanguageSelect));
