@@ -62,9 +62,9 @@ const Footer = () => (
 
 
         <div className="person-info-content">
-            <FooterPerson name="Jennifer Gynp" study="Information Science" faculty="Faculty of Arts and Humanities" uni="Heinrich-Heine-University Düsseldorf" mail="jennifer.gynp@hhu.de" />
-            <FooterPerson name="Alexander Teusz" study="Information Science" faculty="Faculty of Arts and Humanities" uni="Heinrich-Heine-University Düsseldorf" mail="alexander.teusz@hhu.de" />
-            <FooterPerson name="Paula Leberer" study="Information Science" faculty="Faculty of Arts and Humanities" uni="Heinrich-Heine-University Düsseldorf" mail="paula.leberer@hhu.de" />
+            <FooterPerson name="Jennifer Gynp" study={<Translate id='UI__FOOTER_PERSON_INSTITUTE' />} faculty={<Translate id='UI__FOOTER_PERSON_FACULTY' />} uni={<Translate id='UI__FOOTER_PERSON_UNI' />} mail="jennifer.gynp@hhu.de" />
+            <FooterPerson name="Alexander Teusz" study={<Translate id='UI__FOOTER_PERSON_INSTITUTE' />} faculty={<Translate id='UI__FOOTER_PERSON_FACULTY' />} uni={<Translate id='UI__FOOTER_PERSON_UNI' />} mail="alexander.teusz@hhu.de" />
+            <FooterPerson name="Paula Leberer" study={<Translate id='UI__FOOTER_PERSON_INSTITUTE' />} faculty={<Translate id='UI__FOOTER_PERSON_FACULTY' />} uni={<Translate id='UI__FOOTER_PERSON_UNI' />} mail="paula.leberer@hhu.de" />
         </div>
         <div className="legal">
             <Typography variant="caption" color="default">
