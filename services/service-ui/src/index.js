@@ -9,13 +9,14 @@ import { Provider } from 'react-redux';
 import { LocalizeProvider } from 'react-localize-redux';
 
 // views
-import App from './views/App';
+// import App from './views/App';
 import Results from './views/Results';
 import Page404 from './views/Page404';
 import SignIn from './views/SignIn';
 import SignUp from './views/SignUp';
 import Account from './views/Account';
 import Profile from './views/Profile';
+import TranslationWrapper from './TranslationWrapper';
 
 // reducer 
 import reducer from './store/reducer';
@@ -40,7 +41,7 @@ ReactDOM.render(
                     <Route path='/signup' component={SignUp} />
                     <Route path='/signin' component={SignIn} />
                     <Route path='/results' component={Results} />
-                    <Route path='/' exact component={App} />
+                    <Route path='/' exact component={TranslationWrapper} />
                     <Route component={Page404} />
                 </Switch>
             </Router>
