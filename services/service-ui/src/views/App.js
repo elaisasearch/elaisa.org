@@ -8,6 +8,8 @@ import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import scrollToFooter from '../handlers/scrollHandler';
 import SplashDialog from '../components/SplashDialog/SplashDialog';
 import LegalNoticeDialog from '../components/SplashDialog/LegalNoticeDialog';
+import LanguageSelect from '../components/LanguageSelect';
+import { Translate } from "react-localize-redux";
 
 // logo
 import logo from '../assets/img/logo.png';
@@ -60,8 +62,9 @@ const App = (props) => {
           <ArrowDownwardIcon fontSize="large" />
         </IconButton>
         <div className='legal-info'>
+          <LanguageSelect />
           <Button id='legal-notice-button' onClick={e => setLegalNoticeDialogOpen(true)}>
-            Legal Notice
+            <Translate id='UI__BUTTON__LEGAL' />
           </Button>
         </div>
       </div>
