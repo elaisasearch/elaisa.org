@@ -10,6 +10,7 @@ import Fab from '@material-ui/core/Fab';
 import UpIcon from '@material-ui/icons/KeyboardArrowUp';
 import { withRouter } from "react-router-dom";
 import { SnackbarProvider, withSnackbar } from 'notistack';
+import { Translate } from "react-localize-redux";
 
 import '../assets/css/SignUpStyle.css'
 import logo from '../assets/img/logo.png';
@@ -72,10 +73,10 @@ class SignUp extends Component {
                 <Paper className="paper">
                     <img className="signUpLogo" src={logo} alt="Elaisa Search Engine Logo"></img>
                     <Typography component="h1" variant="h5">
-                        Sign up
+                        <Translate id='UI__SIGN_UP_PAGE__TITLE' />
                     </Typography>
                     <Typography variant="body1">
-                        See your last searches and follow your progress in learning
+                        <Translate id='UI__SIGN_UP_PAGE__SUBTITLE' />
                     </Typography>
                     <form className="form" noValidate>
 
@@ -88,7 +89,7 @@ class SignUp extends Component {
                                 required
                                 fullWidth
                                 id="firstName"
-                                label="First Name"
+                                label={<Translate id='UI__SIGN_UP_PAGE__FIRSTNAME_FIELD' />}
                                 autoFocus
                             />
                             <TextField
@@ -97,7 +98,7 @@ class SignUp extends Component {
                                 required
                                 fullWidth
                                 id="lastName"
-                                label="Last Name"
+                                label={<Translate id='UI__SIGN_UP_PAGE__LASTNAME_FIELD' />}
                                 name="lastName"
                                 autoComplete="lname"
                             />
@@ -109,7 +110,7 @@ class SignUp extends Component {
                                 required
                                 fullWidth
                                 id="email"
-                                label="Email Address"
+                                label={<Translate id='UI__SIGN_UP_PAGE__EMAIL_FIELD' />}
                                 name="email"
                                 autoComplete="email"
                             />
@@ -121,7 +122,7 @@ class SignUp extends Component {
                                 required
                                 fullWidth
                                 name="password"
-                                label="Password"
+                                label={<Translate id='UI__SIGN_UP_PAGE__PASSWORD_FIELD' />}
                                 type="password"
                                 id="password"
                                 autoComplete="current-password"
@@ -130,7 +131,7 @@ class SignUp extends Component {
                         <div style={{ marginTop: "5%" }}>
                             <FormControlLabel
                                 control={<Checkbox value="allowExtraEmails" color="secondary" />}
-                                label="I agree that Elaisa is allowed to store my searching history."
+                                label={<Translate id='UI__SIGN_UP_PAGE__AGREE_TERMS_BUTTON' />}
                             />
                         </div>
                         <Button
@@ -142,11 +143,11 @@ class SignUp extends Component {
                             onClick={this.handleSubmit.bind(this)}
                             disabled={this.state.firstName.length === 0 || this.state.lastName.length === 0 || this.state.email.length === 0 || this.state.password.length === 0}
                         >
-                            Sign Up
+                            <Translate id='UI__SIGN_UP_PAGE__SIGN_UP_BUTTON' />
                         </Button>
                         <div className="backLink">
                             <Link href="/signin" variant="body2" id="signInLink">
-                                Already have an account? Sign in
+                                <Translate id='UI__SIGN_UP_PAGE__SIGN_IN_BUTTON' />
                             </Link>
                         </div>
                     </form>
