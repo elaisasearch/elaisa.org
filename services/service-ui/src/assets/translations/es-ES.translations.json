@@ -66,6 +66,12 @@
     "UI__RESULTS_PAGE__DIFFICUTLY__WORD_LENGTH__VALUE_EASY": "Easy",
     "UI__RESULTS_PAGE__DIFFICUTLY__WORD_LENGTH__VALUE_HARD": "Hard",
     "UI__RESULTS_PAGE__WIKIPEDIA__MORE_BUTTON": "Learn more",
-    "UI__RESULTS_PAGE__PAGINATION__TEXT": "of"
+    "UI__RESULTS_PAGE__PAGINATION__TEXT": "of",
+
+    "UI__NOT_FOUND_PAGE__CORRECTION": "Did you mean",
+    "UI__NOT_FOUND_PAGE__TITLE_ONE": "Sorry, there are no results for",
+    "UI__NOT_FOUND_PAGE__TITLE_TWO": "Please try again",
+    "UI__NOT_FOUND_PAGE__ADVICE_ONE": "Try to choose another level than",
+    "UI__NOT_FOUND_PAGE__ADVICE_TWO": "or another language than"
 
 }
