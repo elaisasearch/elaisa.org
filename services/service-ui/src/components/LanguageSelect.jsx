@@ -19,9 +19,7 @@ const LanguageSelect = (props) => {
             displayEmpty
             name="language"
         >
-            <MenuItem value="en-US">
-                <span role='img' aria-label='usa'>🇺🇸</span>
-            </MenuItem>
+            <MenuItem value="en-US"><span role='img' aria-label='usa'>🇺🇸</span></MenuItem>
             <MenuItem value='de-DE'><span role='img' aria-label='germany'>🇩🇪</span></MenuItem>
             <MenuItem value='es-ES'><span role='img' aria-label='spain'>🇪🇸</span></MenuItem>
         </Select>
