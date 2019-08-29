@@ -1,11 +1,12 @@
 import React from 'react';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
-import { withLocalize } from 'react-localize-redux';
+import { withLocalize, getActiveLanguage } from 'react-localize-redux';
+import { connect } from 'react-redux';
 
 const LanguageSelect = (props) => {
 
-    const {activeLanguage, setActiveLanguage} = props;
+    const {currentLanguage, setActiveLanguage} = props;
 
     const handleChange = (event) => {
         setActiveLanguage(event.target.value);
@@ -13,7 +14,7 @@ const LanguageSelect = (props) => {
 
     return (
         <Select
-            value={activeLanguage.code}
+            value={currentLanguage}
             onChange={handleChange}
             displayEmpty
             name="language"
@@ -27,6 +28,8 @@ const LanguageSelect = (props) => {
     );
 };
 
+const mapStateToProps = state => ({
+    currentLanguage: getActiveLanguage(state.localize).code
+  });
 
-
-export default withLocalize(LanguageSelect);
+export default withLocalize(connect(mapStateToProps)(LanguageSelect));
