@@ -9,6 +9,11 @@
     "UI__USER__MENU__ACCOUNT": "Account",
     "UI__USER__MENU__SIGN_OUT": "Ausloggen",
 
+    "UI__USER__ACCOUNT_PAGE__CHANGE_PASSWORD": "Ändere dein Passwort",
+    "UI__USER__ACCOUNT_PAGE__CHANGE_PASSWORD__OLD_PASSWORD": "Altes Passwort",
+    "UI__USER__ACCOUNT_PAGE__CHANGE_PASSWORD__NEW_PASSWORD": "Neues Passwort",
+    "UI__USER__ACCOUNT_PAGE__CHANGE_PASSWORD__BUTTON": "Ändern",
+
     "UI__SEARCH__ALERT_MISSING_SEARCH_VALUE": "Bitte tippen Sie einen Suchbegriff ein",
     "UI__SEARCH__ALERT_MISSING_LEVEL_LANGUAGE_VALUE": "Bitte wähle ein Sprachniveau und eine Sprache",
     "UI__SEARCH__ALERT_LANGUAGE_NOT_SUPPORTED": "Entschuldige, aber diese Sprache wird derzeit noch nicht unterstützt",

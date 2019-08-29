@@ -13,6 +13,7 @@ import axios from 'axios';
 // redux
 import { connect } from 'react-redux';
 import { Divider } from '@material-ui/core';
+import { Translate } from 'react-localize-redux';
 
 /**
  * Account view class.
@@ -73,7 +74,7 @@ class Account extends Component {
                     </Typography>
                     <div className="passwordDiv">
                         <Typography variant="h6" color="textSecondary" id="accountEmail">
-                            Change your Password
+                            <Translate id='UI__USER__ACCOUNT_PAGE__CHANGE_PASSWORD' />
                     </Typography>
                         <div className="passwordTextfieldsDiv">
                             <TextField
@@ -82,7 +83,7 @@ class Account extends Component {
                                 required
                                 fullWidth
                                 name="password"
-                                label="Old Password"
+                                label={<Translate id='UI__USER__ACCOUNT_PAGE__CHANGE_PASSWORD__OLD_PASSWORD' />}
                                 type="password"
                                 id="oldPassword"
                                 autoComplete="current-password"
@@ -94,14 +95,14 @@ class Account extends Component {
                                 required
                                 fullWidth
                                 name="password"
-                                label="New Password"
+                                label={<Translate id='UI__USER__ACCOUNT_PAGE__CHANGE_PASSWORD__NEW_PASSWORD' />}
                                 type="password"
                                 id="newPassword"
                                 style={{ margin: "3%" }}
                             />
                         </div>
                         <Button variant="contained" onClick={e => this.handleChangeButton(email)}>
-                            Change
+                            <Translate id='UI__USER__ACCOUNT_PAGE__CHANGE_PASSWORD__BUTTON' />
                     </Button>
                     </div>
 
