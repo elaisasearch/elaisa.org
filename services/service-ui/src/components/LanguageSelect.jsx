@@ -15,6 +15,7 @@ const LanguageSelect = (props) => {
 
     return (
         <Select
+            disableUnderline
             value={uiLanguage}
             onChange={handleChange}
             displayEmpty
