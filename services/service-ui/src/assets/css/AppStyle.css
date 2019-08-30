@@ -45,15 +45,17 @@
     margin-left: auto;
     margin-right: auto;
     bottom: 0;
-    background: lightgray;
+    background: rgb(239,239,239);
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    border-top: 0.8px solid lightgrey;
 }
 
 #legal-notice-button { 
     font-size: 60%;
     margin-right: 5vh;
+    margin-left: 3vh;
 }
 
 /* iPhone 6/7/8 */ 
@@ -64,6 +66,19 @@ and (max-device-width : 667px) {
          width: 50%;
          margin-top: 20%;
     } 
+
+    .legal-info {
+        justify-content: flex-start;
+        padding-left: 3vh;
+    }
+
+    #legal-notice-button { 
+        position: absolute;
+        right: 3vh;
+        font-size: 60%;
+        margin-right: 0;
+        margin-left: 0;
+    }
 }
 
 /* iPhone X*/
@@ -74,6 +89,19 @@ and (-webkit-device-pixel-ratio : 3) {
     .logo {
         width: 50%;
         margin-top: 20%
+    }
+
+    .legal-info {
+        justify-content: flex-start;
+        padding-left: 3vh;
+    }
+
+    #legal-notice-button { 
+        position: absolute;
+        right: 3vh;
+        font-size: 60%;
+        margin-right: 0;
+        margin-left: 0;
     }
 }
 
