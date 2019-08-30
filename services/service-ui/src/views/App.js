@@ -15,7 +15,7 @@ import { Translate } from "react-localize-redux";
 import logo from '../assets/img/logo.png';
 // redux 
 import { connect } from 'react-redux';
-import { Button, Divider } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 
 /**
  * This is the search engines main function.
