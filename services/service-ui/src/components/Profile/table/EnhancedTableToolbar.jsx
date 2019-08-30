@@ -5,6 +5,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import PropTypes from 'prop-types';
+import { Translate } from 'react-localize-redux';
 
 const useToolbarStyles = {
   root: {
@@ -36,7 +37,7 @@ const EnhancedTableToolbar = props => {
       <div style={useToolbarStyles.title}>
         {numSelected > 0 ? (
           <Typography color="inherit" variant="subtitle1">
-            {numSelected} selected
+            {numSelected} <Translate id='UI__USER__PROFILE_PAGE__SEARCH_HISTORY_TABLE__TOOLBAR_SELECTED' />
             </Typography>
         ) : (
             <Typography variant="h6" id="tableTitle">
@@ -47,7 +48,7 @@ const EnhancedTableToolbar = props => {
       <div style={useToolbarStyles.spacer} />
       <div style={useToolbarStyles.actions}>
         {numSelected > 0 ? (
-          <Tooltip title="Delete">
+          <Tooltip title={<Translate id='UI__USER__PROFILE_PAGE__SEARCH_HISTORY_TABLE__TOOLBAR_DELETE_SELECTED' />}>
             <IconButton aria-label="Delete">
               <DeleteIcon />
             </IconButton>
