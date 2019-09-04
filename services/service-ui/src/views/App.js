@@ -42,9 +42,10 @@ const App = (props) => {
   // open the splash screen after 3 seconds if it wasn't already open
   setTimeout(
     () => {
-      if (splashDialogWasOpen === false) {
+      if (splashDialogWasOpen === false && localStorage.getItem('splashDialogWasOpen') === 'false') {
         onOpenedSplashDialog()
         setSplashDialogOpen(true);
+        localStorage.setItem('splashDialogWasOpen', true)
       }
     }
     , 1500

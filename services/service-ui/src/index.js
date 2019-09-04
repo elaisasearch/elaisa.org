@@ -32,6 +32,11 @@ const store = createStore(
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
+// set localStorage default values
+// only show splash dialog window one time
+if (localStorage.getItem('splashDialogWasOpen') !== 'true') localStorage.setItem('splashDialogWasOpen', false);
+
+
 ReactDOM.render(
     <Provider store={store}>
         <LocalizeProvider>
