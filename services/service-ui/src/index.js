@@ -9,7 +9,7 @@ import { Provider } from 'react-redux';
 import { LocalizeProvider } from 'react-localize-redux';
 
 // views
-// import App from './views/App';
+import App from './views/App';
 import Results from './views/Results';
 import Page404 from './views/Page404';
 import SignIn from './views/SignIn';
@@ -20,6 +20,7 @@ import TranslationWrapper from './TranslationWrapper';
 
 // reducer 
 import reducer from './store/reducer';
+
 
 
 // Build the browser history
@@ -34,17 +35,19 @@ const store = createStore(
 ReactDOM.render(
     <Provider store={store}>
         <LocalizeProvider>
-            <Router history={hist}>
-                <Switch>
-                    <Route path='/profile' component={Profile} />
-                    <Route path='/account' component={Account} />
-                    <Route path='/signup' component={SignUp} />
-                    <Route path='/signin' component={SignIn} />
-                    <Route path='/results' component={Results} />
-                    <Route path='/' exact component={TranslationWrapper} />
-                    <Route component={Page404} />
-                </Switch>
-            </Router>
+            <TranslationWrapper>
+                <Router history={hist}>
+                    <Switch>
+                        <Route path='/profile' component={Profile} />
+                        <Route path='/account' component={Account} />
+                        <Route path='/signup' component={SignUp} />
+                        <Route path='/signin' component={SignIn} />
+                        <Route path='/results' component={Results} />
+                        <Route path='/' exact component={App} />
+                        <Route component={Page404} />
+                    </Switch>
+                </Router>
+            </TranslationWrapper>
         </LocalizeProvider>
     </Provider>,
     document.getElementById('root')
