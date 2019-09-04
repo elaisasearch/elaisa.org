@@ -31,7 +31,7 @@ const reducer = (state = initialState, action) => {
         case 'OPENED_SPLASH':
             return {
                 ...state,
-                splashDialogWasOpen: true
+                splashDialogWasOpen: action.opened
             }
         case 'SET_UI_LANGUAGE':
             return {

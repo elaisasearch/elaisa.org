@@ -43,7 +43,7 @@ const App = (props) => {
   setTimeout(
     () => {
       if (splashDialogWasOpen === false && localStorage.getItem('splashDialogWasOpen') === 'false') {
-        onOpenedSplashDialog()
+        onOpenedSplashDialog(true)
         setSplashDialogOpen(true);
         localStorage.setItem('splashDialogWasOpen', true)
       }
@@ -96,7 +96,7 @@ const mapStateToProps = state => {
 */
 const mapDispatchToProps = dispatch => {
   return {
-    onOpenedSplashDialog: () => dispatch({ type: 'OPENED_SPLASH' })
+    onOpenedSplashDialog: (opened) => dispatch({ type: 'OPENED_SPLASH', opened})
   };
 };
 

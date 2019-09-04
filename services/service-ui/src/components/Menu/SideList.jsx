@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { List, Divider, ListItem, ListItemIcon, ListItemText, Collapse, ListSubheader } from '@material-ui/core/';
-import { Share, ExpandLess, ExpandMore, Home } from '@material-ui/icons/';
+import { Help, Share, ExpandLess, ExpandMore, Home } from '@material-ui/icons/';
 import styles from '../../assets/jss/MenuStyle';
 import MenuHelper from './MenuHelper';
 import { Link } from 'react-router-dom'
 import { Translate } from "react-localize-redux";
+import { connect } from 'react-redux';
 
 // import language flags for menu
 import german from '../../assets/img/menu_flags/german.jpg';
@@ -23,8 +24,10 @@ const ListItemLink = (props) => {
 class SideList extends Component {
 
     state = {
-        open: false
+        open: false,
+        splashDialogOpen: false
     }
+    
 
     /**
      * Set the state for open or close the list in the menu drawer.
@@ -32,6 +35,14 @@ class SideList extends Component {
     handleClick = () => {
         this.setState(state => ({ open: !state.open }));
     };
+
+    /**
+     * Handle opening and closing for the help splash dialog component
+     */
+    handleOpenSplashDialog = () => {
+        localStorage.setItem('splashDialogWasOpen', false)
+        this.props.onOpenedSplashDialog(false)
+    }
 
     /**
      * Renders the menu list with all items.
@@ -57,9 +68,17 @@ class SideList extends Component {
                         <ListItemIcon>
                             <Share />
                         </ListItemIcon>
-                        <ListItemText inset primary={<Translate id='UI__MENU__SPEAKING_TESTS_BUTTON' />}  />
+                        <ListItemText inset primary={<Translate id='UI__MENU__SPEAKING_TESTS_BUTTON' />} />
                         {this.state.open ? <ExpandLess /> : <ExpandMore />}
                     </ListItem>
+                    <Divider />
+                    {/* Show Splash Dialog as Help view */}
+                    <ListItemLink to='/' onClick={() => this.handleOpenSplashDialog()}>
+                        <ListItemIcon>
+                            <Help />
+                        </ListItemIcon>
+                        <ListItemText inset primary={<Translate id='UI__MENU__HELP_BUTTON' />} />
+                    </ListItemLink>
                     <Collapse in={this.state.open} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
                             <MenuHelper href="https://sprachtest.de/einstufungstest-deutsch" flag={german} style={styles.nested} text="Deutsch" />
@@ -74,4 +93,27 @@ class SideList extends Component {
     }
 }
 
-export default SideList;
+/**
+ * Redux store to props mapping.
+ * @param {object} state the current redux store.
+ * @returns {object} returns the props containing the redux state.
+ */
+const mapStateToProps = state => {
+    return {
+      splashDialogWasOpen: state.splashDialogWasOpen
+    };
+  };
+  
+  /**
+   * Maps redux signIn action to props.
+   * @param {object} dispatch the current redux store.
+   * @returns {any} redux action to props mapping.
+  */
+  const mapDispatchToProps = dispatch => {
+    return {
+      onOpenedSplashDialog: (opened) => dispatch({ type: 'OPENED_SPLASH', opened})
+    };
+  };
+  
+
+export default connect(mapStateToProps, mapDispatchToProps)(SideList);
