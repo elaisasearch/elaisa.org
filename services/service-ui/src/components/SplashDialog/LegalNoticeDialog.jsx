@@ -64,7 +64,7 @@ export default function SplashDialog(props) {
                         <b>Mandatory information according to §5 Telemediengesetz</b>
                         <br />
                         <br />
-                        <b>Elaisa Search</b>
+                        <b>Heinrich-Heine-Universität Düsseldorf</b>
                         <br />
                         Universitätsstraße 1 <br />
                         40225 Düsseldorf <br />
