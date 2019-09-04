@@ -72,7 +72,6 @@ const SearchBar = (props) => {
           <DropDownMenu desc={<Translate id='UI__DROPDOWN__LEVEL' />} items={["A1", "A2", "B1", "B2", "C1", "C2"]} values={["A1", "A2", "B1", "B2", "C1", "C2"]} onChange={e => setLevel(e)} />
         </div>
         <TextField
-          autoFocus
           onKeyDown={keyPress}
           onChange={e => setValue(e.target.value)}
           //style={styles.margin}
