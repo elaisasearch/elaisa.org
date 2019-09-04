@@ -67,7 +67,7 @@ class TranslationWrapper extends React.Component {
 
     render() {
         return (
-            <App />
+            this.props.children
         )
     }
 }
