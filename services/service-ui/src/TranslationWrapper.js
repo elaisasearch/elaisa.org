@@ -8,8 +8,6 @@ import deDETranslations from './assets/translations/de-DE.translations.json';
 import esESTranslations from './assets/translations/es-ES.translations.json'
 import languages, { enUS, deDE, esES } from './lib/languageCodes';
 
-import App from './views/App';
-
 const onMissingTranslation = ({ defaultTranslation }) => defaultTranslation;
 
 const validateLanguage = (languageCode) => {
