@@ -3,6 +3,7 @@ import errorPic from "../../assets/img/error.png";
 import { Typography } from "@material-ui/core";
 import { Button } from '@material-ui/core';
 import '../../assets/css/NotFoundStyle.css'
+import { Translate } from 'react-localize-redux';
 
 /**
  * The not found component for the Results view.
@@ -18,17 +19,16 @@ const NotFound = (props) => {
             <div>
                 <Button className='spelling' onClick={onClickSpellCheck}>
                     <Typography variant="caption" color="primary">
-                        Did you mean "<b>{correctSpelledQuery}</b>?".
+                        <Translate id='UI__NOT_FOUND_PAGE__CORRECTION' /> "<b>{correctSpelledQuery}</b>?".
                     </Typography>
                 </Button>
                 <div className='notFound'>
                     <img src={errorPic} alt="Error" id='notfoundimage'/>
                     <Typography variant="h6" id='notfoundtitle'>
-                        Sorry, there are no results for "<b>{searchValue}</b>" 😔.
-                        Please try again 🧐.
+                        <Translate id='UI__NOT_FOUND_PAGE__TITLE_ONE' /> "<b>{searchValue}</b>" 😔. <Translate id='UI__NOT_FOUND_PAGE__TITLE_TWO' /> 🧐.
                     </Typography>
                     <Typography variant="caption">
-                        Try to choose another level than <b>{level}</b> or another language than <b>{language.toUpperCase()}</b>
+                        <Translate id='UI__NOT_FOUND_PAGE__ADVICE_ONE' /> <b>{level}</b> <Translate id='UI__NOT_FOUND_PAGE__ADVICE_TWO' /> <b>{language.toUpperCase()}</b>
                     </Typography>
                 </div>
             </div>
@@ -39,11 +39,10 @@ const NotFound = (props) => {
         <div className='notFound'>
             <img src={errorPic} alt="Error" id='notfoundimage' />
             <Typography variant="h6" id='notfoundtitle'>
-                Sorry, there are no results for "<b>{searchValue}</b>" 😔.
-                Please try again 🧐.
+                <Translate id='UI__NOT_FOUND_PAGE__TITLE_ONE' /> "<b>{searchValue}</b>" 😔. <Translate id='UI__NOT_FOUND_PAGE__TITLE_TWO' /> 🧐.
           </Typography>
             <Typography variant="caption">
-                Try to choose another level than <b>{level}</b> or another language than <b>{language.toUpperCase()}</b>
+                <Translate id='UI__NOT_FOUND_PAGE__ADVICE_ONE' /> <b>{level}</b> <Translate id='UI__NOT_FOUND_PAGE__ADVICE_TWO' /> <b>{language.toUpperCase()}</b>
             </Typography>
         </div>
     );

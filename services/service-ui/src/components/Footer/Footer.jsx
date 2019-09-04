@@ -7,6 +7,7 @@ import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import { scrollToFooterContent2 } from '../../handlers/scrollHandler';
 import worldmap from '../../assets/img/world-map.svg';
 import bubble from '../../assets/img/chat-bubble.svg';
+import { Translate } from 'react-localize-redux';
 
 /**
  * The Footer component with legal infos.
@@ -20,15 +21,13 @@ const Footer = () => (
                 <img src={worldmap} alt="world map" width="50%" />
                 <div className="world-map-text">
                     <Typography variant="h4" color="textSecondary" paragraph>
-                        Discover the world of languages with Elaisa
+                        <Translate id='UI__FOOTER_ONE__TITLE' />
                     </Typography>
                     <Typography variant="subtitle1" paragraph color="textSecondary">
-                        Learning a new language is always a big challenge, but it can be a bit easier - with Elaisa.
-                        As is known, a language can only be mastered if it is used regularly, ie it is used in a conversation or for reading appropriate literature. The problem with conventional learning materials is the outdated state of the respective texts.
-                        Textbooks often develop their own stories to explain the various topics of a conversation by means of self-contained stories. Unfortunately, this has nothing to do with actuality.
+                        <Translate id='UI__FOOTER_ONE__TEXT1' />
                     <br />
                         <br />
-                        Therefore, Elaisa provides the functionality to search for current articles and websites of a desired language. The own language level can be specified directly in order to keep or even expand one's own level of knowledge.
+                        <Translate id='UI__FOOTER_ONE__TEXT2' />
                     </Typography>
                 </div>
             </div>
@@ -43,10 +42,10 @@ const Footer = () => (
             <div className="languages-content">
                 <div className="language-text">
                     <Typography variant="h4" color="textPrimary" paragraph>
-                        Helpful Links
+                        <Translate id='UI__FOOTER_TWO__TITLE' />
                     </Typography>
                     <Typography variant="subtitle1" paragraph color="textPrimary">
-                        We've listed a few helpful links so you can easily find your dream language.
+                        <Translate id='UI__FOOTER_TWO__SUBTITLE' />
                     </Typography>
                     <Typography variant="subtitle1">
                         <ul className="link-list">
@@ -63,13 +62,13 @@ const Footer = () => (
 
 
         <div className="person-info-content">
-            <FooterPerson name="Jennifer Gynp" study="Information Science" faculty="Faculty of Arts and Humanities" uni="Heinrich-Heine-University Düsseldorf" mail="jennifer.gynp@hhu.de" />
-            <FooterPerson name="Alexander Teusz" study="Information Science" faculty="Faculty of Arts and Humanities" uni="Heinrich-Heine-University Düsseldorf" mail="alexander.teusz@hhu.de" />
-            <FooterPerson name="Paula Leberer" study="Information Science" faculty="Faculty of Arts and Humanities" uni="Heinrich-Heine-University Düsseldorf" mail="paula.leberer@hhu.de" />
+            <FooterPerson name="Jennifer Gynp" study={<Translate id='UI__FOOTER_PERSON_INSTITUTE' />} faculty={<Translate id='UI__FOOTER_PERSON_FACULTY' />} uni={<Translate id='UI__FOOTER_PERSON_UNI' />} mail="jennifer.gynp@hhu.de" />
+            <FooterPerson name="Alexander Teusz" study={<Translate id='UI__FOOTER_PERSON_INSTITUTE' />} faculty={<Translate id='UI__FOOTER_PERSON_FACULTY' />} uni={<Translate id='UI__FOOTER_PERSON_UNI' />} mail="alexander.teusz@hhu.de" />
+            <FooterPerson name="Paula Leberer" study={<Translate id='UI__FOOTER_PERSON_INSTITUTE' />} faculty={<Translate id='UI__FOOTER_PERSON_FACULTY' />} uni={<Translate id='UI__FOOTER_PERSON_UNI' />} mail="paula.leberer@hhu.de" />
         </div>
         <div className="legal">
             <Typography variant="caption" color="default">
-                Elaisa - Language Level Search Engine - All rights reserved - 2019
+                <Translate id='UI__FOOTER_LEGAL' />
             </Typography>
         </div>
     </footer>

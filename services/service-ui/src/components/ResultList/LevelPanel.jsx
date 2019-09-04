@@ -5,6 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 import MuiExpansionPanel from '@material-ui/core/ExpansionPanel';
 import MuiExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import MuiExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import { Translate } from 'react-localize-redux';
 
 /**
  * The design for Expansion Panel for level difficulty infos.
@@ -86,19 +87,19 @@ const LevelPanel = (props) => {
                 id="panel1a-header"
             >
                 <Typography component="span">
-                    Difficulty
+                    <Translate id='UI__RESULTS_PAGE__DIFFICUTLY__BUTTON' />
                 </Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails style={{display: "flex", flexDirection: "column"}}>
                 <div>
                     <Typography>
-                        <p><b>Language Level distribution:</b></p>
-                        <p>A1: <b>{A1}%</b> | A2: <b>{A2}%</b> | B1: <b>{B1}%</b> | B2: <b>{B2}%</b> | C1: <b>{C1}%</b> | C2: <b>{C2}%</b> | Unknown: <b>{unknown}%</b></p>
+                        <p><b><Translate id='UI__RESULTS_PAGE__DIFFICUTLY__LANGUAGE_LEVEL_DIST' /></b></p>
+                        <p>A1: <b>{A1}%</b> | A2: <b>{A2}%</b> | B1: <b>{B1}%</b> | B2: <b>{B2}%</b> | C1: <b>{C1}%</b> | C2: <b>{C2}%</b> | <Translate id='UI__RESULTS_PAGE__DIFFICUTLY__UNKNOWN' /> <b>{unknown}%</b></p>
                     </Typography>
                 </div>
                 <div style={{marginTop: "-15px"}}>
                     <Typography component="span">
-                        <p style={{ color: "black" }}><b>Word length: </b><b style={{color: renderDifficulty()}}>{firstUpperDifficulty}</b></p>
+                        <p style={{ color: "black" }}><b><Translate id='UI__RESULTS_PAGE__DIFFICUTLY__WORD_LENGTH__TITLE' /> </b><b style={{color: renderDifficulty()}}>{firstUpperDifficulty}</b></p>
                     </Typography>
                 </div>
             </ExpansionPanelDetails>

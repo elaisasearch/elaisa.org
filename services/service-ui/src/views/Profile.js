@@ -8,6 +8,7 @@ import EnhancedTable from '../components/Profile/table/EnhancedTable';
 import axios from 'axios';
 import { CircularProgress } from "@material-ui/core";
 import PDFGenerator from '../components/Profile/PDFGenerator';
+import { Translate } from 'react-localize-redux';
 
 /**
  * Profile view for statistics.
@@ -77,7 +78,7 @@ class Profile extends Component {
             <div className="content">
                 <Paper className="contentPaper1">
                     <Typography variant="h5" color="inherit" component="h5">
-                        Level
+                        <Translate id='UI__USER__PROFILE_PAGE__LEVEL_GRAPH' />
                     </Typography>
                     <PieChart dataPoints={
                         [
@@ -93,7 +94,7 @@ class Profile extends Component {
                 </Paper>
                 <Paper className="contentPaper2">
                     <Typography variant="h5" color="inherit" component="h5">
-                        Language
+                        <Translate id='UI__USER__PROFILE_PAGE__LANGUAGE_GRAPH' />
                     </Typography>
                     <PieChart dataPoints={
                         [
@@ -106,7 +107,7 @@ class Profile extends Component {
                 </Paper>
             </div>
             <div className="contentTable">
-                <EnhancedTable title="Search History" data={this.state.history} />
+                <EnhancedTable title={<Translate id='UI__USER__PROFILE_PAGE__SEARCH_HISTORY_TABLE__TITLE' />} data={this.state.history} />
             </div>
             <div className="pdfButton">
                 <PDFGenerator language={language} level={level} firstname={this.props.firstname} lastname={this.props.lastname} />

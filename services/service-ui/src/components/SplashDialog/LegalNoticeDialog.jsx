@@ -5,6 +5,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import MuiDialogContent from '@material-ui/core/DialogContent';
 import logo from '../../assets/img/logo.png';
+import { Translate } from 'react-localize-redux';
 
 const styles = theme => ({
     root: {
@@ -52,7 +53,7 @@ export default function SplashDialog(props) {
                 scroll='paper'
             >
                 <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-                    Legal notice
+                    <Translate id="UI__LEGAL_NOTICE__TITLE" />
                 </DialogTitle>
                 <Divider />
                 <DialogContent>

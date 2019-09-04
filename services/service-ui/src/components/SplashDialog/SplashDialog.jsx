@@ -6,6 +6,7 @@ import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import MuiDialogContent from '@material-ui/core/DialogContent';
 import MuiDialogActions from '@material-ui/core/DialogActions';
 import logo from '../../assets/img/logo.png';
+import { Translate } from 'react-localize-redux';
 
 // Slide in the Splash Dialog (from bottom to top)
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -66,35 +67,35 @@ export default function SplashDialog(props) {
                 scroll='paper'
             >
                 <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-                    Welcome to Elaisa
+                    <Translate id='UI__SPLASH_SCREEN__TITLE' />
                 </DialogTitle>
                 <Divider />
                 <DialogContent>
                     <Typography paragraph variant='subheading'>
-                        Hi and welcome to Elaisa, your language level search engine. I want to give you an advice on how to use it to receive the best results for your needs.
+                        <Translate id='UI__SPLASH_SCREEN__WELCOME_MESSAGE' />
                     </Typography>
                     <Typography paragraph variant='caption'>
-                        You can search for articles and documents in the langauges Spanish, German and English. To only get the best articles for you, specify your current level of speaking for each langauge.
+                        <Translate id='UI__SPLASH_SCREEN__CAPTION' />
                     </Typography>
                     <Typography gutterBottom>
                         <ol>
-                            <li>Choose a language</li>
-                            <li>Choose a level</li>
-                            <li>Type in a search term</li>
-                            <li>Click on the search button</li>
+                            <li><Translate id='UI__SPLASH_SCREEN__FIRST_LIST_POINT' /></li>
+                            <li><Translate id='UI__SPLASH_SCREEN__SECOND_LIST_POINT' /></li>
+                            <li><Translate id='UI__SPLASH_SCREEN__THIRD_LIST_POINT' /></li>
+                            <li><Translate id='UI__SPLASH_SCREEN__FOURTH_LIST_POINT' /></li>
                         </ol>
                     </Typography>
                     <Typography paragraph variant='caption'>
-                        Eaxample: <br />
+                        <Translate id='UI__SPLASH_SCREEN__EXAMPLE' /> <br />
                         <ul>
-                            <li>Language: English</li>
-                            <li>Level: C2</li>
-                            <li>Term: summer</li>
+                            <li><Translate id='UI__SPLASH_SCREEN__EXAMPLE_FIRST_LIST_POINT' /></li>
+                            <li><Translate id='UI__SPLASH_SCREEN__EXAMPLE_SECOND_LIST_POINT' /></li>
+                            <li><Translate id='UI__SPLASH_SCREEN__EXAMPLE_THIRD_LIST_POINT' /></li>
                         </ul>
                     </Typography>
                     <Typography gutterBottom>
-                        <b>Important!</b><br />
-                        You have to define all three fields to search for documents, since they are all dependent on each other.
+                        <b><Translate id='UI__SPLASH_SCREEN__IMPORTANT_NOTICE__TITLE' /></b><br />
+                        <Translate id='UI__SPLASH_SCREEN__IMPORTANT_NOTICE__TEXT' />
                     </Typography>
 
                     <br />
@@ -105,7 +106,7 @@ export default function SplashDialog(props) {
                         marginBottom: '2vh'
                     }}>
                         <Typography gutterBottom style={{ textAlign: 'center' }}>
-                            <b>Have fun!</b><br />
+                            <b><Translate id='UI__SPLASH_SCREEN__HAVE_FUN' /></b><br />
                         </Typography>
                         <img src={logo} alt='logo' width='30%' />
                     </div>
@@ -116,7 +117,7 @@ export default function SplashDialog(props) {
                     <Button onClick={
                         () => window.open('https://github.com/dasmemeteam/language-level-search-engine/blob/master/docs/README.md', '_blank')
                     } color="primary">
-                        More infos
+                        <Translate id='UI__SPLASH_SCREEN__MORE_INFOS__BUTTON' />
                     </Button>
                 </DialogActions>
             </Dialog>

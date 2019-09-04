@@ -12,6 +12,7 @@ import UpIcon from '@material-ui/icons/KeyboardArrowUp';
 import { withRouter } from "react-router-dom";
 import { SnackbarProvider, withSnackbar } from 'notistack';
 import { connect } from 'react-redux';
+import { Translate } from "react-localize-redux";
 
 import axios from 'axios';
 
@@ -83,7 +84,7 @@ class SignIn extends Component {
                 <Paper className="paper">
                     <img className="signInLogo" src={logo} alt="Elaisa Search Engine Logo"></img>
                     <Typography component="h1" variant="h5">
-                        Sign in
+                        <Translate id='UI__SIGN_IN_PAGE__TITLE' />
                     </Typography>
                     <form className="form" noValidate>
                         <TextField
@@ -93,7 +94,7 @@ class SignIn extends Component {
                             required
                             fullWidth
                             id="email"
-                            label="Email Address"
+                            label={<Translate id='UI__SIGN_IN_PAGE__EMAIL_FIELD' />}
                             name="email"
                             autoComplete="email"
                             autoFocus
@@ -106,14 +107,14 @@ class SignIn extends Component {
                             required
                             fullWidth
                             name="password"
-                            label="Password"
+                            label={<Translate id='UI__SIGN_IN_PAGE__PASSWORD_FIELD' />}
                             type="password"
                             id="password"
                             autoComplete="current-password"
                         />
                         <FormControlLabel
                             control={<Checkbox value="remember" color="secondary" />}
-                            label="Remember me"
+                            label={<Translate id='UI__SIGN_IN_PAGE__REMEMBER_ME_BUTTON' />}
                         />
                         <Button
                             // type="submit"
@@ -124,17 +125,17 @@ class SignIn extends Component {
                             onClick={this.handleSignIn.bind(this)}
                             disabled={this.state.email.length === 0 || this.state.password.length === 0}
                         >
-                            Sign In
+                            <Translate id='UI__SIGN_IN_PAGE__SIGN_IN_BUTTON' />
                         </Button>
                         <Grid container >
                             <Grid item xs>
                                 <Link id="link" href="#" variant="body2">
-                                    Forgot password?
+                                    <Translate id='UI__SIGN_IN_PAGE__FORGOT_PASSWORD_BUTTON' />
                                 </Link>
                             </Grid>
                             <Grid item>
                                 <Link id="link" href="/signup" variant="body2">
-                                    {"Don't have an account? Sign Up"}
+                                    <Translate id='UI__SIGN_IN_PAGE__SIGN_UP_BUTTON' />
                                 </Link>
                             </Grid>
                         </Grid>

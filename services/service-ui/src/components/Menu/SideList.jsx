@@ -4,6 +4,7 @@ import { Share, ExpandLess, ExpandMore, Home } from '@material-ui/icons/';
 import styles from '../../assets/jss/MenuStyle';
 import MenuHelper from './MenuHelper';
 import { Link } from 'react-router-dom'
+import { Translate } from "react-localize-redux";
 
 // import language flags for menu
 import german from '../../assets/img/menu_flags/german.jpg';
@@ -49,14 +50,14 @@ class SideList extends Component {
                         <ListItemIcon>
                             <Home />
                         </ListItemIcon>
-                        <ListItemText inset primary="Home" />
+                        <ListItemText inset primary={<Translate id='UI__MENU__HOME_BUTTON' />} />
                     </ListItemLink>
                     {/* Level of Speaking Tests MENU */}
                     <ListItem button onClick={this.handleClick}>
                         <ListItemIcon>
                             <Share />
                         </ListItemIcon>
-                        <ListItemText inset primary="Speaking Tests" />
+                        <ListItemText inset primary={<Translate id='UI__MENU__SPEAKING_TESTS_BUTTON' />}  />
                         {this.state.open ? <ExpandLess /> : <ExpandMore />}
                     </ListItem>
                     <Collapse in={this.state.open} timeout="auto" unmountOnExit>

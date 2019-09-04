@@ -5,13 +5,13 @@ import TableCell from '@material-ui/core/TableCell';
 import Checkbox from '@material-ui/core/Checkbox';
 import TableRow from '@material-ui/core/TableRow';
 import PropTypes from 'prop-types';
-
+import { Translate } from 'react-localize-redux';
 
 const headRows = [
-    { id: 'searchvalue', numeric: false, disablePadding: true, label: 'Search Term' },
-    { id: 'language', numeric: true, disablePadding: false, label: 'Language' },
-    { id: 'level', numeric: true, disablePadding: false, label: 'Level' },
-    { id: 'date', numeric: true, disablePadding: false, label: 'Date' },
+    { id: 'searchvalue', numeric: false, disablePadding: true, label: 'UI__USER__PROFILE_PAGE__SEARCH_HISTORY_TABLE__TERM_COLUMN' },
+    { id: 'language', numeric: true, disablePadding: false, label: 'UI__USER__PROFILE_PAGE__SEARCH_HISTORY_TABLE__LANG_COLUMN' },
+    { id: 'level', numeric: true, disablePadding: false, label: 'UI__USER__PROFILE_PAGE__SEARCH_HISTORY_TABLE__LEVEL_COLUMN' },
+    { id: 'date', numeric: true, disablePadding: false, label: 'UI__USER__PROFILE_PAGE__SEARCH_HISTORY_TABLE__DATE_COLUMN' },
 ];
 
 function EnhancedTableHead(props) {
@@ -42,7 +42,7 @@ function EnhancedTableHead(props) {
                 direction={order}
                 onClick={createSortHandler(row.id)}
               >
-                {row.label}
+                <Translate id={row.label} />
               </TableSortLabel>
             </TableCell>
           ))}

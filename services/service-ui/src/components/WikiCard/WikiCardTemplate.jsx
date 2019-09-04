@@ -5,6 +5,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import '../../assets/css/WikiCardTemplateStyle.css';
+import { Translate } from 'react-localize-redux';
 
 /**
  * The Wikipedia Card Template component.
@@ -29,7 +30,7 @@ const  WikiCardTemplate = (props) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small" href={url} target='_blank'>Learn More</Button>
+        <Button size="small" href={url} target='_blank'><Translate id='UI__RESULTS_PAGE__WIKIPEDIA__MORE_BUTTON' /></Button>
       </CardActions>
     </Card>
   );

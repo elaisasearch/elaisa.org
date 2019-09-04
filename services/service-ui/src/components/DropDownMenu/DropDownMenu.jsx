@@ -31,7 +31,7 @@ class DropDownMenu extends React.Component {
   */
   componentDidMount() {
     this.setState({
-      labelWidth: ReactDOM.findDOMNode(this.InputLabelRef).offsetWidth
+      labelWidth: 120 // ReactDOM.findDOMNode(this.InputLabelRef).offsetWidth
     });
   }
 
@@ -69,6 +69,7 @@ class DropDownMenu extends React.Component {
                 labelWidth={this.state.labelWidth}
                 name="pickedData"
                 id="outlined-age-simple"
+                onClick={() => console.log(this.state.labelWidth)}
               />
             }
           >

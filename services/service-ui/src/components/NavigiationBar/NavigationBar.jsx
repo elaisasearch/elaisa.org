@@ -4,6 +4,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button'
 import { withRouter, Link } from "react-router-dom";
 import { isMobile } from "react-device-detect";
+import { Translate } from 'react-localize-redux';
 
 //import styles
 import styles from '../../assets/jss/NavigationBarStyle';
@@ -78,8 +79,8 @@ class NavigationBar extends React.Component {
         return <div className="searchBar">
           <Button component={Link} to="/" style={styles.elaisaButton}><img src={logo} style={styles.elaisaText} alt="Elaisa Search Engine Logo"></img></Button>
           <SearchBarNavigationBar handleClickSearch={this.searchButtonPressed} value={props.values[0]} onChange={e => this.setState({ value: e })} onKeyDown={this.keyPress} />
-          <DropDownMenu value={this.state.language} desc="Result Language" items={["Deutsch", "English", "Español"]} values={["de", "en", "es"]} onChange={e => this.setState({ language: e })} />
-          <DropDownMenu value={this.state.level} desc="Language Level" items={["A1", "A2", "B1", "B2", "C1", "C2"]} values={["A1", "A2", "B1", "B2", "C1", "C2"]} onChange={e => this.setState({ level: e })} />
+          <DropDownMenu value={this.state.language} desc={<Translate id='UI__DROPDOWN__LANGUAGE' />} items={["Deutsch", "English", "Español"]} values={["de", "en", "es"]} onChange={e => this.setState({ language: e })} />
+          <DropDownMenu value={this.state.level} desc={<Translate id='UI__DROPDOWN__LEVEL' />} items={["A1", "A2", "B1", "B2", "C1", "C2"]} values={["A1", "A2", "B1", "B2", "C1", "C2"]} onChange={e => this.setState({ level: e })} />
         </div>
       }
     }
