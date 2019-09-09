@@ -134,7 +134,10 @@ def getIdsFromWord(terms):
         found_ids = []
         for fe in found_entries:
             # delete position number from document ID list. ['asdgf356345d', 327] -> 'asdgf356345d'
-            tmp = [e[0] for e in fe[0]["documents"]]
+            try:
+                tmp = [e[0] for e in fe[0]["documents"]]
+            except:
+                tmp = []
             found_ids.append(tmp)
 
         # Only store the common IDs in a new set
