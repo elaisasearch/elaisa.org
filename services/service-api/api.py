@@ -68,7 +68,7 @@ def find():
         - ['summer']
     """
     # Extract named entities
-    named_entities = extractNamedEntities(query)
+    named_entities = extractNamedEntities(query, language)
     terms = []
     if len(list(named_entities)) != 0:
         terms = getListOfSearchTerms(named_entities, query)
