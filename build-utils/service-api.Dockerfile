@@ -10,6 +10,10 @@ COPY bin/globals.json /app/lib
 
 # Install any needed packages specified in requirements.txt
 RUN pip install --trusted-host pypi.python.org -r requirements.txt
+# Install langugages for textacy NLP
+RUN python -m spacy download en
+RUN python -m spacy download de
+RUN python -m spacy download es
 
 # Run api.py when the container launches
 CMD [ "python", "api.py" ]
