@@ -25,8 +25,9 @@ Search engine depending on the language level
 4. In the `service-crawler` you have to change the following, too:
     - Go to `services/service-crawler/webcrawler/settings.py` and change the `MONGO_URI`.
         - Uncomment the development mode line and comment the production one.
-4. `cd services/service-cefr/en && python enHandler.py`
-5. `cd services/service-crawler && scrapy crawl news_en_EN`
+    - Also go o `services/service-crawler/spider/categorizer.py` and uncomment `client` for development mode.
+5. `cd services/service-cefr/en && python enHandler.py`
+6. `cd services/service-crawler && scrapy crawl news_en_EN`
     - You are only able to fill the development database on `localhost:27017`
 
 Now you can visit the application on `localhost:3000` and search for english documents.
