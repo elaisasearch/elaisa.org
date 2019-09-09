@@ -51,7 +51,7 @@ const SearchBar = (props) => {
         // search: `?query=${e.target.value}&level=${level}&language=${language}`,
         search: `?query=${value}&level=${level}&language=${language}`,
         state: {
-          searchValue: value.toLowerCase(),
+          searchValue: value,
           level: level,
           language: language
         }
