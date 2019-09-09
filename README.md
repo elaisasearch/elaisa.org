@@ -18,7 +18,13 @@ Search engine depending on the language level
     - **ONLY IF YOU WANT TO USE YOUR OWN DATABASE**
     - If you're on Windows, please check if you can start Python files with `python file.py`
 3. Mongo DB should run on `localhost:27017`
-    - You have to change the mongo path in the `bin/globals.json` to `mongodb://localhoset:27017/`
+    - You have to copy the `bin/globals.json` file to this two origins:
+        - `services/service-api/bin`
+        - `services/service-crawler/webcrawler`
+    - Then you have to change the mongo path in the `globals.json` to `mongodb://localhost:27017/`
+4. In the `service-crawler` you have to change the following, too:
+    - Go to `services/service-crawler/webcrawler/settings.py` and change the `MONGO_URI`.
+        - Uncomment the development mode line and comment the production one.
 4. `cd services/service-cefr/en && python enHandler.py`
 5. `cd services/service-crawler && scrapy crawl news_en_EN`
     - You are only able to fill the development database on `localhost:27017`
