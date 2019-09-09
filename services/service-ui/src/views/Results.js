@@ -77,11 +77,10 @@ class Results extends React.Component {
           });
         } else if (response.data.documents) {
           // get the length of result docs
-          let length = 0
-          JSON.parse(response.data.documents).forEach(() => length++)
+          let length = response.data.documents.length
 
           this.setState({
-            resultDocs: JSON.parse(response.data.documents),
+            resultDocs: response.data.documents.results,
             resultDocsLength: length,
             wiki_url: response.data.wikipedia.url,
             wiki_title: response.data.wikipedia.title,
