@@ -70,7 +70,12 @@ def findDocuments(query, level, language):
         for r in results: 
             documents.append(r)
 
-    return json.dumps(documents, cls=MongoEncoder)
+    # translate BSON structure to JSON to return real JSON and not stringified JSON
+    bsonToJSON = json.dumps(documents, cls=MongoEncoder)
+    return {
+        "length": len(json.loads(bsonToJSON)),
+        "results": json.loads(bsonToJSON),
+    }
 
 
 def getIdsFromWord(terms):
