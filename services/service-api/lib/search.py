@@ -157,7 +157,11 @@ def getIdsFromWord(terms):
         entries = [entry for entry in results]
 
         # delete position number from document ID list. ['asdgf356345d', 327] -> 'asdgf356345d'
-        found_ids = [ent[0] for ent in entries[0]["documents"]]
+        try:
+            found_ids = [ent[0] for ent in entries[0]["documents"]]
+        except:
+            # handle error if there are no documents for this search
+            found_ids = []
 
     # Finally return all found IDs
     try:
