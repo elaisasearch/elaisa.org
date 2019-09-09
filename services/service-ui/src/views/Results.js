@@ -95,7 +95,7 @@ class Results extends React.Component {
         }
       })
       .catch(error => {
-        console.log("API Error: ", error)
+        console.error("API Error: ", error)
         // handle error
         this.setState({
           resultDocs: [],
