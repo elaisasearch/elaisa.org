@@ -51,7 +51,9 @@ def findDocuments(query, level, language):
     db = client[GLOBALS["mongo"]["database"]]
     col = db[GLOBALS["mongo"]["collections"]["crawled"]["news"][0]]
 
+    # Split all search terms for boolsche query
     terms = query.split()
+    # Search for document IDs given the search terms
     docs = getIdsFromWord(terms)
 
     """
