@@ -5,12 +5,14 @@ The Application Programming Interface (API) for the entire Search Engine.
 import json
 from bottle import Bottle, request, response, run
 # import lib files
-from lib.search import findDocuments, getIdsFromWord
+from lib.search import findDocuments, getIdsFromWord, getListOfSearchTerms
 from lib.wikipedia import getWikiEntry
 from lib.user import createUser, getSearchHistoryForUser, handlePasswordChange, loginUser, writeSearchDataIntoDatabase
 from lib.spelling import checkSpelling
+from lib.nlp import extractNamedEntities
 
 app = Bottle()
+
 
 @app.hook('after_request')
 def enable_cors():
@@ -58,12 +60,31 @@ def find():
     """
     spellCheck = checkSpelling(query)
 
+    """
+    Check if the query contains Named Entities and create a list of search terms.
+    This list is used to query the database.
+    Example:
+        - ['angela merkel', 'and', 'germany']
+        - ['summer']
+    """
+    # Extract named entities
+    named_entities = extractNamedEntities(query)
+    terms = []
+    if len(list(named_entities)) != 0:
+        terms = getListOfSearchTerms(named_entities, query)
+    else:
+        terms = query.split()
+
+    """
+    If the spell check is equivalent to the search query, return the found documents.
+    Otherwise return the correct spelling suggestion of the given query
+    """
     if spellCheck == query:
         return {
-            "wikipedia": getWikiEntry(query, language),
-            "documents": findDocuments(query, level, language)
+            "wikipedia": getWikiEntry(terms, language),
+            "documents": findDocuments(terms, level, language)
         }
-    else: 
+    else:
         return {
             "correct_query": str(spellCheck)
         }
@@ -103,7 +124,7 @@ def signIn():
     email = request.params.get('email')
     password = request.params.get('password')
 
-    result =  loginUser(email, password)
+    result = loginUser(email, password)
 
     return json.loads(result)
 
@@ -142,7 +163,8 @@ def getSearchHistory():
 
     if results["response"] == "Success":
         return results
-    else: 
+    else:
         return "Error"
+
 
 app.run(host='0.0.0.0', port=8080, debug=True)

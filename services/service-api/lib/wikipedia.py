@@ -4,15 +4,13 @@ Handles the Wikipedia data for the user's search value.
 
 import wikipedia
 
-def getWikiEntry(query, language): 
+def getWikiEntry(terms, language): 
     """
     Takes the user's search term and chosen language and returns the wikipedia article information.
-    :query: String
+    :terms: List
     :language: String
     :return: Dictionary
     """
-
-    terms = query.split()
 
     try:
         wikipedia.set_lang(language)

@@ -7,7 +7,6 @@ import json
 from bson.objectid import ObjectId
 from json import JSONEncoder
 import os
-from textblob import TextBlob
 
 """
 Load the global configurations for database connection and collections.
@@ -51,18 +50,9 @@ def findDocuments(query, level, language):
     """
     db = client[GLOBALS["mongo"]["database"]]
     col = db[GLOBALS["mongo"]["collections"]["crawled"]["news"][0]]
-
-    print(query)
-    named_entities = extractNamedEntities(query)
-    terms = []
-
-    if len(list(named_entities)) != 0:
-        terms = getListOfSearchTerms(named_entities, query)
-    else:
-        # Search for document IDs given the search terms
-        terms = query.split()
     
-    docs = getIdsFromWord(terms)
+    # Get the IDs of the documents which contain the given search terms
+    docs = getIdsFromWord(query)
 
     """
     Only store a set of all IDs. If this is no set, there maybe will be several equal IDs
@@ -168,11 +158,6 @@ def getIdsFromWord(terms):
         return found_ids
     except:
         return []
-
-
-def extractNamedEntities(query):
-    queryBlob = TextBlob(query)
-    return queryBlob.noun_phrases
 
 
 def getListOfSearchTerms(named_entities, query):
