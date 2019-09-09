@@ -164,12 +164,26 @@ def getIdsFromWord(terms):
 
 
 def getListOfSearchTerms(named_entities, query):
+    """
+    Generates the list of search terms if the query contains named entities.
+    Thus, the named entity would be one item of the list and not two or three.
+    Example: 
+        before -> query = 'Angela Merkel and Germany'
+        after ->  query = ['Angela Merkel', and', 'Germany']
 
+    :named_entities: List
+    :query: String
+    :returns: List
+    """
+
+    # replace named entites in query with 'tmpN' string
     for i, en in enumerate(named_entities):
         query = query.replace(en, 'tmp{}'.format(i))
 
+    # query string to list
     query = query.split()
 
+    # change the 'tmpN' string in query list with named entity in entities list
     for j, ent in enumerate(named_entities):
         query[query.index('tmp{}'.format(j))] = ent
 
