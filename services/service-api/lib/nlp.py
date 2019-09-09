@@ -1,4 +1,4 @@
-from textblob import TextBlob
+import textacy
 
 def extractNamedEntities(query):
     """
@@ -6,5 +6,8 @@ def extractNamedEntities(query):
     :query: String
     :returns: List
     """
-    queryBlob = TextBlob(query)
-    return queryBlob.noun_phrases
+    doc = textacy.Doc(query)
+    entities = list(textacy.extract.named_entities(doc))
+
+    return [str(ent) for ent in entities]
+
