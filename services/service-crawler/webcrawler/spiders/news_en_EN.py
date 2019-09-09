@@ -59,7 +59,7 @@ class NewsSpider(scrapy.Spider):
 
             for data in response.css('html'):
 
-                if data.css('html::attr(lang)').get() == "en":
+                if data.css('html::attr(lang)').get() in ['en', 'en-EN', 'en-US']:
 
                     # preprocess text for lowercase search and normalized data
                     text = " ".join(str(element)
