@@ -72,8 +72,12 @@ def find():
     terms = []
     if len(list(named_entities)) != 0:
         terms = getListOfSearchTerms(named_entities, query)
+        # To lowercase for database search
+        terms = [t.lower() for t in terms]
     else:
-        terms = query.split()
+        # If there are no named entites, use the splitted query sentence.
+        # To lowercase for database search
+        terms = [t.lower() for t in query.split()]
 
     """
     If the spell check is equivalent to the search query, return the found documents.
