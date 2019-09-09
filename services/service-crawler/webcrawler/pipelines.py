@@ -52,6 +52,7 @@ class InvertedIndexPipeline(object):
         # Return the texts and words from the database objects
         texts, words = {}, set()
         for news in collection.find():
+            # TODO: Handle Named Entities and not just split the article's text
             txt = news["text"].split()
             words |= set(txt)
             texts[str(news["_id"])] = txt
