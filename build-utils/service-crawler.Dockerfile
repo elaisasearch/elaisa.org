@@ -12,6 +12,8 @@ COPY bin/globals.json /app/webcrawler/
 
 # Install any needed packages specified in requirements.txt
 RUN pip install --trusted-host pypi.python.org -r requirements.txt
+# Install spacy language for named entity recognition
+RUN python -m spacy download en
 
 # Make port 80 available to the world outside this container
 EXPOSE 80
