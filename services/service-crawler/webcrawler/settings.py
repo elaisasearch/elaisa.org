@@ -34,7 +34,10 @@ NEWSPIDER_MODULE = 'webcrawler.spiders'
 ROBOTSTXT_OBEY = True
 
 # Mongo DB
-#MONGO_URI= "mongodb://db:27017/"
+# Uncomment the following line for development mode
+# MONGO_URI= GLOBALS["mongo"]["auth"]["host"]
+
+# Comment the following line for development mode. Uncomment it for production mode.
 MONGO_URI = "mongodb://{}:{}@{}/?authSource={}&authMechanism={}".format(
     GLOBALS["mongo"]["auth"]["username"],
     GLOBALS["mongo"]["auth"]["password"],

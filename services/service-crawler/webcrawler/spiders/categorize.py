@@ -16,6 +16,7 @@ with open(os.path.join(scriptDir, relPath)) as f:
 
 # Global connection to database
 # source: https://api.mongodb.com/python/current/examples/authentication.html
+# Comment this line for development mode
 client = MongoClient(
     GLOBALS["mongo"]["auth"]["host"],
     username= GLOBALS["mongo"]["auth"]["username"],
@@ -23,6 +24,9 @@ client = MongoClient(
     authSource= GLOBALS["mongo"]["auth"]["authSource"],
     authMechanism= GLOBALS["mongo"]["auth"]["authMechanism"]
 )
+
+# Uncomment this line for development mode
+# client = MongoClient('mongodb://localhost:27017')
 
 ###############################################################################
 # TODO
