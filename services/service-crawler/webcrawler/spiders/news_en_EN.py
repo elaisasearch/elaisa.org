@@ -68,7 +68,7 @@ class NewsSpider(scrapy.Spider):
                         text,
                         no_accents=True,
                         no_punct=True,
-                        lowercase=True,
+                        lowercase=False,
                         fix_unicode=True,
                         no_emails=True,
                         no_phone_numbers=True,
