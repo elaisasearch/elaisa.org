@@ -6,6 +6,7 @@
 # See: https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 from scrapy.exceptions import DropItem
 import pymongo
+import textacy
 
 
 class WebcrawlerPipeline(object):
@@ -52,11 +53,43 @@ class InvertedIndexPipeline(object):
         # Return the texts and words from the database objects
         texts, words = {}, set()
         for news in collection.find():
-            # TODO: Handle Named Entities and not just split the article's text
-            txt = news["text"].split()
+            # Handle Named Entities and not just split the article's text
+            # Before -> txt = news["text"].split()
+            txt = self.extractNamedEntitiesAndCreateTextList(news["text"])
             words |= set(txt)
             texts[str(news["_id"])] = txt
         return texts, words
+
+    def extractNamedEntitiesAndCreateTextList(self, text):
+        """
+        Extract named entities from a given text and create a 
+        list of all words in the article's text. In this case, 
+        the named entites will be stored as one item, such as [...,'Angela Merkel, 'said',...]
+        :text: String
+        :returns: List
+        """
+        # TODO: handle all used languages (en, es, de)
+        doc = textacy.Doc(text, lang='en')
+        entities = list(textacy.extract.named_entities(doc, exclude_types='numeric'))
+
+        named_entities = [str(ent) for ent in entities]
+
+        # replace named entites in text with 'tmpN' string
+        for i, en in enumerate(named_entities):
+            # Replace the first occuring named entity with the tmpN value. This is very important,
+            # as there would be various tmp1 for example and the system wouldn't be able to change the values
+            # in the next step.
+            text = text.replace(en, 'tmp{}'.format(i), 1)
+
+        # text string to list
+        text = text.split()
+
+        # change the 'tmpN' string in text list with named entity in entities list
+        for j, ent in enumerate(named_entities):
+            text[text.index('tmp{}'.format(j))] = ent
+
+        # return the new text as list, that contains all words and named antities
+        return text
 
     def storeIndexInMongo(self, finvindex):
         """
