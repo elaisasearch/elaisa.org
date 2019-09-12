@@ -69,7 +69,6 @@ class DropDownMenu extends React.Component {
                 labelWidth={this.state.labelWidth}
                 name="pickedData"
                 id="outlined-age-simple"
-                onClick={() => console.log(this.state.labelWidth)}
               />
             }
           >
