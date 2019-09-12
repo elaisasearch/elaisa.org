@@ -72,6 +72,7 @@ class InvertedIndexPipeline(object):
         """
         # TODO: handle all used languages (en, es, de)
         doc = textacy.Doc(text, lang='en')
+        # source: https://chartbeat-labs.github.io/textacy/api_reference/information_extraction.html?highlight=stop%20words
         wordsWithoutStopWordsList = list(textacy.extract.words(doc, filter_stops=True, filter_punct=True))
 
         return [str(word) for word in wordsWithoutStopWordsList]
