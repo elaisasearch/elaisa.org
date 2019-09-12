@@ -28,7 +28,8 @@ class SignUp extends Component {
         firstName: "",
         lastName: "",
         email: "",
-        password: ""
+        password: "",
+        agreesTermsOfService: false
     }
 
     /**
@@ -129,8 +130,9 @@ class SignUp extends Component {
                         </div>
                         <div style={{ marginTop: "5%" }}>
                             <FormControlLabel
-                                control={<Checkbox value="allowExtraEmails" color="secondary" />}
+                                control={<Checkbox value="agreeTermsOfService" color="secondary" />}
                                 label={<Translate id='UI__SIGN_UP_PAGE__AGREE_TERMS_BUTTON' />}
+                                onClick={e => this.setState({ agreesTermsOfService: e.target.checked })}
                             />
                         </div>
                         <Button
@@ -140,7 +142,7 @@ class SignUp extends Component {
                             color="secondary"
                             className="submit"
                             onClick={this.handleSubmit.bind(this)}
-                            disabled={this.state.firstName.length === 0 || this.state.lastName.length === 0 || this.state.email.length === 0 || this.state.password.length === 0}
+                            disabled={this.state.firstName.length === 0 || this.state.lastName.length === 0 || this.state.email.length === 0 || this.state.password.length === 0 || !this.state.agreesTermsOfService} 
                         >
                             <Translate id='UI__SIGN_UP_PAGE__SIGN_UP_BUTTON' />
                         </Button>
