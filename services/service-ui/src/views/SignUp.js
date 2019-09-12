@@ -90,7 +90,6 @@ class SignUp extends Component {
                                 fullWidth
                                 id="firstName"
                                 label={<Translate id='UI__SIGN_UP_PAGE__FIRSTNAME_FIELD' />}
-                                autoFocus
                             />
                             <TextField
                                 onChange={e => this.setState({ lastName: e.target.value })}
