@@ -63,9 +63,6 @@ const MyDocument = (props) => (
 */
 const PDFGenerator = (props) => {
 
-    console.log(new Date().toLocaleDateString)
-
-
     const { language, level, firstname, lastname } = props;
 
     return <PDFDownloadLink className="downloadbutton" document={<MyDocument language={language} level={level} fistname={firstname} lastname={lastname}/>} fileName="elaisa_statistics.pdf">
