@@ -120,9 +120,6 @@ class Profile extends Component {
      * @returns {JSX} Profile.js.
     */
     render() {
-
-        console.log(this.state)
-
         // redux state
         const { loggedIn, email, firstname, lastname } = this.props;
 
