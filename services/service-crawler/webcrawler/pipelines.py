@@ -53,14 +53,30 @@ class InvertedIndexPipeline(object):
         # Return the texts and words from the database objects
         texts, words = {}, set()
         for news in collection.find():
-            # Handle Named Entities and not just split the article's text
-            # Before -> txt = news["text"].split()
-            txt = self.extractNamedEntitiesAndCreateTextList(news["text"])
+            # Remove all stop words from the text first
+            wordsWithoutStopWordsList = self.removeStopWordsFromText(news["text"])
+            # Handle Named Entities to store them as one word
+            txt = self.extractNamedEntitiesAndCreateTextList(wordsWithoutStopWordsList)
             words |= set(txt)
             texts[str(news["_id"])] = txt
         return texts, words
 
-    def extractNamedEntitiesAndCreateTextList(self, text):
+    def removeStopWordsFromText(self, text):
+        """
+        Removes all stop words from the text, so that they aren't stored in the database.
+        Example: 
+            - Before: 'Tony Stark is the man'
+            - After: ['Tony', 'Stark', 'man']
+        :text: String
+        :returns: List
+        """
+        # TODO: handle all used languages (en, es, de)
+        doc = textacy.Doc(text, lang='en')
+        wordsWithoutStopWordsList = list(textacy.extract.words(doc, filter_stops=True, filter_punct=True))
+
+        return [str(word) for word in wordsWithoutStopWordsList]
+
+    def extractNamedEntitiesAndCreateTextList(self, wordsWithoutStopWordsList):
         """
         Extract named entities from a given text and create a 
         list of all words in the article's text. In this case, 
@@ -68,6 +84,10 @@ class InvertedIndexPipeline(object):
         :text: String
         :returns: List
         """
+
+        # transform text list to string, since removeStopWordsFromText() returns a list
+        text = " ".join(w for w in wordsWithoutStopWordsList)
+
         # TODO: handle all used languages (en, es, de)
         doc = textacy.Doc(text, lang='en')
         entities = list(textacy.extract.named_entities(doc, exclude_types='numeric'))
