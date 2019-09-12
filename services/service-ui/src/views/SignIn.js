@@ -51,12 +51,9 @@ class SignIn extends Component {
         axios.post(`http://api.elaisa.org/signin?email=${this.state.email}&password=${this.state.password}`)
             .then((response) => {
                 if (response.data.response === "Success") {
-                    console.log("user logged in");
-
+                    
                     const { email, firstname, lastname } = response.data.user;
-
-                    console.log(response.data.user)
-
+                
                     // redux action
                     this.props.onSignIn(email, firstname, lastname);
 
