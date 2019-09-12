@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import { TextField, InputAdornment, IconButton } from '@material-ui/core/'
+import { TextField, InputAdornment, IconButton, Tooltip } from '@material-ui/core/'
 import { withRouter } from "react-router-dom";
 import Search from '@material-ui/icons/Search'
 import DropDownMenu from '../DropDownMenu/DropDownMenu';
@@ -21,7 +21,7 @@ const SearchBar = (props) => {
   const [level, setLevel] = useState('');
   const [language, setLanguage] = useState('');
 
-  
+
   /**
    * Checks the user's login data with API post request and stores to redux.
    * @param {event} event the clicked key event
@@ -90,13 +90,15 @@ const SearchBar = (props) => {
             },
             endAdornment: (
               <InputAdornment position="end">
-                <IconButton
-                  edge="end"
-                  aria-label="toggle search"
-                  onClick={searchButtonPressed}
-                >
-                  <Search />
-                </IconButton>
+                <Tooltip title={<Translate id='UI__SEARCHBAR' />} aria-label='search'>
+                  <IconButton
+                    edge="end"
+                    aria-label="toggle search"
+                    onClick={searchButtonPressed}
+                  >
+                    <Search />
+                  </IconButton>
+                </Tooltip>
               </InputAdornment>
             ),
           }}

@@ -3,7 +3,7 @@ import NavigationBar from '../components/NavigiationBar/NavigationBar';
 import SearchBar from '../components/SearchBar/SearchBar';
 import Footer from '../components/Footer/Footer';
 import '../assets/css/AppStyle.css'
-import IconButton from '@material-ui/core/IconButton';
+import { IconButton, Tooltip } from '@material-ui/core/';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import scrollToFooter from '../handlers/scrollHandler';
 import SplashDialog from '../components/SplashDialog/SplashDialog';
@@ -59,9 +59,11 @@ const App = (props) => {
         <NavigationBar loggedIn={loggedIn} email={email} firstname={firstname} lastname={lastname} />
         <img id="logo" src={logo} className="logo" alt="Elaisa Search Engine Logo"></img>
         <SearchBar />
-        <IconButton onClick={e => scrollToFooter()} aria-label="show-footer" id="show-footer-button" size="large">
-          <ArrowDownwardIcon fontSize="large" />
-        </IconButton>
+        <Tooltip title={<Translate id='UI__BUTTON__SHOW_FOOTER__TOOLTIP' />} aria-label='show-more-information'>
+          <IconButton onClick={e => scrollToFooter()} aria-label="show-footer" id="show-footer-button" size="large">
+            <ArrowDownwardIcon fontSize="large" />
+          </IconButton>
+        </Tooltip>
         <div className='legal-info'>
           <LanguageSelect />
           <Button id='legal-notice-button' onClick={e => setLegalNoticeDialogOpen(true)}>
@@ -96,7 +98,7 @@ const mapStateToProps = state => {
 */
 const mapDispatchToProps = dispatch => {
   return {
-    onOpenedSplashDialog: (opened) => dispatch({ type: 'OPENED_SPLASH', opened})
+    onOpenedSplashDialog: (opened) => dispatch({ type: 'OPENED_SPLASH', opened })
   };
 };
 
