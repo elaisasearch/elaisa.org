@@ -27,6 +27,9 @@ const App = (props) => {
   // handle the splash dialog open state
   const [splashDialogOpen, setSplashDialogOpen] = useState(false);
   const [legalNoticeDialogOpen, setLegalNoticeDialogOpen] = useState(false);
+  // disable the show footer button if it was clicked one time to prevent hight bug in the footer.
+  // when the user wants to the see footer, he has to scroll down manually
+  const [disableShowFooterButton, setDisableShowFooterButton] = useState(false)
 
   const handleClose = () => {
     setSplashDialogOpen(false);
@@ -60,7 +63,7 @@ const App = (props) => {
         <img id="logo" src={logo} className="logo" alt="Elaisa Search Engine Logo"></img>
         <SearchBar />
         <Tooltip title={<Translate id='UI__BUTTON__SHOW_FOOTER__TOOLTIP' />} aria-label='show-more-information'>
-          <IconButton onClick={e => scrollToFooter()} aria-label="show-footer" id="show-footer-button" size="large">
+          <IconButton onClick={e => {scrollToFooter(); setDisableShowFooterButton(true)}} disabled={disableShowFooterButton} aria-label="show-footer" id="show-footer-button" size="large">
             <ArrowDownwardIcon fontSize="large" />
           </IconButton>
         </Tooltip>
