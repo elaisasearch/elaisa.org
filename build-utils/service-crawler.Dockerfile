@@ -12,6 +12,8 @@ COPY bin/globals.json /app/webcrawler/
 
 # Install any needed packages specified in requirements.txt
 RUN pip install --trusted-host pypi.python.org -r requirements.txt
+# Download necessary data for textblob
+RUN python -m textblob.download_corpora
 # Install spacy language for named entity recognition
 RUN python -m spacy download en
 
