@@ -84,6 +84,7 @@ class NewsSpider(scrapy.Spider):
                     for w in words:
                         lemmatizedText += "{} ".format(w.lemmatize())
 
+                    # normalize the whitespaces for texts which include s.l. 'Title    And I am ...'
                     preprocessedText = textacy.preprocess.normalize_whitespace(
                         lemmatizedText)
 
