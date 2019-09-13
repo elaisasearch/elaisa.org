@@ -17,7 +17,9 @@ def checkSpelling(text):
     # most probable texts probability
     probability = checkResult[0][1]
 
-    if probability > 0.90:
+    # Don't correct named entites like 'Iran'.
+    # Set value to 1.0 so that it won't hit
+    if probability > 1.0:
         blob = TextBlob(text)
         # return the most probable correct word
         return blob.correct()
