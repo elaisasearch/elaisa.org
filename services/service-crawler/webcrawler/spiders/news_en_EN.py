@@ -6,6 +6,7 @@ import scrapy
 import thinc
 import textacy
 import re
+from textblob import TextBlob
 from . import categorize
 
 
@@ -74,9 +75,17 @@ class NewsSpider(scrapy.Spider):
                         no_phone_numbers=True,
                         no_contractions=True
                     )
+
+                    # lemmatize the entire text
+                    # first, split the text to a list of words
+                    words = TextBlob(preprocessedText).words
+                    # then, lemmatize each word
+                    lemmatizedText = ""
+                    for w in words:
+                        lemmatizedText += "{} ".format(w.lemmatize())
+
                     preprocessedText = textacy.preprocess.normalize_whitespace(
-                        preprocessedText)
-                    # TODO: add lemmatizing for words"""
+                        lemmatizedText)
 
                     # categorize documents
                     # [MainLevel, easy/hard]
