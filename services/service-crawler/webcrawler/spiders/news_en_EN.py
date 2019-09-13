@@ -88,7 +88,7 @@ class NewsSpider(scrapy.Spider):
                         yield {
                             'url': url,
                             'meta': {
-                                'language': data.css('html::attr(lang)').get(),
+                                'language': 'en',
                                 'keywords': data.css('meta[name*=eywords]::attr(content)').get(),
                                 'author': data.css("meta[name*=uthor]::attr(content)").get(),
                                 'publisher': data.css("meta[name*=ublisher]::attr(content)").get(),
