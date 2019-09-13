@@ -63,7 +63,14 @@ def findDocuments(query, level, language):
 
     documents = []
     for id in docIds:
-        query = {"_id": ObjectId(id), "level": level, "meta.language": language}
+
+        # Check if the user wants to search for all documents with this search term
+        # and remove the filter for this case
+        if level == 'all':
+            query = {"_id": ObjectId(id), "meta.language": language}
+        else:
+            query = {"_id": ObjectId(id), "level": level, "meta.language": language}
+        
         results = col.find(query)
 
         for r in results: 
