@@ -2,6 +2,7 @@
     "UI__BUTTON__LEGAL": "Impressum",
     "UI__DROPDOWN__LANGUAGE": "Ergebnissprache",
     "UI__DROPDOWN__LEVEL": "Sprachenlevel",
+    "UI__DROPDOWN__LEVEL_ALL": "Alle",
     "UI__SEARCHBAR": "Suche nach Dokumenten",
     "UI__BUTTION__SIGN_IN": "Einloggen",
     "UI__BUTTON__SHOW_FOOTER__TOOLTIP": "Mehr Infos anzeigen",

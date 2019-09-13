@@ -2,6 +2,7 @@
     "UI__BUTTON__LEGAL": "Impresión",
     "UI__DROPDOWN__LANGUAGE": "Idioma resultado",
     "UI__DROPDOWN__LEVEL": "Nivel de idioma",
+    "UI__DROPDOWN__LEVEL_ALL": "Todos",
     "UI__SEARCHBAR": "Buscar documentos",
     "UI__BUTTION__SIGN_IN": "Registrarse",
     "UI__BUTTON__SHOW_FOOTER__TOOLTIP": "Mostrar más información",

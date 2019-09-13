@@ -2,6 +2,7 @@
     "UI__BUTTON__LEGAL": "Legal Notice",
     "UI__DROPDOWN__LANGUAGE": "Result Language",
     "UI__DROPDOWN__LEVEL": "Language Level",
+    "UI__DROPDOWN__LEVEL_ALL": "All",
     "UI__SEARCHBAR": "Search for documents",
     "UI__BUTTION__SIGN_IN": "Sign In",
     "UI__BUTTON__SHOW_FOOTER__TOOLTIP": "Show more information",

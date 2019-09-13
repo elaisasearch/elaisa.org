@@ -69,7 +69,7 @@ const SearchBar = (props) => {
       <div className="seachBarRoot">
         <div style={styles.pickers}>
           <DropDownMenu desc={<Translate id='UI__DROPDOWN__LANGUAGE' />} items={["Deutsch", "English", "Español"]} values={["de", "en", "es"]} onChange={e => setLanguage(e)} />
-          <DropDownMenu desc={<Translate id='UI__DROPDOWN__LEVEL' />} items={["A1", "A2", "B1", "B2", "C1", "C2"]} values={["A1", "A2", "B1", "B2", "C1", "C2"]} onChange={e => setLevel(e)} />
+          <DropDownMenu desc={<Translate id='UI__DROPDOWN__LEVEL' />} items={[<Translate id='UI__DROPDOWN__LEVEL_ALL' />, "A1", "A2", "B1", "B2", "C1", "C2"]} values={["all", "A1", "A2", "B1", "B2", "C1", "C2"]} onChange={e => setLevel(e)} />
         </div>
         <TextField
           onKeyDown={keyPress}
