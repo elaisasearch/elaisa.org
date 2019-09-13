@@ -218,11 +218,16 @@ class PageRankPipeline(object):
         self.client.close()
 
     def getCrawledWebpages(self):
+        """
+        Returns all stored documents from the database
+        :return: MongoDB Cursor Object
+        """
         return self.db[self.collection_name].find()
 
     def getLenOfCrawledWebpages(self):
         """
         Returns the number of webpages in the db
+        :return: Integer
         """
         counter = 0
         dbCol = self.db[self.collection_name].find()
@@ -235,6 +240,7 @@ class PageRankPipeline(object):
         """
         Returns all pages that link to the current page
         :page: Dictionary
+        :return: List
         """
         return [page for p in self.getCrawledWebpages() if page['url'] in p['links']]
 
