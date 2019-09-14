@@ -95,7 +95,6 @@ def findDocuments(query, level, language):
     """
     for jres in jsonResults:
         jres['pagerank'] +=  tf[jres['_id']]['tf']
-        print(jres['pagerank'])
 
     return {
         "length": len(json.loads(bsonToJSON)),
