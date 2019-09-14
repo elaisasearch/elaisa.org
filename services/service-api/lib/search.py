@@ -7,6 +7,7 @@ import json
 from bson.objectid import ObjectId
 from json import JSONEncoder
 import os
+from .nlp import calculateTermfrequency
 
 """
 Load the global configurations for database connection and collections.
@@ -52,17 +53,18 @@ def findDocuments(query, level, language):
     col = db[GLOBALS["mongo"]["collections"]["crawled"]["news"][0]]
     
     # Get the IDs of the documents which contain the given search terms
-    docs = getIdsFromWord(query)
+    docIds = getIdsFromWord(query)
 
     """
     Only store a set of all IDs. If this is no set, there maybe will be several equal IDs
     since the indexer stores the same ID again in the 'documents' list, if the indexed word
     happens at several points.
     """
-    docIds = set(docs)
+    docIdsSet = set(docIds)
 
     documents = []
-    for id in docIds:
+    textsOfDocuments = {}
+    for id in docIdsSet:
 
         # Check if the user wants to search for all documents with this search term
         # and remove the filter for this case
@@ -75,13 +77,33 @@ def findDocuments(query, level, language):
 
         for r in results: 
             documents.append(r)
+            textsOfDocuments[id] = r['text']
+
+    
+    # Get the TF part of the TF*IDF formular for result's ranking
+    tf: dict = calculateTermfrequency(query, docIds, textsOfDocuments)
 
     # translate BSON structure to JSON to return real JSON and not stringified JSON
     bsonToJSON = json.dumps(documents, cls=MongoEncoder)
+    jsonResults = json.loads(bsonToJSON)
+
+    """
+    Update the pagerank and add the term frequency to pagerank value
+    Example: 
+        - Pagerank before -> 0.0002604166666666667
+        - Pagerank after  -> 0.005091334541062802
+    """
+    for jres in jsonResults:
+        jres['pagerank'] +=  tf[jres['_id']]['tf']
+        print(jres['pagerank'])
+
     return {
         "length": len(json.loads(bsonToJSON)),
-        "results": json.loads(bsonToJSON),
+        "results": jsonResults,
     }
+
+def calculateTFIDF(text, word):
+    pass
 
 
 def getIdsFromWord(terms):
