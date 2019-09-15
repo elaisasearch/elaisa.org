@@ -4,7 +4,7 @@ Handles the Wikipedia data for the user's search value.
 
 import wikipedia
 
-def getWikiEntry(terms, language): 
+def getWikiEntry(terms: list, language: str) -> dict: 
     """
     Takes the user's search term and chosen language and returns the wikipedia article information.
     :terms: List
