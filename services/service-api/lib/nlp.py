@@ -1,10 +1,11 @@
 import textacy
 from collections import defaultdict
 
-def extractNamedEntities(query, language):
+def extractNamedEntities(query: str, language: str) -> list:
     """
     Extract Phrases from a given query sentence string
     :query: String
+    :language: String
     :returns: List
     """
     doc = textacy.Doc(query, lang=language)
@@ -12,7 +13,7 @@ def extractNamedEntities(query, language):
 
     return [str(ent) for ent in entities]
 
-def calculateTermfrequency(query, ids, texts):
+def calculateTermfrequency(query: str, ids: list, texts: dict) -> dict:
     """
     Calcualtes the TF part of the TF*IDF formular to show documents at the top of the result list
     in which the search query occurs the most.
