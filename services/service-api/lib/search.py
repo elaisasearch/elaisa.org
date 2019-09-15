@@ -41,37 +41,37 @@ class MongoEncoder(JSONEncoder):
             return JSONEncoder.default(obj, **kwargs)
 
 
-def findDocuments(query, level, language):
+def findDocuments(query: list, level: str, language: str) -> dict:
     """
     Takes the search values and searches the database for results.
-    :query: String
+    :query: List
     :level: String
     :language: String
-    :return: JSON
+    :return: Dictionary
     """
     db = client[GLOBALS["mongo"]["database"]]
     col = db[GLOBALS["mongo"]["collections"]["crawled"]["news"][0]]
     
     # Get the IDs of the documents which contain the given search terms
-    docIds = getIdsFromWord(query)
+    docIds: list = getIdsFromWord(query)
 
     """
     Only store a set of all IDs. If this is no set, there maybe will be several equal IDs
     since the indexer stores the same ID again in the 'documents' list, if the indexed word
     happens at several points.
     """
-    docIdsSet = set(docIds)
+    docIdsSet: set = set(docIds)
 
-    documents = []
-    textsOfDocuments = {}
+    documents: list = []
+    textsOfDocuments: dict = {}
     for id in docIdsSet:
 
         # Check if the user wants to search for all documents with this search term
         # and remove the filter for this case
         if level == 'all':
-            query = {"_id": ObjectId(id), "meta.language": language}
+            query: dict = {"_id": ObjectId(id), "meta.language": language}
         else:
-            query = {"_id": ObjectId(id), "level": level, "meta.language": language}
+            query: dict = {"_id": ObjectId(id), "level": level, "meta.language": language}
         
         results = col.find(query)
 
@@ -105,17 +105,17 @@ def calculateTFIDF(text, word):
     pass
 
 
-def getIdsFromWord(terms):
+def getIdsFromWord(terms: list) -> list:
     """
     Takes the search terms and gets the document IDs for findDocuments().
     :terms: List
-    :return: Dictionary
+    :return: List
     """
     db = client[GLOBALS["mongo"]["database"]]
     objdb = db[GLOBALS["mongo"]["collections"]["inverted_index"][0]]
 
-    query = []
-    found_ids = []
+    query: list = []
+    found_ids: list = []
 
     # Check the boolesche term. OR, AND
     if any(elem in terms for elem in ['or', 'oder', 'e']):
@@ -130,7 +130,7 @@ def getIdsFromWord(terms):
             query.append({'word': {'$eq': w}})
 
         results = objdb.find({ '$or': query}).skip(0)
-        entries = [entry for entry in results]
+        entries: list = [entry for entry in results]
 
         # delete position number from document ID list. ['asdgf356345d', 327] -> 'asdgf356345d'
         found_ids = [ent[0] for ent in entries[0]["documents"]]
@@ -147,19 +147,19 @@ def getIdsFromWord(terms):
         elif 'y' in terms: terms.remove('y')
 
         # Query the database for each term in terms
-        found_results = []
+        found_results: list = []
         for w in terms: 
             db_found = objdb.find({"word": w})
             found_results.append(db_found)
 
         # Extract the found entries from the mongo db cursor; for each result in found_results
-        found_entries = []
+        found_entries: list = []
         for fr in found_results:
             tmp = [e for e in fr]
             found_entries.append(tmp)
         
         # Extract only the IDs and store them in lists for each term in terms
-        found_ids = []
+        found_ids: list = []
         for fe in found_entries:
             # delete position number from document ID list. ['asdgf356345d', 327] -> 'asdgf356345d'
             try:
@@ -175,14 +175,14 @@ def getIdsFromWord(terms):
     # If the user only searches for one term
     else:
         results = objdb.find({ 'word': terms[0]}).skip(0)
-        entries = [entry for entry in results]
+        entries: list = [entry for entry in results]
 
         # delete position number from document ID list. ['asdgf356345d', 327] -> 'asdgf356345d'
         try:
-            found_ids = [ent[0] for ent in entries[0]["documents"]]
+            found_ids: list = [ent[0] for ent in entries[0]["documents"]]
         except:
             # handle error if there are no documents for this search
-            found_ids = []
+            found_ids: list = []
 
     # Finally return all found IDs
     try:
@@ -191,7 +191,7 @@ def getIdsFromWord(terms):
         return []
 
 
-def getListOfSearchTerms(named_entities, query):
+def getListOfSearchTerms(named_entities: list, query: str) -> list:
     """
     Generates the list of search terms if the query contains named entities.
     Thus, the named entity would be one item of the list and not two or three.
@@ -209,7 +209,7 @@ def getListOfSearchTerms(named_entities, query):
         query = query.replace(en, 'tmp{}'.format(i))
 
     # query string to list
-    query = query.split()
+    query: list = query.split()
 
     # change the 'tmpN' string in query list with named entity in entities list
     for j, ent in enumerate(named_entities):
