@@ -26,7 +26,7 @@ def enable_cors():
 
 
 @app.route('/')
-def index():
+def index() -> str:
     """
     Root api requst url.
     :return: String
@@ -35,7 +35,7 @@ def index():
 
 
 @app.route('/find', method=["OPTIONS", "GET"])
-def find():
+def find() -> dict:
     """
     Takes the user input and returns the found documents as dictionary.
     :query: String
@@ -45,11 +45,11 @@ def find():
     :email: String
     :return: Dictionary
     """
-    query = request.params.get('query')
-    level = request.params.get('level')
-    language = request.params.get('language')
-    loggedIn = request.params.get('loggedin')
-    email = request.params.get('email')
+    query: str = request.params.get('query')
+    level: str = request.params.get('level')
+    language: str = request.params.get('language')
+    loggedIn: str = request.params.get('loggedin')
+    email: str = request.params.get('email')
 
     if loggedIn == "true":
         writeSearchDataIntoDatabase(query, level, language, email)
@@ -58,7 +58,7 @@ def find():
     Check if query is spelled correctly. The result will be a string and if the string 
     don't equals the query, the query was spelled wrong.
     """
-    spellCheck = checkSpelling(query)
+    spellCheck: str = checkSpelling(query)
 
     """
     Check if the query contains Named Entities and create a list of search terms.
@@ -68,8 +68,8 @@ def find():
         - ['summer']
     """
     # Extract named entities
-    named_entities = extractNamedEntities(query, language)
-    terms = []
+    named_entities: list = extractNamedEntities(query, language)
+    terms: list = []
     if len(list(named_entities)) != 0:
         terms = getListOfSearchTerms(named_entities, query)
     else:
@@ -92,7 +92,7 @@ def find():
 
 
 @app.route('/signup', method="POST")
-def signUp():
+def signUp() -> str:
     """
     Takes the user information and signs up the new user in the database by calling the createUser() function.
     :firtname: String
@@ -101,12 +101,12 @@ def signUp():
     :password: String
     :return: String
     """
-    firstname = request.params.get('firstname')
-    lastname = request.params.get('lastname')
-    email = request.params.get('email')
-    password = request.params.get('password')
+    firstname: str = request.params.get('firstname')
+    lastname: str = request.params.get('lastname')
+    email: str = request.params.get('email')
+    password: str = request.params.get('password')
 
-    result = createUser(firstname, lastname, email, password)
+    result: str = createUser(firstname, lastname, email, password)
 
     if result == "Success":
         return "Success"
@@ -115,23 +115,23 @@ def signUp():
 
 
 @app.route('/signin', method=["OPTIONS", "POST"])
-def signIn():
+def signIn() -> dict:
     """
     Takes the user input and checks if the credentials are right by calling loginUser() from user.py.
     :email: String
     :password: String
     :return: Dictionary
     """
-    email = request.params.get('email')
-    password = request.params.get('password')
+    email: str = request.params.get('email')
+    password: str = request.params.get('password')
 
-    result = loginUser(email, password)
+    result: str = loginUser(email, password)
 
     return json.loads(result)
 
 
 @app.route('/changepassword', method=["OPTIONS", "POST"])
-def changePassword():
+def changePassword() -> str:
     """
     Changes the user's password with the new user's input. First, the method checks the old password (coming soon).
     :email: String
@@ -139,11 +139,11 @@ def changePassword():
     :newPass: String
     :return: String
     """
-    email = request.params.get('email')
-    oldPass = request.params.get('oldpassword')
-    newPass = request.params.get('newpassword')
+    email: str = request.params.get('email')
+    oldPass: str = request.params.get('oldpassword')
+    newPass: str = request.params.get('newpassword')
 
-    result = handlePasswordChange(email, oldPass, newPass)
+    result: str = handlePasswordChange(email, oldPass, newPass)
 
     if result == "Success":
         return "Success"
@@ -158,9 +158,9 @@ def getSearchHistory():
     :email: String
     :return: Dictionary
     """
-    email = request.params.get('email')
+    email: str = request.params.get('email')
 
-    results = getSearchHistoryForUser(email)
+    results: dict = getSearchHistoryForUser(email)
 
     if results["response"] == "Success":
         return results
