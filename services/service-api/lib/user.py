@@ -52,7 +52,7 @@ class SetEncoder(json.JSONEncoder):
         return json.JSONEncoder.default(self, obj)
 
 
-def createUser(firstname, lastname, email, password):
+def createUser(firstname: str, lastname: str, email: str, password: str) -> str:
     """
     Takes the user infos and creates a new user in the database.
     :firstname: String
@@ -83,17 +83,17 @@ def createUser(firstname, lastname, email, password):
         return "Error"
 
 
-def loginUser(email, password):
+def loginUser(email: str, password: str) -> str:
     """
     Takes the user credentials and tries to login the user.
     :email: String
     :password: String
-    :return: JSON
+    :return: JSON String
     """
     db = client[GLOBALS["mongo"]["database"]]
     col = db[GLOBALS["mongo"]["collections"]["user"][0]]
 
-    userObject = {}
+    userObject: dict = {}
 
     results = col.find({"email": email})
 
@@ -115,7 +115,7 @@ def loginUser(email, password):
     return json.dumps(userObject, cls=MongoEncoder)
 
 
-def handlePasswordChange(email, oldPass, newPass):
+def handlePasswordChange(email: str, oldPass: str, newPass: str) -> str:
     """
     Changes the password for the user in the database (hashed).
     :email: String
@@ -134,7 +134,7 @@ def handlePasswordChange(email, oldPass, newPass):
         return "Error"
 
 
-def writeSearchDataIntoDatabase(query, level, language, email):
+def writeSearchDataIntoDatabase(query: str, level: str, language: str, email: str):
     """
     Stores the user's search data for search history.
     :query: String
@@ -146,7 +146,7 @@ def writeSearchDataIntoDatabase(query, level, language, email):
     db = client[GLOBALS["mongo"]["database"]]
     col = db[GLOBALS["mongo"]["collections"]["user"][1]]
 
-    date = datetime.datetime.now().strftime("%d.%m.%Y %H:%M")
+    date: str = datetime.datetime.now().strftime("%d.%m.%Y %H:%M")
 
     try:
         col.insert_one({
@@ -159,7 +159,7 @@ def writeSearchDataIntoDatabase(query, level, language, email):
     except:
         return
 
-def getSearchHistoryForUser(email):
+def getSearchHistoryForUser(email: str) -> dict:
     """
     Get's the user's search history from user mail.
     :email: String
@@ -173,7 +173,7 @@ def getSearchHistoryForUser(email):
             "email": email
         })
     
-        data = []
+        data: list = []
         en, es, de, a1, a2, b1, b2, c1, c2 = 0, 0, 0, 0, 0, 0, 0, 0, 0
         for d in historyData:
             data.append({
