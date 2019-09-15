@@ -5,7 +5,7 @@ Handles all spelling checks for the input text
 from textblob import TextBlob, Word
 
 
-def checkSpelling(text):
+def checkSpelling(text: str) -> str:
     """
     Checks if the text is spelled correctly. If not, it returns the probable right text
         - source: https://textblob.readthedocs.io/en/dev/quickstart.html#spelling-correction
@@ -13,9 +13,9 @@ def checkSpelling(text):
     """
     word = Word(text)
     # returns something like: [('hello', 0.7619047619047619), ('hell', 0.23809523809523808)]
-    checkResult = word.spellcheck()
+    checkResult: list = word.spellcheck()
     # most probable texts probability
-    probability = checkResult[0][1]
+    probability: float = checkResult[0][1]
 
     # Don't correct named entites like 'Iran'.
     # Set value to 1.0 so that it won't hit
