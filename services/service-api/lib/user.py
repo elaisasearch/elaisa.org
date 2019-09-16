@@ -10,6 +10,8 @@ from json import JSONEncoder
 import datetime
 import pickle
 import os
+import string
+import random
 
 """
 Load the global configurations for database connection and collections.
@@ -132,6 +134,41 @@ def handlePasswordChange(email: str, oldPass: str, newPass: str) -> str:
         return "Success"
     except:
         return "Error"
+
+def handleForgotPassword(email: str) -> dict:
+    """
+    Changes the password for the user in the database (hashed).
+    :email: String
+    :oldPass: String
+    :newPass: String
+    :return: Dictionary
+    """
+    db = client[GLOBALS["mongo"]["database"]]
+    col = db[GLOBALS["mongo"]["collections"]["user"][0]]
+
+    newPassword = randomString(8)
+    newPass_hash = bcrypt.hashpw(newPassword.encode('utf-8'), bcrypt.gensalt(14))
+    try:
+        col.update_one({"email": email}, {"$set": {"password": newPass_hash}})
+        return {
+            "response": "Success",
+            "password": newPassword
+        }
+    except:
+        return {
+            "response": "Error",
+            "password": ""
+        }
+
+def randomString(stringLength: int) -> str:
+    """
+    Generate a random string with the combination of lowercase and uppercase letters
+    :stringLength: Integer
+    :return: String
+    """
+
+    letters = string.ascii_letters
+    return ''.join(random.choice(letters) for i in range(stringLength))
 
 
 def writeSearchDataIntoDatabase(query: str, level: str, language: str, email: str):

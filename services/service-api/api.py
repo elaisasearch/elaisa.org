@@ -7,7 +7,7 @@ from bottle import Bottle, request, response, run
 # import lib files
 from lib.search import findDocuments, getIdsFromWord, getListOfSearchTerms
 from lib.wikipedia import getWikiEntry
-from lib.user import createUser, getSearchHistoryForUser, handlePasswordChange, loginUser, writeSearchDataIntoDatabase
+from lib.user import createUser, getSearchHistoryForUser, handlePasswordChange, loginUser, writeSearchDataIntoDatabase, handleForgotPassword
 from lib.spelling import checkSpelling
 from lib.nlp import extractNamedEntities
 
@@ -149,6 +149,18 @@ def changePassword() -> str:
         return "Success"
     else:
         return "Error"
+
+
+@app.route('/forgotpassword', method=["OPTIONS", "POST"])
+def forgotPassword() -> str:
+    """
+    Changes the user's password with the new user's input. First, the method checks the old password (coming soon).
+    :email: String
+    :return: String
+    """
+    email: str = request.params.get('email')
+
+    return handleForgotPassword(email)
 
 
 @app.route('/searchhistory', method=["OPTIONS", "GET"])
