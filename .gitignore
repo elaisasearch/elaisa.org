@@ -2,6 +2,7 @@
 
 # Ignore the globals.json
 /bin/globals.json
+/**/globals.json
 
 # dependencies
 /**/node_modules
