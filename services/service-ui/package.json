@@ -10,6 +10,7 @@
     "clsx": "^1.0.4",
     "history": "^4.9.0",
     "moment": "^2.24.0",
+    "nodemailer": "^6.3.0",
     "notistack": "^0.8.5",
     "react": "^16.8.5",
     "react-device-detect": "^1.6.2",
