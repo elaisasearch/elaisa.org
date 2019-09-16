@@ -33,5 +33,3 @@ function sendEmail(to, subject, content) {
           return 'Success'
      });
 }
-
-sendEmail('teusz.alexander@gmail.com', 'coole test mail', 'das ist ein dicker test yo')
