@@ -14,6 +14,7 @@ import { SnackbarProvider, withSnackbar } from 'notistack';
 import { connect } from 'react-redux';
 import { Translate } from "react-localize-redux";
 import HeaderTags from '../components/HeaderTags';
+import MailInput from '../components/SplashDialog/MailInput';
 
 
 import axios from 'axios';
@@ -31,6 +32,13 @@ class SignIn extends Component {
     state = {
         email: "",
         password: "",
+        changePasswordDialogOpen: false
+    }
+
+    handleCloseChangePasswordDialog = () => {
+        this.setState({
+            changePasswordDialogOpen: false
+        });
     }
 
     /**
@@ -79,6 +87,7 @@ class SignIn extends Component {
     render() {
         return (
             <div className="signIn">
+                <MailInput open={this.state.changePasswordDialogOpen} handleClose={this.handleCloseChangePasswordDialog}/>
                 <HeaderTags 
                  title="Elaisa Search Engine - Sign In"
                  desc="Sign in to the Elaisa Search Engine to store your search history and comprehend your state of knowledge in your profile."
@@ -133,14 +142,17 @@ class SignIn extends Component {
                         </Button>
                         <Grid container >
                             <Grid item xs>
-                                <Link id="link" href="#" variant="body2">
+                                <Button 
+                                    style={{fontSize: '70%'}}
+                                    onClick={e => this.setState({changePasswordDialogOpen: true})}
+                                >
                                     <Translate id='UI__SIGN_IN_PAGE__FORGOT_PASSWORD_BUTTON' />
-                                </Link>
+                                </Button>
                             </Grid>
                             <Grid item>
-                                <Link id="link" href="/signup" variant="body2">
+                                <Button style={{fontSize: '70%'}} id="link" href="/signup" variant="text">
                                     <Translate id='UI__SIGN_IN_PAGE__SIGN_UP_BUTTON' />
-                                </Link>
+                                </Button>
                             </Grid>
                         </Grid>
                     </form>

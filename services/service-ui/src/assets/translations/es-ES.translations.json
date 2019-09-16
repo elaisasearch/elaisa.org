@@ -70,6 +70,10 @@
     "UI__SIGN_IN_PAGE__SIGN_IN_BUTTON": "REGISTRARSE",
     "UI__SIGN_IN_PAGE__FORGOT_PASSWORD_BUTTON": "¿Se te olvidó tu contraseña?",
     "UI__SIGN_IN_PAGE__SIGN_UP_BUTTON": "¿No tienes una cuenta? Regístrate",
+    "UI__SIGN_IN_PAGE__DIALOG_MAIL_INPUT__TITLE": "Olvidé mi Contraseña",
+    "UI__SIGN_IN_PAGE__DIALOG_MAIL_INPUT__CONTENT": "Ingrese su dirección de correo electrónico para que podamos enviarle una nueva contraseña. Puede cambiarlo luego en la vista 'Cuenta'.",
+    "UI__SIGN_IN_PAGE__DIALOG_MAIL_INPUT__CANCEL_BUTTON": "Abortar",
+    "UI__SIGN_IN_PAGE__DIALOG_MAIL_INPUT__SUBMIT_BUTTON": "Enviar Contraseña",
 
     "UI__SIGN_UP_PAGE__TITLE": "Regístrate",
     "UI__SIGN_UP_PAGE__SUBTITLE": "Vea sus últimas búsquedas y siga su progreso en el aprendizaje.",

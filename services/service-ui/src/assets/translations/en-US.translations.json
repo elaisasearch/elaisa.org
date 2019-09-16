@@ -70,6 +70,10 @@
     "UI__SIGN_IN_PAGE__SIGN_IN_BUTTON": "SIGN IN",
     "UI__SIGN_IN_PAGE__FORGOT_PASSWORD_BUTTON": "Forgot password?",
     "UI__SIGN_IN_PAGE__SIGN_UP_BUTTON": "Don't have an account? Sign Up",
+    "UI__SIGN_IN_PAGE__DIALOG_MAIL_INPUT__TITLE": "Forgot Password",
+    "UI__SIGN_IN_PAGE__DIALOG_MAIL_INPUT__CONTENT": "Please enter your email address so that we can send you a new password. You can change it afterwards in the 'Account' view.",
+    "UI__SIGN_IN_PAGE__DIALOG_MAIL_INPUT__CANCEL_BUTTON": "Cancel",
+    "UI__SIGN_IN_PAGE__DIALOG_MAIL_INPUT__SUBMIT_BUTTON": "Send Password",
 
     "UI__SIGN_UP_PAGE__TITLE": "Sign up",
     "UI__SIGN_UP_PAGE__SUBTITLE": "See your last searches and follow your progress in learning",
