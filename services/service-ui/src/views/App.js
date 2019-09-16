@@ -10,6 +10,7 @@ import SplashDialog from '../components/SplashDialog/SplashDialog';
 import LegalNoticeDialog from '../components/SplashDialog/LegalNoticeDialog';
 import LanguageSelect from '../components/LanguageSelect';
 import { Translate } from "react-localize-redux";
+import HeaderTags from '../components/HeaderTags';
 
 // logo
 import logo from '../assets/img/logo.png';
@@ -56,6 +57,11 @@ const App = (props) => {
 
   return (
     <div className="root">
+      <HeaderTags 
+        title="Elaisa Search Engine - Home"
+        desc="Language level search engine for finding documents in a specific language with a specific language level"
+        keywords="Home"
+      />
       <SplashDialog open={splashDialogOpen} handleClose={handleClose} />
       <LegalNoticeDialog open={legalNoticeDialogOpen} handleClose={handleCloseLegalNoticeDialog} />
       <div className="app">

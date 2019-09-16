@@ -14,6 +14,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { Divider } from '@material-ui/core';
 import { Translate } from 'react-localize-redux';
+import HeaderTags from '../components/HeaderTags';
 
 /**
  * Account view class.
@@ -59,6 +60,11 @@ class Account extends Component {
         const { loggedIn, email, firstname, lastname } = this.props;
 
         return <div>
+            <HeaderTags 
+             title="Elaisa Search Engine - Account"
+             desc="Visit your account and change your password"
+             keywords="Account, Password"
+            />
             <NavigationBar loggedIn={loggedIn} email={email} firstname={firstname} lastname={lastname} />
             <Divider />
             <div className="accountView">

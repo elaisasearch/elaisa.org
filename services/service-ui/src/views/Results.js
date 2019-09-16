@@ -8,6 +8,7 @@ import "../assets/css/ResultsStyle.css";
 import MemeTeam from '../components/MemeTeam/MemeTeam';
 import NotFound from '../components/NotFound/NotFound';
 import { connect } from 'react-redux';
+import HeaderTags from '../components/HeaderTags';
 
 /**
  * Results view class.
@@ -170,6 +171,11 @@ class Results extends React.Component {
   render() {
     return (
       <div>
+        <HeaderTags 
+          title="Elaisa Search Engine - Results"
+          desc={`See the results of your search about ${this.state.searchValue}. Take a look on the language analysis and visit the page.`}
+          keywords="Results, Analysis"
+        />
         <NavigationBar
           results
           click={this.searchResults.bind(this)}

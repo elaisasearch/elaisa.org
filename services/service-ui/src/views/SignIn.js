@@ -13,6 +13,8 @@ import { withRouter } from "react-router-dom";
 import { SnackbarProvider, withSnackbar } from 'notistack';
 import { connect } from 'react-redux';
 import { Translate } from "react-localize-redux";
+import HeaderTags from '../components/HeaderTags';
+
 
 import axios from 'axios';
 
@@ -77,6 +79,11 @@ class SignIn extends Component {
     render() {
         return (
             <div className="signIn">
+                <HeaderTags 
+                 title="Elaisa Search Engine - Sign In"
+                 desc="Sign in to the Elaisa Search Engine to store your search history and comprehend your state of knowledge in your profile."
+                 keywords="Sign In, Search History, Profile"
+                />
                 <div className="image" />
                 <Paper className="paper">
                     <img className="signInLogo" src={logo} alt="Elaisa Search Engine Logo"></img>

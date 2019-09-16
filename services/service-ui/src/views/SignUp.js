@@ -11,6 +11,8 @@ import UpIcon from '@material-ui/icons/KeyboardArrowUp';
 import { withRouter } from "react-router-dom";
 import { SnackbarProvider, withSnackbar } from 'notistack';
 import { Translate } from "react-localize-redux";
+import HeaderTags from '../components/HeaderTags';
+
 
 import '../assets/css/SignUpStyle.css'
 import logo from '../assets/img/logo.png';
@@ -70,6 +72,11 @@ class SignUp extends Component {
     render() {
         return (
             <div className="signIn">
+                <HeaderTags 
+                 title="Elaisa Search Engine - Sign Up"
+                 desc="Sign Up to the Elaisa Search Engine to store your search history and comprehend your state of knowledge in your profile."
+                 keywords="Sign Up, Search History, Profile"
+                />
                 <div className="image" />
                 <Paper className="paper">
                     <img className="signUpLogo" src={logo} alt="Elaisa Search Engine Logo"></img>

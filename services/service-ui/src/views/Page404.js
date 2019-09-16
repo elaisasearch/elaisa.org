@@ -2,6 +2,8 @@ import React from 'react';
 import { Typography } from "@material-ui/core";
 import NavigationBar from "../components/NavigiationBar/NavigationBar";
 import '../assets/css/Page404Style.css';
+import HeaderTags from '../components/HeaderTags';
+
 
 /**
  * The Page404 view.
@@ -9,6 +11,11 @@ import '../assets/css/Page404Style.css';
  */
 const Page404 = () => (
     <div >
+        <HeaderTags
+            title="Elaisa Search Engine - Not Found"
+            desc="Sorry, but there is no page with this path."
+            keywords="Not Found, 404, Error"
+        />
         <NavigationBar
             id="navBar"
         />

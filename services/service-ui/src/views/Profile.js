@@ -9,6 +9,7 @@ import axios from 'axios';
 import { CircularProgress } from "@material-ui/core";
 import PDFGenerator from '../components/Profile/PDFGenerator';
 import { Translate } from 'react-localize-redux';
+import HeaderTags from '../components/HeaderTags';
 
 /**
  * Profile view for statistics.
@@ -125,6 +126,11 @@ class Profile extends Component {
 
         return (
             <div>
+                <HeaderTags 
+                 title="Elaisa Search Engine - Profile"
+                 desc="See your seach history and statistics about your use of the Elaisa Search Engine. Download your profile for school or studying."
+                 keywords="Profile, Search History, Statistics, Study, Teaching, School"
+                />
                 <NavigationBar loggedIn={loggedIn} email={email} firstname={firstname} lastname={lastname} />
                 <Divider />
                 {this.renderContent()}
