@@ -95,6 +95,7 @@ const Experience = (props) => {
       company: 'Language Level',
       date: 'Times searched',
       details: [
+        `All: ${level.all}`,
         `A1: ${level.a1}`,
         `A2: ${level.a2}`,
         `B1: ${level.b1}`,
