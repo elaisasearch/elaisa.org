@@ -64,6 +64,8 @@ def findDocuments(query: list, level: str, language: str) -> dict:
 
     documents: list = []
     textsOfDocuments: dict = {}
+    # Only use the IDs of the result documents to prevent KeyError
+    resultIds: list = []
     for id in docIdsSet:
 
         # Check if the user wants to search for all documents with this search term
@@ -77,11 +79,12 @@ def findDocuments(query: list, level: str, language: str) -> dict:
 
         for r in results: 
             documents.append(r)
-            textsOfDocuments[id] = r['text']
+            resultIds.append(str(r['_id']))
+            textsOfDocuments[str(r['_id'])] = r['text']
 
     
     # Get the TF part of the TF*IDF formular for result's ranking
-    tf: dict = calculateTermfrequency(query, docIds, textsOfDocuments)
+    tf: dict = calculateTermfrequency(query, resultIds, textsOfDocuments)
 
     # translate BSON structure to JSON to return real JSON and not stringified JSON
     bsonToJSON = json.dumps(documents, cls=MongoEncoder)
