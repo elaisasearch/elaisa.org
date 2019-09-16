@@ -7,7 +7,7 @@ import '../assets/css/ProfileStyle.css';
 import EnhancedTable from '../components/Profile/table/EnhancedTable';
 import axios from 'axios';
 import { CircularProgress } from "@material-ui/core";
-import PDFGenerator from '../components/Profile/PDFGenerator';
+import PDFGenerator from '../components/Profile/PDF/index';
 import { Translate } from 'react-localize-redux';
 import HeaderTags from '../components/HeaderTags';
 
@@ -27,6 +27,7 @@ class Profile extends Component {
                 es: 0
             },
             level: {
+                all: 0,
                 a1: 0,
                 a2: 0,
                 b1: 0,
@@ -48,7 +49,7 @@ class Profile extends Component {
                     email: this.props.email
                 }
             });
-
+            
             this.setState({
                 history: response.data.history,
                 waiting: false,
@@ -68,7 +69,7 @@ class Profile extends Component {
     renderContent() {
 
         const { language, level } = this.state.statistics;
-        const { a1, a2, b1, b2, c1, c2 } = level;
+        const { all, a1, a2, b1, b2, c1, c2 } = level;
         const { de, en, es } = language
 
         // while service is fetching data, show the progress circle
@@ -83,6 +84,7 @@ class Profile extends Component {
                     </Typography>
                     <PieChart dataPoints={
                         [
+                            { y: all, label: "All" },
                             { y: a1, label: "A1" },
                             { y: a2, label: "A2" },
                             { y: b1, label: "B1" },

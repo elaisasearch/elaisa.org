@@ -174,7 +174,7 @@ def getSearchHistoryForUser(email: str) -> dict:
         })
     
         data: list = []
-        en, es, de, a1, a2, b1, b2, c1, c2 = 0, 0, 0, 0, 0, 0, 0, 0, 0
+        en, es, de, all, a1, a2, b1, b2, c1, c2 = 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
         for d in historyData:
             data.append({
                 "email": d["email"],
@@ -186,6 +186,7 @@ def getSearchHistoryForUser(email: str) -> dict:
             if d["language"] == "en": en += 1
             if d["language"] == "es": es += 1
             if d["language"] == "de": de += 1
+            if d["level"] == "all": all += 1
             if d["level"] == "A1": a1 += 1
             if d["level"] == "A2": a2 += 1
             if d["level"] == "B1": b1 += 1
@@ -202,6 +203,7 @@ def getSearchHistoryForUser(email: str) -> dict:
                     "de": de
                 },
                 "level": {
+                    "all": all,
                     "a1": a1,
                     "a2": a2,
                     "b1": b1,
