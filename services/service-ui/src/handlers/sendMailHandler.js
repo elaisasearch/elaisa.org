@@ -1,13 +1,9 @@
-// import globals from '../../../../bin/globals.json';
-// import logo from '../assets/img/logo.png';
-// import * as nodemailer from 'nodemailer';
+import globals from './globals.json';
+import logo from '../assets/img/logo.png';
+import * as nodemailer from 'nodemailer';
 
-const globals = require('../../../../bin/globals.json')
-// const logo = require('../assets/img/logo.png');
-const nodemailer = require('nodemailer');
-
-function sendEmail(to, subject, content) {
-    const transporter= nodemailer.createTransport({
+export default function sendEmail(to, subject, content) {
+    const transporter = nodemailer.createTransport({
         host: globals.nodemailer.host,
         port: 587,
         secure: false, // upgrade later with STARTTLS
@@ -17,19 +13,24 @@ function sendEmail(to, subject, content) {
         }
     });
 
-    let html = `<div><p>${content}</p></div><br/><br/>`
+    let html = `${content}<br/><br/><img src=${logo} width='30%'></img>`
 
     const mailOptions = {
-        from: globals.nodemailer.username, // sender address
+        from: globals.nodemailer.username,
         to,
         subject,
         html
     };
 
     transporter.sendMail(mailOptions, function (err, info) {
-        if(err)
-          return 'Error'
-        else
-          return 'Success'
-     });
+        if (err) {
+            console.log('no mail sent')
+            return 'Error'
+        }
+        else {
+            console.log("mail sent")
+            return 'Success'
+        }
+
+    });
 }
