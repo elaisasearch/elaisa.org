@@ -21,7 +21,7 @@ const MailInput = (props) => {
      */
     const handleSendPassword = () => {
 
-        axios.post(`http://localhost:8080/forgotpassword?email=${email}`, {}
+        axios.post(`http://api.elaisa.org/forgotpassword?email=${email}`, {}
         ).then((response) => {
             handleClose()
         }).catch((error) => {
