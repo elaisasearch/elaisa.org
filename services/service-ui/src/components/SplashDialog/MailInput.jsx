@@ -8,9 +8,9 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { Translate } from 'react-localize-redux';
 import axios from 'axios';
-import sendEmail from '../../handlers/sendMailHandler';
 
-export default function MailInput(props) {
+
+const MailInput = (props) => {
 
     const [email, setEmail] = useState();
 
@@ -19,30 +19,18 @@ export default function MailInput(props) {
     /**
      * Send the new password mail and close the dialog
      */
-    const handleSendPassword = async () => {
+    const handleSendPassword = () => {
 
-        const mailResponse = await sendEmail(email, 'blub', 'blublublu')
-        console.log('MailResponse ', mailResponse)
+        axios.post(`http://localhost:8080/forgotpassword`, {
+            params: {
+                email
+            }
+        }).then((response) => {
 
-        // try {
-        //     const response = await axios.post(`http://localhost:8080/forgotpassword?${email}`);
+        }).catch((error) => {
 
-        //     let content = 'Hello,<br/><br/>' +
-        //     'Since you seem to have forgotten your password,' +
-        //     'we will send you a new one. Please remember to change it later in your account' +
-        //     'to your liking and keep it safe. <br/><br/>' +
-        //     `New password: ${response.data.password}`
+        })
 
-        //     let mailResponse = await sendEmail(email, 'Elaisa - New Password', content)
-        //     console.log('MailResposne ', mailResponse)
-        //     if (mailResponse === 'Success') {
-        //         handleClose()
-        //     } else {
-        //         return
-        //     }
-        // } catch (error) {
-        //     return
-        // }
     }
 
 
@@ -74,3 +62,6 @@ export default function MailInput(props) {
         </Dialog>
     );
 }
+
+export default MailInput;
+
