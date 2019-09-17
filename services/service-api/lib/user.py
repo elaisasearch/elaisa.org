@@ -170,7 +170,11 @@ def handleForgotPassword(email: str) -> dict:
     """.format(password=newPassword)
 
     try:
-        col.update_one({"email": email}, {"$set": {"password": newPass_hash}})
+        updatedAccount = col.update_one({"email": email}, {"$set": {"password": newPass_hash}})
+        
+        if updatedAccount.matched_count == 0:
+            return "Mail not found"
+
         sendEmail(email, 'Elaisa - Your new password', html)
 
         return "Success",
