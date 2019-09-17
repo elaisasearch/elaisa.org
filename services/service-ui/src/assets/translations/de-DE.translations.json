@@ -74,6 +74,9 @@
     "UI__SIGN_IN_PAGE__DIALOG_MAIL_INPUT__CONTENT": "Bitte gib deine Email Adresse ein, damit wir dir ein neues Passwort zusenden können. Du kannst es im Nachhinein in der 'Account' Ansicht ändern.",
     "UI__SIGN_IN_PAGE__DIALOG_MAIL_INPUT__CANCEL_BUTTON": "Abbrechen",
     "UI__SIGN_IN_PAGE__DIALOG_MAIL_INPUT__SUBMIT_BUTTON": "Passwort senden",
+    "UI__SIGN_IN_PAGE__DIALOG_MAIL_INPUT__RESPONSE_MESSAGE_SUCCESS": "Das Passwort wurde erfolgreich geaendert. Wir haben dir eine Email gesendet.",
+    "UI__SIGN_IN_PAGE__DIALOG_MAIL_INPUT__RESPONSE_MESSAGE_MAIL_NOT_FOUND": "Die angegebene Mail Adresse konnte leider keinem Account zugewiesen werden.",
+    "UI__SIGN_IN_PAGE__DIALOG_MAIL_INPUT__RESPONSE_MESSAGE_ERROR": "Leider ist ein Fehler aufgetreten. Bitte versuche es später erneut.",
 
     "UI__SIGN_UP_PAGE__TITLE": "Registrieren",
     "UI__SIGN_UP_PAGE__SUBTITLE": "Sehe deine letzten Suchen und verfolge deinen Lernfortschritt",

@@ -74,6 +74,9 @@
     "UI__SIGN_IN_PAGE__DIALOG_MAIL_INPUT__CONTENT": "Please enter your email address so that we can send you a new password. You can change it afterwards in the 'Account' view.",
     "UI__SIGN_IN_PAGE__DIALOG_MAIL_INPUT__CANCEL_BUTTON": "Cancel",
     "UI__SIGN_IN_PAGE__DIALOG_MAIL_INPUT__SUBMIT_BUTTON": "Send Password",
+    "UI__SIGN_IN_PAGE__DIALOG_MAIL_INPUT__RESPONSE_MESSAGE_SUCCESS": "Successfully changed the password. We sent you an email.",
+    "UI__SIGN_IN_PAGE__DIALOG_MAIL_INPUT__RESPONSE_MESSAGE_MAIL_NOT_FOUND": "The specified mail address could not be assigned to an account.",
+    "UI__SIGN_IN_PAGE__DIALOG_MAIL_INPUT__RESPONSE_MESSAGE_ERROR": "Sorry, an error has occurred. Please try again later.",
 
     "UI__SIGN_UP_PAGE__TITLE": "Sign up",
     "UI__SIGN_UP_PAGE__SUBTITLE": "See your last searches and follow your progress in learning",

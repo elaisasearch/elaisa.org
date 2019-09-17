@@ -74,6 +74,9 @@
     "UI__SIGN_IN_PAGE__DIALOG_MAIL_INPUT__CONTENT": "Ingrese su dirección de correo electrónico para que podamos enviarle una nueva contraseña. Puede cambiarlo luego en la vista 'Cuenta'.",
     "UI__SIGN_IN_PAGE__DIALOG_MAIL_INPUT__CANCEL_BUTTON": "Abortar",
     "UI__SIGN_IN_PAGE__DIALOG_MAIL_INPUT__SUBMIT_BUTTON": "Enviar Contraseña",
+    "UI__SIGN_IN_PAGE__DIALOG_MAIL_INPUT__RESPONSE_MESSAGE_SUCCESS": "La contraseña ha sido modificada con éxito. Te hemos enviado un correo.",
+    "UI__SIGN_IN_PAGE__DIALOG_MAIL_INPUT__RESPONSE_MESSAGE_MAIL_NOT_FOUND": "La dirección de correo especificada no se pudo asignar a una cuenta.",
+    "UI__SIGN_IN_PAGE__DIALOG_MAIL_INPUT__RESPONSE_MESSAGE_ERROR": "Lamentablemente, ha ocurrido un error. Por favor intente nuevamente más tarde.",
 
     "UI__SIGN_UP_PAGE__TITLE": "Regístrate",
     "UI__SIGN_UP_PAGE__SUBTITLE": "Vea sus últimas búsquedas y siga su progreso en el aprendizaje.",

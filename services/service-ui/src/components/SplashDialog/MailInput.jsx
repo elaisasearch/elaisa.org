@@ -44,18 +44,19 @@ const MailInput = (props) => {
                     return;
             }
         }).catch((error) => {
-            console.log(error)
+            setShowResponseMessage(true)
+            setResponseMessageVariant('error')
         })
     }
 
     const renderResponseMessage = () => {
         if (showResponseMessage) {
             if (responseMessageVariant === 'success') {
-                return <Typography variant='caption' style={{color: 'green'}} >Successfully changed the password.</Typography>
+                return <Typography variant='caption' style={{color: 'green'}} ><Translate id='UI__SIGN_IN_PAGE__DIALOG_MAIL_INPUT__RESPONSE_MESSAGE_SUCCESS' /></Typography>
             } else if (responseMessageVariant === 'mail not found') {
-                return <Typography variant='caption' style={{color: 'red'}}>The provided mail wasn't found. Please try again with another mail.</Typography>
+                return <Typography variant='caption' style={{color: 'red'}}><Translate id='UI__SIGN_IN_PAGE__DIALOG_MAIL_INPUT__RESPONSE_MESSAGE_MAIL_NOT_FOUND' /></Typography>
             } else if (responseMessageVariant === 'error') {
-                return <Typography variant='caption' style={{color: 'red'}}>Sorry but there was an error. Please try again later.</Typography>
+                return <Typography variant='caption' style={{color: 'red'}}><Translate id='UI__SIGN_IN_PAGE__DIALOG_MAIL_INPUT__RESPONSE_MESSAGE_ERROR' /></Typography>
             }
         }
     }
