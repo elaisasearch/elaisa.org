@@ -21,16 +21,12 @@ const MailInput = (props) => {
      */
     const handleSendPassword = () => {
 
-        axios.post(`http://localhost:8080/forgotpassword`, {
-            params: {
-                email
-            }
-        }).then((response) => {
-
+        axios.post(`http://localhost:8080/forgotpassword?email=${email}`, {}
+        ).then((response) => {
+            handleClose()
         }).catch((error) => {
-
+            console.log(error)
         })
-
     }
 
 
