@@ -12,6 +12,7 @@ import pickle
 import os
 import string
 import random
+from .mail import sendEmail
 
 """
 Load the global configurations for database connection and collections.
@@ -148,17 +149,34 @@ def handleForgotPassword(email: str) -> dict:
 
     newPassword = randomString(8)
     newPass_hash = bcrypt.hashpw(newPassword.encode('utf-8'), bcrypt.gensalt(14))
+
+    html = """\
+    <html>
+        <body>
+            <p>Hello Elaisa user,<br><br>
+            Since you forgot your password, we send you another one with this email.
+            Please sign in to Elaisa again and change the temorary password in your 'Account'.
+            Then store the new password on a save place to look it up if you forget it the next time :) <br><br>
+            <b>New Password: {password}</b>
+            <br><br>
+            <a href="http://elaisa.org/signin">Sign in with your new password</a>
+            <br><br>
+            Best regards, <br>
+            Alex <br><br>
+            Elaisa Support Team
+            </p>
+        </body>
+    </html>
+    """.format(password=newPassword)
+
     try:
         col.update_one({"email": email}, {"$set": {"password": newPass_hash}})
-        return {
-            "response": "Success",
-            "password": newPassword
-        }
+        sendEmail(email, 'Elaisa - Your new password', html)
+
+        return "Success",
     except:
-        return {
-            "response": "Error",
-            "password": ""
-        }
+        return "Error",
+
 
 def randomString(stringLength: int) -> str:
     """
