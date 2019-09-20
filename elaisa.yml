@@ -118,7 +118,7 @@ networks:
     external: true
   database:
     external: true
-  prometheus: 
+  monitoring: 
     external: true
 
 # before starting the stack (one time), execute this command to create

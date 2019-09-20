@@ -12,7 +12,7 @@ services:
   dockerd-exporter:
     image: stefanprodan/caddy
     networks:
-      - frontend
+      - monitoring
     environment:
       - DOCKER_GWBRIDGE_IP=172.18.0.1
     configs:
@@ -29,7 +29,7 @@ services:
   cadvisor:
     image: google/cadvisor
     networks:
-      - frontend
+      - monitoring
     command: -logtostderr -docker_only
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
@@ -48,7 +48,7 @@ services:
   grafana:
     image: stefanprodan/swarmprom-grafana:5.3.4
     networks:
-      - default
+      - monitoring
       - frontend
     environment:
       - GF_SECURITY_ADMIN_USER=${ADMIN_USER:-admin}
@@ -75,7 +75,7 @@ services:
   alertmanager:
     image: stefanprodan/swarmprom-alertmanager:v0.14.0
     networks:
-      - default
+      - monitoring
       - frontend
     environment:
       - SLACK_URL=${SLACK_URL:-https://hooks.slack.com/services/TOKEN}
@@ -107,8 +107,7 @@ services:
   unsee:
     image: cloudflare/unsee:v0.8.0
     networks:
-      - default
-      - frontend
+      - monitoring
     environment:
       - "ALERTMANAGER_URIS=default:http://alertmanager:9093"
     deploy:
@@ -123,7 +122,7 @@ services:
   node-exporter:
     image: stefanprodan/swarmprom-node-exporter:v0.16.0
     networks:
-      - frontend
+      - monitoring
     environment:
       - NODE_ID={{.Node.ID}}
     volumes:
@@ -148,7 +147,7 @@ services:
   prometheus:
     image: stefanprodan/swarmprom-prometheus:v2.5.0
     networks:
-      - frontend
+      - monitoring
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
@@ -181,7 +180,7 @@ networks:
     external: true
   database:
     external: true
-  prometheus: 
+  monitoring: 
     external: true
 
 volumes:
