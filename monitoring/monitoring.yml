@@ -70,6 +70,7 @@ services:
       labels:
         traefik.frontend.rule: 'Host:grafana.elaisa.org'
         traefik.port: '3000'
+        traefik.enable: 'true'
         traefik.docker.network: frontend
 
   alertmanager:

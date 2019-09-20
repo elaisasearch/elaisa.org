@@ -43,6 +43,7 @@ services:
       labels:
         traefik.frontend.rule: 'Host:api.elaisa.org'
         traefik.port: '8080'
+        traefik.enable: 'true'
         traefik.docker.network: frontend
     networks:
       - frontend
@@ -56,6 +57,7 @@ services:
         condition: any
       labels:
         traefik.frontend.rule: 'Host:elaisa.org,www.elaisa.org'
+        traefik.enable: 'true'
         traefik.port: '80'
         traefik.docker.network: frontend
     networks:
@@ -74,20 +76,19 @@ services:
         - --logLevel=ERROR
         - --entryPoints=Name:http Address::80
         - --defaultentrypoints=http
-        #- --defaultentrypoints=https,http
-        #- --entryPoints=Name:http Address::80 Redirect.EntryPoint:https
-        #- --entryPoints=Name:https Address::443 TLS
-        #- --retry
-        #- --docker.endpoint=unix:///var/run/docker.sock
-        #- --docker.domain=elaisa.org
-        #- --docker.watch=true
-        #- --docker.exposedbydefault=false
-        #- --acme.email=teusz.alexander@gmail.com
-        #- --acme.storage=acme.json
-        #- --acme.entryPoint=https
-        #- --acme.onHostRule=true
-        #- --acme.httpchallenge.entrypoint=http
-        #- --acme.dnschallenge.provider=united-domains
+        - --defaultentrypoints=https,http
+        - --entryPoints=Name:http Address::80 Redirect.EntryPoint:https
+        - --entryPoints=Name:https Address::443 TLS
+        - --retry
+        - --docker.endpoint=unix:///var/run/docker.sock
+        - --docker.domain=elaisa.org
+        - --docker.watch=true
+        - --docker.exposedbydefault=false
+        - --acme.email=teusz.alexander@gmail.com
+        - --acme.storage=acme.json
+        - --acme.entryPoint=https
+        - --acme.onHostRule=true
+        - --acme.httpchallenge.entrypoint=http
       ports:
         - '80:80'
         - '443:443'
