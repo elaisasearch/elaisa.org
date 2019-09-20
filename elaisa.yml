@@ -24,7 +24,7 @@ services:
 
   # scrapy webcrawler for filling the database   
   crawler:
-    image: alexteusz/languagelevelsearchengine-service-crawler:latest
+    image: alexteusz/elaisa-crawler:1.0.0
     deploy:
       restart_policy:
         condition: any
@@ -33,7 +33,7 @@ services:
 
   # python bottle api
   api: 
-    image: alexteusz/languagelevelsearchengine-service-api:latest
+    image: alexteusz/elaisa-api:1.0.0
     secrets:
       - mongodb_root_username
       - mongodb_root_password
@@ -51,7 +51,7 @@ services:
 
   # reactjs web application user interface
   ui:
-    image: alexteusz/languagelevelsearchengine-service-ui:latest
+    image: alexteusz/elaisa-ui:1.0.0
     deploy:
       restart_policy:
         condition: any
