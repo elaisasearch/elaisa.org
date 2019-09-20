@@ -42,7 +42,7 @@ class SignUp extends Component {
 
         let { firstName, lastName, email, password } = this.state;
 
-        axios.post(`http://api.elaisa.org/signup?firstname=${firstName}&lastname=${lastName}&email=${email}&password=${password}`)
+        axios.post(`https://api.elaisa.org/signup?firstname=${firstName}&lastname=${lastName}&email=${email}&password=${password}`)
         .then((response) => {
             if (response.data === "Success") {
 

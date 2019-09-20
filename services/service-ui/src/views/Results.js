@@ -51,7 +51,7 @@ class Results extends React.Component {
     });
 
     axios
-      .get(`http://api.elaisa.org/find`, {
+      .get(`https://api.elaisa.org/find`, {
         headers: {
           "Content-Type": "application/json",
           "Accept": "application/json"

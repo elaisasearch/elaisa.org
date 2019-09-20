@@ -40,7 +40,7 @@ class Account extends Component {
     handleChangeButton = (email) => {
         let variant = "";
 
-        axios.post(`http://api.elaisa.org/changepassword?oldpassword=${this.state.oldPass}&newpassword=${this.state.newPass}&email=${email}`, {})
+        axios.post(`https://api.elaisa.org/changepassword?oldpassword=${this.state.oldPass}&newpassword=${this.state.newPass}&email=${email}`, {})
             .then((response) => {
                 if (response.data === "Success") {
                     variant = "success";

@@ -44,7 +44,7 @@ class Profile extends Component {
     */
     async componentDidMount() {
         try {
-            const response = await axios.get('http://api.elaisa.org/searchhistory', {
+            const response = await axios.get('https://api.elaisa.org/searchhistory', {
                 params: {
                     email: this.props.email
                 }
