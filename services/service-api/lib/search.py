@@ -52,7 +52,7 @@ def findDocuments(query: list, level: str, language: str) -> dict:
     db = client[GLOBALS["mongo"]["database"]]
     col = db[GLOBALS["mongo"]["collections"]["crawled"]["news"][0]]
     
-    # Get the IDs of the documents which contain the given search terms
+    # Get the IDs of the documents which contain the given search terms.
     docIds: list = getIdsFromWord(query)
 
     """
@@ -63,6 +63,7 @@ def findDocuments(query: list, level: str, language: str) -> dict:
     docIdsSet: set = set(docIds)
 
     documents: list = []
+    # Is used for calculating TF. See nlp.py/calculateTermfrequency
     textsOfDocuments: dict = {}
     # Only use the IDs of the result documents to prevent KeyError
     resultIds: list = []
@@ -82,22 +83,24 @@ def findDocuments(query: list, level: str, language: str) -> dict:
             resultIds.append(str(r['_id']))
             textsOfDocuments[str(r['_id'])] = r['text']
 
+    # Get the number of all documents in the database for IDF
+    allDocInDBCount: int = col.find().count()
     
-    # Get the TF part of the TF*IDF formular for result's ranking
-    tf: dict = calculateTermfrequency(query, resultIds, textsOfDocuments)
-
+    # Get the TF*IDF formula for result's ranking
+    tf: dict = calculateTermfrequency(query, resultIds, len(docIdsSet), allDocInDBCount, textsOfDocuments)
+    
     # translate BSON structure to JSON to return real JSON and not stringified JSON
     bsonToJSON = json.dumps(documents, cls=MongoEncoder)
     jsonResults = json.loads(bsonToJSON)
 
     """
-    Update the pagerank and add the term frequency to pagerank value
+    Update the pagerank and add the term frequency (TF*IDF) to pagerank value
     Example: 
         - Pagerank before -> 0.0002604166666666667
         - Pagerank after  -> 0.005091334541062802
     """
     for jres in jsonResults:
-        jres['pagerank'] +=  tf[jres['_id']]['tf']
+        jres['pagerank'] +=  tf[jres['_id']]['tfidf']
 
     return {
         "length": len(json.loads(bsonToJSON)),
