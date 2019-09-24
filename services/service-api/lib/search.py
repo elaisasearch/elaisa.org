@@ -88,7 +88,7 @@ def findDocuments(query: list, level: str, language: str) -> dict:
     
     # Get the TF*IDF formula for result's ranking
     tf: dict = calculateTermfrequency(query, resultIds, len(docIdsSet), allDocInDBCount, textsOfDocuments)
-    
+
     # translate BSON structure to JSON to return real JSON and not stringified JSON
     bsonToJSON = json.dumps(documents, cls=MongoEncoder)
     jsonResults = json.loads(bsonToJSON)
@@ -106,9 +106,6 @@ def findDocuments(query: list, level: str, language: str) -> dict:
         "length": len(json.loads(bsonToJSON)),
         "results": jsonResults,
     }
-
-def calculateTFIDF(text, word):
-    pass
 
 
 def getIdsFromWord(terms: list) -> list:
