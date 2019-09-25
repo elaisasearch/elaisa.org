@@ -112,10 +112,10 @@ class InvertedIndexPipeline(object):
         # return the new text as list, that contains all words and named antities
         return text
 
-    def storeIndexInMongo(self, finvindex):
+    def storeIndexInMongo(self, inverted_index):
         """
         Stores the index for each word in the current document in the database
-        :finvindex: Dictionary
+        :inverted_index: Dictionary
         """
         # Connect to mongo db
         self.client = pymongo.MongoClient(self.mongo_uri)
@@ -129,22 +129,52 @@ class InvertedIndexPipeline(object):
         2. The $addToSet key says, that we only add the current docId from the document IDs list, if it doesn't already exists.
             - source: https://stackoverflow.com/questions/38970835/mongodb-add-element-to-array-if-not-exists
         """
-        for word, docs in finvindex.items():
+        for word, docs in inverted_index.items():
             # for each id in document IDs, check if it already is stored; otherwise store it.
             for d in docs:
-                collection.update({"word": word}, {"$addToSet": {
-                                  "documents": d}}, upsert=True)
+
+                collection.update(
+                    {
+                        "word": word,
+                    }, 
+                    {
+                        "$addToSet": {
+                            "documents": {
+                                "id": d[0],
+                                "pos": d[1]
+                            }
+                        }
+                    }, 
+                    upsert=True
+                )
 
     def main(self):
+        """
+        Builds the inverted index, given all texts and words from the database
+        """
+
+        # get all texts and words from the database.
         texts, words = self.parseMongo()
 
-        finvindex = {word: set((txt, wrdindx)
-                               for txt, wrds in texts.items()
-                               for wrdindx in (i for i, w in enumerate(wrds) if word == w)
-                               if word in wrds)
-                     for word in words}
+        # for each word in the database, build the inverted index.
+        inverted_index = {
+            word: 
+                set(
+                    # return the document id and position of current word in the document's text.
+                    (id, wrdindx) 
+                    # get all ids and words from database. texts.items() = {'23425rsdfsdf213': 'The text of the document with the id shown as the key'}
+                    for id, wrds in texts.items()
+                    # get the index of the current word in the document.
+                    for wrdindx in (i for i, w in enumerate(wrds) if word == w)
+                    # repeat the loop for every word in the current document's text.
+                    if word in wrds
+                )
+            # build the inverted index for every word in the database.
+            for word in words
+        }
 
-        self.storeIndexInMongo(finvindex)
+        # store the whole inverted index into the database.
+        self.storeIndexInMongo(inverted_index)
 
     def process_item(self, item, spider):
         self.main()
