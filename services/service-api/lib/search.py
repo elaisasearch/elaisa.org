@@ -136,7 +136,8 @@ def getIdsFromWord(terms: list) -> list:
         entries: list = [entry for entry in results]
 
         # delete position number from document ID list. ['asdgf356345d', 327] -> 'asdgf356345d'
-        found_ids = [ent[0] for ent in entries[0]["documents"]]
+        # TODO: use position for ranking
+        found_ids = [ent['id'] for ent in entries[0]["documents"]]
 
     elif any(elem in terms for elem in ['and', 'und', 'y'])  or not any(elem in terms for elem in ['and', 'und', 'y', 'oder', 'e', 'or']) and len(terms) > 1:
         """
@@ -164,9 +165,10 @@ def getIdsFromWord(terms: list) -> list:
         # Extract only the IDs and store them in lists for each term in terms
         found_ids: list = []
         for fe in found_entries:
+            # TODO: use position for ranking
             # delete position number from document ID list. ['asdgf356345d', 327] -> 'asdgf356345d'
             try:
-                tmp = [e[0] for e in fe[0]["documents"]]
+                tmp = [e['id'] for e in fe[0]["documents"]]
             except:
                 tmp = []
             found_ids.append(tmp)
@@ -182,7 +184,7 @@ def getIdsFromWord(terms: list) -> list:
 
         # delete position number from document ID list. ['asdgf356345d', 327] -> 'asdgf356345d'
         try:
-            found_ids: list = [ent[0] for ent in entries[0]["documents"]]
+            found_ids: list = [ent['id'] for ent in entries[0]["documents"]]
         except:
             # handle error if there are no documents for this search
             found_ids: list = []
