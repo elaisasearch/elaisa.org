@@ -18,6 +18,8 @@ RUN pip install --trusted-host pypi.python.org -r requirements.txt
 RUN python -m spacy download en
 RUN python -m spacy download de
 RUN python -m spacy download es
+# Install textblob corpora for lemmatizing search query
+RUN python -m textblob.download_corpora
 
 # Run api.py when the container launches
 CMD [ "python", "api.py" ]
