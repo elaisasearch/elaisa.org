@@ -8,8 +8,7 @@ from bottle import Bottle, request, response, run
 from lib.search import findDocuments, getIdsFromWord, getListOfSearchTerms
 from lib.wikipedia import getWikiEntry
 from lib.user import createUser, getSearchHistoryForUser, handlePasswordChange, loginUser, writeSearchDataIntoDatabase, handleForgotPassword
-from lib.spelling import checkSpelling
-from lib.nlp import extractNamedEntities, lemmatizeSearchQuery
+from lib.nlp import extractNamedEntities, lemmatizeSearchQuery, checkSpelling
 
 app = Bottle()
 
