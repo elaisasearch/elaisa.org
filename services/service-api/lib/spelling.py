@@ -11,6 +11,10 @@ def checkSpelling(text: str) -> str:
         - source: https://textblob.readthedocs.io/en/dev/quickstart.html#spelling-correction
     :text: String
     """
+
+    # ignore a list of terms in the spell check
+    ignoredTerms = ['Iran']
+
     word = Word(text)
     # returns something like: [('hello', 0.7619047619047619), ('hell', 0.23809523809523808)]
     checkResult: list = word.spellcheck()
@@ -19,7 +23,7 @@ def checkSpelling(text: str) -> str:
 
     # Don't correct named entites like 'Iran'.
     # Set value to 1.0 so that it won't hit
-    if probability > 1.0:
+    if probability > 0.9 and text not in ignoredTerms:
         blob = TextBlob(text)
         # return the most probable correct word
         return blob.correct()
