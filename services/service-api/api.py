@@ -9,7 +9,7 @@ from lib.search import findDocuments, getIdsFromWord, getListOfSearchTerms
 from lib.wikipedia import getWikiEntry
 from lib.user import createUser, getSearchHistoryForUser, handlePasswordChange, loginUser, writeSearchDataIntoDatabase, handleForgotPassword
 from lib.spelling import checkSpelling
-from lib.nlp import extractNamedEntities
+from lib.nlp import extractNamedEntities, lemmatizeSearchQuery
 
 app = Bottle()
 
@@ -61,26 +61,30 @@ def find() -> dict:
     spellCheck: str = checkSpelling(query)
 
     """
-    Check if the query contains Named Entities and create a list of search terms.
-    This list is used to query the database.
-    Example:
-        - ['angela merkel', 'and', 'germany']
-        - ['summer']
-    """
-    # Extract named entities
-    named_entities: list = extractNamedEntities(query, language)
-    terms: list = []
-    if len(list(named_entities)) != 0:
-        terms = getListOfSearchTerms(named_entities, query)
-    else:
-        # If there are no named entites, use the splitted query sentence.
-        terms = query.split()
-
-    """
     If the spell check is equivalent to the search query, return the found documents.
     Otherwise return the correct spelling suggestion of the given query
     """
     if spellCheck == query:
+        
+        # lemmatize query for search in inverted index.
+        query = lemmatizeSearchQuery(query)
+
+        """
+        Check if the query contains Named Entities and create a list of search terms.
+        This list is used to query the database.
+        Example:
+            - ['angela merkel', 'and', 'germany']
+            - ['summer']
+        """
+        # Extract named entities
+        named_entities: list = extractNamedEntities(query, language)
+        terms: list = []
+        if len(list(named_entities)) != 0:
+            terms = getListOfSearchTerms(named_entities, query)
+        else:
+            # If there are no named entites, use the splitted query sentence.
+            terms = query.split()
+
         return {
             "wikipedia": getWikiEntry(terms, language),
             "documents": findDocuments(terms, level, language)

@@ -1,6 +1,7 @@
 import textacy
 from collections import defaultdict
 import math
+from textblob import TextBlob
 
 def extractNamedEntities(query: str, language: str) -> list:
     """
@@ -41,6 +42,19 @@ def calculateTermfrequency(query: str, resultIds: list, allDocsContainTermCount:
                 } 
                 for id in set(resultIds)
             }
+
+def lemmatizeSearchQuery(query: str) -> str:
+    """
+    Lemmatize the search query because in the inverted index there are only lemmatized word entries.
+    :query: String
+    :return: String
+    """
+    # get a list of words from the query
+    words = TextBlob(query).words
+    # then, lemmatize each word
+    lemmatizedText = ""
+    for w in words:
+        lemmatizedText += "{} ".format(w.lemmatize())
    
-    
+    return lemmatizedText
 
