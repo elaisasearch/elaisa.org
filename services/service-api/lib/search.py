@@ -22,7 +22,6 @@ with open(os.path.join(scriptDir, relPath)) as f:
 # JSON Encoder
 # https://stackoverflow.com/questions/28251835/from-pymongo-objectid-import-objectid-importerror-no-module-named-objectid
 
-
 # Global connection to database
 # source: https://api.mongodb.com/python/current/examples/authentication.html
 client = MongoClient(
@@ -84,7 +83,7 @@ def findDocuments(query: list, level: str, language: str) -> dict:
             textsOfDocuments[str(r['_id'])] = r['text']
 
     # Get the number of all documents in the database for IDF
-    allDocInDBCount: int = col.find().count()
+    allDocInDBCount: int = col.count_documents(filter={})
     
     # Get the TF*IDF formula for result's ranking
     tf: dict = calculateTermfrequency(query, resultIds, len(docIdsSet), allDocInDBCount, textsOfDocuments)
