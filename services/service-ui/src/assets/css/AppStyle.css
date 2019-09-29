@@ -64,7 +64,7 @@ and (min-device-width : 375px)
 and (max-device-width : 667px) {
     .logo {
          width: 50%;
-         margin-top: 20%;
+         margin-top: 10%;
     } 
 
     .legal-info {
