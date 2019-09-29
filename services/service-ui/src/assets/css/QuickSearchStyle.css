@@ -1,0 +1,19 @@
+.quicksearch-container {
+    margin-top: 2%;
+}
+
+.quicksearch-button {
+    padding: 1%;
+    border-radius: 30px;
+    border: 1px solid rgba(0, 0, 0, 0.23);
+    background: transparent;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    cursor: pointer;
+    font-size: 1rem;
+    color: rgba(0, 0, 0, 0.54);
+    margin-right: 2%;
+}
+
+.quicksearch-button:hover {
+    border: 1px solid black;
+}

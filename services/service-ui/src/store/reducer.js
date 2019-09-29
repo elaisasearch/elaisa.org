@@ -4,7 +4,9 @@ const initialState = {
     firstname: "Frodo",
     lastname: "Beutlin",
     splashDialogWasOpen: false,
-    uiLanguage: "en-US"
+    uiLanguage: "en-US",
+    quickSearch: false,
+    quickSearchValue: ""
 }
 
 /**
@@ -23,7 +25,7 @@ const reducer = (state = initialState, action) => {
                 firstname: action.firstname,
                 lastname: action.lastname
             }
-        case 'SIGN_OUT': 
+        case 'SIGN_OUT':
             return {
                 ...state,
                 loggedIn: false
@@ -37,6 +39,12 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 uiLanguage: action.language
+            }
+        case 'SET_QUICK_SEARCH':
+            return {
+                ...state,
+                quickSearchValue: action.value,
+                quickSearch: action.quickSearch
             }
         default:
             return state

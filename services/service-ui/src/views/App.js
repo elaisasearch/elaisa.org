@@ -11,6 +11,7 @@ import LegalNoticeDialog from '../components/SplashDialog/LegalNoticeDialog';
 import LanguageSelect from '../components/LanguageSelect';
 import { Translate } from "react-localize-redux";
 import HeaderTags from '../components/HeaderTags';
+import QuickSearch from '../components/QuickSearch';
 
 // logo
 import logo from '../assets/img/logo.png';
@@ -68,6 +69,7 @@ const App = (props) => {
         <NavigationBar loggedIn={loggedIn} email={email} firstname={firstname} lastname={lastname} />
         <img id="logo" src={logo} className="logo" alt="Elaisa Search Engine Logo"></img>
         <SearchBar />
+        <QuickSearch topics={['Donald Trump', 'summer', 'football']}/>
         <Tooltip title={<Translate id='UI__BUTTON__SHOW_FOOTER__TOOLTIP' />} aria-label='show-more-information'>
           <IconButton onClick={e => {scrollToFooter(); setDisableShowFooterButton(true)}} disabled={disableShowFooterButton} aria-label="show-footer" id="show-footer-button" size="large">
             <ArrowDownwardIcon fontSize="large" />

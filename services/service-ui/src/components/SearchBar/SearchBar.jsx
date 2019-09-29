@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { TextField, InputAdornment, IconButton, Tooltip } from '@material-ui/core/'
 import { withRouter } from "react-router-dom";
 import Search from '@material-ui/icons/Search'
 import DropDownMenu from '../DropDownMenu/DropDownMenu';
 import { Translate } from "react-localize-redux";
+import { connect } from 'react-redux';
 
 // styles 
 import styles from '../../assets/jss/SearchBarStyle';
@@ -21,6 +22,28 @@ const SearchBar = (props) => {
   const [level, setLevel] = useState('');
   const [language, setLanguage] = useState('');
 
+  const { quickSearch, quickSearchValue, setQuickSearch } = props;
+
+
+  /**
+   * Check if the user clicked a quick search button and start searching if true.
+  */
+  useEffect(() => {
+
+    // If quickSearch is true, set the values and trigger a new effect
+    if (quickSearch && value.length === 0) {
+      setValue(quickSearchValue);
+      setLevel('all');
+      setLanguage('en')
+    }
+
+    // If the values for quick search are set, use the new effect and start the search
+    if (quickSearchValue.length > 0 && value.length > 0) {
+      searchButtonPressed()
+      // Set back the quick search values to prevent auto quicksearch when user navigates back to home.
+      setQuickSearch('', false);
+    }
+  });
 
   /**
    * Checks the user's login data with API post request and stores to redux.
@@ -111,5 +134,27 @@ const SearchBar = (props) => {
   );
 };
 
+/**
+ * Redux store to props mapping.
+ * @param {object} state the current redux store.
+ * @returns {object} returns the props containing the redux state.
+ */
+const mapStateToProps = state => {
+  return {
+    quickSearch: state.quickSearch,
+    quickSearchValue: state.quickSearchValue
+  };
+};
 
-export default withStyles(styles)(withRouter(SearchBar));
+/**
+ * Maps redux signIn action to props.
+ * @param {object} dispatch the current redux store.
+ * @returns {any} redux action to props mapping.
+*/
+const mapDispatchToProps = dispatch => {
+  return {
+    setQuickSearch: (value, quickSearch) => dispatch({ type: 'SET_QUICK_SEARCH', value, quickSearch })
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(withRouter(SearchBar)));
