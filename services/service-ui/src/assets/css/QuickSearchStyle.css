@@ -17,3 +17,40 @@
 .quicksearch-button:hover {
     border: 1px solid black;
 }
+
+
+/* iPhone 6/7/8 */ 
+@media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 667px) {
+    .quicksearch-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .quicksearch-button {
+        padding: 4%;
+        width: 50%;
+        margin-top: 5%;
+    }
+}
+
+/* iPhone X*/
+@media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 812px)
+and (-webkit-device-pixel-ratio : 3) {
+    .quicksearch-container {
+        margin-top: 10%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .quicksearch-button {
+        padding: 4%;
+        width: 50%;
+        margin-top: 5%;
+    }
+}
