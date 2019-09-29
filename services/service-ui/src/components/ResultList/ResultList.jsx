@@ -47,7 +47,7 @@ const ResultList = (props) => {
             <Typography className="resultDocsLength" variant="caption">{resultDocsLength} <Translate id='UI__RESULTS_PAGE__RESULT_COUNT' /> "{searchValue}"</Typography>
             <TableBody>
                 {resultDocsSortedByPageRank.reverse().map(doc => (
-                    <ResultItem website={doc.url} title={doc.title} desc={doc.meta.desc} keywords={doc.meta.keywords} date={doc.meta.date} language={doc.meta.language} level={doc.level} level_meta={doc.level_meta} />
+                    <ResultItem key={doc.url} website={doc.url} title={doc.title} desc={doc.meta.desc} keywords={doc.meta.keywords} date={doc.meta.date} language={doc.meta.language} level={doc.level} level_meta={doc.level_meta} />
                 ))
                     .slice(page * 10, page * 10 + 10)
                 }
