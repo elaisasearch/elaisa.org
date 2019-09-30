@@ -1,6 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../assets/css/QuickSearchStyle.css';
 import { connect } from 'react-redux';
+import { isMobile } from 'react-device-detect';
+import TimerIcon from '@material-ui/icons/Timer';
+import { IconButton } from '@material-ui/core';
+import ChooseQuickSearchValueDialog from './ChooseQuickSearchValueDialog';
+
 
 /**
  * In maps you have to use a key for each element
@@ -11,19 +16,46 @@ const QuickSearchContainer = (props) => {
 
     const { topics, setQuickSearch } = props;
 
-    return <div className='quicksearch-container'>
-        {topics.map(topic => {
-            return (
-                <button
-                key={topic}
-                className='quicksearch-button'
-                onClick={e => setQuickSearch(topic, true)}
-            >
-                {topic}
-            </button>
-            );
-        })}
-    </div>;
+    // handle open state for dialog
+    const [open, setOpen] = useState(false);
+
+      const handleClose = (value, quickSearch) => {
+        setOpen(false);
+        setQuickSearch(value, quickSearch);
+      };
+
+    // Only used on mobile devices
+    const handleOpenQuickReplyCard = () => {
+        setOpen(true);
+    }
+
+    const renderQuickSearch = () => {
+        if (isMobile) {
+            return <div className='quicksearch-container'>
+                <IconButton onClick={handleOpenQuickReplyCard}>
+                    <TimerIcon fontSize='large'/>
+                </IconButton>
+                <ChooseQuickSearchValueDialog topics={topics} open={open} onClose={handleClose} />
+            </div>
+        } else {
+            return <div className='quicksearch-container'>
+                {topics.map(topic => {
+                    return (
+                        <button
+                        key={topic}
+                        className='quicksearch-button'
+                        onClick={e => setQuickSearch(topic, true)}
+                    >
+                        {topic}
+                    </button>
+                    );
+                })}
+            </div>;
+
+        }
+    }
+
+    return renderQuickSearch();
 }
 
 /**
