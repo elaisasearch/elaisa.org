@@ -24,6 +24,9 @@ import '../../assets/css/SearchBarStyleCSS.css';
 */
 const SearchBar = (props) => {
 
+  // with styles
+  const { classes } = props;
+
   const [value, setValue] = useState('');
   const [level, setLevel] = useState('');
   const [language, setLanguage] = useState('');
@@ -102,15 +105,15 @@ const SearchBar = (props) => {
         className="bar"
         InputLabelProps={{
           classes: {
-            root: styles.cssLabel,
-            focused: styles.cssFocused,
+            root: classes.cssLabel,
+            focused: classes.cssFocused,
           },
         }}
         InputProps={{
           classes: {
-            root: styles.cssOutlinedInput,
-            focused: styles.cssFocused,
-            notchedOutline: styles.notchedOutline,
+            root: classes.cssOutlinedInput,
+            focused: classes.cssFocused,
+            notchedOutline: classes.notchedOutline,
           },
           inputRef: node => {
             ref(node);
@@ -222,15 +225,16 @@ const SearchBar = (props) => {
         <Autosuggest
           {...autosuggestProps}
           inputProps={{
+            classes,
             id: 'react-autosuggest-simple',
             value: value,
             onChange: handleChange('single'),
           }}
           theme={{
-            container: styles.container,
-            suggestionsContainerOpen: styles.suggestionsContainerOpen,
-            suggestionsList: styles.suggestionsList,
-            suggestion: styles.suggestion,
+            container: classes.container,
+            suggestionsContainerOpen: classes.suggestionsContainerOpen,
+            suggestionsList: classes.suggestionsList,
+            suggestion: classes.suggestion,
           }}
           renderSuggestionsContainer={options => (
             <Paper {...options.containerProps}>
