@@ -69,7 +69,7 @@ const App = (props) => {
         <NavigationBar loggedIn={loggedIn} email={email} firstname={firstname} lastname={lastname} />
         <img id="logo" src={logo} className="logo" alt="Elaisa Search Engine Logo"></img>
         <SearchBar />
-        <QuickSearch topics={['Donald Trump', 'summer', 'football']}/>
+        <QuickSearch topics={['Donald Trump', 'music', 'sport']}/>
         <Tooltip title={<Translate id='UI__BUTTON__SHOW_FOOTER__TOOLTIP' />} aria-label='show-more-information'>
           <IconButton onClick={e => {scrollToFooter(); setDisableShowFooterButton(true)}} disabled={disableShowFooterButton} aria-label="show-footer" id="show-footer-button" size="large">
             <ArrowDownwardIcon fontSize="large" />
