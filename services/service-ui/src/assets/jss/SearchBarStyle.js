@@ -24,12 +24,14 @@ const styles = {
     suggestionsContainerOpen: {
       position: 'absolute',
       zIndex: 1,
-      marginTop: '0.5%',
+      marginTop: '0%',
       left: 0,
       right: 0,
       marginRight: 'auto',
       marginLeft: 'auto',
-      width: '50%'
+      width: '50%',
+      boxShadow: 'none',
+      border: '1px solid rgba(0, 0, 0, 0.23)'
     },
     suggestion: {
       display: 'block',

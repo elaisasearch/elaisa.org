@@ -233,7 +233,7 @@ const SearchBar = (props) => {
             suggestion: styles.suggestion,
           }}
           renderSuggestionsContainer={options => (
-            <Paper {...options.containerProps} square>
+            <Paper {...options.containerProps}>
               {options.children}
             </Paper>
           )}
