@@ -102,15 +102,15 @@ const SearchBar = (props) => {
         className="bar"
         InputLabelProps={{
           classes: {
-            root: classes.cssLabel,
-            focused: classes.cssFocused,
+            root: styles.cssLabel,
+            focused: styles.cssFocused,
           },
         }}
         InputProps={{
           classes: {
-            root: classes.cssOutlinedInput,
-            focused: classes.cssFocused,
-            notchedOutline: classes.notchedOutline,
+            root: styles.cssOutlinedInput,
+            focused: styles.cssFocused,
+            notchedOutline: styles.notchedOutline,
           },
           inputRef: node => {
             ref(node);
@@ -212,7 +212,6 @@ const SearchBar = (props) => {
    * Renders JSX content.
    * @returns {JSX} SearchBar.jsx.
   */
-  const { classes } = props;
   return (
     <div>
       <div className="seachBarRoot">
@@ -223,16 +222,15 @@ const SearchBar = (props) => {
         <Autosuggest
           {...autosuggestProps}
           inputProps={{
-            classes,
             id: 'react-autosuggest-simple',
             value: value,
             onChange: handleChange('single'),
           }}
           theme={{
-            container: classes.container,
-            suggestionsContainerOpen: classes.suggestionsContainerOpen,
-            suggestionsList: classes.suggestionsList,
-            suggestion: classes.suggestion,
+            container: styles.container,
+            suggestionsContainerOpen: styles.suggestionsContainerOpen,
+            suggestionsList: styles.suggestionsList,
+            suggestion: styles.suggestion,
           }}
           renderSuggestionsContainer={options => (
             <Paper {...options.containerProps} square>
