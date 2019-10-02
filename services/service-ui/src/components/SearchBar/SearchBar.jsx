@@ -11,8 +11,7 @@ import match from 'autosuggest-highlight/match';
 import parse from 'autosuggest-highlight/parse';
 import Paper from '@material-ui/core/Paper';
 import MenuItem from '@material-ui/core/MenuItem';
-import getSuggestions from './autocompleteHelper';
-
+import deburr from 'lodash/deburr';
 
 // styles 
 import styles from '../../assets/jss/SearchBarStyle';
@@ -30,7 +29,7 @@ const SearchBar = (props) => {
   const [language, setLanguage] = useState('');
   const [stateSuggestions, setSuggestions] = React.useState([]);
 
-  const { quickSearch, quickSearchValue, setQuickSearch } = props;
+  const { quickSearch, quickSearchValue, setQuickSearch, suggestions } = props;
 
 
   /**
@@ -141,13 +140,13 @@ const SearchBar = (props) => {
 
   /**
    * Renders the suggestion container that shows all available suggestions for the current value.
-   * @param {String} suggestion 
+   * @param {Object} suggestion 
    * @param {String} query 
    * @param {Boolean} isHighlighted
    */
   const renderSuggestion = (suggestion, { query, isHighlighted }) => {
-    const matches = match(suggestion.label, query);
-    const parts = parse(suggestion.label, matches);
+    const matches = match(suggestion.word, query);
+    const parts = parse(suggestion.word, matches);
 
     return (
       <MenuItem selected={isHighlighted} component="div">
@@ -162,8 +161,27 @@ const SearchBar = (props) => {
     );
   }
 
+  const getSuggestions = (value) => {
+    const inputValue = deburr(value.trim()).toLowerCase();
+    const inputLength = inputValue.length;
+    let count = 0;
+
+    return inputLength === 0
+      ? []
+      : suggestions.filter(suggestion => {
+        const keep =
+          count < 5 && suggestion.word.slice(0, inputLength).toLowerCase() === inputValue;
+
+        if (keep) {
+          count += 1;
+        }
+
+        return keep;
+      });
+  }
+
   const getSuggestionValue = (suggestion) => {
-    return suggestion.label;
+    return suggestion.word;
   }
 
   const handleSuggestionsFetchRequested = ({ value }) => {
@@ -177,7 +195,7 @@ const SearchBar = (props) => {
   /**
    * Changes the current value in state. 'newValue' contains the current 'event.target.value' from the autosuggest textfield.
    */
-  const handleChange = () => ( event, { newValue }) => {
+  const handleChange = () => (event, { newValue }) => {
     setValue(newValue)
   };
 
@@ -235,7 +253,8 @@ const SearchBar = (props) => {
 const mapStateToProps = state => {
   return {
     quickSearch: state.quickSearch,
-    quickSearchValue: state.quickSearchValue
+    quickSearchValue: state.quickSearchValue,
+    suggestions: state.suggestions 
   };
 };
 
