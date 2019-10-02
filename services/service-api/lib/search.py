@@ -220,3 +220,20 @@ def getListOfSearchTerms(named_entities: list, query: str) -> list:
         query[query.index('tmp{}'.format(j))] = ent
 
     return query
+
+
+def getWordsFromInvertedIndex() -> list:
+    """
+    Returns a list of all words from the inverted index.
+    Used for autosuggestion.
+    Example:
+        - [{'label': 'summer'}, ...]
+    :return: List
+    """
+    db = client[GLOBALS["mongo"]["database"]]
+    objdb = db[GLOBALS["mongo"]["collections"]["inverted_index"][0]]
+
+    try:
+        return [w for w in objdb.find({},{ "_id": 0, "documents": 0})]
+    except:
+        return []

@@ -5,7 +5,7 @@ The Application Programming Interface (API) for the entire Search Engine.
 import json
 from bottle import Bottle, request, response, run
 # import lib files
-from lib.search import findDocuments, getIdsFromWord, getListOfSearchTerms
+from lib.search import findDocuments, getIdsFromWord, getListOfSearchTerms, getWordsFromInvertedIndex
 from lib.wikipedia import getWikiEntry
 from lib.user import createUser, getSearchHistoryForUser, handlePasswordChange, loginUser, writeSearchDataIntoDatabase, handleForgotPassword
 from lib.nlp import extractNamedEntities, lemmatizeSearchQuery, checkSpelling
@@ -181,6 +181,17 @@ def getSearchHistory():
         return results
     else:
         return "Error"
+
+
+@app.route('/getwords', method=["OPTIONS", "GET"])
+def getSearchHistory():
+    """
+    Returns all words from the inverted index. Used for autosuggestion in Searchbar.js.
+    :return: List
+    """
+    return {
+        "words": getWordsFromInvertedIndex()
+    }
 
 
 app.run(host='0.0.0.0', port=8080, debug=True)
