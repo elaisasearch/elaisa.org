@@ -8,7 +8,7 @@ import textacy
 import re
 from textblob import TextBlob
 from . import categorize
-
+from . import nlp
 
 class NewsSpider(scrapy.Spider):
     """
@@ -74,10 +74,16 @@ class NewsSpider(scrapy.Spider):
             for data in response.css('html'):
 
                 if data.css('html::attr(lang)').get() in ['en', 'en-EN', 'en-US']:
+                
+                    # get the extracted domain from url for inverted index company search
+                    domain = nlp.extractDomainName(url)
 
                     # preprocess text for lowercase search and normalized data
                     text = " ".join(str(element)
                                     for element in data.css('p::text').getall())
+                    # add domain name to text to store it in the inverted index
+                    text += ' {} '.format(domain)
+
                     preprocessedText = textacy.preprocess_text(
                         text,
                         no_accents=True,
