@@ -24,6 +24,11 @@ and (orientation : portrait) {
     #searchButton {
         margin-top: 10%;
     }
+    
+    /* Style for autosuggestion container */
+    #react-autowhatever-1 {
+        width: 90% !important;
+    }
 }
 
 /* iPhone 6/7/8 */ 
@@ -40,6 +45,11 @@ and (max-device-width : 667px) {
 
     #searchButton {
         margin-top: 10%;
+    }
+
+    /* Style for autosuggestion container */
+    #react-autowhatever-1 {
+        width: 90% !important;
     }
 }
 
@@ -59,6 +69,11 @@ and (-webkit-device-pixel-ratio : 3) {
     #searchButton {
         margin-top: 10%;
     }
+
+    /* Style for autosuggestion container */
+    #react-autowhatever-1 {
+        width: 90% !important;
+    }
 }
 
 /* iPhone 6/7/8 Plus */
@@ -77,6 +92,11 @@ and (orientation : portrait) {
     #searchButton {
         margin-top: 10%;
     }
+
+    /* Style for autosuggestion container */
+    #react-autowhatever-1 {
+        width: 81% !important;
+    }
 }
 
 /* iPad Hochformat */
@@ -94,5 +114,10 @@ and (orientation : portrait) {
 
     #searchButton {
         margin-top: 5%;
+    }
+
+    /* Style for autosuggestion container */
+    #react-autowhatever-1 {
+        width: 81% !important;
     }
 }
