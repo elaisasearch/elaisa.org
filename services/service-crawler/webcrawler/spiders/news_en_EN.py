@@ -44,6 +44,9 @@ class NewsSpider(scrapy.Spider):
         'https://www.thewanderblogger.com/'  # expat livestyle blog
     ]
 
+    # Prevent crawling sign in pages etc.
+    exluded_paths = ['profile', 'sign', 'join', 'info', 'log', 'password', 'account', 'home', 'job', 'portal', 'usingthebbc', 'help', 'wiki', 'center', 'faq']
+
     def parse(self, response):
         """
         Parses the start_urls and returns the data as dictionary
@@ -53,7 +56,7 @@ class NewsSpider(scrapy.Spider):
         url = response.url
 
         # check if the current url was already seen by the crawler
-        if url not in self.seen_urls:
+        if url not in self.seen_urls and not any(elem in url for elem in self.exluded_paths):
 
             # append the current url to seen
             self.seen_urls.append(url)
