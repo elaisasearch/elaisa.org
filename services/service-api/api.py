@@ -68,6 +68,9 @@ def find() -> dict:
         # lemmatize query for search in inverted index.
         query = lemmatizeSearchQuery(query)
 
+        # remove 'the' from query so the user can search for 'the guardian' but gets 'guardian' result
+        query = query.replace('the', '')
+
         """
         Check if the query contains Named Entities and create a list of search terms.
         This list is used to query the database.
