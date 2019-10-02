@@ -6,6 +6,13 @@ import Search from '@material-ui/icons/Search'
 import DropDownMenu from '../DropDownMenu/DropDownMenu';
 import { Translate } from "react-localize-redux";
 import { connect } from 'react-redux';
+import Autosuggest from 'react-autosuggest';
+import match from 'autosuggest-highlight/match';
+import parse from 'autosuggest-highlight/parse';
+import Paper from '@material-ui/core/Paper';
+import MenuItem from '@material-ui/core/MenuItem';
+import getSuggestions from './autocompleteHelper';
+
 
 // styles 
 import styles from '../../assets/jss/SearchBarStyle';
@@ -21,6 +28,7 @@ const SearchBar = (props) => {
   const [value, setValue] = useState('');
   const [level, setLevel] = useState('');
   const [language, setLanguage] = useState('');
+  const [stateSuggestions, setSuggestions] = React.useState([]);
 
   const { quickSearch, quickSearchValue, setQuickSearch } = props;
 
@@ -83,6 +91,106 @@ const SearchBar = (props) => {
   }
 
   /**
+   * Renders the Material UI textfield which is shown in the User Interface
+   * @param {Material} inputProps 
+   */
+  const renderInputComponent = (inputProps) => {
+    const { classes, inputRef = () => { }, ref, ...other } = inputProps;
+
+    return (
+      <TextField
+        onKeyDown={keyPress}
+        className="bar"
+        InputLabelProps={{
+          classes: {
+            root: classes.cssLabel,
+            focused: classes.cssFocused,
+          },
+        }}
+        InputProps={{
+          classes: {
+            root: classes.cssOutlinedInput,
+            focused: classes.cssFocused,
+            notchedOutline: classes.notchedOutline,
+          },
+          inputRef: node => {
+            ref(node);
+            inputRef(node);
+          },
+          endAdornment: (
+            <InputAdornment position="end">
+              <Tooltip title={<Translate id='UI__SEARCHBAR' />} aria-label='search'>
+                <IconButton
+                  edge="end"
+                  aria-label="toggle search"
+                  onClick={searchButtonPressed}
+                >
+                  <Search />
+                </IconButton>
+              </Tooltip>
+            </InputAdornment>
+          ),
+        }}
+        label={<Translate id='UI__SEARCHBAR' />}
+        variant="outlined"
+        id="custom-css-outlined-input"
+        {...other}
+      />
+    );
+  }
+
+  /**
+   * Renders the suggestion container that shows all available suggestions for the current value.
+   * @param {String} suggestion 
+   * @param {String} query 
+   * @param {Boolean} isHighlighted
+   */
+  const renderSuggestion = (suggestion, { query, isHighlighted }) => {
+    const matches = match(suggestion.label, query);
+    const parts = parse(suggestion.label, matches);
+
+    return (
+      <MenuItem selected={isHighlighted} component="div">
+        <div>
+          {parts.map(part => (
+            <span key={part.text} style={{ fontWeight: part.highlight ? 600 : 400 }}>
+              {part.text}
+            </span>
+          ))}
+        </div>
+      </MenuItem>
+    );
+  }
+
+  const getSuggestionValue = (suggestion) => {
+    return suggestion.label;
+  }
+
+  const handleSuggestionsFetchRequested = ({ value }) => {
+    setSuggestions(getSuggestions(value));
+  };
+
+  const handleSuggestionsClearRequested = () => {
+    setSuggestions([]);
+  };
+
+  /**
+   * Changes the current value in state. 'newValue' contains the current 'event.target.value' from the autosuggest textfield.
+   */
+  const handleChange = () => ( event, { newValue }) => {
+    setValue(newValue)
+  };
+
+  const autosuggestProps = {
+    renderInputComponent,
+    suggestions: stateSuggestions,
+    onSuggestionsFetchRequested: handleSuggestionsFetchRequested,
+    onSuggestionsClearRequested: handleSuggestionsClearRequested,
+    getSuggestionValue,
+    renderSuggestion,
+  };
+
+  /**
    * Renders JSX content.
    * @returns {JSX} SearchBar.jsx.
   */
@@ -94,40 +202,25 @@ const SearchBar = (props) => {
           <DropDownMenu desc={<Translate id='UI__DROPDOWN__LANGUAGE' />} items={["Deutsch", "English", "Español"]} values={["de", "en", "es"]} onChange={e => setLanguage(e)} />
           <DropDownMenu desc={<Translate id='UI__DROPDOWN__LEVEL' />} items={[<Translate id='UI__DROPDOWN__LEVEL_ALL' />, "A1", "A2", "B1", "B2", "C1", "C2"]} values={["all", "A1", "A2", "B1", "B2", "C1", "C2"]} onChange={e => setLevel(e)} />
         </div>
-        <TextField
-          onKeyDown={keyPress}
-          onChange={e => setValue(e.target.value)}
-          //style={styles.margin}
-          className="bar"
-          InputLabelProps={{
-            classes: {
-              root: classes.cssLabel,
-              focused: classes.cssFocused,
-            },
+        <Autosuggest
+          {...autosuggestProps}
+          inputProps={{
+            classes,
+            id: 'react-autosuggest-simple',
+            value: value,
+            onChange: handleChange('single'),
           }}
-          InputProps={{
-            classes: {
-              root: classes.cssOutlinedInput,
-              focused: classes.cssFocused,
-              notchedOutline: classes.notchedOutline,
-            },
-            endAdornment: (
-              <InputAdornment position="end">
-                <Tooltip title={<Translate id='UI__SEARCHBAR' />} aria-label='search'>
-                  <IconButton
-                    edge="end"
-                    aria-label="toggle search"
-                    onClick={searchButtonPressed}
-                  >
-                    <Search />
-                  </IconButton>
-                </Tooltip>
-              </InputAdornment>
-            ),
+          theme={{
+            container: classes.container,
+            suggestionsContainerOpen: classes.suggestionsContainerOpen,
+            suggestionsList: classes.suggestionsList,
+            suggestion: classes.suggestion,
           }}
-          label={<Translate id='UI__SEARCHBAR' />}
-          variant="outlined"
-          id="custom-css-outlined-input"
+          renderSuggestionsContainer={options => (
+            <Paper {...options.containerProps} square>
+              {options.children}
+            </Paper>
+          )}
         />
       </div>
     </div>
