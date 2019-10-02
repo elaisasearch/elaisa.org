@@ -33,6 +33,11 @@ class NewsSpider(scrapy.Spider):
 
     # The urls with whom the spider starts crawling.
     start_urls = [
+        'https://www.theguardian.com/',
+        'https://www.theguardian.com/uk/sport',
+        'https://www.theguardian.com/uk/culture',
+        'https://www.theguardian.com/film/2019/oct/02/its-very-modern-armando-iannucci-rips-up-rules-with-dickens-adaption',
+        'https://www.theguardian.com/international',
         'https://www.theguardian.com/world/2019/jun/17/iran-it-will-break-uranium-stockpile-limit-set-nuclear-deal',  # new
         'https://www.bbc.com/', 
         'https://www.bbc.com/news/world-us-canada-48666249'
@@ -41,7 +46,12 @@ class NewsSpider(scrapy.Spider):
         'http://www.bbc.co.uk/learningenglish/english/',  # BBC ESL site
         'http://www.worldofwanderlust.com/',  # travel blog
         'http://hannahgale.co.uk/',  # livestyle blow
-        'https://www.thewanderblogger.com/'  # expat livestyle blog
+        'https://www.thewanderblogger.com/',  # expat livestyle blog
+        'https://www.thesun.co.uk/',
+        'https://www.thesun.co.uk/sport/football/',
+        'https://www.thesun.co.uk/news/',
+        'https://www.thesun.co.uk/tech/',
+        'https://www.thesun.co.uk/money/'
     ]
 
     # Prevent crawling sign in pages etc.
