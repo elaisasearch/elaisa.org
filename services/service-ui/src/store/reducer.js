@@ -6,7 +6,8 @@ const initialState = {
     splashDialogWasOpen: false,
     uiLanguage: "en-US",
     quickSearch: false,
-    quickSearchValue: ""
+    quickSearchValue: "",
+    suggestions: []
 }
 
 /**
@@ -45,6 +46,11 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 quickSearchValue: action.value,
                 quickSearch: action.quickSearch
+            }
+        case 'SET_WORDS':
+            return {
+                ...state,
+                suggestions: action.words
             }
         default:
             return state

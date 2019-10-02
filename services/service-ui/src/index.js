@@ -7,6 +7,7 @@ import * as serviceWorker from './serviceWorker';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { LocalizeProvider } from 'react-localize-redux';
+import axios from 'axios';
 
 // views
 import App from './views/App';
@@ -35,6 +36,12 @@ const store = createStore(
 // set localStorage default values
 // only show splash dialog window one time
 if (localStorage.getItem('splashDialogWasOpen') !== 'true') localStorage.setItem('splashDialogWasOpen', false);
+
+// Get all words from inverted index for auto suggestions
+axios.get('https://api.elaisa.org/getwords')
+    .then((response) => {
+        store.dispatch({type: 'SET_WORDS', words: response.data.words});
+    })
 
 
 ReactDOM.render(
