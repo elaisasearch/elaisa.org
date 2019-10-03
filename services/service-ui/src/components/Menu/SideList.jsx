@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { List, Divider, ListItem, ListItemIcon, ListItemText, Collapse, ListSubheader } from '@material-ui/core/';
-import { Help, Share, ExpandLess, ExpandMore, Home } from '@material-ui/icons/';
+import { Help, Share, ExpandLess, ExpandMore, Home, BugReport } from '@material-ui/icons/';
 import styles from '../../assets/jss/MenuStyle';
 import MenuHelper from './MenuHelper';
 import { Link } from 'react-router-dom'
@@ -15,10 +15,19 @@ import spanish from '../../assets/img/menu_flags/spanish.jpg';
 /**
  * Link Item for Menu to change view.
  * @param {object} props the given properties.
- * @returns {JSX} the button with 'a' href component.
+ * @returns {JSX} the button with Link 'to' component.
 */
 const ListItemLink = (props) => {
     return <ListItem button component={Link} {...props} />;
+}
+
+/**
+ * Link Item for Menu to change tab to new site.
+ * @param {object} props the given properties.
+ * @returns {JSX} the button with 'a' href component.
+*/
+const ListItemLinkHref = (props) => {
+    return <ListItem button component='a' {...props} />;
 }
 
 class SideList extends Component {
@@ -87,6 +96,13 @@ class SideList extends Component {
                         </ListItemIcon>
                         <ListItemText inset primary={<Translate id='UI__MENU__HELP_BUTTON' />} />
                     </ListItemLink>
+                    {/* Navigate to GitHub Issue page */}
+                    <ListItemLinkHref href='https://github.com/dasmemeteam/language-level-search-engine/issues' target="_blank">
+                        <ListItemIcon>
+                            <BugReport />
+                        </ListItemIcon>
+                        <ListItemText inset primary={<Translate id='UI__MENU__ISSUE_BUTTON' />} />
+                    </ListItemLinkHref>
                 </List>
             </div>
         );

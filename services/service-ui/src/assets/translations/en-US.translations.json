@@ -35,6 +35,7 @@
     "UI__MENU__HOME_BUTTON": "Home",
     "UI__MENU__SPEAKING_TESTS_BUTTON": "Speaking Tests",
     "UI__MENU__HELP_BUTTON": "Help",
+    "UI__MENU__ISSUE_BUTTON": "Report Issue",
 
     "UI__SPLASH_SCREEN__TITLE": "Welcome to Elaisa",
     "UI__SPLASH_SCREEN__WELCOME_MESSAGE": "Hi and welcome to Elaisa, your language level search engine. I want to give you an advice on how to use it to receive the best results for your needs.",
