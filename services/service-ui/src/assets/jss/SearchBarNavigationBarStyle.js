@@ -11,7 +11,7 @@ const styles = {
     cssFocused: {},
     cssOutlinedInput: {
       '&$cssFocused $notchedOutline': {
-        borderColor: "grey",
+        border: '1px solid black'
       },
     },
     notchedOutline: {},
