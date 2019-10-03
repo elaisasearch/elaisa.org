@@ -31,7 +31,8 @@ const styles = {
       marginLeft: 'auto',
       width: '50%',
       boxShadow: 'none',
-      border: '1px solid rgba(0, 0, 0, 0.23)'
+      border: '1px solid rgba(0, 0, 0, 0.23)',
+      borderTop: 'none'
     },
     suggestion: {
       display: 'block',
