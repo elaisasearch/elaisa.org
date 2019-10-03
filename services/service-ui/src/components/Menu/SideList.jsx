@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import { List, Divider, ListItem, ListItemIcon, ListItemText, Collapse, ListSubheader } from '@material-ui/core/';
+import { List, Divider, ListItem, ListItemIcon, ListItemText, Collapse, ListSubheader, Typography } from '@material-ui/core/';
 import { Help, Share, ExpandLess, ExpandMore, Home, BugReport } from '@material-ui/icons/';
 import styles from '../../assets/jss/MenuStyle';
+import '../../assets/css/MenuStyle.css';
 import MenuHelper from './MenuHelper';
 import { Link } from 'react-router-dom'
 import { Translate } from "react-localize-redux";
 import { connect } from 'react-redux';
+import logo from '../../assets/img/logo.png'
 
 // import language flags for menu
 import german from '../../assets/img/menu_flags/german.jpg';
@@ -59,11 +61,18 @@ class SideList extends Component {
     */
     render() {
         return (
-            <div style={styles.list}>
+            <div className='list'>
                 <List
                     component="nav"
                     style={{ maxWidth: "25vh" }}
-                    subheader={<ListSubheader component="nav">Menu</ListSubheader>}
+                    subheader={
+                        <ListSubheader component='div' className='subheader'>
+                            <img src={logo} width='100' alt="Elaisa Search Engine Logo"></img>
+                            <Typography variant='subheading' color='textSecondary' id='subheading'>
+                                Menu
+                            </Typography>  
+                        </ListSubheader>
+                    }
                 >
                     {/* Home */}
                     <ListItemLink to="/" >

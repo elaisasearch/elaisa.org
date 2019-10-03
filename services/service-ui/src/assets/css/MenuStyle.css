@@ -1,0 +1,17 @@
+.list {
+    width: 25vh;
+    max-width: 25vh;
+}
+
+.subheader {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 7%;
+    margin-bottom: 5%;
+}
+
+#subheading {
+    margin-top: 5%;
+}
