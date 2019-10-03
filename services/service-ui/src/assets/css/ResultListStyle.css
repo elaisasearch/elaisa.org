@@ -20,6 +20,10 @@
     right: 0;
 }
 
+#pagination-logo {
+    width: 5%;
+}
+
 /* iPhone 5/5s */ 
 @media only screen 
 and (min-device-width : 320px) 
@@ -44,6 +48,10 @@ and (orientation : portrait) {
         margin-bottom: 2vh;
         margin-top: 10vh;
         position: inherit;
+    }
+
+    #pagination-logo {
+        width: 25%;
     }
 }
 
@@ -70,6 +78,10 @@ and (max-device-width : 667px) {
         margin-bottom: 2vh;
         margin-top: 10vh;
         position: inherit;
+    }
+
+    #pagination-logo {
+        width: 25%;
     }
 }
 
@@ -98,6 +110,10 @@ and (-webkit-device-pixel-ratio : 3) {
         margin-top: 10vh;
         position: inherit;
     }
+
+    #pagination-logo {
+        width: 30%;
+    }
 }
 
 /* iPad Hochformat */
@@ -124,5 +140,9 @@ and (orientation : portrait) {
         margin-bottom: 2vh;
         margin-top: 10vh;
         position: inherit;
+    }
+
+    #pagination-logo {
+        width: 15%;
     }
 }

@@ -53,7 +53,7 @@ const ResultList = (props) => {
                 }
             </TableBody>
             <div id="pagination">
-                <img src={logo} alt="elaisa logo" width="5%" />
+                <img src={logo} alt="elaisa logo" id='pagination-logo' />
                 <Translate>
                     {({ translate }) => {
                         return (
