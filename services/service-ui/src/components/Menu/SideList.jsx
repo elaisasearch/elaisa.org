@@ -64,16 +64,17 @@ class SideList extends Component {
             <div className='list'>
                 <List
                     component="nav"
-                    style={{ maxWidth: "25vh" }}
+                    id='list-component'
                     subheader={
                         <ListSubheader component='div' className='subheader'>
                             <img src={logo} width='100' alt="Elaisa Search Engine Logo"></img>
                             <Typography variant='subheading' color='textSecondary' id='subheading'>
                                 Menu
-                            </Typography>  
+                            </Typography>
                         </ListSubheader>
                     }
                 >
+
                     {/* Home */}
                     <ListItemLink to="/" >
                         <ListItemIcon>
@@ -89,29 +90,32 @@ class SideList extends Component {
                         <ListItemText inset primary={<Translate id='UI__MENU__SPEAKING_TESTS_BUTTON' />} />
                         {this.state.open ? <ExpandLess /> : <ExpandMore />}
                     </ListItem>
-                    <Divider />
                     <Collapse in={this.state.open} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
                             <MenuHelper href="https://sprachtest.de/einstufungstest-deutsch" flag={german} style={styles.nested} text="Deutsch" />
                             <MenuHelper href="https://sprachtest.de/einstufungstest-englisch" flag={english} style={styles.nested} text="English" />
                             <MenuHelper href="https://sprachtest.de/einstufungstest-spanisch" flag={spanish} style={styles.nested} text="Español" />
-                            <Divider />
                         </List>
                     </Collapse>
-                    {/* Show Splash Dialog as Help view */}
-                    <ListItemLink to='/' onClick={() => this.handleOpenSplashDialog()}>
-                        <ListItemIcon>
-                            <Help />
-                        </ListItemIcon>
-                        <ListItemText inset primary={<Translate id='UI__MENU__HELP_BUTTON' />} />
-                    </ListItemLink>
-                    {/* Navigate to GitHub Issue page */}
-                    <ListItemLinkHref href='https://github.com/dasmemeteam/language-level-search-engine/issues' target="_blank">
-                        <ListItemIcon>
-                            <BugReport />
-                        </ListItemIcon>
-                        <ListItemText inset primary={<Translate id='UI__MENU__ISSUE_BUTTON' />} />
-                    </ListItemLinkHref>
+
+                    <div className='bottom-menu-items'>
+                        <Divider />
+                        {/* Show Splash Dialog as Help view */}
+                        <ListItemLink to='/' onClick={() => this.handleOpenSplashDialog()}>
+                            <ListItemIcon>
+                                <Help />
+                            </ListItemIcon>
+                            <ListItemText inset primary={<Translate id='UI__MENU__HELP_BUTTON' />} />
+                        </ListItemLink>
+                        {/* Navigate to GitHub Issue page */}
+                        <ListItemLinkHref href='https://github.com/dasmemeteam/language-level-search-engine/issues' target="_blank">
+                            <ListItemIcon>
+                                <BugReport />
+                            </ListItemIcon>
+                            <ListItemText inset primary={<Translate id='UI__MENU__ISSUE_BUTTON' />} />
+                        </ListItemLinkHref>
+                    </div>
+
                 </List>
             </div>
         );

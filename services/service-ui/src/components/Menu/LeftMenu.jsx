@@ -48,6 +48,9 @@ class LeftMenu extends React.Component {
                     <div
                         tabIndex={0}
                         role="button"
+                        style={{
+                            height: '100%'
+                        }}
                     >
                         <SideList />
                     </div>
