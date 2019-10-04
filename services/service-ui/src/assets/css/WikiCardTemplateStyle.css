@@ -21,6 +21,25 @@
     margin-bottom: 12;
 }
 
+.show-more-less-button {
+    display: none;
+}
+
+.wikitext-p {
+    text-align: justify;
+    line-height: 1.5;
+}
+
+#wiki-title-div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#enlarge-font-size-button {
+    display: none;
+}
+
 /* iPhone 5/5s */ 
 @media only screen 
 and (min-device-width : 320px) 
@@ -35,6 +54,20 @@ and (orientation : portrait) {
         margin-right: auto;
         margin-left: auto;
     } 
+
+    .show-more-less-button {
+        background: none!important;
+        border: none;
+        padding: 0!important;
+        font-size: 14px;
+        color: #069;
+        cursor: pointer;
+        display: inline;
+    }
+
+    #enlarge-font-size-button {
+        display: inline;
+    }
 }
 
 /* iPhone 6/7/8 */ 
@@ -49,6 +82,20 @@ and (max-device-width : 667px) {
         margin-top: 5%;
         margin-right: auto;
         margin-left: auto;
+    }
+
+    .show-more-less-button {
+        background: none!important;
+        border: none;
+        padding: 0!important;
+        font-size: 14px;
+        color: #069;
+        cursor: pointer;
+        display: inline;
+    }
+
+    #enlarge-font-size-button {
+        display: inline;
     }
 }
 
@@ -66,6 +113,20 @@ and (-webkit-device-pixel-ratio : 3) {
         margin-right: auto;
         margin-left: auto;
     }
+
+    .show-more-less-button {
+        background: none!important;
+        border: none;
+        padding: 0!important;
+        font-size: 14px;
+        color: #069;
+        cursor: pointer;
+        display: inline;
+    }
+
+    #enlarge-font-size-button {
+        display: inline;
+    }
 }
 
 /* iPad Hochformat */
@@ -79,5 +140,19 @@ and (orientation : portrait) {
         margin-top: 5%;
         margin-right: auto;
         margin-left: auto;
+    }
+
+    .show-more-less-button {
+        background: none!important;
+        border: none;
+        padding: 0!important;
+        font-size: 14px;
+        color: #069;
+        cursor: pointer;
+        display: inline;
+    }
+
+    #enlarge-font-size-button {
+        display: inline;
     }
 }
