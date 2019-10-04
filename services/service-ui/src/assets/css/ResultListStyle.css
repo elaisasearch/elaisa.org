@@ -51,7 +51,7 @@ and (orientation : portrait) {
     }
 
     #pagination-logo {
-        width: 25%;
+        width: 15%;
     }
 }
 
@@ -81,7 +81,7 @@ and (max-device-width : 667px) {
     }
 
     #pagination-logo {
-        width: 25%;
+        width: 15%;
     }
 }
 
@@ -112,7 +112,7 @@ and (-webkit-device-pixel-ratio : 3) {
     }
 
     #pagination-logo {
-        width: 30%;
+        width: 15%;
     }
 }
 
