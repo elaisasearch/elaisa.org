@@ -37,10 +37,6 @@ and (orientation : portrait) {
         display: flex;
         margin-bottom: 5%;
     }
-
-    #levelDiv {
-        display: none;
-    }
 }
 
 /* iPhone 6/7/8 */ 
@@ -50,10 +46,6 @@ and (max-device-width : 667px) {
     #listItemRoot {
         display: flex;
         margin-bottom: 5%;
-    }
-
-    #levelDiv {
-        display: none;
     }
 }
 
@@ -65,10 +57,6 @@ and (-webkit-device-pixel-ratio : 3) {
     #listItemRoot {
         display: flex;
         margin-bottom: 5%;
-    }
-
-    #levelDiv {
-        display: none;
     }
 }
 
