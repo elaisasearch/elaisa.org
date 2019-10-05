@@ -13,11 +13,6 @@ const styles = {
       },
     },
     notchedOutline: {},
-    pickers: {
-      display: "flex",
-      justifyContent: "center",
-      marginTop: "5%"
-    },
     container: {
       position: 'relative',
     },
