@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Translate } from "react-localize-redux";
 import { connect } from 'react-redux';
-import { IconButton, Tooltip, Button, Grid } from '@material-ui/core/';
-import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
+import { Button, Grid } from '@material-ui/core/';
 import { isMobile } from 'react-device-detect';
 
 import NavigationBar from '../components/NavigiationBar/NavigationBar';
@@ -13,8 +12,7 @@ import LegalNoticeDialog from '../components/SplashDialog/LegalNoticeDialog';
 import LanguageSelect from '../components/LanguageSelect';
 import HeaderTags from '../components/HeaderTags';
 import QuickSearch from '../components/QuickSearch';
-
-import scrollToFooter from '../handlers/scrollHandler';
+import ShowFooterButton from '../components/ShowFooterButton';
 
 import '../assets/css/AppStyle.css'
 import logo from '../assets/img/logo.png';
@@ -29,9 +27,6 @@ const App = (props) => {
   // handle the splash dialog open state
   const [splashDialogOpen, setSplashDialogOpen] = useState(false);
   const [legalNoticeDialogOpen, setLegalNoticeDialogOpen] = useState(false);
-  // disable the show footer button if it was clicked one time to prevent hight bug in the footer.
-  // when the user wants to the see footer, he has to scroll down manually
-  const [disableShowFooterButton, setDisableShowFooterButton] = useState(false)
 
   const handleClose = () => {
     setSplashDialogOpen(false);
@@ -92,11 +87,7 @@ const App = (props) => {
         ></img>
         <SearchBar />
         <QuickSearch topics={['Donald Trump', 'music', 'sport']}/>
-        <Tooltip title={<Translate id='UI__BUTTON__SHOW_FOOTER__TOOLTIP' />} aria-label='show-more-information'>
-          <IconButton onClick={e => {scrollToFooter(); setDisableShowFooterButton(true)}} disabled={disableShowFooterButton} aria-label="show-footer" id="show-footer-button" size="large">
-            <ArrowDownwardIcon fontSize="large" />
-          </IconButton>
-        </Tooltip>
+        <ShowFooterButton />
         <div className='legal-info'>
           <LanguageSelect />
           <Button id='legal-notice-button' onClick={e => setLegalNoticeDialogOpen(true)}>
