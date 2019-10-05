@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 import { isMobile } from 'react-device-detect';
 import TimerIcon from '@material-ui/icons/Timer';
-import { IconButton } from '@material-ui/core';
+import { IconButton, Grid } from '@material-ui/core';
 import ChooseQuickSearchValueDialog from './ChooseQuickSearchValueDialog';
 import { styled } from '@material-ui/styles';
 
@@ -34,52 +34,58 @@ const QuickSearchContainer = (props) => {
     // handle open state for dialog
     const [open, setOpen] = useState(false);
 
-      const handleClose = (value, quickSearch) => {
+    const handleClose = (value, quickSearch) => {
         setOpen(false);
         setQuickSearch(value, quickSearch);
-      };
+    };
 
     // Only used on mobile devices
     const handleOpenQuickReplyCard = () => {
         setOpen(true);
     }
 
-    const renderQuickSearch = () => {
-        if (isMobile) {
-            return <div style={{marginTop: '5%'}}>
-                <IconButton onClick={handleOpenQuickReplyCard}>
-                    <TimerIcon fontSize='large'/>
-                </IconButton>
-                <ChooseQuickSearchValueDialog topics={topics} open={open} onClose={handleClose} />
-            </div>
-        } else {
-            return <div style={{marginTop: '2%', width: '100%'}}>
-                {topics.map(topic => {
-                    return (
-                        <QuickSearchButton
-                        key={topic}
-                        onClick={e => setQuickSearch(topic, true)}
-                    >
-                        {topic}
-                    </QuickSearchButton>
-                    );
-                })}
-            </div>;
-
-        }
-    }
-
-    return renderQuickSearch();
+    return (
+        <Grid
+            item
+            xs='auto'
+            style={{
+                marginTop: isMobile ? '5%' : '2%',
+                width: '100%'
+            }}
+        >
+            {isMobile ?
+                <div>
+                    <IconButton onClick={handleOpenQuickReplyCard}>
+                        <TimerIcon fontSize='large' />
+                    </IconButton>
+                    <ChooseQuickSearchValueDialog topics={topics} open={open} onClose={handleClose} />
+                </div>
+                :
+                <div>
+                    {topics.map(topic => {
+                        return (
+                            <QuickSearchButton
+                                key={topic}
+                                onClick={e => setQuickSearch(topic, true)}
+                            >
+                                {topic}
+                            </QuickSearchButton>
+                        );
+                    })}
+                </div>
+            }
+        </Grid>
+    );
 }
 
 /**
  * Maps redux signIn action to props.
- * @param {object} dispatch the current redux store.
- * @returns {any} redux action to props mapping.
-*/
+* @param {object} dispatch the current redux store.
+* @returns {any} redux action to props mapping.
+   */
 const mapDispatchToProps = dispatch => {
     return {
-      setQuickSearch: (value, quickSearch) => dispatch({ type: 'SET_QUICK_SEARCH', value, quickSearch })
+        setQuickSearch: (value, quickSearch) => dispatch({ type: 'SET_QUICK_SEARCH', value, quickSearch })
     };
 };
 
