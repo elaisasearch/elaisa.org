@@ -75,6 +75,9 @@ const App = (props) => {
         container 
         direction= 'column'
         alignItems= 'center'
+        style={{
+          height: '100%'
+        }}
       >
         <NavigationBar loggedIn={loggedIn} email={email} firstname={firstname} lastname={lastname} />
         <img id="logo" src={logo} className="logo" alt="Elaisa Search Engine Logo"></img>
