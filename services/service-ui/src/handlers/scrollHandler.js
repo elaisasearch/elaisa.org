@@ -15,7 +15,7 @@ export default function scrollToFooter() {
     */
     Events.scrollEvent.register('begin', (to, el) => {
         // Set the applications height to 320vh (three times screen size) to have enough space for the footer
-        ReactDom.findDOMNode(el).parentElement.parentElement.style.minHeight = '220vh';
+        // ReactDom.findDOMNode(el).parentElement.parentElement.style.minHeight = '220vh';
         // Display the footer
         ReactDom.findDOMNode(el).parentElement.style.display = 'flex';
 
@@ -39,7 +39,7 @@ export function scrollToFooterContent2() {
     Events.scrollEvent.register('begin', (to, el) => {
 
         // Set the applications height to 320vh (three times screen size) to have enough space for the footer
-        ReactDom.findDOMNode(el).parentElement.parentElement.style.minHeight = '320vh';
+        // ReactDom.findDOMNode(el).parentElement.parentElement.style.minHeight = '320vh';
 
         // Display content2 div
         ReactDom.findDOMNode(el).style.display = 'inherit';
