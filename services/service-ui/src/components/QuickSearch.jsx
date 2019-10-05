@@ -1,10 +1,25 @@
 import React, { useState } from 'react';
-import '../assets/css/QuickSearchStyle.css';
 import { connect } from 'react-redux';
 import { isMobile } from 'react-device-detect';
 import TimerIcon from '@material-ui/icons/Timer';
 import { IconButton } from '@material-ui/core';
 import ChooseQuickSearchValueDialog from './ChooseQuickSearchValueDialog';
+import { styled } from '@material-ui/styles';
+
+const QuickSearchButton = styled('button')({
+    padding: '1%',
+    borderRadius: '30px',
+    border: '1px solid rgba(0, 0, 0, 0.23)',
+    '&:hover': {
+        border: '1px solid black'
+    },
+    background: 'transparent',
+    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+    cursor: 'pointer',
+    fontSize: '1rem',
+    color: 'rgba(0, 0, 0, 0.54)',
+    marginRight: '2%',
+})
 
 
 /**
@@ -31,23 +46,22 @@ const QuickSearchContainer = (props) => {
 
     const renderQuickSearch = () => {
         if (isMobile) {
-            return <div className='quicksearch-container'>
+            return <div style={{marginTop: '5%'}}>
                 <IconButton onClick={handleOpenQuickReplyCard}>
                     <TimerIcon fontSize='large'/>
                 </IconButton>
                 <ChooseQuickSearchValueDialog topics={topics} open={open} onClose={handleClose} />
             </div>
         } else {
-            return <div className='quicksearch-container'>
+            return <div style={{marginTop: '2%', width: '100%'}}>
                 {topics.map(topic => {
                     return (
-                        <button
+                        <QuickSearchButton
                         key={topic}
-                        className='quicksearch-button'
                         onClick={e => setQuickSearch(topic, true)}
                     >
                         {topic}
-                    </button>
+                    </QuickSearchButton>
                     );
                 })}
             </div>;
