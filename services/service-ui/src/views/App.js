@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Translate } from "react-localize-redux";
 import { connect } from 'react-redux';
-import { IconButton, Tooltip, Button } from '@material-ui/core/';
+import { IconButton, Tooltip, Button, Grid } from '@material-ui/core/';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 
 import NavigationBar from '../components/NavigiationBar/NavigationBar';
@@ -56,7 +56,13 @@ const App = (props) => {
   );
 
   return (
-    <div className="root">
+    <div 
+      style={{
+        textAlign: 'center',
+        height: '100vh',
+        width: '100vw'
+      }}
+    >
       <HeaderTags 
         title="Elaisa Search Engine - Home"
         desc="Language level search engine for finding documents in a specific language with a specific language level"
@@ -64,7 +70,12 @@ const App = (props) => {
       />
       <SplashDialog open={splashDialogOpen} handleClose={handleClose} />
       <LegalNoticeDialog open={legalNoticeDialogOpen} handleClose={handleCloseLegalNoticeDialog} />
-      <div className="app">
+      
+      <Grid 
+        container 
+        direction= 'column'
+        alignItems= 'center'
+      >
         <NavigationBar loggedIn={loggedIn} email={email} firstname={firstname} lastname={lastname} />
         <img id="logo" src={logo} className="logo" alt="Elaisa Search Engine Logo"></img>
         <SearchBar />
@@ -80,7 +91,7 @@ const App = (props) => {
             <Translate id='UI__BUTTON__LEGAL' />
           </Button>
         </div>
-      </div>
+      </Grid>
       <Footer />
     </div>
   );

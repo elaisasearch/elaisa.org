@@ -5,10 +5,10 @@ import Button from '@material-ui/core/Button'
 import { withRouter, Link } from "react-router-dom";
 import { isMobile } from "react-device-detect";
 import { Translate } from 'react-localize-redux';
+import Grid from '@material-ui/core/Grid';
 
 //import styles
 import styles from '../../assets/jss/NavigationBarStyle';
-import '../../assets/css/NavigationBarStyle.css';
 
 
 import LeftMenu from '../Menu/LeftMenu';
@@ -72,36 +72,51 @@ class NavigationBar extends React.Component {
   renderSearchBar = (props) => {
     if (props.results) {
       if (isMobile) {
-        return <div className="searchBar">
+        return <Grid
+          container
+          justify='flex-end'
+          xs={12}
+        >
           <Button component={Link} to="/" style={styles.elaisaButton}><img src={logo} style={styles.elaisaText} alt="Elaisa Search Engine Logo"></img></Button>
-        </div>
+        </Grid>
       } else {
-        return <div className="searchBar">
+        return <Grid
+          container 
+          justify='center'
+          xs={12}
+        >
           <Button component={Link} to="/" style={styles.elaisaButton}><img src={logo} style={styles.elaisaText} alt="Elaisa Search Engine Logo"></img></Button>
           <SearchBarNavigationBar handleClickSearch={this.searchButtonPressed} value={props.values[0]} onChange={e => this.setState({ value: e })} onKeyDown={this.keyPress} />
           <DropDownMenu value={this.state.language} desc={<Translate id='UI__DROPDOWN__LANGUAGE' />} items={["Deutsch", "English", "Español"]} values={["de", "en", "es"]} onChange={e => this.setState({ language: e })} />
           <DropDownMenu value={this.state.level} desc={<Translate id='UI__DROPDOWN__LEVEL' />} items={[<Translate id='UI__DROPDOWN__LEVEL_ALL' />, "A1", "A2", "B1", "B2", "C1", "C2"]} values={["all", "A1", "A2", "B1", "B2", "C1", "C2"]} onChange={e => this.setState({ level: e })} />
-        </div>
+        </Grid>
       }
     }
-    return <div style={styles.defaultContent}>
+    return <Grid 
+      container
+      direction='column'
+      alignItems='flex-end'
+    >
       {this.renderAvatar(props)}
-    </div>;
+    </Grid>;
   }
 
   render() {
     return (
-
-      <div style={styles.root}>
-        <AppBar position="static" id="navBar" style={styles.appBar}>
+        <AppBar 
+          position="static" 
+          id="navBar" 
+          style={{
+            backgroundColor: "transparent",
+            boxShadow: "none",
+            width: '100%'
+          }}
+        >
           <Toolbar>
-            <div>
-              <LeftMenu />
-            </div>
+            <LeftMenu />
             {this.renderSearchBar(this.props)}
           </Toolbar>
         </AppBar>
-      </div>
     );
   }
 }
