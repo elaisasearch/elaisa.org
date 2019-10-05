@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import { TextField, InputAdornment, IconButton, Tooltip } from '@material-ui/core/'
+import { TextField, InputAdornment, IconButton, Tooltip, Grid } from '@material-ui/core/'
 import { withRouter } from "react-router-dom";
 import Search from '@material-ui/icons/Search'
 import DropDownMenu from '../DropDownMenu/DropDownMenu';
@@ -12,6 +12,7 @@ import parse from 'autosuggest-highlight/parse';
 import Paper from '@material-ui/core/Paper';
 import MenuItem from '@material-ui/core/MenuItem';
 import deburr from 'lodash/deburr';
+import { isMobile } from 'react-device-detect';
 
 // styles 
 import styles from '../../assets/jss/SearchBarStyle';
@@ -216,34 +217,39 @@ const SearchBar = (props) => {
    * @returns {JSX} SearchBar.jsx.
   */
   return (
-    <div>
-      <div className="seachBarRoot">
-        <div style={styles.pickers}>
-          <DropDownMenu desc={<Translate id='UI__DROPDOWN__LANGUAGE' />} items={["Deutsch", "English", "Español"]} values={["de", "en", "es"]} onChange={e => setLanguage(e)} />
-          <DropDownMenu desc={<Translate id='UI__DROPDOWN__LEVEL' />} items={[<Translate id='UI__DROPDOWN__LEVEL_ALL' />, "A1", "A2", "B1", "B2", "C1", "C2"]} values={["all", "A1", "A2", "B1", "B2", "C1", "C2"]} onChange={e => setLevel(e)} />
-        </div>
-        <Autosuggest
-          {...autosuggestProps}
-          inputProps={{
-            classes,
-            id: 'react-autosuggest-simple',
-            value: value,
-            onChange: handleChange('single'),
-          }}
-          theme={{
-            container: classes.container,
-            suggestionsContainerOpen: classes.suggestionsContainerOpen,
-            suggestionsList: classes.suggestionsList,
-            suggestion: classes.suggestion,
-          }}
-          renderSuggestionsContainer={options => (
-            <Paper {...options.containerProps}>
-              {options.children}
-            </Paper>
-          )}
-        />
-      </div>
-    </div>
+    <Grid 
+      item
+      style={{
+        width:'100%',
+        marginTop: isMobile ? '10%' : '0%'
+      }}
+      direction='column'
+    >
+      <Grid container directtion='column' justify='center' style={{marginTop: '5%'}}>
+        <DropDownMenu desc={<Translate id='UI__DROPDOWN__LANGUAGE' />} items={["Deutsch", "English", "Español"]} values={["de", "en", "es"]} onChange={e => setLanguage(e)} />
+        <DropDownMenu desc={<Translate id='UI__DROPDOWN__LEVEL' />} items={[<Translate id='UI__DROPDOWN__LEVEL_ALL' />, "A1", "A2", "B1", "B2", "C1", "C2"]} values={["all", "A1", "A2", "B1", "B2", "C1", "C2"]} onChange={e => setLevel(e)} />
+      </Grid>
+      <Autosuggest
+        {...autosuggestProps}
+        inputProps={{
+          classes,
+          id: 'react-autosuggest-simple',
+          value: value,
+          onChange: handleChange('single'),
+        }}
+        theme={{
+          container: classes.container,
+          suggestionsContainerOpen: classes.suggestionsContainerOpen,
+          suggestionsList: classes.suggestionsList,
+          suggestion: classes.suggestion,
+        }}
+        renderSuggestionsContainer={options => (
+          <Paper {...options.containerProps}>
+            {options.children}
+          </Paper>
+        )}
+      />
+    </Grid>
   );
 };
 
@@ -256,7 +262,7 @@ const mapStateToProps = state => {
   return {
     quickSearch: state.quickSearch,
     quickSearchValue: state.quickSearchValue,
-    suggestions: state.suggestions 
+    suggestions: state.suggestions
   };
 };
 
