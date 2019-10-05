@@ -1,17 +1,11 @@
 import React, { Component } from 'react';
 import { List, Divider, ListItem, ListItemIcon, ListItemText, Collapse, ListSubheader, Typography, Grid } from '@material-ui/core/';
 import { Help, Share, ExpandLess, ExpandMore, Home, BugReport } from '@material-ui/icons/';
-import styles from '../../assets/jss/MenuStyle';
 import MenuHelper from './MenuHelper';
 import { Link } from 'react-router-dom'
 import { Translate } from "react-localize-redux";
 import { connect } from 'react-redux';
 import logo from '../../assets/img/logo.png'
-
-// import language flags for menu
-import german from '../../assets/img/menu_flags/german.jpg';
-import english from '../../assets/img/menu_flags/english.jpg';
-import spanish from '../../assets/img/menu_flags/spanish.jpg';
 
 /**
  * Link Item for Menu to change view.
@@ -108,10 +102,10 @@ class SideList extends Component {
                             {this.state.open ? <ExpandLess /> : <ExpandMore />}
                         </ListItem>
                         <Collapse in={this.state.open} timeout="auto" unmountOnExit>
-                            <List component="div" disablePadding>
-                                <MenuHelper href="https://sprachtest.de/einstufungstest-deutsch" flag={german} style={styles.nested} text="Deutsch" />
-                                <MenuHelper href="https://sprachtest.de/einstufungstest-englisch" flag={english} style={styles.nested} text="English" />
-                                <MenuHelper href="https://sprachtest.de/einstufungstest-spanisch" flag={spanish} style={styles.nested} text="Español" />
+                            <List component="div">
+                                <MenuHelper href="https://sprachtest.de/einstufungstest-deutsch" flag='🇩🇪' text="Deutsch" />
+                                <MenuHelper href="https://sprachtest.de/einstufungstest-englisch" flag='🇬🇧' text="English" />
+                                <MenuHelper href="https://sprachtest.de/einstufungstest-spanisch" flag='🇪🇸' text="Español" />
                             </List>
                         </Collapse>
                     </List>

@@ -16,11 +16,17 @@ const ListItemLink = (props) => {
  * @returns {JSX} ListItemLink for language level test websites.
 */
 const MenuHelper = (props) => {
-    const { href, style, text, flag } = props
+    const { href, text, flag } = props
     return (
-        <ListItemLink href={href} target="_blank" style={style}>
-            <img src={flag} alt="flag" style={{ width: "10%" }}></img>
-            <ListItemText primary={text} />
+        <ListItemLink 
+            href={href} 
+            target="_blank" 
+            style={{
+                textAlign: 'center',
+                fontSize:'150%' // for flag size
+            }}
+        >
+            {flag} <ListItemText primary={text} />
         </ListItemLink>
     );
 }
