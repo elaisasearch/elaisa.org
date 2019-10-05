@@ -3,6 +3,7 @@ import { Translate } from "react-localize-redux";
 import { connect } from 'react-redux';
 import { IconButton, Tooltip, Button, Grid } from '@material-ui/core/';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
+import { isMobile } from 'react-device-detect';
 
 import NavigationBar from '../components/NavigiationBar/NavigationBar';
 import SearchBar from '../components/SearchBar/SearchBar';
@@ -80,7 +81,15 @@ const App = (props) => {
         }}
       >
         <NavigationBar loggedIn={loggedIn} email={email} firstname={firstname} lastname={lastname} />
-        <img id="logo" src={logo} className="logo" alt="Elaisa Search Engine Logo"></img>
+        <img 
+          id="logo" 
+          src={logo} 
+          alt="Elaisa Search Engine Logo"
+          style={{
+            width: isMobile ? '50%' : '20%',
+            marginTop: isMobile ? '15%' : '10%'
+          }}
+        ></img>
         <SearchBar />
         <QuickSearch topics={['Donald Trump', 'music', 'sport']}/>
         <Tooltip title={<Translate id='UI__BUTTON__SHOW_FOOTER__TOOLTIP' />} aria-label='show-more-information'>
