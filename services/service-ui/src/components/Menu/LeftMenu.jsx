@@ -45,15 +45,7 @@ class LeftMenu extends React.Component {
                     <MenuIcon />
                 </IconButton>
                 <Drawer open={this.state.left} onClose={this.toggleDrawer('left', false)}>
-                    <div
-                        tabIndex={0}
-                        role="button"
-                        style={{
-                            height: '100%'
-                        }}
-                    >
-                        <SideList />
-                    </div>
+                    <SideList />
                 </Drawer>
             </div>
         );

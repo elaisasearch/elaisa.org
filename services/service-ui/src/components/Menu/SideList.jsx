@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { List, Divider, ListItem, ListItemIcon, ListItemText, Collapse, ListSubheader, Typography } from '@material-ui/core/';
+import { List, Divider, ListItem, ListItemIcon, ListItemText, Collapse, ListSubheader, Typography, Grid } from '@material-ui/core/';
 import { Help, Share, ExpandLess, ExpandMore, Home, BugReport } from '@material-ui/icons/';
 import styles from '../../assets/jss/MenuStyle';
-import '../../assets/css/MenuStyle.css';
 import MenuHelper from './MenuHelper';
 import { Link } from 'react-router-dom'
 import { Translate } from "react-localize-redux";
@@ -61,44 +60,65 @@ class SideList extends Component {
     */
     render() {
         return (
-            <div className='list'>
-                <List
-                    component="nav"
-                    id='list-component'
-                    subheader={
-                        <ListSubheader component='div' className='subheader'>
-                            <img src={logo} width='100' alt="Elaisa Search Engine Logo"></img>
-                            <Typography variant='subheading' color='textSecondary' id='subheading'>
-                                Menu
-                            </Typography>
-                        </ListSubheader>
-                    }
-                >
+            <Grid
+                container
+                spacing={3}
+                xs={12}
+                justify='space-between'
+                direction='column'
+            >
+                <Grid item>
+                    <List
+                        component="nav"
+                        subheader={
+                            <ListSubheader component='div'
+                                style={{
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    alignItems: 'center',
+                                    marginTop: '7%',
+                                    marginBottom: '5%'
+                                }}
+                            >
+                                <img src={logo} width='100' alt="Elaisa Search Engine Logo"></img>
+                                <Typography
+                                    variant='subheading'
+                                    color='textSecondary'
+                                    stlyle={{
+                                        marginTop: '5%'
+                                    }}>
+                                    Menu
+                                </Typography>
+                            </ListSubheader>
+                        }
+                    >
+                        {/* Home */}
+                        <ListItemLink to="/" >
+                            <ListItemIcon>
+                                <Home />
+                            </ListItemIcon>
+                            <ListItemText inset primary={<Translate id='UI__MENU__HOME_BUTTON' />} />
+                        </ListItemLink>
+                        {/* Level of Speaking Tests MENU */}
+                        <ListItem button onClick={this.handleClick}>
+                            <ListItemIcon>
+                                <Share />
+                            </ListItemIcon>
+                            <ListItemText inset primary={<Translate id='UI__MENU__SPEAKING_TESTS_BUTTON' />} />
+                            {this.state.open ? <ExpandLess /> : <ExpandMore />}
+                        </ListItem>
+                        <Collapse in={this.state.open} timeout="auto" unmountOnExit>
+                            <List component="div" disablePadding>
+                                <MenuHelper href="https://sprachtest.de/einstufungstest-deutsch" flag={german} style={styles.nested} text="Deutsch" />
+                                <MenuHelper href="https://sprachtest.de/einstufungstest-englisch" flag={english} style={styles.nested} text="English" />
+                                <MenuHelper href="https://sprachtest.de/einstufungstest-spanisch" flag={spanish} style={styles.nested} text="Español" />
+                            </List>
+                        </Collapse>
+                    </List>
+                </Grid>
 
-                    {/* Home */}
-                    <ListItemLink to="/" >
-                        <ListItemIcon>
-                            <Home />
-                        </ListItemIcon>
-                        <ListItemText inset primary={<Translate id='UI__MENU__HOME_BUTTON' />} />
-                    </ListItemLink>
-                    {/* Level of Speaking Tests MENU */}
-                    <ListItem button onClick={this.handleClick}>
-                        <ListItemIcon>
-                            <Share />
-                        </ListItemIcon>
-                        <ListItemText inset primary={<Translate id='UI__MENU__SPEAKING_TESTS_BUTTON' />} />
-                        {this.state.open ? <ExpandLess /> : <ExpandMore />}
-                    </ListItem>
-                    <Collapse in={this.state.open} timeout="auto" unmountOnExit>
-                        <List component="div" disablePadding>
-                            <MenuHelper href="https://sprachtest.de/einstufungstest-deutsch" flag={german} style={styles.nested} text="Deutsch" />
-                            <MenuHelper href="https://sprachtest.de/einstufungstest-englisch" flag={english} style={styles.nested} text="English" />
-                            <MenuHelper href="https://sprachtest.de/einstufungstest-spanisch" flag={spanish} style={styles.nested} text="Español" />
-                        </List>
-                    </Collapse>
-
-                    <div className='bottom-menu-items'>
+                <Grid item>
+                    <List>
                         <Divider />
                         {/* Show Splash Dialog as Help view */}
                         <ListItemLink to='/' onClick={() => this.handleOpenSplashDialog()}>
@@ -114,10 +134,9 @@ class SideList extends Component {
                             </ListItemIcon>
                             <ListItemText inset primary={<Translate id='UI__MENU__ISSUE_BUTTON' />} />
                         </ListItemLinkHref>
-                    </div>
-
-                </List>
-            </div>
+                    </List>
+                </Grid >
+            </Grid>
         );
     }
 }
