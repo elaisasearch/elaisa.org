@@ -1,23 +1,22 @@
 import React, { useState } from 'react';
+import { Translate } from "react-localize-redux";
+import { connect } from 'react-redux';
+import { IconButton, Tooltip, Button } from '@material-ui/core/';
+import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
+
 import NavigationBar from '../components/NavigiationBar/NavigationBar';
 import SearchBar from '../components/SearchBar/SearchBar';
 import Footer from '../components/Footer/Footer';
-import '../assets/css/AppStyle.css'
-import { IconButton, Tooltip } from '@material-ui/core/';
-import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
-import scrollToFooter from '../handlers/scrollHandler';
 import SplashDialog from '../components/SplashDialog/SplashDialog';
 import LegalNoticeDialog from '../components/SplashDialog/LegalNoticeDialog';
 import LanguageSelect from '../components/LanguageSelect';
-import { Translate } from "react-localize-redux";
 import HeaderTags from '../components/HeaderTags';
 import QuickSearch from '../components/QuickSearch';
 
-// logo
+import scrollToFooter from '../handlers/scrollHandler';
+
+import '../assets/css/AppStyle.css'
 import logo from '../assets/img/logo.png';
-// redux 
-import { connect } from 'react-redux';
-import { Button } from '@material-ui/core';
 
 /**
  * This is the search engines main function.
