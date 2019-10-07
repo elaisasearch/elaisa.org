@@ -4,10 +4,47 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import '../../assets/css/WikiCardTemplateStyle.css';
 import { Translate } from 'react-localize-redux';
 import TextFormatIcon from '@material-ui/icons/TextFormat';
 import { IconButton } from '@material-ui/core';
+import { makeStyles } from '@material-ui/styles';
+import { isMobile } from 'react-device-detect';
+
+
+const useStyles = makeStyles({
+  card: {
+    minWidth: isMobile ? '100%' : '275px',
+    maxWidth: isMobile ? '100%' : '275px',
+    marginTop: isMobile ? '5%' : '6vh',
+    marginRight: isMobile ? 'auto' : '10vh',
+    marginLeft: 'auto',
+    boxShadow: isMobile ? 'none !important' : ''
+  },
+  wikitextP: {
+    textAlign: 'justify',
+    lineHeight: '1.5'
+  },
+  title: {
+    fontSize: '14'
+  },
+  wikiTitleDiv: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between'
+  },
+  enlargeFontSizeButton: {
+    display: isMobile ? 'inline' : 'none'
+  },
+  showMoreLessButton: {
+    display: isMobile ? 'inline' : 'none',
+    background: 'none !important',
+    border: 'none',
+    padding: '0 !important',
+    fontSize: '14px',
+    color: '#069',
+    cursor: 'pointer',
+  }
+});
 
 
 /**
@@ -17,6 +54,7 @@ import { IconButton } from '@material-ui/core';
 */
 const  WikiCardTemplate = (props) => {
   const { url, title, summary } = props;
+  const classes = useStyles();
 
   const [fullWikiText, setFullWikiText] = useState(false);
 
@@ -45,23 +83,23 @@ const  WikiCardTemplate = (props) => {
    */
   const showWikiText = () => {
     if (fullWikiText) {
-      return <p className='wikitext-p' id='wikitext'>
+      return <p className={classes.wikitextP} id='wikitext'>
         {summary} <button className='show-more-less-button' onClick={(e) => setFullWikiText(false)}><Translate id='UI__RESULTS_PAGE__WIKIPEDIA__LESS_TEXT_BUTTON' /></button>
       </p>
     } else {
-      return <p className='wikitext-p' id='wikitext'>{summary.slice(0,200)}... <button className='show-more-less-button' onClick={(e) => setFullWikiText(true)}><Translate id='UI__RESULTS_PAGE__WIKIPEDIA__MORE_TEXT_BUTTON' /></button></p>
+      return <p className={classes.wikitextP} id='wikitext'>{summary.slice(0,200)}... <button className={classes.showMoreLessButton} onClick={(e) => setFullWikiText(true)}><Translate id='UI__RESULTS_PAGE__WIKIPEDIA__MORE_TEXT_BUTTON' /></button></p>
     }
   }
 
   return (
-    <Card id="card">
+    <Card className={classes.card}>
       <CardContent>
-        <Typography id="title" color="textSecondary" gutterBottom>
+        <Typography className={classes.title} color="textSecondary" gutterBottom>
           Wikipedia
         </Typography>
-        <Typography variant="h5" component="div" id='wiki-title-div'>
+        <Typography variant="h5" component="div" className={classes.wikiTitleDiv}>
           {title}
-          <IconButton onClick={handleChangeFontSize} id='enlarge-font-size-button'>
+          <IconButton onClick={handleChangeFontSize} className={classes.enlargeFontSizeButton}>
             <TextFormatIcon size='medium'/>
           </IconButton>
         </Typography>
