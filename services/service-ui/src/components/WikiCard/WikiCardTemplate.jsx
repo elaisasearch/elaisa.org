@@ -84,7 +84,7 @@ const  WikiCardTemplate = (props) => {
   const showWikiText = () => {
     if (fullWikiText) {
       return <p className={classes.wikitextP} id='wikitext'>
-        {summary} <button className='show-more-less-button' onClick={(e) => setFullWikiText(false)}><Translate id='UI__RESULTS_PAGE__WIKIPEDIA__LESS_TEXT_BUTTON' /></button>
+        {summary} <button className={classes.showMoreLessButton} onClick={(e) => setFullWikiText(false)}><Translate id='UI__RESULTS_PAGE__WIKIPEDIA__LESS_TEXT_BUTTON' /></button>
       </p>
     } else {
       return <p className={classes.wikitextP} id='wikitext'>{summary.slice(0,200)}... <button className={classes.showMoreLessButton} onClick={(e) => setFullWikiText(true)}><Translate id='UI__RESULTS_PAGE__WIKIPEDIA__MORE_TEXT_BUTTON' /></button></p>
