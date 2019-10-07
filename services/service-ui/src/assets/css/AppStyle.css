@@ -12,15 +12,6 @@
     margin-top: 10%;
 }
 
-#show-footer-button {
-    position: absolute; 
-    left: 0; 
-    right: 0; 
-    margin-left: auto; 
-    margin-right: auto; 
-    bottom: 5vh;
-}
-
 #legal-notice-button { 
     font-size: 60%;
     margin-right: 5vh;
