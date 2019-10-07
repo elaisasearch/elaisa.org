@@ -20,10 +20,10 @@ const useStyles = makeStyles({
     },
     legalNoticeButton: {
         fontSize: '60% !important',
-        marginRight: isMobile ? 0 : '5vh',
-        marginLeft: isMobile ? 0 : '3vh',
-        position: isMobile ? 'absolute' : 'inline',
-        right: isMobile ? '3vh' : 0
+        marginRight: isMobile ? 0 : '5vh !important',
+        marginLeft: isMobile ? 0 : '3vh !important',
+        position: isMobile ? 'absolute !important' : 'inline',
+        right: isMobile ? '3vh' : '1vh'
     }
 });
 
