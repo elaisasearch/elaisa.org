@@ -17,6 +17,13 @@ const useStyles = makeStyles({
         background: 'rgb(239,239,239)',
         paddingLeft: isMobile ? '3vh' : '0',
         borderTop: '0.8px solid lightgrey'
+    },
+    legalNoticeButton: {
+        fontSize: '60%',
+        marginRight: isMobile ? 0 : '5vh',
+        marginLeft: isMobile ? 0 : '3vh',
+        position: isMobile ? 'absolute' : 'inline',
+        right: isMobile ? '3vh' : 0
     }
 });
 
@@ -38,7 +45,7 @@ const BottomInfoBar = () => {
         >
             <LegalNoticeDialog open={legalNoticeDialogOpen} handleClose={handleCloseLegalNoticeDialog} />
             <LanguageSelect />
-            <Button id='legal-notice-button' onClick={e => setLegalNoticeDialogOpen(true)}>
+            <Button className={classes.legalNoticeButton} onClick={e => setLegalNoticeDialogOpen(true)}>
                 <Translate id='UI__BUTTON__LEGAL' />
             </Button>
         </Grid>

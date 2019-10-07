@@ -12,7 +12,6 @@ import QuickSearch from '../components/QuickSearch';
 import ShowFooterButton from '../components/ShowFooterButton';
 import BottomInfoBar from '../components/BottomInfoBar';
 
-import '../assets/css/AppStyle.css'
 import logo from '../assets/img/logo.png';
 
 /**
