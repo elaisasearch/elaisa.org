@@ -4,7 +4,6 @@ import ResultList from "../components/ResultList/ResultList";
 import axios from "axios";
 import WikiCard from "../components/WikiCard/WikiCard";
 import { CircularProgress, Divider, Grid } from "@material-ui/core";
-import MemeTeam from '../components/MemeTeam/MemeTeam';
 import NotFound from '../components/NotFound/NotFound';
 import { connect } from 'react-redux';
 import HeaderTags from '../components/HeaderTags';
@@ -143,10 +142,6 @@ const Results = (props) => {
     // while service is fetching data, show the progress circle
     if (state.waiting) {
       return <div className={classes.progress}><CircularProgress style={{ color: "grey" }} /></div>
-    }
-    // If search Value equals "memeteam" show team picture
-    if (state.searchValue === "memeteam") {
-      return <MemeTeam />;
     } else if (state.resultDocsLength !== 0) {
       // Otherwise show the results
       return (
