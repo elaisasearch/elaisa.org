@@ -3,7 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { TextField, InputAdornment, IconButton, Tooltip, Grid } from '@material-ui/core/'
 import { withRouter } from "react-router-dom";
 import Search from '@material-ui/icons/Search'
-import DropDownMenu from '../DropDownMenu/DropDownMenu';
+import DropDownMenu from '../DropDownMenu';
 import { Translate } from "react-localize-redux";
 import { connect } from 'react-redux';
 import Autosuggest from 'react-autosuggest';

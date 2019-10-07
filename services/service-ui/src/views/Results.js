@@ -1,5 +1,5 @@
 import React from "react";
-import NavigationBar from "../components/NavigiationBar/NavigationBar";
+import NavigationBar from "../components/NavigationBar";
 import ResultList from "../components/ResultList/ResultList";
 import axios from "axios";
 import WikiCard from "../components/WikiCard/WikiCard";

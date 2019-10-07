@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PieChart from '../components/Profile/charts/PieChart';
-import NavigationBar from '../components/NavigiationBar/NavigationBar';
+import NavigationBar from '../components/NavigationBar';
 import { connect } from 'react-redux';
 import { Paper, Typography, Divider } from '@material-ui/core';
 import '../assets/css/ProfileStyle.css';

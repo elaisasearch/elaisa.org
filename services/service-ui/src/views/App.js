@@ -4,10 +4,10 @@ import { Grid } from '@material-ui/core/';
 import { isMobile } from 'react-device-detect';
 import { makeStyles } from '@material-ui/styles';
 
-import NavigationBar from '../components/NavigiationBar/NavigationBar';
+import NavigationBar from '../components/NavigationBar';
 import SearchBar from '../components/SearchBar/SearchBar';
 import Footer from '../components/Footer/Footer';
-import SplashDialog from '../components/SplashDialog/SplashDialog';
+import SplashDialog from '../components/Dialogs/SplashDialog';
 import HeaderTags from '../components/HeaderTags';
 import QuickSearch from '../components/QuickSearch';
 import ShowFooterButton from '../components/ShowFooterButton';

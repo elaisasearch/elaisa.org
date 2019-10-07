@@ -1,6 +1,6 @@
 import React from 'react';
 import { Typography } from "@material-ui/core";
-import NavigationBar from "../components/NavigiationBar/NavigationBar";
+import NavigationBar from "../components/NavigationBar";
 import '../assets/css/Page404Style.css';
 import HeaderTags from '../components/HeaderTags';
 

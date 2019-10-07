@@ -8,14 +8,14 @@ import { Translate } from 'react-localize-redux';
 import Grid from '@material-ui/core/Grid';
 
 //import styles
-import styles from '../../assets/jss/NavigationBarStyle';
+import styles from '../assets/jss/NavigationBarStyle';
 
 
-import LeftMenu from '../Menu/LeftMenu';
-import SearchBarNavigationBar from '../SearchBar/SearchBarNavigationBar';
-import Avatars from '../Profile/Avatars';
-import DropDownMenu from '../DropDownMenu/DropDownMenu';
-import logo from '../../assets/img/logo.png';
+import LeftMenu from './Menu/LeftMenu';
+import SearchBarNavigationBar from './SearchBar/SearchBarNavigationBar';
+import Avatars from './Profile/Avatars';
+import DropDownMenu from './DropDownMenu';
+import logo from '../assets/img/logo.png';
 
 class NavigationBar extends React.Component {
 
