@@ -36,7 +36,6 @@ const Results = (props) => {
   const [state, setState] = React.useState({
     resultDocs: [],
     resultDocsLength: 0,
-    error: false,
     wiki_url: "",
     wiki_title: "",
     wiki_summary: "",
@@ -81,35 +80,22 @@ const Results = (props) => {
         }
       })
       .then(response => {
-        if (response.data.correct_query) {
-          setState({
-            resultDocs: [],
-            resultDocsLength: 0,
-            waiting: false,
-            error: true,
-            searchValue: searchValue,
-            language: language,
-            level: level,
-            correct_spelled_query: response.data.correct_query
-          });
-        } else if (response.data.documents) {
-          // get the length of result docs
-          let length = response.data.documents.length
+        const { data } = response;
+        const { correct_query, documents, wikipedia } = data;
+        const boolDocsExist = documents !== undefined;
 
-          setState({
-            resultDocs: response.data.documents.results,
-            resultDocsLength: length,
-            wiki_url: response.data.wikipedia.url,
-            wiki_title: response.data.wikipedia.title,
-            wiki_summary: response.data.wikipedia.summary,
-            waiting: false,
-            error: false,
-            searchValue: searchValue,
-            language: language,
-            level: level,
-            correct_spelled_query: ""
-          });
-        }
+        setState({
+          resultDocs: boolDocsExist ? documents.results : [],
+          resultDocsLength: boolDocsExist ? documents.length : 0,
+          wiki_url: boolDocsExist ? wikipedia.url || '' : '',
+          wiki_title: boolDocsExist ? wikipedia.title || '' : '',
+          wiki_summary: boolDocsExist ? wikipedia.summary || '' : '',
+          waiting: false,
+          searchValue: searchValue,
+          language: language,
+          level: level,
+          correct_spelled_query: boolDocsExist ? '' : correct_query
+        });
       })
       .catch(error => {
         console.error("API Error: ", error)
@@ -118,7 +104,6 @@ const Results = (props) => {
           resultDocs: [],
           resultDocsLength: 0,
           waiting: false,
-          error: true,
           searchValue: searchValue,
           language: language,
           level: level
