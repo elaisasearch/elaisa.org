@@ -4,7 +4,7 @@ import ResultList from "../components/ResultList/ResultList";
 import axios from "axios";
 import WikiCard from "../components/WikiCard/WikiCard";
 import { CircularProgress, Divider, Grid } from "@material-ui/core";
-import NotFound from '../components/NotFound/NotFound';
+import NotFound from '../components/NotFound';
 import { connect } from 'react-redux';
 import HeaderTags from '../components/HeaderTags';
 import { makeStyles } from '@material-ui/styles';
