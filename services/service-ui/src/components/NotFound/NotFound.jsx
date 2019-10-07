@@ -9,15 +9,15 @@ import ExposureZeroIcon from '@material-ui/icons/ExposureZero';
 
 const useStyles = makeStyles({
     notFoundRoot: {
-        marginTop: '2%'
+        marginTop: isMobile ? '5%' : '2%'
     },
     notFoundIcon: {
         fontSize: isMobile ? '100vw !important' : '50vw !important',
         color: 'rgb(0, 0, 0, 0.1)',
-        position: !isMobile ? 'fixed' : ''
+        position: !isMobile ? 'fixed' : null
     },
     notFoundTitle: {
-        textAlign: isMobile ? 'center' : ''
+        textAlign: isMobile ? 'center' : '',
     },
     spelling: {
         position: 'absolute !important',
@@ -45,7 +45,7 @@ const NotFound = (props) => {
             alignItems='center'
             className={classes.notFoundRoot}
         >
-            <Typography variant="caption">
+            <Typography variant="caption" className={classes.notFoundTitle}>
                 <Translate id='UI__NOT_FOUND_PAGE__ADVICE_ONE' /> <b>{level}</b> <Translate id='UI__NOT_FOUND_PAGE__ADVICE_TWO' /> <b>{language.toUpperCase()}</b>
             </Typography>
             <ExposureZeroIcon className={classes.notFoundIcon} />
