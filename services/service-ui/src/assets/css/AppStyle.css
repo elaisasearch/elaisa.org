@@ -21,20 +21,6 @@
     bottom: 5vh;
 }
 
-.legal-info {
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    bottom: 0;
-    background: rgb(239,239,239);
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    border-top: 0.8px solid lightgrey;
-}
-
 #legal-notice-button { 
     font-size: 60%;
     margin-right: 5vh;
@@ -45,10 +31,6 @@
 @media only screen 
 and (min-device-width : 375px) 
 and (max-device-width : 667px) {
-    .legal-info {
-        justify-content: flex-start;
-        padding-left: 3vh;
-    }
 
     #legal-notice-button { 
         position: absolute;
@@ -64,10 +46,6 @@ and (max-device-width : 667px) {
 and (min-device-width : 375px) 
 and (max-device-width : 812px)
 and (-webkit-device-pixel-ratio : 3) {
-    .legal-info {
-        justify-content: flex-start;
-        padding-left: 3vh;
-    }
 
     #legal-notice-button { 
         position: absolute;

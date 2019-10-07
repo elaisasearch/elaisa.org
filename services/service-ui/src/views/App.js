@@ -1,18 +1,16 @@
 import React, { useState } from 'react';
-import { Translate } from "react-localize-redux";
 import { connect } from 'react-redux';
-import { Button, Grid } from '@material-ui/core/';
+import { Grid } from '@material-ui/core/';
 import { isMobile } from 'react-device-detect';
 
 import NavigationBar from '../components/NavigiationBar/NavigationBar';
 import SearchBar from '../components/SearchBar/SearchBar';
 import Footer from '../components/Footer/Footer';
 import SplashDialog from '../components/SplashDialog/SplashDialog';
-import LegalNoticeDialog from '../components/SplashDialog/LegalNoticeDialog';
-import LanguageSelect from '../components/LanguageSelect';
 import HeaderTags from '../components/HeaderTags';
 import QuickSearch from '../components/QuickSearch';
 import ShowFooterButton from '../components/ShowFooterButton';
+import BottomInfoBar from '../components/BottomInfoBar';
 
 import '../assets/css/AppStyle.css'
 import logo from '../assets/img/logo.png';
@@ -26,15 +24,11 @@ const App = (props) => {
 
   // handle the splash dialog open state
   const [splashDialogOpen, setSplashDialogOpen] = useState(false);
-  const [legalNoticeDialogOpen, setLegalNoticeDialogOpen] = useState(false);
 
   const handleClose = () => {
     setSplashDialogOpen(false);
   }
 
-  const handleCloseLegalNoticeDialog = () => {
-    setLegalNoticeDialogOpen(false);
-  }
 
   // redux state
   const { loggedIn, email, firstname, lastname, onOpenedSplashDialog, splashDialogWasOpen } = props;
@@ -65,7 +59,6 @@ const App = (props) => {
         keywords="Home"
       />
       <SplashDialog open={splashDialogOpen} handleClose={handleClose} />
-      <LegalNoticeDialog open={legalNoticeDialogOpen} handleClose={handleCloseLegalNoticeDialog} />
       
       <Grid 
         container 
@@ -88,12 +81,7 @@ const App = (props) => {
         <SearchBar />
         <QuickSearch topics={['Donald Trump', 'music', 'sport']}/>
         <ShowFooterButton />
-        <div className='legal-info'>
-          <LanguageSelect />
-          <Button id='legal-notice-button' onClick={e => setLegalNoticeDialogOpen(true)}>
-            <Translate id='UI__BUTTON__LEGAL' />
-          </Button>
-        </div>
+        <BottomInfoBar />
       </Grid>
       <Footer />
     </div>

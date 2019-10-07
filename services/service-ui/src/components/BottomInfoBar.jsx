@@ -1,0 +1,49 @@
+import React from 'react';
+import { Button, Grid } from '@material-ui/core/';
+import { Translate } from "react-localize-redux";
+import LanguageSelect from './LanguageSelect';
+import LegalNoticeDialog from './SplashDialog/LegalNoticeDialog';
+import { makeStyles } from '@material-ui/styles';
+import { isMobile } from 'react-device-detect';
+
+const useStyles = makeStyles({
+    infoBar: {
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        bottom: 0,
+        background: 'rgb(239,239,239)',
+        paddingLeft: isMobile ? '3vh' : '0',
+        borderTop: '0.8px solid lightgrey'
+    }
+});
+
+const BottomInfoBar = () => {
+
+    const classes = useStyles();
+    const [legalNoticeDialogOpen, setLegalNoticeDialogOpen] = React.useState(false);
+
+    const handleCloseLegalNoticeDialog = () => {
+        setLegalNoticeDialogOpen(false);
+    }
+
+    return (
+        <Grid
+            className={classes.infoBar}
+            container
+            alignItems='center'
+            justify={isMobile ? 'flex-start' : 'flex-end'}
+        >
+            <LegalNoticeDialog open={legalNoticeDialogOpen} handleClose={handleCloseLegalNoticeDialog} />
+            <LanguageSelect />
+            <Button id='legal-notice-button' onClick={e => setLegalNoticeDialogOpen(true)}>
+                <Translate id='UI__BUTTON__LEGAL' />
+            </Button>
+        </Grid>
+    );
+};
+
+
+export default BottomInfoBar;
