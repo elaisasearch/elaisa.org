@@ -101,8 +101,6 @@
     "UI__RESULTS_PAGE__PAGINATION__TEXT": "de",
 
     "UI__NOT_FOUND_PAGE__CORRECTION": "Querías decir",
-    "UI__NOT_FOUND_PAGE__TITLE_ONE": "Lo sentimos, no hay resultados para",
-    "UI__NOT_FOUND_PAGE__TITLE_TWO": "Inténtalo de nuevo",
     "UI__NOT_FOUND_PAGE__ADVICE_ONE": "Intenta elegir otro nivel que no sea",
     "UI__NOT_FOUND_PAGE__ADVICE_TWO": "u otro idioma que"
 
