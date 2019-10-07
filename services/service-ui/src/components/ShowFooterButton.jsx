@@ -9,11 +9,12 @@ import scrollToFooter from '../handlers/scrollHandler';
 const useStyles = makeStyles({
     footerButton: {
         position: 'absolute !important',
-        left: 0,
-        right: 0,
+        left: '0',
+        right: '0',
         marginLeft: 'auto !important',
         marginRight: 'auto !important',
-        bottom: '5vh'
+        bottom: '5vh',
+        width: '100%'
     }
 });
 
