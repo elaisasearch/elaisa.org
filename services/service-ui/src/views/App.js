@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Grid } from '@material-ui/core/';
 import { isMobile } from 'react-device-detect';
+import { makeStyles } from '@material-ui/styles';
 
 import NavigationBar from '../components/NavigiationBar/NavigationBar';
 import SearchBar from '../components/SearchBar/SearchBar';
@@ -14,12 +15,29 @@ import BottomInfoBar from '../components/BottomInfoBar';
 
 import logo from '../assets/img/logo.png';
 
+const useStyles = makeStyles({
+  appRoot: {
+    textAlign: 'center',
+    height: '100vh',
+    width: '100vw'
+  },
+  contentGridContainer: {
+    height: '100%'
+  },
+  appLogo: {
+    width: isMobile ? '50%' : '20%',
+    marginTop: isMobile ? '15%' : '10%'
+  }
+});
+
 /**
  * This is the search engines main function.
  * @param {object} props the given properties.
  * @returns {JSX} returns the search engine's home view components.
  */
 const App = (props) => {
+
+  const classes = useStyles();
 
   // handle the splash dialog open state
   const [splashDialogOpen, setSplashDialogOpen] = useState(false);
@@ -45,13 +63,7 @@ const App = (props) => {
   );
 
   return (
-    <div 
-      style={{
-        textAlign: 'center',
-        height: '100vh',
-        width: '100vw'
-      }}
-    >
+    <div className={classes.appRoot}>
       <HeaderTags 
         title="Elaisa Search Engine - Home"
         desc="Language level search engine for finding documents in a specific language with a specific language level"
@@ -63,19 +75,14 @@ const App = (props) => {
         container 
         direction= 'column'
         alignItems= 'center'
-        style={{
-          height: '100%'
-        }}
+        className={classes.contentGridContainer}
       >
         <NavigationBar loggedIn={loggedIn} email={email} firstname={firstname} lastname={lastname} />
         <img 
           id="logo" 
           src={logo} 
           alt="Elaisa Search Engine Logo"
-          style={{
-            width: isMobile ? '50%' : '20%',
-            marginTop: isMobile ? '15%' : '10%'
-          }}
+          className={classes.appLogo}
         ></img>
         <SearchBar />
         <QuickSearch topics={['Donald Trump', 'music', 'sport']}/>
