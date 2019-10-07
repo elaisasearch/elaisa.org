@@ -19,7 +19,7 @@ const useStyles = makeStyles({
         borderTop: '0.8px solid lightgrey'
     },
     legalNoticeButton: {
-        fontSize: '60%',
+        fontSize: '60% !important',
         marginRight: isMobile ? 0 : '5vh',
         marginLeft: isMobile ? 0 : '3vh',
         position: isMobile ? 'absolute' : 'inline',
