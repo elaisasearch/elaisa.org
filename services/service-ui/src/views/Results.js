@@ -3,21 +3,34 @@ import NavigationBar from "../components/NavigiationBar/NavigationBar";
 import ResultList from "../components/ResultList/ResultList";
 import axios from "axios";
 import WikiCard from "../components/WikiCard/WikiCard";
-import { CircularProgress, Divider } from "@material-ui/core";
-import "../assets/css/ResultsStyle.css";
+import { CircularProgress, Divider, Grid } from "@material-ui/core";
 import MemeTeam from '../components/MemeTeam/MemeTeam';
 import NotFound from '../components/NotFound/NotFound';
 import { connect } from 'react-redux';
 import HeaderTags from '../components/HeaderTags';
+import { makeStyles } from '@material-ui/styles';
+import { isMobile } from 'react-device-detect';
+
+const useStyles = makeStyles({
+  progress: {
+    marginTop: '20vh',
+    display: 'flex',
+    justifyContent: 'center'
+  }
+});
 
 /**
  * Results view class.
  * @param {object} props the given properties.
  * @returns {JSX} results view jsx components.
 */
-class Results extends React.Component {
+const Results = (props) => {
 
-  state = {
+  const classes = useStyles();
+
+  const {searchValue, language, level } = props.location.state;
+
+  const [state, setState] = React.useState({
     resultDocs: [],
     resultDocsLength: 0,
     error: false,
@@ -25,18 +38,18 @@ class Results extends React.Component {
     wiki_title: "",
     wiki_summary: "",
     waiting: true,
-    searchValue: this.props.location.state.searchValue,
-    language: this.props.location.state.language,
-    level: this.props.location.state.level,
+    searchValue: searchValue,
+    language: language,
+    level: level,
     correct_spelled_query: ""
-  };
+  });
 
   /**
    * call searchResults() after component did mount.
   */
-  componentDidMount() {
-    this.searchResults(this.state.searchValue, this.state.level, this.state.language)
-  };
+  React.useEffect(() => {
+    searchResults(state.searchValue, state.level, state.language)
+  }, []);
 
   /**
    * Loads the search results from API and stores to state.
@@ -44,9 +57,9 @@ class Results extends React.Component {
    * @param {string} level the user's chosen language level.
    * @param {string} language the user's chosen language.
   */
-  searchResults(searchValue, level, language) {
+  const searchResults = (searchValue, level, language) => {
     // show CircularProgress when user starts new search
-    this.setState({
+    setState({
       waiting: true
     });
 
@@ -60,13 +73,13 @@ class Results extends React.Component {
           query: searchValue,
           level: level,
           language: language,
-          email: this.props.email,
-          loggedin: this.props.loggedIn
+          email: props.email,
+          loggedin: props.loggedIn
         }
       })
       .then(response => {
         if (response.data.correct_query) {
-          this.setState({
+          setState({
             resultDocs: [],
             resultDocsLength: 0,
             waiting: false,
@@ -80,7 +93,7 @@ class Results extends React.Component {
           // get the length of result docs
           let length = response.data.documents.length
 
-          this.setState({
+          setState({
             resultDocs: response.data.documents.results,
             resultDocsLength: length,
             wiki_url: response.data.wikipedia.url,
@@ -98,7 +111,7 @@ class Results extends React.Component {
       .catch(error => {
         console.error("API Error: ", error)
         // handle error
-        this.setState({
+        setState({
           resultDocs: [],
           resultDocsLength: 0,
           waiting: false,
@@ -115,13 +128,13 @@ class Results extends React.Component {
    * @param {object} noWikiArticle if noWikiArticle is true, the wiki won't show up.
    * @returns {JSX} Progress bar or statistics components.
   */
-  renderWiki(noWikiArticle) {
+  const renderWiki = (noWikiArticle) => {
     if (!noWikiArticle) {
       return (
         <WikiCard
-          url={this.state.wiki_url}
-          title={this.state.wiki_title}
-          summary={this.state.wiki_summary}
+          url={state.wiki_url}
+          title={state.wiki_title}
+          summary={state.wiki_summary}
         />
       );
     }
@@ -130,37 +143,41 @@ class Results extends React.Component {
   /**
    * Repeats the search with correct searchValue if the user clicks the button on the NotFound view.
   */
-  onClickSpellCheckForNewSearch() {
-    this.searchResults(this.state.correct_spelled_query, this.state.level, this.state.language)
+  const onClickSpellCheckForNewSearch = () => {
+    searchResults(state.correct_spelled_query, state.level, state.language)
   }
 
   /**
    * Returns Results view if API request is finished.
    * @returns {JSX} Progress bar or statistics components.
   */
-  renderResults() {
+  const renderResults = () => {
     // while service is fetching data, show the progress circle
-    if (this.state.waiting) {
-      return <div className="progress"><CircularProgress style={{ color: "grey" }} /></div>
+    if (state.waiting) {
+      return <div className={classes.progress}><CircularProgress style={{ color: "grey" }} /></div>
     }
     // If search Value equals "memeteam" show team picture
-    if (this.state.searchValue === "memeteam") {
+    if (state.searchValue === "memeteam") {
       return <MemeTeam />;
-    } else if (this.state.resultDocsLength !== 0) {
+    } else if (state.resultDocsLength !== 0) {
       // Otherwise show the results
       return (
-        <div className="resultList">
+        <Grid 
+          container
+          direction={isMobile ? 'column-reverse' : ''}
+          alignItems={isMobile ? 'center' : ''}
+        >
           <ResultList
-            searchValue={this.state.searchValue}
-            resultDocsLength={this.state.resultDocsLength}
-            resultDocs={this.state.resultDocs}
+            searchValue={state.searchValue}
+            resultDocsLength={state.resultDocsLength}
+            resultDocs={state.resultDocs}
           />
-          {this.renderWiki(this.state.wiki_title.length === 0)}
-        </div>
+          {renderWiki(state.wiki_title.length === 0)}
+        </Grid>
       );
     } else {
       // Show the sad dog centered if there are no results
-      return <NotFound searchValue={this.state.searchValue} language={this.state.language} level={this.state.level} correctSpelledQuery={this.state.correct_spelled_query} onClickSpellCheck={this.onClickSpellCheckForNewSearch.bind(this)} />
+      return <NotFound searchValue={state.searchValue} language={state.language} level={state.level} correctSpelledQuery={state.correct_spelled_query} onClickSpellCheck={onClickSpellCheckForNewSearch.bind(this)} />
     }
   }
 
@@ -168,31 +185,31 @@ class Results extends React.Component {
    * Renders JSX content.
    * @returns {JSX} Results.js.
   */
-  render() {
+
     return (
       <div>
         <HeaderTags 
           title="Elaisa Search Engine - Results"
-          desc={`See the results of your search about ${this.state.searchValue}. Take a look on the language analysis and visit the page.`}
+          desc={`See the results of your search about ${state.searchValue}. Take a look on the language analysis and visit the page.`}
           keywords="Results, Analysis"
         />
         <NavigationBar
           results
-          click={this.searchResults.bind(this)}
+          click={searchResults.bind(this)}
           values={[
-            this.state.searchValue,
-            this.state.language,
-            this.state.level,
-            this.state.resultDocsLength
+            state.searchValue,
+            state.language,
+            state.level,
+            state.resultDocsLength
           ]}
           id="navBar"
         />
         <Divider />
-        {this.renderResults()}
+        {renderResults()}
       </div>
     );
   }
-}
+
 
 /**
  * Redux store to props mapping.
