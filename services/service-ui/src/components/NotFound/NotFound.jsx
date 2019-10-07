@@ -1,9 +1,32 @@
 import React from "react";
-import errorPic from "../../assets/img/error.png";
-import { Typography } from "@material-ui/core";
-import { Button } from '@material-ui/core';
-import '../../assets/css/NotFoundStyle.css'
+import { Typography, Grid, Fab } from "@material-ui/core";
 import { Translate } from 'react-localize-redux';
+import { makeStyles } from '@material-ui/styles';
+import { isMobile } from 'react-device-detect';
+import ExposureZeroIcon from '@material-ui/icons/ExposureZero';
+
+
+
+const useStyles = makeStyles({
+    notFoundRoot: {
+        marginTop: '2%'
+    },
+    notFoundIcon: {
+        fontSize: isMobile ? '100vw !important' : '50vw !important',
+        color: 'rgb(0, 0, 0, 0.1)',
+        position: !isMobile ? 'fixed' : ''
+    },
+    notFoundTitle: {
+        textAlign: isMobile ? 'center' : ''
+    },
+    spelling: {
+        position: 'absolute !important',
+        left: 0,
+        right: 0,
+        bottom: '2%',
+        margin: 'auto !important'
+    }
+});
 
 /**
  * The not found component for the Results view.
@@ -12,39 +35,31 @@ import { Translate } from 'react-localize-redux';
 */
 const NotFound = (props) => {
 
-    const { searchValue, level, language, correctSpelledQuery, onClickSpellCheck } = props;
-
-    if (correctSpelledQuery.length > 0) {
-        return (
-            <div>
-                <Button className='spelling' onClick={onClickSpellCheck}>
-                    <Typography variant="caption" color="primary">
-                        <Translate id='UI__NOT_FOUND_PAGE__CORRECTION' /> "<b>{correctSpelledQuery}</b>?".
-                    </Typography>
-                </Button>
-                <div className='notFound'>
-                    <img src={errorPic} alt="Error" id='notfoundimage'/>
-                    <Typography variant="h6" id='notfoundtitle'>
-                        <Translate id='UI__NOT_FOUND_PAGE__TITLE_ONE' /> "<b>{searchValue}</b>" 😔. <Translate id='UI__NOT_FOUND_PAGE__TITLE_TWO' /> 🧐.
-                    </Typography>
-                    <Typography variant="caption">
-                        <Translate id='UI__NOT_FOUND_PAGE__ADVICE_ONE' /> <b>{level}</b> <Translate id='UI__NOT_FOUND_PAGE__ADVICE_TWO' /> <b>{language.toUpperCase()}</b>
-                    </Typography>
-                </div>
-            </div>
-        );
-    }
+    const { level, language, correctSpelledQuery, onClickSpellCheck } = props;
+    const classes = useStyles();
 
     return (
-        <div className='notFound'>
-            <img src={errorPic} alt="Error" id='notfoundimage' />
-            <Typography variant="h6" id='notfoundtitle'>
-                <Translate id='UI__NOT_FOUND_PAGE__TITLE_ONE' /> "<b>{searchValue}</b>" 😔. <Translate id='UI__NOT_FOUND_PAGE__TITLE_TWO' /> 🧐.
-          </Typography>
+        <Grid
+            container
+            direction='column'
+            alignItems='center'
+            className={classes.notFoundRoot}
+        >
             <Typography variant="caption">
                 <Translate id='UI__NOT_FOUND_PAGE__ADVICE_ONE' /> <b>{level}</b> <Translate id='UI__NOT_FOUND_PAGE__ADVICE_TWO' /> <b>{language.toUpperCase()}</b>
             </Typography>
-        </div>
+            <ExposureZeroIcon className={classes.notFoundIcon} />
+            {
+                (correctSpelledQuery.length > 0)
+                    ?
+                    <Fab variant="extended" aria-label="spelling" className={classes.spelling} onClick={onClickSpellCheck}>
+                        <Translate id='UI__NOT_FOUND_PAGE__CORRECTION' /> "<b>{correctSpelledQuery}</b>?".
+                    </Fab>
+                    :
+                    null
+            }
+        </Grid>
+
     );
 }
 
