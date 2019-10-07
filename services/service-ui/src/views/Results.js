@@ -16,6 +16,9 @@ const useStyles = makeStyles({
     marginTop: '20vh',
     display: 'flex',
     justifyContent: 'center'
+  },
+  resultsRoot: {
+    height: '100vh'
   }
 });
 
@@ -166,6 +169,7 @@ const Results = (props) => {
           container
           direction={isMobile ? 'column-reverse' : ''}
           alignItems={isMobile ? 'center' : ''}
+          wrap='nowrap'
         >
           <ResultList
             searchValue={state.searchValue}
@@ -187,7 +191,7 @@ const Results = (props) => {
   */
 
     return (
-      <div>
+      <div className={classes.resultsRoot}>
         <HeaderTags 
           title="Elaisa Search Engine - Results"
           desc={`See the results of your search about ${state.searchValue}. Take a look on the language analysis and visit the page.`}
