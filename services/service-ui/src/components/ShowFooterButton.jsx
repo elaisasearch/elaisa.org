@@ -14,7 +14,6 @@ const useStyles = makeStyles({
         marginLeft: 'auto !important',
         marginRight: 'auto !important',
         bottom: '5vh',
-        width: '100%'
     }
 });
 
