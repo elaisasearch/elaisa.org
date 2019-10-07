@@ -18,6 +18,7 @@ const useStyles = makeStyles({
     },
     notFoundTitle: {
         textAlign: isMobile ? 'center' : '',
+        width: isMobile ? '70%': null
     },
     spelling: {
         position: 'absolute !important',
