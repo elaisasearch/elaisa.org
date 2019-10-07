@@ -28,12 +28,12 @@ const useStyles = makeStyles({
     fontSize: '14'
   },
   wikiTitleDiv: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between'
+    display: 'flex !important',
+    alignItems: 'center !important',
+    justifyContent: 'space-between !important'
   },
   enlargeFontSizeButton: {
-    display: isMobile ? 'inline' : 'none'
+    display: isMobile ? 'inline' : 'none !important'
   },
   showMoreLessButton: {
     display: isMobile ? 'inline' : 'none',
