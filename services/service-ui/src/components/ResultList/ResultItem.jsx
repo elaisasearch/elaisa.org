@@ -50,7 +50,7 @@ const ResultItem = (props) => {
 
     const classes = useStyles();
     const { website, title, desc, keywords, date, language, level, level_meta, waiting } = props;
-    console.log('WAITING: ', waiting)
+
     // hovering state for rendering preview
     const [anchorEl, setAnchorEl] = React.useState(null);
 
