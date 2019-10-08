@@ -82,7 +82,7 @@ const ResultList = (props) => {
             {
                 waiting
                     ?
-                    isMobile ? <WikipediaSkeleton /> : null
+                    <WikipediaSkeleton />
                     :
                     <Typography className={classes.resultDocsLength} variant="caption">{resultDocsLength} <Translate id='UI__RESULTS_PAGE__RESULT_COUNT' /> "{searchValue}"</Typography>
             }
