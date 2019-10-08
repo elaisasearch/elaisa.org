@@ -23,7 +23,7 @@ const useStyles = makeStyles({
   },
   wikitextP: {
     textAlign: 'justify',
-    lineHeight: '1.5'
+    lineHeight: '1.5 !important'
   },
   title: {
     fontSize: '14'
@@ -88,7 +88,7 @@ const  WikiCardTemplate = (props) => {
         {summary} <button className={classes.showMoreLessButton} onClick={(e) => setFullWikiText(false)}><Translate id='UI__RESULTS_PAGE__WIKIPEDIA__LESS_TEXT_BUTTON' /></button>
       </p>
     } else {
-      return <p className={classes.wikitextP} id='wikitext'>{summary.slice(0,200)}... <button className={classes.showMoreLessButton} onClick={(e) => setFullWikiText(true)}><Translate id='UI__RESULTS_PAGE__WIKIPEDIA__MORE_TEXT_BUTTON' /></button></p>
+      return <span id='wikitext'>{summary.slice(0,200)}... <button className={classes.showMoreLessButton} onClick={(e) => setFullWikiText(true)}><Translate id='UI__RESULTS_PAGE__WIKIPEDIA__MORE_TEXT_BUTTON' /></button></span>
     }
   }
 
@@ -105,7 +105,7 @@ const  WikiCardTemplate = (props) => {
           </IconButton>
         </Typography>
         <br/>
-        <Typography component="p">
+        <Typography component="p" className={classes.wikitextP}>
           {showWikiText()}
         </Typography>
       </CardContent>
