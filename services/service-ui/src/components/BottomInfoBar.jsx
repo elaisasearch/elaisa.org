@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Grid } from '@material-ui/core/';
 import { Translate } from "react-localize-redux";
 import LanguageSelect from './LanguageSelect';
-import LegalNoticeDialog from './SplashDialog/LegalNoticeDialog';
+import LegalNoticeDialog from './Dialogs/LegalNoticeDialog';
 import { makeStyles } from '@material-ui/styles';
 import { isMobile } from 'react-device-detect';
 

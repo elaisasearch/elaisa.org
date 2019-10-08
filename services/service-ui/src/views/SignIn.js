@@ -13,7 +13,7 @@ import { SnackbarProvider, withSnackbar } from 'notistack';
 import { connect } from 'react-redux';
 import { Translate } from "react-localize-redux";
 import HeaderTags from '../components/HeaderTags';
-import MailInput from '../components/SplashDialog/MailInput';
+import MailInput from '../components/Dialogs/MailInput';
 
 
 import axios from 'axios';
