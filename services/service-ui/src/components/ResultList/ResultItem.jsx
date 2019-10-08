@@ -1,11 +1,13 @@
 import React from 'react'
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import { Typography } from '@material-ui/core';
+import { Typography, Popover } from '@material-ui/core';
 import moment from 'moment';
 import LevelPanel from './LevelPanel';
 import { isMobile } from 'react-device-detect';
 import { makeStyles } from '@material-ui/styles';
+import LevelInfo from './LevelInfo';
+
 
 const useStyles = makeStyles({
     levelDiv: {
@@ -23,15 +25,21 @@ const useStyles = makeStyles({
         marginTop: '1%'
     },
     date: {
-        fontSize:' 12px !important'
+        fontSize: ' 12px !important'
     },
     keywords: {
         color: 'blue !important',
         fontSize: '12px !important',
-    }, 
+    },
     subtitle: {
         color: 'green !important'
-    }
+    },
+    popover: {
+        pointerEvents: 'none',
+    },
+    paper: {
+        padding: '16px',
+    },
 });
 
 /**
@@ -44,19 +52,53 @@ const ResultItem = (props) => {
     const classes = useStyles();
     const { website, title, desc, keywords, date, language, level, level_meta } = props;
 
-    /**
-     * Result Item Title.
-     * @return {JSX} title with link to article.
-    */
-    const Title = () => {
-        return <a href={website}>{title}</a>
-    }
+    // hovering state for rendering preview
+    const [anchorEl, setAnchorEl] = React.useState(null);
+
+    const handlePopoverOpen = event => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handlePopoverClose = () => {
+        setAnchorEl(null);
+    };
+
+    const open = Boolean(anchorEl);
 
     return (
         <ListItem className={classes.listItemRoot}>
             <div className={classes.levelDiv}>{level}</div>
             <div>
-                <Title />
+                <a
+                    href={website}
+                    onMouseEnter={handlePopoverOpen}
+                    onMouseLeave={handlePopoverClose}
+                    aria-haspopup="true"
+                    aria-owns={open ? 'mouse-over-popover' : undefined}
+                >
+                    {title}
+                </a>
+                <Popover
+                    id="mouse-over-popover"
+                    className={classes.popover}
+                    classes={{
+                        paper: classes.paper,
+                    }}
+                    open={open}
+                    anchorEl={anchorEl}
+                    anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'left',
+                    }}
+                    transformOrigin={{
+                        vertical: 'top',
+                        horizontal: 'left',
+                    }}
+                    onClose={handlePopoverClose}
+                    disableRestoreFocus
+                >
+                    <LevelInfo level_meta={level_meta} level={level}/>
+                </Popover>
                 <ListItemText
                     className={classes.listItem}
                     secondary={
@@ -76,7 +118,7 @@ const ResultItem = (props) => {
                     }
                 />
                 <div>
-                    <LevelPanel level_meta={level_meta} level={level} />
+                    {isMobile ? <LevelPanel level_meta={level_meta} level={level} /> : null}
                 </div>
             </div>
         </ListItem>
