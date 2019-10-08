@@ -75,7 +75,6 @@ class NavigationBar extends React.Component {
         return <Grid
           container
           justify='flex-end'
-          xs={12}
         >
           <Button component={Link} to="/" style={styles.elaisaButton}><img src={logo} style={styles.elaisaText} alt="Elaisa Search Engine Logo"></img></Button>
         </Grid>
@@ -83,7 +82,6 @@ class NavigationBar extends React.Component {
         return <Grid
           container 
           justify='center'
-          xs={12}
         >
           <Button disableRipple component={Link} to="/" style={styles.elaisaButton}><img src={logo} style={styles.elaisaText} alt="Elaisa Search Engine Logo"></img></Button>
           <SearchBarNavigationBar handleClickSearch={this.searchButtonPressed} value={props.values[0]} onChange={e => this.setState({ value: e })} onKeyDown={this.keyPress} />

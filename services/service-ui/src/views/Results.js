@@ -147,8 +147,8 @@ const Results = (props) => {
       return (
         <Grid 
           container
-          direction={isMobile ? 'column-reverse' : ''}
-          alignItems={isMobile ? 'center' : ''}
+          direction={isMobile ? 'column-reverse' : 'row'}
+          alignItems={isMobile ? 'center' : 'stretch'}
           wrap='nowrap'
         >
           <ResultList

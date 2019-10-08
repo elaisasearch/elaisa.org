@@ -75,7 +75,7 @@ const ResultList = (props) => {
             className={classes.resultListRoot}
             container
             direction='column'
-            alignItems={isMobile ? 'center' : ''}
+            alignItems={isMobile ? 'center' : 'stretch'}
         >
             <Typography className={classes.resultDocsLength} variant="caption">{resultDocsLength} <Translate id='UI__RESULTS_PAGE__RESULT_COUNT' /> "{searchValue}"</Typography>
             <TableBody>
