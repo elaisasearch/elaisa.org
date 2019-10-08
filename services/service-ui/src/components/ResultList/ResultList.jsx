@@ -5,8 +5,8 @@ import logo from '../../assets/img/logo.png'
 import { Translate } from 'react-localize-redux';
 import { makeStyles } from '@material-ui/styles';
 import { isMobile } from 'react-device-detect';
-import ResultListSkeleton from '../Skeleton/WikipediaSkeleton';
-
+import WikipediaSkeleton from '../Skeleton/WikipediaSkeleton';
+import ResultItemSkeleton from '../Skeleton/ResultItemSkeleton';
 
 const useStyles = makeStyles({
     resultListRoot: {
@@ -82,7 +82,7 @@ const ResultList = (props) => {
             {
                 waiting
                     ?
-                    isMobile ? <ResultListSkeleton /> : null
+                    isMobile ? <WikipediaSkeleton /> : null
                     :
                     <Typography className={classes.resultDocsLength} variant="caption">{resultDocsLength} <Translate id='UI__RESULTS_PAGE__RESULT_COUNT' /> "{searchValue}"</Typography>
             }
@@ -91,7 +91,7 @@ const ResultList = (props) => {
                     waiting
                         ?
                         // show two loading previews
-                        [0, 1].map(() => <ResultItem waiting={waiting} />)
+                        [0, 1].map(() => <ResultItemSkeleton />)
                         :
                         resultDocsSortedByPageRank.reverse().map(doc => (
                             <ResultItem key={doc.url} waiting={waiting} website={doc.url} title={doc.title} desc={doc.meta.desc} keywords={doc.meta.keywords} date={doc.meta.date} language={doc.meta.language} level={doc.level} level_meta={doc.level_meta} />

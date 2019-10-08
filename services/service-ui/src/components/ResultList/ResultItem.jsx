@@ -7,7 +7,6 @@ import LevelPanel from './LevelPanel';
 import { isMobile } from 'react-device-detect';
 import { makeStyles } from '@material-ui/styles';
 import LevelInfo from './LevelInfo';
-import ResultItemSkeleton from '../Skeleton/ResultItemSkeleton';
 
 const useStyles = makeStyles({
     levelDiv: {
@@ -68,66 +67,59 @@ const ResultItem = (props) => {
     return (
         <ListItem className={classes.listItemRoot}>
             {!waiting ? <div className={classes.levelDiv}>{level}</div> : null}
-            {
-                waiting
-                    ?
-                    <ResultItemSkeleton />
-                    :
-                    <div>
-                        <a
-                            href={website}
-                            onMouseEnter={handlePopoverOpen}
-                            onMouseLeave={handlePopoverClose}
-                            aria-haspopup="true"
-                            aria-owns={open ? 'mouse-over-popover' : undefined}
-                        >
-                            {title}
-                        </a>
-                        <Popover
-                            id="mouse-over-popover"
-                            className={classes.popover}
-                            classes={{
-                                paper: classes.paper,
-                            }}
-                            open={open}
-                            anchorEl={anchorEl}
-                            anchorOrigin={{
-                                vertical: 'bottom',
-                                horizontal: 'left',
-                            }}
-                            transformOrigin={{
-                                vertical: 'top',
-                                horizontal: 'left',
-                            }}
-                            onClose={handlePopoverClose}
-                            disableRestoreFocus
-                        >
-                            <LevelInfo level_meta={level_meta} level={level} />
-                        </Popover>
-                        <ListItemText
-                            className={classes.listItem}
-                            secondary={
-                                <React.Fragment>
-                                    <Typography component="span" className={classes.date}>
-                                        {/* TODO: only shows the english date */}
-                                        {moment(date).locale(language).format('LLLL') === "Invalid date" ? "" : moment(date).locale(language).format('LLL')}
-                                    </Typography>
-                                    <Typography component="span" className={classes.subtitle}>
-                                        {website}
-                                    </Typography>
-                                    {desc}
-                                    <Typography component="span" className={classes.keywords}>
-                                        {keywords}
-                                    </Typography>
-                                </React.Fragment>
-                            }
-                        />
-                        <div>
-                            {isMobile ? <LevelPanel level_meta={level_meta} level={level} /> : null}
-                        </div>
-                    </div>
-            }
-
+            <div>
+                <a
+                    href={website}
+                    onMouseEnter={handlePopoverOpen}
+                    onMouseLeave={handlePopoverClose}
+                    aria-haspopup="true"
+                    aria-owns={open ? 'mouse-over-popover' : undefined}
+                >
+                    {title}
+                </a>
+                <Popover
+                    id="mouse-over-popover"
+                    className={classes.popover}
+                    classes={{
+                        paper: classes.paper,
+                    }}
+                    open={open}
+                    anchorEl={anchorEl}
+                    anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'left',
+                    }}
+                    transformOrigin={{
+                        vertical: 'top',
+                        horizontal: 'left',
+                    }}
+                    onClose={handlePopoverClose}
+                    disableRestoreFocus
+                >
+                    <LevelInfo level_meta={level_meta} level={level} />
+                </Popover>
+                <ListItemText
+                    className={classes.listItem}
+                    secondary={
+                        <React.Fragment>
+                            <Typography component="span" className={classes.date}>
+                                {/* TODO: only shows the english date */}
+                                {moment(date).locale(language).format('LLLL') === "Invalid date" ? "" : moment(date).locale(language).format('LLL')}
+                            </Typography>
+                            <Typography component="span" className={classes.subtitle}>
+                                {website}
+                            </Typography>
+                            {desc}
+                            <Typography component="span" className={classes.keywords}>
+                                {keywords}
+                            </Typography>
+                        </React.Fragment>
+                    }
+                />
+                <div>
+                    {isMobile ? <LevelPanel level_meta={level_meta} level={level} /> : null}
+                </div>
+            </div>
         </ListItem>
     )
 }
