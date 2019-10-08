@@ -15,12 +15,7 @@ const useStyles = makeStyles({
         marginTop: isMobile ? '10%' : '2vh'
     },
     pagination: {
-        position: isMobile ? '' : 'absolute',
-        bottom: '1%',
-        marginLeft: 'auto',
-        marginRight: 'auto',
-        left: 0,
-        right: 0
+        marginTop: '5%'
     },
     resultDocsLength: {
         marginLeft: '2%',
