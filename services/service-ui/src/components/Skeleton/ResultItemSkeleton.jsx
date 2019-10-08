@@ -11,8 +11,8 @@ const ResultItemSkeleton = () => (
         </div >
         :
         <div>
-            < Skeleton variant='text' width='39vw' height={20} />
-            <Skeleton variant='rect' width='40vw' height={118} />
+            < Skeleton variant='text' width='49vw' height={20} />
+            <Skeleton variant='rect' width='50vw' height={70} />
         </div >
 
 )
