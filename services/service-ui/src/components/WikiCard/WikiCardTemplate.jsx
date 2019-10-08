@@ -18,7 +18,8 @@ const useStyles = makeStyles({
     marginTop: isMobile ? '5%' : '6vh',
     marginRight: isMobile ? 'auto' : '10vh',
     marginLeft: 'auto',
-    boxShadow: isMobile ? 'none !important' : ''
+    boxShadow: isMobile ? 'none !important' : '',
+    maxHeight: !isMobile ? '310px' : null
   },
   wikitextP: {
     textAlign: 'justify',
