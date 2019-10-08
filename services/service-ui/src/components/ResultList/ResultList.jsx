@@ -5,6 +5,8 @@ import logo from '../../assets/img/logo.png'
 import { Translate } from 'react-localize-redux';
 import { makeStyles } from '@material-ui/styles';
 import { isMobile } from 'react-device-detect';
+import ResultListSkeleton from '../Skeleton/WikipediaSkeleton';
+
 
 const useStyles = makeStyles({
     resultListRoot: {
@@ -50,7 +52,7 @@ const ResultList = (props) => {
         setPage(newPage);
     }
 
-    const { resultDocs, resultDocsLength, searchValue } = props;
+    const { resultDocs, resultDocsLength, searchValue, waiting } = props;
 
     /**
      * Render the list given the result docs.
@@ -71,48 +73,66 @@ const ResultList = (props) => {
             return x < y ? -1 : x > y ? 1 : 0;
         });
 
-        return <Grid 
+        return <Grid
             className={classes.resultListRoot}
             container
             direction='column'
             alignItems={isMobile ? 'center' : 'stretch'}
         >
-            <Typography className={classes.resultDocsLength} variant="caption">{resultDocsLength} <Translate id='UI__RESULTS_PAGE__RESULT_COUNT' /> "{searchValue}"</Typography>
+            {
+                waiting
+                    ?
+                    isMobile ? <ResultListSkeleton /> : null
+                    :
+                    <Typography className={classes.resultDocsLength} variant="caption">{resultDocsLength} <Translate id='UI__RESULTS_PAGE__RESULT_COUNT' /> "{searchValue}"</Typography>
+            }
             <TableBody>
-                {resultDocsSortedByPageRank.reverse().map(doc => (
-                    <ResultItem key={doc.url} website={doc.url} title={doc.title} desc={doc.meta.desc} keywords={doc.meta.keywords} date={doc.meta.date} language={doc.meta.language} level={doc.level} level_meta={doc.level_meta} />
-                ))
-                    .slice(page * 10, page * 10 + 10)
+                {
+                    waiting
+                        ?
+                        // show two loading previews
+                        [0, 1].map(() => <ResultItem waiting={waiting} />)
+                        :
+                        resultDocsSortedByPageRank.reverse().map(doc => (
+                            <ResultItem key={doc.url} waiting={waiting} website={doc.url} title={doc.title} desc={doc.meta.desc} keywords={doc.meta.keywords} date={doc.meta.date} language={doc.meta.language} level={doc.level} level_meta={doc.level_meta} />
+                        ))
+                            .slice(page * 10, page * 10 + 10)
                 }
             </TableBody>
-            <Grid 
-                container 
-                className={classes.pagination}
-                alignItems='center'
-                direction='column'
-            >
-                <img src={logo} alt="elaisa logo" className={classes.paginationLogo} />
-                <Translate>
-                    {({ translate }) => {
-                        return (
-                        <TablePagination
-                            labelDisplayedRows={({ from, to, count }) => `${from}-${to} ${translate('UI__RESULTS_PAGE__PAGINATION__TEXT')} ${count}`}
-                            rowsPerPageOptions={[]}
-                            component="div"
-                            count={resultDocsLength}
-                            rowsPerPage={10}
-                            page={page}
-                            backIconButtonProps={{
-                                'aria-label': 'Previous Page',
+            {
+                waiting
+                    ?
+                    null
+                    :
+                    <Grid
+                        container
+                        className={classes.pagination}
+                        alignItems='center'
+                        direction='column'
+                    >
+                        <img src={logo} alt="elaisa logo" className={classes.paginationLogo} />
+                        <Translate>
+                            {({ translate }) => {
+                                return (
+                                    <TablePagination
+                                        labelDisplayedRows={({ from, to, count }) => `${from}-${to} ${translate('UI__RESULTS_PAGE__PAGINATION__TEXT')} ${count}`}
+                                        rowsPerPageOptions={[]}
+                                        component="div"
+                                        count={resultDocsLength}
+                                        rowsPerPage={10}
+                                        page={page}
+                                        backIconButtonProps={{
+                                            'aria-label': 'Previous Page',
+                                        }}
+                                        nextIconButtonProps={{
+                                            'aria-label': 'Next Page',
+                                        }}
+                                        onChangePage={handleChangePage}
+                                    />)
                             }}
-                            nextIconButtonProps={{
-                                'aria-label': 'Next Page',
-                            }}
-                            onChangePage={handleChangePage}
-                        />)
-                    }}
-                </Translate>
-            </Grid>
+                        </Translate>
+                    </Grid>
+            }
         </Grid>
     }
 

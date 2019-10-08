@@ -3,7 +3,7 @@ import NavigationBar from "../components/NavigationBar";
 import ResultList from "../components/ResultList/ResultList";
 import axios from "axios";
 import WikiCard from "../components/WikiCard/WikiCard";
-import { CircularProgress, Divider, Grid } from "@material-ui/core";
+import { Divider, Grid } from "@material-ui/core";
 import NotFound from '../components/NotFound';
 import { connect } from 'react-redux';
 import HeaderTags from '../components/HeaderTags';
@@ -11,11 +11,6 @@ import { makeStyles } from '@material-ui/styles';
 import { isMobile } from 'react-device-detect';
 
 const useStyles = makeStyles({
-  progress: {
-    marginTop: '20vh',
-    display: 'flex',
-    justifyContent: 'center'
-  },
   resultsRoot: {
     height: '100vh'
   }
@@ -30,7 +25,7 @@ const Results = (props) => {
 
   const classes = useStyles();
 
-  const {searchValue, language, level } = props.location.state;
+  const { searchValue, language, level } = props.location.state;
 
   const [state, setState] = React.useState({
     resultDocs: [],
@@ -80,7 +75,7 @@ const Results = (props) => {
       })
       .then(response => {
         const { data } = response;
-        const { correct_query, documents, wikipedia } = data;
+        const { correct_query, documents, wikipedia } = data;
         const boolDocsExist = documents !== undefined;
 
         setState({
@@ -141,17 +136,23 @@ const Results = (props) => {
   const renderResults = () => {
     // while service is fetching data, show the progress circle
     if (state.waiting) {
-      return <div className={classes.progress}><CircularProgress style={{ color: "grey" }} /></div>
+      return <ResultList
+        waiting={state.waiting}
+        searchValue=''
+        resultDocsLength={0}
+        resultDocs={[]}
+      />
     } else if (state.resultDocsLength !== 0) {
       // Otherwise show the results
       return (
-        <Grid 
+        <Grid
           container
           direction={isMobile ? 'column-reverse' : 'row'}
           alignItems={isMobile ? 'center' : 'stretch'}
           wrap='nowrap'
         >
           <ResultList
+            waiting={state.waiting}
             searchValue={state.searchValue}
             resultDocsLength={state.resultDocsLength}
             resultDocs={state.resultDocs}
@@ -170,29 +171,29 @@ const Results = (props) => {
    * @returns {JSX} Results.js.
   */
 
-    return (
-      <div className={classes.resultsRoot}>
-        <HeaderTags 
-          title="Elaisa Search Engine - Results"
-          desc={`See the results of your search about ${state.searchValue}. Take a look on the language analysis and visit the page.`}
-          keywords="Results, Analysis"
-        />
-        <NavigationBar
-          results
-          click={searchResults.bind(this)}
-          values={[
-            state.searchValue,
-            state.language,
-            state.level,
-            state.resultDocsLength
-          ]}
-          id="navBar"
-        />
-        <Divider />
-        {renderResults()}
-      </div>
-    );
-  }
+  return (
+    <div className={classes.resultsRoot}>
+      <HeaderTags
+        title="Elaisa Search Engine - Results"
+        desc={`See the results of your search about ${state.searchValue}. Take a look on the language analysis and visit the page.`}
+        keywords="Results, Analysis"
+      />
+      <NavigationBar
+        results
+        click={searchResults.bind(this)}
+        values={[
+          state.searchValue,
+          state.language,
+          state.level,
+          state.resultDocsLength
+        ]}
+        id="navBar"
+      />
+      <Divider />
+      {renderResults()}
+    </div>
+  );
+}
 
 
 /**
