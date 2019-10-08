@@ -26,6 +26,7 @@ const Results = (props) => {
   const classes = useStyles();
 
   const { searchValue, language, level } = props.location.state;
+  const { email, loggedIn } = props; //redux
 
   const [state, setState] = React.useState({
     resultDocs: [],
@@ -69,27 +70,41 @@ const Results = (props) => {
           query: searchValue,
           level: level,
           language: language,
-          email: props.email,
-          loggedin: props.loggedIn
+          email: email,
+          loggedin: loggedIn
         }
       })
       .then(response => {
-        const { data } = response;
-        const { correct_query, documents, wikipedia } = data;
-        const boolDocsExist = documents !== undefined;
+        if (response.data.correct_query) {
+          setState({
+            resultDocs: [],
+            resultDocsLength: 0,
+            waiting: false,
+            error: true,
+            searchValue: searchValue,
+            language: language,
+            level: level,
+            correct_spelled_query: response.data.correct_query
+          });
+        } else if (response.data.documents) {
+          // get the length of result docs
+          let length = response.data.documents.length
 
-        setState({
-          resultDocs: boolDocsExist ? documents.results : [],
-          resultDocsLength: boolDocsExist ? documents.length : 0,
-          wiki_url: boolDocsExist ? wikipedia.url || '' : '',
-          wiki_title: boolDocsExist ? wikipedia.title || '' : '',
-          wiki_summary: boolDocsExist ? wikipedia.summary || '' : '',
-          waiting: false,
-          searchValue: searchValue,
-          language: language,
-          level: level,
-          correct_spelled_query: boolDocsExist ? '' : correct_query
-        });
+          setState({
+            resultDocs: response.data.documents.results,
+            resultDocsLength: length,
+            wiki_url: response.data.wikipedia.url,
+            wiki_title: response.data.wikipedia.title,
+            wiki_summary: response.data.wikipedia.summary,
+            waiting: false,
+            error: false,
+            searchValue: searchValue,
+            language: language,
+            level: level,
+            correct_spelled_query: ""
+          });
+        }
+
       })
       .catch(error => {
         console.error("API Error: ", error)
@@ -160,7 +175,7 @@ const Results = (props) => {
           {renderWiki(state.wiki_title.length === 0)}
         </Grid>
       );
-    } else {
+    } else if (state.resultDocsLength === 0){
       // Show the sad dog centered if there are no results
       return <NotFound searchValue={state.searchValue} language={state.language} level={state.level} correctSpelledQuery={state.correct_spelled_query} onClickSpellCheck={onClickSpellCheckForNewSearch.bind(this)} />
     }
