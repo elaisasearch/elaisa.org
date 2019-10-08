@@ -8,6 +8,7 @@ from bson.objectid import ObjectId
 from json import JSONEncoder
 import os
 from .nlp import calculateTermfrequency
+import math
 
 """
 Load the global configurations for database connection and collections.
@@ -87,6 +88,13 @@ def findDocuments(query: list, level: str, language: str) -> dict:
     
     # Get the TF*IDF formula for result's ranking
     tf: dict = calculateTermfrequency(query, resultIds, len(docIdsSet), allDocInDBCount, textsOfDocuments)
+
+    # remove unnecessary data from documents
+    for d in documents: 
+        del d['links']
+        del d['text']
+        if d['pagerank'] == math.inf:
+            d['pagerank'] = 0
 
     # translate BSON structure to JSON to return real JSON and not stringified JSON
     bsonToJSON = json.dumps(documents, cls=MongoEncoder)
