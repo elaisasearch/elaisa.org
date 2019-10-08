@@ -76,7 +76,7 @@ const ResultItem = (props) => {
                     }
                 />
                 <div>
-                    <LevelPanel level_meta={level_meta} />
+                    <LevelPanel level_meta={level_meta} level={level} />
                 </div>
             </div>
         </ListItem>

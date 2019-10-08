@@ -63,6 +63,7 @@ const ExpansionPanelDetails = withStyles({
 const LevelPanel = (props) => {
 
     const { A1, A2, B1, B2, C1, C2, unknown, difficulty } = props.level_meta;
+    const { level } = props;
 
     // show difficulty with first letter uppercase
     const firstUpperDifficulty = difficulty.charAt(0).toUpperCase() + difficulty.slice(1)
@@ -91,12 +92,14 @@ const LevelPanel = (props) => {
                 </Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails style={{display: "flex", flexDirection: "column"}}>
-                <div>
-                    <Typography component='span'>
-                        <p><b><Translate id='UI__RESULTS_PAGE__DIFFICUTLY__LANGUAGE_LEVEL_DIST' /></b></p>
-                        <p>A1: <b>{A1}%</b> | A2: <b>{A2}%</b> | B1: <b>{B1}%</b> | B2: <b>{B2}%</b> | C1: <b>{C1}%</b> | C2: <b>{C2}%</b> | <Translate id='UI__RESULTS_PAGE__DIFFICUTLY__UNKNOWN' /> <b>{unknown}%</b></p>
-                    </Typography>
-                </div>
+                <Typography component='span'>
+                        <p><b><Translate id='UI__DROPDOWN__LEVEL' />:</b> {level}</p>
+                </Typography>
+                <Typography component='span'>
+                    <p><b><Translate id='UI__RESULTS_PAGE__DIFFICUTLY__LANGUAGE_LEVEL_DIST' /></b></p>
+                    <p>A1: <b>{A1}%</b> | A2: <b>{A2}%</b> | B1: <b>{B1}%</b> | B2: <b>{B2}%</b> | C1: <b>{C1}%</b> | C2: <b>{C2}%</b> | <Translate id='UI__RESULTS_PAGE__DIFFICUTLY__UNKNOWN' /> <b>{unknown}%</b></p>
+                </Typography>
+        
                 <div style={{marginTop: "-15px"}}>
                     <Typography component="span">
                         <p style={{ color: "black" }}><b><Translate id='UI__RESULTS_PAGE__DIFFICUTLY__WORD_LENGTH__TITLE' /> </b><b style={{color: renderDifficulty()}}>{firstUpperDifficulty}</b></p>
