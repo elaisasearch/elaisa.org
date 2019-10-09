@@ -56,7 +56,7 @@ class SideList extends Component {
         return (
             <Grid
                 container
-                spacing={3}
+                spacing={0}
                 xs={12}
                 justify='space-between'
                 direction='column'
