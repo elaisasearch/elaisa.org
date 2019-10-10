@@ -16,13 +16,38 @@ import { makeStyles } from '@material-ui/styles';
 
 import axios from 'axios';
 
-import '../assets/css/SignInStyle.css'
 import logo from '../assets/img/logo.png';
 
 const useStyles = makeStyles({
     signinRoot: {
         height: '100vh'
+    },
+    formPaper: {
+        display: 'flex',
+        flex: isMobile ? 1 : 0.7,
+        flexDirection: 'column',
+        alignItems: 'center'
+    },
+    sideImage: {
+        backgroundImage: 'url(https://source.unsplash.com/random);',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center'
+    },
+    signInLogo: {
+        width: '25%',
+        marginTop: '10%',
+        marginBottom: '5%'
+    },
+    form: {
+        width: '90%',
+        margin: '5%'
+    },
+    backFab: {
+        width: '90%',
+        margin: '5%'
     }
+
 });
 
 /**
@@ -35,6 +60,8 @@ const SignIn = (props) => {
     const [password, setPassword] = React.useState('');
     const [email, setEmail] = React.useState('');
     const [changePasswordDialogOpen, setChangePasswordDialogOpen] = React.useState(false);
+
+    const classes = useStyles();
 
     const handleCloseChangePasswordDialog = () => {
         setChangePasswordDialogOpen(false)
@@ -87,20 +114,20 @@ const SignIn = (props) => {
     }
 
     return (
-        <Grid container className="signIn">
+        <Grid container className={classes.signinRoot}>
             <MailInput open={changePasswordDialogOpen} handleClose={handleCloseChangePasswordDialog} />
             <HeaderTags
                 title="Elaisa Search Engine - Sign In"
                 desc="Sign in to the Elaisa Search Engine to store your search history and comprehend your state of knowledge in your profile."
                 keywords="Sign In, Search History, Profile"
             />
-            {!isMobile ? <div className="image" /> : null}
-            <Paper className="paper">
-                <img className="signInLogo" src={logo} alt="Elaisa Search Engine Logo"></img>
+            {!isMobile ? <Grid item xs className={classes.sideImage} /> : null}
+            <Paper className={classes.formPaper}>
+                <img className={classes.signInLogo} src={logo} alt="Elaisa Search Engine Logo"></img>
                 <Typography component="h1" variant="h5">
                     <Translate id='UI__SIGN_IN_PAGE__TITLE' />
                 </Typography>
-                <form className="form" noValidate>
+                <form className={classes.form} noValidate>
                     <TextField
                         onChange={e => setEmail(e.target.value)}
                         variant="outlined"
@@ -151,17 +178,17 @@ const SignIn = (props) => {
                             </Button>
                         </Grid>
                         <Grid item>
-                            <Button style={{ fontSize: '70%' }} id="link" href="/signup" variant="text">
+                            <Button style={{ fontSize: '70%' }} href="/signup" variant="text">
                                 <Translate id='UI__SIGN_IN_PAGE__SIGN_UP_BUTTON' />
                             </Button>
                         </Grid>
                     </Grid>
                 </form>
-                <div className="fab">
+                <Grid container xs alignItems='flex-end' direction='column-reverse' className={classes.backFab}>
                     <Fab href="/" color="secondary">
                         <UpIcon />
                     </Fab>
-                </div>
+                </Grid>
 
             </Paper>
         </Grid>
