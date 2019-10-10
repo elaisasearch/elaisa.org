@@ -31,7 +31,8 @@ const useStyles = makeStyles({
         fontSize: '12px !important',
     },
     subtitle: {
-        color: 'green !important'
+        color: 'green !important',
+        fontSize: ' 12px !important'
     },
     popover: {
         pointerEvents: 'none',
