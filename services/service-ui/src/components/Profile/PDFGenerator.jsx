@@ -8,7 +8,6 @@ import {
     PDFDownloadLink,
     Image
 } from "@react-pdf/renderer";
-import '../../assets/css/PDFGeneratorStyle.css'
 import logo from '../../assets/img/logo.png';
 
 
@@ -29,6 +28,7 @@ const styles = StyleSheet.create({
         marginTop: "5%"
     }
 });
+
 
 /**
  * The PDF Document for export.
@@ -65,7 +65,7 @@ const PDFGenerator = (props) => {
 
     const { language, level, firstname, lastname } = props;
 
-    return <PDFDownloadLink className="downloadbutton" document={<MyDocument language={language} level={level} fistname={firstname} lastname={lastname}/>} fileName="elaisa_statistics.pdf">
+    return <PDFDownloadLink document={<MyDocument language={language} level={level} fistname={firstname} lastname={lastname}/>} fileName="elaisa_statistics.pdf">
     {({ blob, url, loading, error }) => (loading ? 'LOADING DOCUMENT...' : 'GENERATE PDF')}
 </PDFDownloadLink>
 }

@@ -13,7 +13,24 @@ import Header from './Header';
 import Overview from './Overview';
 import Experience from './Experience';
 import logo from '../../../assets/img/logo.png';
-import '../../../assets/css/PDFGeneratorStyle.css'
+import { makeStyles } from "@material-ui/styles"; 
+import { isMobile } from 'react-device-detect';
+
+const useStyles = makeStyles({
+  downloadbutton: {
+      color: 'black',
+      padding: isMobile ? '3%' : '0.7%',
+      borderRadius: '5px',
+      backgroundColor: 'rgb(217,217,217)',
+      boxShadow: '1px 2px 5px grey',
+      textDecoration: 'none',
+      '&:hover': {
+          backgroundColor: 'lightgrey'
+      },
+      marginTop: isMobile ? '10%' : null,
+      marginBottom: isMobile ? '10%' : null  
+  }
+})
 
 Font.register({
   family: 'Helvetica'
@@ -99,7 +116,9 @@ const PDFGenerator = (props) => {
 
   const { language, level, firstname, lastname } = props;
 
-  return <PDFDownloadLink className="downloadbutton" document={<Resume language={language} level={level} firstname={firstname} lastname={lastname} />} fileName="elaisa_statistics.pdf">
+  const classes = useStyles();
+
+  return <PDFDownloadLink className={classes.downloadbutton} document={<Resume language={language} level={level} firstname={firstname} lastname={lastname} />} fileName="elaisa_statistics.pdf">
     {({ blob, url, loading, error }) => (loading ? 'LOADING DOCUMENT...' : 'GENERATE PDF')}
   </PDFDownloadLink>
 }
