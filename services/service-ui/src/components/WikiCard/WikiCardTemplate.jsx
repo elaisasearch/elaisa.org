@@ -19,7 +19,7 @@ const useStyles = makeStyles({
     marginRight: isMobile ? 'auto' : '10vh',
     marginLeft: 'auto',
     boxShadow: isMobile ? 'none !important' : null,
-    maxHeight: !isMobile ? '325px' : null
+    maxHeight: !isMobile ? '330px' : null
   },
   wikitextP: {
     textAlign: 'justify',
@@ -105,7 +105,7 @@ const  WikiCardTemplate = (props) => {
           </IconButton>
         </Typography>
         <br/>
-        <Typography component="p" className={classes.wikitextP}>
+        <Typography variant='body2' component="p" className={classes.wikitextP}>
           {showWikiText()}
         </Typography>
       </CardContent>
