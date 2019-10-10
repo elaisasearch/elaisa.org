@@ -174,7 +174,7 @@ const Profile = (props) => {
                 keywords="Profile, Search History, Statistics, Study, Teaching, School"
             />
             <NavigationBar loggedIn={loggedIn} email={email} firstname={firstname} lastname={lastname} />
-            <Divider />
+            { isMobile ? null : <Divider /> }
             {renderContent()}
         </div>
     );
