@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PieChart from '../components/Profile/charts/PieChart';
 import NavigationBar from '../components/NavigationBar';
 import { connect } from 'react-redux';
@@ -16,64 +16,62 @@ import HeaderTags from '../components/HeaderTags';
  * @param {object} props the given properties.
  * @returns {JSX} profile view components.
 */
-class Profile extends Component {
+const Profile = (props) => {
 
-    state = {
-        history: [],
-        statistics: {
-            language: {
-                de: 0,
-                en: 0,
-                es: 0
-            },
-            level: {
-                all: 0,
-                a1: 0,
-                a2: 0,
-                b1: 0,
-                b2: 0,
-                c1: 0,
-                c2: 0
-            }
+    const [history, setHistory] = React.useState([]);
+    const [statistics, setStatistics] = React.useState({
+        language: {
+            de: 0,
+            en: 0,
+            es: 0
         },
-        waiting: true
-    }
+        level: {
+            all: 0,
+            a1: 0,
+            a2: 0,
+            b1: 0,
+            b2: 0,
+            c1: 0,
+            c2: 0
+        }
+    })
+    const [waiting, setWaiting] = React.useState(true);
+
+    // redux state
+    const { loggedIn, email, firstname, lastname } = props;
 
     /**
      * Loads the users search history from API and stores to state.
     */
-    async componentDidMount() {
+    React.useEffect(async () => {
         try {
             const response = await axios.get('https://api.elaisa.org/searchhistory', {
                 params: {
-                    email: this.props.email
+                    email
                 }
             });
-            
-            this.setState({
-                history: response.data.history,
-                waiting: false,
-                statistics: response.data.statistics
-            })
+            setHistory(response.data.history);
+            setStatistics(response.data.statistics);
+            setWaiting(false);
+
         } catch (error) {
-            this.setState({
-                waiting: false
-            });
+            setWaiting(false);
+
         }
-    }
+    }, [])
 
     /**
      * Returns Profile view if API request is finished.
      * @returns {JSX} Progress bar or statistics components.
     */
-    renderContent() {
+    const renderContent = () => {
 
-        const { language, level } = this.state.statistics;
+        const { language, level } = statistics;
         const { all, a1, a2, b1, b2, c1, c2 } = level;
         const { de, en, es } = language
 
         // while service is fetching data, show the progress circle
-        if (this.state.waiting) {
+        if (waiting) {
             return <div className="progress"><CircularProgress style={{ color: "grey" }} /></div>
         }
         return <div>
@@ -110,10 +108,10 @@ class Profile extends Component {
                 </Paper>
             </div>
             <div className="contentTable">
-                <EnhancedTable title={<Translate id='UI__USER__PROFILE_PAGE__SEARCH_HISTORY_TABLE__TITLE' />} data={this.state.history} />
+                <EnhancedTable title={<Translate id='UI__USER__PROFILE_PAGE__SEARCH_HISTORY_TABLE__TITLE' />} data={history} />
             </div>
             <div className="pdfButton">
-                <PDFGenerator language={language} level={level} firstname={this.props.firstname} lastname={this.props.lastname} />
+                <PDFGenerator language={language} level={level} firstname={firstname} lastname={lastname} />
             </div>
         </div>
     }
@@ -122,24 +120,21 @@ class Profile extends Component {
      * Renders JSX content.
      * @returns {JSX} Profile.js.
     */
-    render() {
-        // redux state
-        const { loggedIn, email, firstname, lastname } = this.props;
 
-        return (
-            <div>
-                <HeaderTags 
-                 title="Elaisa Search Engine - Profile"
-                 desc="See your seach history and statistics about your use of the Elaisa Search Engine. Download your profile for school or studying."
-                 keywords="Profile, Search History, Statistics, Study, Teaching, School"
-                />
-                <NavigationBar loggedIn={loggedIn} email={email} firstname={firstname} lastname={lastname} />
-                <Divider />
-                {this.renderContent()}
-            </div>
-        );
-    }
+    return (
+        <div>
+            <HeaderTags
+                title="Elaisa Search Engine - Profile"
+                desc="See your seach history and statistics about your use of the Elaisa Search Engine. Download your profile for school or studying."
+                keywords="Profile, Search History, Statistics, Study, Teaching, School"
+            />
+            <NavigationBar loggedIn={loggedIn} email={email} firstname={firstname} lastname={lastname} />
+            <Divider />
+            {renderContent()}
+        </div>
+    );
 }
+
 
 /**
  * Redux store to props mapping.
