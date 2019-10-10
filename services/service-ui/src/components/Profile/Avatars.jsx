@@ -53,7 +53,21 @@ const Avatars = (props) => {
   */
   const renderMenu = (props) => {
     if (props.loggedIn) {
-      return <Menu id="simple-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
+      return <Menu 
+        id="simple-menu" 
+        anchorEl={anchorEl} 
+        open={Boolean(anchorEl)} 
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'center',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'center',
+        }}
+        getContentAnchorEl={null}
+      >
         <MenuItem component={Link} to="/profile">
         <ListItemIcon>
             <Dashboard />
@@ -75,7 +89,21 @@ const Avatars = (props) => {
         </MenuItem>
       </Menu>
     }
-    return <Menu id="simple-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
+    return <Menu 
+      id="simple-menu" 
+      anchorEl={anchorEl} 
+      open={Boolean(anchorEl)} 
+      onClose={handleClose}
+      anchorOrigin={{
+        vertical: 'bottom',
+        horizontal: 'center',
+      }}
+      transformOrigin={{
+        vertical: 'top',
+        horizontal: 'center',
+      }}
+      getContentAnchorEl={null}
+    >
       <MenuItem component={Link} to="/signin">
       <ListItemIcon>
             <Home />
