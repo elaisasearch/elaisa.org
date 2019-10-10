@@ -67,7 +67,7 @@ const Footer = () => (
             <FooterPerson name="Paula Leberer" study={<Translate id='UI__FOOTER_PERSON_INSTITUTE' />} faculty={<Translate id='UI__FOOTER_PERSON_FACULTY' />} uni={<Translate id='UI__FOOTER_PERSON_UNI' />} mail="paula.leberer@hhu.de" />
         </div>
         <div className="legal">
-            <Typography variant="caption" color="default">
+            <Typography variant="caption" color='textPrimary'>
                 <Translate id='UI__FOOTER_LEGAL' />
             </Typography>
         </div>
