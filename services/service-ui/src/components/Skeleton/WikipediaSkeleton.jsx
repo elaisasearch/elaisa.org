@@ -18,7 +18,7 @@ const WikipediaSkeleton = () => (
         <div style={{
             position: 'absolute',
             margin: 'auto',
-            top: '10vh',
+            top: '16vh',
             right: '10vh',
         }}>
             {/* Wikipedia Skeleton */}

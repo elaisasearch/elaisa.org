@@ -14,7 +14,8 @@ const ResultItemSkeleton = () => (
         :
         <div style={{
             display: 'flex',
-            alignItems: 'center'
+            alignItems: 'center',
+            marginTop: '6vh'
         }}>
             <Skeleton variant='circle' width={40} height={40} style={{
                 marginRight: '2%'
