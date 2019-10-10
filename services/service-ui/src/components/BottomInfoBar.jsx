@@ -8,6 +8,7 @@ import { isMobile } from 'react-device-detect';
 
 const useStyles = makeStyles({
     infoBar: {
+        overflow: 'auto',
         position: 'absolute',
         left: 0,
         right: 0,
