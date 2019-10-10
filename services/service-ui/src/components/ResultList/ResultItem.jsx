@@ -38,7 +38,8 @@ const useStyles = makeStyles({
         pointerEvents: 'none',
     },
     paper: {
-        padding: '16px',
+        paddingLeft: '16px',
+        paddingRight: '16px'
     },
 });
 
