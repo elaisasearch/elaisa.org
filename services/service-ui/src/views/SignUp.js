@@ -8,7 +8,6 @@ import HeaderTags from '../components/HeaderTags';
 import { isMobile } from 'react-device-detect';
 import { makeStyles } from '@material-ui/styles';
 
-import '../assets/css/SignUpStyle.css'
 import logo from '../assets/img/logo.png';
 
 import axios from 'axios';
