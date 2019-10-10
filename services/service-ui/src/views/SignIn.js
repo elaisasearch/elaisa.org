@@ -84,9 +84,6 @@ const SignIn = (props) => {
     const handleSignIn = () => {
         let variant = "";
 
-        console.log('pass: ', password)
-        console.log('email: ', email)
-
         axios.post(`https://api.elaisa.org/signin?email=${email}&password=${password}`)
             .then((response) => {
                 if (response.data.response === "Success") {
