@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
 import NavigationBar from '../components/NavigationBar';
 import '../assets/css/AccountStyle.css';
-import Avatar from '@material-ui/core/Avatar';
 import Gravatar from 'react-gravatar';
 import { Person } from '@material-ui/icons/';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
+import { Avatar, Button, TextField, Typography, Paper } from '@material-ui/core/';
 import { SnackbarProvider, withSnackbar } from 'notistack';
 import axios from 'axios';
 // redux
