@@ -79,27 +79,33 @@ const ResultItem = (props) => {
                 >
                     {title}
                 </a>
-                <Popover
-                    id="mouse-over-popover"
-                    className={classes.popover}
-                    classes={{
-                        paper: classes.paper,
-                    }}
-                    open={open}
-                    anchorEl={anchorEl}
-                    anchorOrigin={{
-                        vertical: 'bottom',
-                        horizontal: 'left',
-                    }}
-                    transformOrigin={{
-                        vertical: 'top',
-                        horizontal: 'left',
-                    }}
-                    onClose={handlePopoverClose}
-                    disableRestoreFocus
-                >
-                    <LevelInfo level_meta={level_meta} level={level} />
-                </Popover>
+                {               
+                    isMobile 
+                        ?
+                        null
+                        : 
+                        <Popover
+                            id="mouse-over-popover"
+                            className={classes.popover}
+                            classes={{
+                                paper: classes.paper,
+                            }}
+                            open={open}
+                            anchorEl={anchorEl}
+                            anchorOrigin={{
+                                vertical: 'bottom',
+                                horizontal: 'left',
+                            }}
+                            transformOrigin={{
+                                vertical: 'top',
+                                horizontal: 'left',
+                            }}
+                            onClose={handlePopoverClose}
+                            disableRestoreFocus
+                        >
+                            <LevelInfo level_meta={level_meta} level={level} />
+                        </Popover>
+                }
                 <ListItemText
                     className={classes.listItem}
                     secondary={
