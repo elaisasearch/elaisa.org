@@ -5,7 +5,6 @@ import { Person, ExitToApp, Home, Dashboard } from '@material-ui/icons/';
 import { Menu, MenuItem, Button, Divider, ListItemIcon, ListItemText} from '@material-ui/core';
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
-import '../../assets/css/AvatarsStyle.css';
 import { Translate } from 'react-localize-redux';
 
 /**
@@ -113,7 +112,7 @@ const Avatars = (props) => {
     </Menu>
   }
 
-  return <div className="avatarButton">
+  return <div>
     <Button
       aria-owns={anchorEl ? 'simple-menu' : undefined}
       aria-haspopup="true"
