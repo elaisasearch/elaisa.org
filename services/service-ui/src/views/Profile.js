@@ -2,14 +2,51 @@ import React from 'react';
 import PieChart from '../components/Profile/charts/PieChart';
 import NavigationBar from '../components/NavigationBar';
 import { connect } from 'react-redux';
-import { Paper, Typography, Divider } from '@material-ui/core';
-import '../assets/css/ProfileStyle.css';
+import { Paper, Typography, Divider, Grid } from '@material-ui/core';
 import EnhancedTable from '../components/Profile/table/EnhancedTable';
 import axios from 'axios';
 import { CircularProgress } from "@material-ui/core";
 import PDFGenerator from '../components/Profile/PDF/index';
 import { Translate } from 'react-localize-redux';
 import HeaderTags from '../components/HeaderTags';
+import { makeStyles } from '@material-ui/styles';
+import { isMobile } from 'react-device-detect';
+
+const useStyles = makeStyles({
+    profileContent: {
+        marginTop: '3%'
+    },
+    contentPaper1: {
+        width: isMobile ? '90%' : '45%',
+        height: '45vh',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: '1%',
+        marginBottom: isMobile ? '5%' : null
+    },
+    contentPaper2: {
+        width: isMobile ? '90%' : '45%',
+        height: '45vh',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: '1%',
+        marginBottom: isMobile ? '5%' : null
+    },
+    contentTable: {
+        display: 'flex',
+        justifyContent: 'center',
+        marginBottom: '5%'
+    },
+    pdfButton: {
+        marginBottom: '5%',
+        marginTop: '5%'
+    }
+})
+
 
 /**
  * Profile view for statistics.
@@ -39,6 +76,8 @@ const Profile = (props) => {
 
     // redux state
     const { loggedIn, email, firstname, lastname } = props;
+
+    const classes = useStyles();
 
     /**
      * Loads the users search history from API and stores to state.
@@ -75,8 +114,14 @@ const Profile = (props) => {
             return <div className="progress"><CircularProgress style={{ color: "grey" }} /></div>
         }
         return <div>
-            <div className="content">
-                <Paper className="contentPaper1">
+            <Grid 
+                container 
+                justify='center' 
+                className={classes.profileContent}
+                direction={isMobile ? 'column' : 'row'}
+                alignItems={isMobile ? 'center' : null}
+            >
+                <Paper className={classes.contentPaper1}>
                     <Typography variant="h5" color="inherit" component="h5">
                         <Translate id='UI__USER__PROFILE_PAGE__LEVEL_GRAPH' />
                     </Typography>
@@ -93,7 +138,7 @@ const Profile = (props) => {
                     }
                     />
                 </Paper>
-                <Paper className="contentPaper2">
+                <Paper className={classes.contentPaper2}>
                     <Typography variant="h5" color="inherit" component="h5">
                         <Translate id='UI__USER__PROFILE_PAGE__LANGUAGE_GRAPH' />
                     </Typography>
@@ -106,13 +151,13 @@ const Profile = (props) => {
                     }
                     />
                 </Paper>
-            </div>
+            </Grid>
             <div className="contentTable">
                 <EnhancedTable title={<Translate id='UI__USER__PROFILE_PAGE__SEARCH_HISTORY_TABLE__TITLE' />} data={history} />
             </div>
-            <div className="pdfButton">
+            <Grid container alignItems='center' justify='center' className={classes.pdfButton}>
                 <PDFGenerator language={language} level={level} firstname={firstname} lastname={lastname} />
-            </div>
+            </Grid>
         </div>
     }
 
