@@ -12,16 +12,15 @@ const useStyles = makeStyles({
     resultListRoot: {
         marginRight: isMobile ? 0 : '10vh',
         marginLeft: isMobile ? 0 : '10vh',
-        marginTop: isMobile ? '10%' : '2vh'
+        marginTop: isMobile ? '10%' : '4vh'
     },
     pagination: {
         marginTop: '5%'
     },
     resultDocsLength: {
         marginLeft: '2%',
-        marginTop: '5%',
         alignItems: isMobile ? 'center' : '',
-        marginBottom: isMobile ? '10%' : ''
+        marginBottom: isMobile ? '10%' : '2vh'
     },
     paginationLogo: {
         width: isMobile ? '15%' : '5%'

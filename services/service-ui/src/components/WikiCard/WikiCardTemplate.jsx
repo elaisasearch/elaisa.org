@@ -15,7 +15,7 @@ const useStyles = makeStyles({
   card: {
     minWidth: isMobile ? '100%' : '275px',
     maxWidth: isMobile ? '100%' : '275px',
-    marginTop: isMobile ? '5%' : '6vh',
+    marginTop: isMobile ? '5%' : '4vh',
     marginRight: isMobile ? 'auto' : '10vh',
     marginLeft: 'auto',
     boxShadow: isMobile ? 'none !important' : null,
