@@ -39,7 +39,7 @@ const useStyles = makeStyles({
     },
     paper: {
         paddingLeft: '16px',
-        paddingRight: '16px'
+        paddingRight: '16px',
     },
 });
 
