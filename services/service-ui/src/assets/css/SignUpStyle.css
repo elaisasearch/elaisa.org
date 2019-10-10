@@ -1,30 +1,3 @@
-.signIn {
-    display: flex;
-    flex-direction: row;
-    height: 100vh;
-}
-
-.image {
-    display: flex;
-    flex: 1;
-    background-image: url(https://source.unsplash.com/random); 
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-}
-
-.paper {
-    display: flex;
-    flex: 0.7;
-    flex-direction: column;
-    align-items: center;
-}
-
-.signUpLogo {
-    width: 25%;
-    margin-top: 10%;
-    margin-bottom: 5%;
-}
 
 .divNames {
     display: flex;
@@ -38,17 +11,4 @@
 
 .form {
     width: 90%;
-}
-
-#signInLink {
-    color: black;
-}
-
-.fab {
-    display: flex;
-    flex: 1;
-    width: 90%;
-    flex-direction: column-reverse;
-    align-items: flex-end;
-    margin: 5%;
 }
