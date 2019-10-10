@@ -1,7 +1,7 @@
 import React from 'react'
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import { Typography, Popover } from '@material-ui/core';
+import { Typography, Popover, Grid } from '@material-ui/core';
 import moment from 'moment';
 import LevelPanel from './LevelPanel';
 import { isMobile } from 'react-device-detect';
@@ -101,7 +101,7 @@ const ResultItem = (props) => {
                 <ListItemText
                     className={classes.listItem}
                     secondary={
-                        <React.Fragment>
+                        <Grid container direction='column'>
                             <Typography component="span" className={classes.date}>
                                 {/* TODO: only shows the english date */}
                                 {moment(date).locale(language).format('LLLL') === "Invalid date" ? "" : moment(date).locale(language).format('LLL')}
@@ -113,7 +113,7 @@ const ResultItem = (props) => {
                             <Typography component="span" className={classes.keywords}>
                                 {keywords}
                             </Typography>
-                        </React.Fragment>
+                        </Grid>
                     }
                 />
                 <div>
