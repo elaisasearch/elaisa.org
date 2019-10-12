@@ -82,21 +82,18 @@ const Profile = (props) => {
     /**
      * Loads the users search history from API and stores to state.
     */
-    React.useEffect(async () => {
-        try {
-            const response = await axios.get('https://api.elaisa.org/searchhistory', {
-                params: {
-                    email
-                }
-            });
+    React.useEffect(() => {
+        axios.get('https://api.elaisa.org/searchhistory', {
+            params: {
+                email
+            }
+        }).then((response) => {
             setHistory(response.data.history);
             setStatistics(response.data.statistics);
             setWaiting(false);
-
-        } catch (error) {
+        }).catch((error) => {
             setWaiting(false);
-
-        }
+        })
     }, [])
 
     /**
@@ -114,9 +111,9 @@ const Profile = (props) => {
             return <div className="progress"><CircularProgress style={{ color: "grey" }} /></div>
         }
         return <div>
-            <Grid 
-                container 
-                justify='center' 
+            <Grid
+                container
+                justify='center'
                 className={classes.profileContent}
                 direction={isMobile ? 'column' : 'row'}
                 alignItems={isMobile ? 'center' : null}
@@ -174,7 +171,7 @@ const Profile = (props) => {
                 keywords="Profile, Search History, Statistics, Study, Teaching, School"
             />
             <NavigationBar loggedIn={loggedIn} email={email} firstname={firstname} lastname={lastname} />
-            { isMobile ? null : <Divider /> }
+            {isMobile ? null : <Divider />}
             {renderContent()}
         </div>
     );
