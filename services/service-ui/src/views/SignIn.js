@@ -45,7 +45,8 @@ const useStyles = makeStyles({
     },
     backFab: {
         width: '90%',
-        margin: '5%'
+        margin: '5%',
+        flex: 1
     }
 
 });
