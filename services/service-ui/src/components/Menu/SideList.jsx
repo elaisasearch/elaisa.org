@@ -57,11 +57,13 @@ class SideList extends Component {
             <Grid
                 container
                 spacing={0}
-                xs={12}
                 justify='space-between'
                 direction='column'
+                style={{
+                    flex: 1
+                }}
             >
-                <Grid item>
+                <Grid item xs='auto'>
                     <List
                         component="nav"
                         subheader={
@@ -76,7 +78,7 @@ class SideList extends Component {
                             >
                                 <img src={logo} width='100' alt="Elaisa Search Engine Logo"></img>
                                 <Typography
-                                    variant='subheading'
+                                    variant='subtitle1'
                                     color='textSecondary'
                                     stlyle={{
                                         marginTop: '5%'
@@ -111,7 +113,7 @@ class SideList extends Component {
                     </List>
                 </Grid>
 
-                <Grid item>
+                <Grid item xs='auto'>
                     <List>
                         <Divider />
                         {/* Show Splash Dialog as Help view */}
