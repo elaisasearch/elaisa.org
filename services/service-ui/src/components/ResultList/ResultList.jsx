@@ -85,7 +85,7 @@ const ResultList = (props) => {
                     waiting
                         ?
                         // show two loading previews
-                        [0, 1].map(() => <ResultItemSkeleton />)
+                        [0, 1].map((i) => <ResultItemSkeleton key={i} />)
                         :
                         resultDocsSortedByPageRank.reverse().map(doc => (
                             <ResultItem key={doc.url} waiting={waiting} website={doc.url} title={doc.title} desc={doc.meta.desc} keywords={doc.meta.keywords} date={doc.meta.date} language={doc.meta.language} level={doc.level} level_meta={doc.level_meta} />
