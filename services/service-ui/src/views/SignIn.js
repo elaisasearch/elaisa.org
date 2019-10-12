@@ -166,7 +166,7 @@ const SignIn = (props) => {
                         <Translate id='UI__SIGN_IN_PAGE__SIGN_IN_BUTTON' />
                     </Button>
                     <Grid container >
-                        <Grid item xs>
+                        <Grid item xs='auto'>
                             <Button
                                 style={{ fontSize: '70%' }}
                                 onClick={e => setChangePasswordDialogOpen(true)}
@@ -174,14 +174,14 @@ const SignIn = (props) => {
                                 <Translate id='UI__SIGN_IN_PAGE__FORGOT_PASSWORD_BUTTON' />
                             </Button>
                         </Grid>
-                        <Grid item>
+                        <Grid item xs='auto'>
                             <Button style={{ fontSize: '70%' }} href="/signup" variant="text">
                                 <Translate id='UI__SIGN_IN_PAGE__SIGN_UP_BUTTON' />
                             </Button>
                         </Grid>
                     </Grid>
                 </form>
-                <Grid container xs alignItems='flex-end' direction='column-reverse' className={classes.backFab}>
+                <Grid container alignItems='flex-end' direction='column-reverse' className={classes.backFab}>
                     <Fab href="/" color="secondary">
                         <UpIcon />
                     </Fab>
