@@ -18,7 +18,8 @@ const useStyles = makeStyles({
     },
     backFab: {
         width: '90%',
-        margin: '5%'
+        margin: '5%',
+        flex: 1
     },
     formPaper: {
         display: 'flex',
@@ -191,7 +192,7 @@ const SignUp = (props) => {
                         <Translate id='UI__SIGN_UP_PAGE__SIGN_IN_BUTTON' />
                     </Button>
                 </form>
-                <Grid container xs alignItems='flex-end' direction='column-reverse' className={classes.backFab}>
+                <Grid container alignItems='flex-end' direction='column-reverse' className={classes.backFab}>
                     <Fab href="/signin" color="secondary">
                         <UpIcon />
                     </Fab>
