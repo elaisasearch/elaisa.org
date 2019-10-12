@@ -32,7 +32,7 @@ const Footer = () => (
                 </div>
             </div>
 
-            <IconButton onClick={e => scrollToFooterContent2()} aria-label="show-footer" id="show-content2-button" size="large">
+            <IconButton onClick={e => scrollToFooterContent2()} aria-label="show-footer" id="show-content2-button" size="medium">
                 <ArrowDownwardIcon fontSize="large" />
             </IconButton>
         </div>

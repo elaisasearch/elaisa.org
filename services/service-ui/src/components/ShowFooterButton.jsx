@@ -25,7 +25,7 @@ const ShowFooterButton = () => {
     const [disableShowFooterButton, setDisableShowFooterButton] = useState(false);
 
     return <Tooltip title={<Translate id='UI__BUTTON__SHOW_FOOTER__TOOLTIP' />} aria-label='show-more-information'>
-        <IconButton className={classes.footerButton} onClick={e => { scrollToFooter(); setDisableShowFooterButton(true) }} disabled={disableShowFooterButton} aria-label="show-footer" size="large">
+        <IconButton className={classes.footerButton} onClick={e => { scrollToFooter(); setDisableShowFooterButton(true) }} disabled={disableShowFooterButton} aria-label="show-footer" size="medium">
             <ArrowDownwardIcon fontSize="large" />
         </IconButton>
     </Tooltip>
