@@ -17,6 +17,26 @@ const useStyles = makeStyles({
         marginTop: '3%',
         justifyContent: 'space-around'
     },
+    currentLevelContent: {
+        width: isMobile ? '90%' : '35%',
+        height: '45%',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: '1%',
+        marginBottom: isMobile ? '5%' : '2%'
+    },
+    currentLanguageContent: {
+        width: isMobile ? '90%' : '35%',
+        height: '45%',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: '1%',
+        marginBottom: isMobile ? '5%' : '2%'
+    },
     contentPaper1: {
         width: isMobile ? '90%' : '35%',
         height: '45%',
@@ -39,7 +59,7 @@ const useStyles = makeStyles({
     },
     contentTable: {
         display: 'flex',
-        justifyContent: 'center',        
+        justifyContent: 'center',
     },
     pdfButton: {
         marginBottom: '5%',
@@ -96,6 +116,30 @@ const Profile = (props) => {
         })
     }, [])
 
+    const getMaxOfObject = (obj) => {
+        let arr = Object.values(obj);
+        let max = Math.max(...arr);
+
+        for (let key in obj) {
+            if (obj[key] === max) {
+                return key.toUpperCase()
+            }
+        }
+    }
+
+    const getLanguageNameFromMaxKey = (maxLang) => {
+        switch (maxLang) {
+            case 'EN':
+                return 'English'
+            case 'ES':
+                return 'Español'
+            case 'DE': 
+                return 'Deutsch'
+            default:
+                return 'None'
+        }
+    }
+
     /**
      * Returns Profile view if API request is finished.
      * @returns {JSX} Progress bar or statistics components.
@@ -118,6 +162,22 @@ const Profile = (props) => {
                 direction={isMobile ? 'column' : 'row'}
                 alignItems={isMobile ? 'center' : null}
             >
+                <Paper className={classes.currentLevelContent}>
+                    <Typography variant="h5" color="inherit" component="h5" style={{marginBottom: '5%'}}>
+                       Curent Language Level {/* <Translate id='UI__USER__PROFILE_PAGE__LEVEL_GRAPH' /> */}
+                    </Typography>
+                    <Typography variant="h2" color='textSecondary' >
+                        {getMaxOfObject(level)}
+                    </Typography>
+                </Paper>
+                <Paper className={classes.currentLanguageContent}>
+                    <Typography variant="h5" color="inherit" component="h5" style={{marginBottom: '5%'}}>
+                       Curent Language {/* <Translate id='UI__USER__PROFILE_PAGE__LEVEL_GRAPH' /> */}
+                    </Typography>
+                    <Typography variant="h2" color='textSecondary' >
+                        {getLanguageNameFromMaxKey(getMaxOfObject(language))}
+                    </Typography>
+                </Paper>
                 <Paper className={classes.contentPaper1}>
                     <Typography variant="h5" color="inherit" component="h5">
                         <Translate id='UI__USER__PROFILE_PAGE__LEVEL_GRAPH' />
