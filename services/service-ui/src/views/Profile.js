@@ -124,13 +124,13 @@ const Profile = (props) => {
                     </Typography>
                     <PieChart dataPoints={
                         [
-                            { y: all, label: "All" },
-                            { y: a1, label: "A1" },
-                            { y: a2, label: "A2" },
-                            { y: b1, label: "B1" },
-                            { y: b2, label: "B2" },
-                            { y: c1, label: "C1" },
-                            { y: c2, label: "C2" }
+                            { value: all, name: "All" },
+                            { value: a1, name: "A1" },
+                            { value: a2, name: "A2" },
+                            { value: b1, name: "B1" },
+                            { value: b2, name: "B2" },
+                            { value: c1, name: "C1" },
+                            { value: c2, name: "C2" }
                         ]
                     }
                     />
@@ -141,9 +141,9 @@ const Profile = (props) => {
                     </Typography>
                     <PieChart dataPoints={
                         [
-                            { y: en, label: "English" },
-                            { y: de, label: "German" },
-                            { y: es, label: "Spanish" }
+                            { value: en, name: "English" },
+                            { value: de, name: "German" },
+                            { value: es, name: "Spanish" }
                         ]
                     }
                     />
