@@ -24,7 +24,7 @@ const useStyles = makeStyles({
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        padding: '1%',
+        padding: isMobile ? '3%': '1%',
         marginBottom: isMobile ? '5%' : '2%'
     },
     currentLanguageContent: {
@@ -34,7 +34,7 @@ const useStyles = makeStyles({
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        padding: '1%',
+        padding: isMobile ? '3%': '1%',
         marginBottom: isMobile ? '5%' : '2%'
     },
     contentPaper1: {
