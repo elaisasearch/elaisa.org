@@ -102,7 +102,6 @@ const SearchBar = (props) => {
 
     return (
       <TextField
-        onKeyDown={keyPress}
         className="bar"
         InputLabelProps={{
           classes: {
@@ -235,6 +234,7 @@ const SearchBar = (props) => {
           id: 'react-autosuggest-simple',
           value: value,
           onChange: handleChange('single'),
+          onKeyDown: keyPress
         }}
         theme={{
           container: classes.container,
