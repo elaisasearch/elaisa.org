@@ -39,8 +39,8 @@ function getSorting(order, orderBy) {
 
 const useStyles = {
   root: {
-    minWidth: "95%",
-    marginTop: "1%"
+    minWidth: "87%",
+    marginTop: "2%"
   },
   paper: {
     width: '100%',

@@ -39,8 +39,7 @@ const useStyles = makeStyles({
     },
     contentTable: {
         display: 'flex',
-        justifyContent: 'center',
-        marginBottom: '5%'
+        justifyContent: 'center',        
     },
     pdfButton: {
         marginBottom: '5%',
@@ -150,7 +149,7 @@ const Profile = (props) => {
                     />
                 </Paper>
             </Grid>
-            <div className="contentTable">
+            <div className={classes.contentTable}>
                 <EnhancedTable title={<Translate id='UI__USER__PROFILE_PAGE__SEARCH_HISTORY_TABLE__TITLE' />} data={history} />
             </div>
             <Grid container alignItems='center' justify='center' className={classes.pdfButton}>
