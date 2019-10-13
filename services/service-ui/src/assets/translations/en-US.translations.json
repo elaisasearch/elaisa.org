@@ -90,6 +90,8 @@
     "UI__SIGN_UP_PAGE__SIGN_UP_BUTTON": "SIGN UP",
     "UI__SIGN_UP_PAGE__SIGN_IN_BUTTON": "Alredy have an account? Sign in",
 
+    "UI__USER__PROFILE_PAGE__MAIN_LEVEL_GRAPH": "Most Wanted Level",
+    "UI__USER__PROFILE_PAGE__MAIN_LANG_GRAPH": "Most Wanted Language",
     "UI__RESULTS_PAGE__RESULT_COUNT": "results for",
     "UI__RESULTS_PAGE__DIFFICUTLY__BUTTON": "Difficulty",
     "UI__RESULTS_PAGE__DIFFICUTLY__LANGUAGE_LEVEL_DIST": "Language Level distribution:",

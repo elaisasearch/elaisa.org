@@ -164,7 +164,7 @@ const Profile = (props) => {
             >
                 <Paper className={classes.currentLevelContent}>
                     <Typography variant="h5" color="inherit" component="h5" style={{marginBottom: '5%'}}>
-                       Curent Language Level {/* <Translate id='UI__USER__PROFILE_PAGE__LEVEL_GRAPH' /> */}
+                       <Translate id='UI__USER__PROFILE_PAGE__MAIN_LEVEL_GRAPH' />
                     </Typography>
                     <Typography variant="h2" color='textSecondary' >
                         {getMaxOfObject(level)}
@@ -172,7 +172,7 @@ const Profile = (props) => {
                 </Paper>
                 <Paper className={classes.currentLanguageContent}>
                     <Typography variant="h5" color="inherit" component="h5" style={{marginBottom: '5%'}}>
-                       Curent Language {/* <Translate id='UI__USER__PROFILE_PAGE__LEVEL_GRAPH' /> */}
+                       <Translate id='UI__USER__PROFILE_PAGE__MAIN_LANG_GRAPH' />
                     </Typography>
                     <Typography variant="h2" color='textSecondary' >
                         {getLanguageNameFromMaxKey(getMaxOfObject(language))}
