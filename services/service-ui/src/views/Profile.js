@@ -14,11 +14,12 @@ import { isMobile } from 'react-device-detect';
 
 const useStyles = makeStyles({
     profileContent: {
-        marginTop: '3%'
+        marginTop: '3%',
+        justifyContent: 'space-around'
     },
     contentPaper1: {
-        width: isMobile ? '90%' : '45%',
-        height: '45vh',
+        width: isMobile ? '90%' : '35%',
+        height: '45%',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
@@ -27,8 +28,8 @@ const useStyles = makeStyles({
         marginBottom: isMobile ? '5%' : null
     },
     contentPaper2: {
-        width: isMobile ? '90%' : '45%',
-        height: '45vh',
+        width: isMobile ? '90%' : '35%',
+        height: '45%',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
