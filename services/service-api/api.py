@@ -9,6 +9,18 @@ from lib.search import findDocuments, getIdsFromWord, getListOfSearchTerms, getW
 from lib.wikipedia import getWikiEntry
 from lib.user import createUser, getSearchHistoryForUser, handlePasswordChange, loginUser, writeSearchDataIntoDatabase, handleForgotPassword
 from lib.nlp import extractNamedEntities, lemmatizeSearchQuery, checkSpelling
+import os
+
+"""
+Load the global configurations for database connection and collections.
+    - source: https://stackoverflow.com/questions/7165749/open-file-in-a-relative-location-in-python
+"""
+scriptDir = os.path.dirname(__file__) 
+relPath = 'lib/globals.json'
+with open(os.path.join(scriptDir, relPath)) as f: 
+    GLOBALS = json.load(f)
+
+API_KEY = GLOBALS['api']['x-api-key']
 
 app = Bottle()
 
@@ -49,6 +61,12 @@ def find() -> dict:
     language: str = request.params.get('language')
     loggedIn: str = request.params.get('loggedin')
     email: str = request.params.get('email')
+
+    # Check API Key
+    if str(request.headers.get('X-Api-Key')) != API_KEY:
+        return {
+            "error": "X-API-KEY is wrong or missing."
+        }
 
     if loggedIn == "true":
         writeSearchDataIntoDatabase(query, level, language, email)
@@ -112,6 +130,12 @@ def signUp() -> str:
     email: str = request.params.get('email')
     password: str = request.params.get('password')
 
+    # Check API Key
+    if str(request.headers.get('X-Api-Key')) != API_KEY:
+        return {
+            "error": "X-API-KEY is wrong or missing."
+        }
+
     result: str = createUser(firstname, lastname, email, password)
 
     if result == "Success":
@@ -131,6 +155,12 @@ def signIn() -> dict:
     email: str = request.params.get('email')
     password: str = request.params.get('password')
 
+    # Check API Key
+    if str(request.headers.get('X-Api-Key')) != API_KEY:
+        return {
+            "error": "X-API-KEY is wrong or missing."
+        }
+
     result: str = loginUser(email, password)
 
     return json.loads(result)
@@ -149,6 +179,12 @@ def changePassword() -> str:
     oldPass: str = request.params.get('oldpassword')
     newPass: str = request.params.get('newpassword')
 
+    # Check API Key
+    if str(request.headers.get('X-Api-Key')) != API_KEY:
+        return {
+            "error": "X-API-KEY is wrong or missing."
+        }
+
     result: str = handlePasswordChange(email, oldPass, newPass)
 
     if result == "Success":
@@ -166,6 +202,12 @@ def forgotPassword() -> str:
     """
     email: str = request.params.get('email')
 
+    # Check API Key
+    if str(request.headers.get('X-Api-Key')) != API_KEY:
+        return {
+            "error": "X-API-KEY is wrong or missing."
+        }
+
     return handleForgotPassword(email)
 
 
@@ -177,6 +219,12 @@ def getSearchHistory():
     :return: Dictionary
     """
     email: str = request.params.get('email')
+
+    # Check API Key
+    if str(request.headers.get('X-Api-Key')) != API_KEY:
+        return {
+            "error": "X-API-KEY is wrong or missing."
+        }
 
     results: dict = getSearchHistoryForUser(email)
 
