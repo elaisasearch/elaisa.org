@@ -11,6 +11,9 @@ RUN yarn install
 COPY services/service-ui/ /app
 RUN yarn build
 
+# copy globals for API key 
+COPY bin/globals.json /app/src
+
 
 # stage 2: build an image with NGINX that we will use in production
 FROM nginx:stable-alpine
