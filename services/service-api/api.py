@@ -63,9 +63,10 @@ def find() -> dict:
     email: str = request.params.get('email')
 
     # Check API Key
-    if str(request.headers.get('X-Api-Key')) != API_KEY:
+    if str(request.params.get('key')) != API_KEY:
+        response.status = 401
         return {
-            "error": "X-API-KEY is wrong or missing."
+            "error": "API-KEY is wrong or missing. See https://github.com/dasmemeteam/language-level-search-engine/blob/master/bin/README.md for more information."
         }
 
     if loggedIn == "true":
@@ -131,9 +132,10 @@ def signUp() -> str:
     password: str = request.params.get('password')
 
     # Check API Key
-    if str(request.headers.get('X-Api-Key')) != API_KEY:
+    if str(request.params.get('key')) != API_KEY:
+        response.status = 401
         return {
-            "error": "X-API-KEY is wrong or missing."
+            "error": "API-KEY is wrong or missing. See https://github.com/dasmemeteam/language-level-search-engine/blob/master/bin/README.md for more information."
         }
 
     result: str = createUser(firstname, lastname, email, password)
@@ -156,9 +158,10 @@ def signIn() -> dict:
     password: str = request.params.get('password')
 
     # Check API Key
-    if str(request.headers.get('X-Api-Key')) != API_KEY:
+    if str(request.params.get('key')) != API_KEY:
+        response.status = 401
         return {
-            "error": "X-API-KEY is wrong or missing."
+            "error": "API-KEY is wrong or missing. See https://github.com/dasmemeteam/language-level-search-engine/blob/master/bin/README.md for more information."
         }
 
     result: str = loginUser(email, password)
@@ -180,9 +183,10 @@ def changePassword() -> str:
     newPass: str = request.params.get('newpassword')
 
     # Check API Key
-    if str(request.headers.get('X-Api-Key')) != API_KEY:
+    if str(request.params.get('key')) != API_KEY:
+        response.status = 401
         return {
-            "error": "X-API-KEY is wrong or missing."
+            "error": "API-KEY is wrong or missing. See https://github.com/dasmemeteam/language-level-search-engine/blob/master/bin/README.md for more information."
         }
 
     result: str = handlePasswordChange(email, oldPass, newPass)
@@ -203,9 +207,10 @@ def forgotPassword() -> str:
     email: str = request.params.get('email')
 
     # Check API Key
-    if str(request.headers.get('X-Api-Key')) != API_KEY:
+    if str(request.params.get('key')) != API_KEY:
+        response.status = 401
         return {
-            "error": "X-API-KEY is wrong or missing."
+            "error": "API-KEY is wrong or missing. See https://github.com/dasmemeteam/language-level-search-engine/blob/master/bin/README.md for more information."
         }
 
     return handleForgotPassword(email)
@@ -221,9 +226,10 @@ def getSearchHistory():
     email: str = request.params.get('email')
 
     # Check API Key
-    if str(request.headers.get('X-Api-Key')) != API_KEY:
+    if str(request.params.get('key')) != API_KEY:
+        response.status = 401
         return {
-            "error": "X-API-KEY is wrong or missing."
+            "error": "API-KEY is wrong or missing. See https://github.com/dasmemeteam/language-level-search-engine/blob/master/bin/README.md for more information."
         }
 
     results: dict = getSearchHistoryForUser(email)
