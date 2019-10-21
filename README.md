@@ -5,6 +5,8 @@ Search engine depending on the language level
 
 **[TAKE A LOOK AT THE DEMO PICTURES](./docs/README.md)**
 
+**[API Documentation](./services/service-api/README.md)**
+
 # Start App without Docker
 
 1. `cd services/service-ui/ && yarn && yarn start`
