@@ -12,6 +12,8 @@ import { Translate } from 'react-localize-redux';
 import HeaderTags from '../components/HeaderTags';
 import { makeStyles } from '@material-ui/styles';
 import { isMobile } from 'react-device-detect';
+import globals from '../globals.json';
+
 
 const useStyles = makeStyles({
     accountView: {
@@ -73,7 +75,7 @@ const Account = (props) => {
     const handleChangeButton = (email) => {
         let variant = "";
 
-        axios.post(`https://api.elaisa.org/changepassword?oldpassword=${oldPass}&newpassword=${newPass}&email=${email}`, {})
+        axios.post(`https://api.elaisa.org/changepassword?oldpassword=${oldPass}&newpassword=${newPass}&email=${email}&key=${globals['api']['x-api-key']}`, {})
             .then((response) => {
                 if (response.data === "Success") {
                     variant = "success";

@@ -7,6 +7,7 @@ import { Translate } from "react-localize-redux";
 import HeaderTags from '../components/HeaderTags';
 import { isMobile } from 'react-device-detect';
 import { makeStyles } from '@material-ui/styles';
+import globals from '../globals.json';
 
 import logo from '../assets/img/logo.png';
 
@@ -77,7 +78,7 @@ const SignUp = (props) => {
     const handleSubmit = () => {
         let variant = "";
 
-        axios.post(`https://api.elaisa.org/signup?firstname=${firstName}&lastname=${lastName}&email=${email}&password=${password}`)
+        axios.post(`https://api.elaisa.org/signup?firstname=${firstName}&lastname=${lastName}&email=${email}&password=${password}&key=${globals['api']['x-api-key']}`)
             .then((response) => {
                 if (response.data === "Success") {
 

@@ -13,6 +13,7 @@ import HeaderTags from '../components/HeaderTags';
 import MailInput from '../components/Dialogs/MailInput';
 import { isMobile } from 'react-device-detect';
 import { makeStyles } from '@material-ui/styles';
+import globals from '../globals.json';
 
 import axios from 'axios';
 
@@ -85,7 +86,7 @@ const SignIn = (props) => {
     const handleSignIn = () => {
         let variant = "";
 
-        axios.post(`https://api.elaisa.org/signin?email=${email}&password=${password}`)
+        axios.post(`https://api.elaisa.org/signin?email=${email}&password=${password}&key=${globals['api']['x-api-key']}`)
             .then((response) => {
                 if (response.data.response === "Success") {
 

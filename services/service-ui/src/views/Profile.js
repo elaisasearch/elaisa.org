@@ -11,6 +11,8 @@ import { Translate } from 'react-localize-redux';
 import HeaderTags from '../components/HeaderTags';
 import { makeStyles } from '@material-ui/styles';
 import { isMobile } from 'react-device-detect';
+import globals from '../globals.json';
+
 
 const useStyles = makeStyles({
     profileContent: {
@@ -105,7 +107,8 @@ const Profile = (props) => {
     React.useEffect(() => {
         axios.get('https://api.elaisa.org/searchhistory', {
             params: {
-                email
+                email,
+                key: globals['api']['x-api-key']
             }
         }).then((response) => {
             setHistory(response.data.history);

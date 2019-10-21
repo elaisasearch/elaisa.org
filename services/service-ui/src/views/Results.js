@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import HeaderTags from '../components/HeaderTags';
 import { makeStyles } from '@material-ui/styles';
 import { isMobile } from 'react-device-detect';
+import globals from '../globals.json';
 
 const useStyles = makeStyles({
   resultsRoot: {
@@ -62,19 +63,17 @@ const Results = (props) => {
 
     axios
       .get(`https://api.elaisa.org/find`, {
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
         params: {
           query: searchValue,
           level: level,
           language: language,
           email: email,
-          loggedin: loggedIn
+          loggedin: loggedIn,
+          key: globals['api']['x-api-key']
         }
       })
       .then(response => {
+        console.log(response.data)
         if (response.data.correct_query) {
           setState({
             resultDocs: [],
@@ -115,7 +114,8 @@ const Results = (props) => {
           waiting: false,
           searchValue: searchValue,
           language: language,
-          level: level
+          level: level,
+          correct_spelled_query: ""
         });
       });
   }
