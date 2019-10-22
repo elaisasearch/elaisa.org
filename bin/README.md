@@ -1,11 +1,14 @@
 # Globals for Mongo DB Usage
 
-The `.gitignore` file ignores a JSON called `globals.json`, which is used by the **service-api** for connecting to the mongo db service. 
+The `.gitignore` file ignores a JSON called `globals.json`, which is used by the **service-api** for connecting to the mongo db service and **service-ui** to get the API Key for HTTP-Requests. 
 
-If you want to connect to your own database, you have to follow this template: 
+If you want to connect to your own database or API, you have to follow this template: 
 
 ```JSON
 {
+    "api": {
+        "x-api-key": ""
+    },
     "mongo": {
         "auth": {
             "host": "example.com:27017",
