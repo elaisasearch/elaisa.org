@@ -204,7 +204,7 @@ const Results = (props) => {
         ]}
         id="navBar"
       />
-      <Divider />
+      { isMobile ? null : <Divider /> }
       {renderResults()}
     </div>
   );
