@@ -37,6 +37,7 @@
     "UI__MENU__HOME_BUTTON": "Casa",
     "UI__MENU__SPEAKING_TESTS_BUTTON": "Exámenes de habla",
     "UI__MENU__HELP_BUTTON": "Ayudar",
+    "UI__MENU__VIEW_SOURCE_BUTTON": "Ver Código",
     "UI__MENU__ISSUE_BUTTON": "Informar Error",
 
     "UI__SPLASH_SCREEN__TITLE": "Bienvenido a Elaisa",

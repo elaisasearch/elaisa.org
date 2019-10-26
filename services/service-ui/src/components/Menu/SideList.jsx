@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { List, Divider, ListItem, ListItemIcon, ListItemText, Collapse, ListSubheader, Typography, Grid } from '@material-ui/core/';
 import { Help, Share, ExpandLess, ExpandMore, Home, BugReport } from '@material-ui/icons/';
+import GitHubIcon from '@material-ui/icons/GitHub';
 import MenuHelper from './MenuHelper';
 import { Link } from 'react-router-dom'
 import { Translate } from "react-localize-redux";
@@ -123,6 +124,14 @@ class SideList extends Component {
                             </ListItemIcon>
                             <ListItemText inset primary={<Translate id='UI__MENU__HELP_BUTTON' />} />
                         </ListItemLink>
+                        <Divider />
+                        {/* Navigate to GitHub page */}
+                        <ListItemLinkHref href='https://github.com/dasmemeteam/language-level-search-engine/' target="_blank">
+                            <ListItemIcon>
+                                <GitHubIcon />
+                            </ListItemIcon>
+                            <ListItemText inset primary={<Translate id='UI__MENU__VIEW_SOURCE_BUTTON' />} />
+                        </ListItemLinkHref>
                         {/* Navigate to GitHub Issue page */}
                         <ListItemLinkHref href='https://github.com/dasmemeteam/language-level-search-engine/issues' target="_blank">
                             <ListItemIcon>
