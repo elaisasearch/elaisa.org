@@ -54,7 +54,7 @@ const SearchBar = (props) => {
       // Set back the quick search values to prevent auto quicksearch when user navigates back to home.
       setQuickSearch('', false);
     }
-  });
+  }, [quickSearch, quickSearchValue, value]);
 
   /**
    * Checks the user's login data with API post request and stores to redux.
