@@ -5,7 +5,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Translate } from 'react-localize-redux';
-import TextFormatIcon from '@material-ui/icons/TextFormat';
+import FormatSizeIcon from '@material-ui/icons/FormatSize';
 import { IconButton } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import { isMobile } from 'react-device-detect';
@@ -101,7 +101,7 @@ const  WikiCardTemplate = (props) => {
         <Typography variant="h5" component="div" className={classes.wikiTitleDiv}>
           {title}
           <IconButton onClick={handleChangeFontSize} className={classes.enlargeFontSizeButton}>
-            <TextFormatIcon size='medium'/>
+            <FormatSizeIcon size='medium'/>
           </IconButton>
         </Typography>
         <br/>
