@@ -16,7 +16,7 @@ const useStyles = makeStyles({
         display: isMobile ? 'none' : ''
     },
     listItemRoot: {
-        marginBottom: isMobile ? '5% !important' : '1% !important'
+        marginBottom: isMobile ? '5% !important' : '3% !important'
     },
     listItem: {
         padding: '0 !important',
