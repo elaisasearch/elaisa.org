@@ -18,6 +18,7 @@ import SignUp from './views/SignUp';
 import Account from './views/Account';
 import Profile from './views/Profile';
 import TranslationWrapper from './TranslationWrapper';
+import Bookmarks from './views/Bookmarks';
 
 // reducer 
 import reducer from './store/reducer';
@@ -50,6 +51,7 @@ ReactDOM.render(
             <TranslationWrapper>
                 <Router history={hist}>
                     <Switch>
+                        <Route path='/bookmarks' component={Bookmarks} />
                         <Route path='/profile' component={Profile} />
                         <Route path='/account' component={Account} />
                         <Route path='/signup' component={SignUp} />

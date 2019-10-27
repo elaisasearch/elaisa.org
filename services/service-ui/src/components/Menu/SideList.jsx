@@ -99,7 +99,7 @@ class SideList extends Component {
                             <ListItemText inset primary={<Translate id='UI__MENU__HOME_BUTTON' />} />
                         </ListItemLink>
                         {/* Home */}
-                        <ListItemLink to="/" >
+                        <ListItemLink to="/bookmarks" >
                             <ListItemIcon>
                                 <BookmarksIcon />
                             </ListItemIcon>
