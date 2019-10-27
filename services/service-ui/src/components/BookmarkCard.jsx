@@ -18,7 +18,9 @@ import { deleteBookmark } from '../handlers/bookmarksHelper';
 const useStyles = makeStyles(theme => ({
   card: {
     maxWidth: 345,
-    marginBottom: '10%'
+    marginBottom: '10%',
+    display: 'flex',
+    flexDirection: 'column'
   },
   expand: {
     transform: 'rotate(0deg)',
@@ -36,6 +38,9 @@ const useStyles = makeStyles(theme => ({
   infoContent: {
     paddingLeft: '7%',
     paddingRight: '7%'
+  },
+  cardContent: {
+    flex: 1
   }
 }));
 
@@ -71,7 +76,7 @@ const BookmarkCard = (props) => {
         title={title}
         subheader={null}
       />
-      <CardContent>
+      <CardContent className={classes.cardContent}>
         <Typography variant="body2" color="textSecondary" component="p">
           {desc}
           <br />

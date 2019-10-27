@@ -4,13 +4,15 @@ import HeaderTags from '../components/HeaderTags';
 import getBookmarks from '../handlers/bookmarksHelper';
 import BookmarkCard from '../components/BookmarkCard';
 import { makeStyles } from '@material-ui/styles';
+import { isMobile } from 'react-device-detect';
 
 const useStyles = makeStyles({
     bookmarkRoot: {
         display: 'flex',
-        alignItems: 'center',
-        flexDirection: 'column',
-        marginTop: '10%'
+        alignItems: isMobile ? 'center' : null,
+        flexDirection: isMobile ? 'column' : 'row',
+        marginTop: isMobile ? '10%' : '5%',
+        justifyContent: isMobile ? null : 'space-around'
     }
 });
 
