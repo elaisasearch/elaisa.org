@@ -1,12 +1,13 @@
 import React from 'react';
-import Typography from '@material-ui/core/Typography';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { Typography, IconButton } from '@material-ui/core/';
 import { withStyles } from '@material-ui/core/styles';
 import MuiExpansionPanel from '@material-ui/core/ExpansionPanel';
 import MuiExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import MuiExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import { Translate } from 'react-localize-redux';
 import LevelInfo from './LevelInfo';
+import FitnessCenterIcon from '@material-ui/icons/FitnessCenter';
+
 
 /**
  * The design for Expansion Panel for level difficulty infos.
@@ -26,7 +27,9 @@ const ExpansionPanel = withStyles({
         },
         background: "transparent"
     },
-    expanded: {},
+    expanded: {
+        border: '1px solid rgba(0, 0, 0, .125)'
+    },
 })(MuiExpansionPanel);
 
 /**
@@ -34,8 +37,10 @@ const ExpansionPanel = withStyles({
 */
 const ExpansionPanelSummary = withStyles({
     root: {
-        padding: 0,
-        minHeight: 0
+        minHeight: 0,
+        '&$expanded': {
+            minHeight: 0,
+        },
     },
     content: {
         '&$expanded': {
@@ -49,10 +54,10 @@ const ExpansionPanelSummary = withStyles({
  * The design for Expansion Panel Details for level difficulty infos.
 */
 const ExpansionPanelDetails = withStyles({
-    root: {
-        padding: 0,
-        marginTop: "-20px"
-    },
+    // root: {
+    //     padding: 0,
+    //     marginTop: "-20px"
+    // }
 })(MuiExpansionPanelDetails);
 
 
@@ -62,16 +67,13 @@ const ExpansionPanelDetails = withStyles({
  * @return {JSX} Expansion Panel component.
 */
 const LevelPanel = (props) => (
-    <div style={{ maxWidth: "50vh", marginTop: "-10px" }}>
+    <div>
         <ExpansionPanel>
             <ExpansionPanelSummary
-                expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1a-content"
                 id="panel1a-header"
+                expandIcon={<FitnessCenterIcon fontSize="medium" />}
             >
-                <Typography component="span">
-                    <Translate id='UI__RESULTS_PAGE__DIFFICUTLY__BUTTON' />
-                </Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails style={{ display: "flex", flexDirection: "column" }}>
                 <LevelInfo level_meta={props.level_meta} level={props.level} />
