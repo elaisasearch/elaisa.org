@@ -12,7 +12,8 @@ const useStyles = makeStyles({
         alignItems: isMobile ? 'center' : null,
         flexDirection: isMobile ? 'column' : 'row',
         marginTop: isMobile ? '10%' : '5%',
-        justifyContent: isMobile ? null : 'space-around'
+        justifyContent: isMobile ? null : 'space-around',
+        flexFlow: isMobile ? null : 'wrap'
     }
 });
 
@@ -29,6 +30,11 @@ const Bookmarks = () => {
 
     // get bookmark articles
     let bookmarks = getBookmarks();
+
+    // re-render page after bookmark was deleted
+    React.useEffect(() => {
+        setDeleted(false)
+    }, [deleted])
 
     return (
         <div>
