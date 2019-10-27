@@ -1,12 +1,11 @@
 import React from 'react'
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import { Typography, Popover, Grid } from '@material-ui/core';
+import { Typography, Grid } from '@material-ui/core';
 import moment from 'moment';
 import LevelPanel from './LevelPanel';
 import { isMobile } from 'react-device-detect';
 import { makeStyles } from '@material-ui/styles';
-import LevelInfo from './LevelInfo';
 
 const useStyles = makeStyles({
     levelDiv: {
@@ -79,33 +78,6 @@ const ResultItem = (props) => {
                 >
                     {title}
                 </a>
-                {               
-                    isMobile 
-                        ?
-                        null
-                        : 
-                        <Popover
-                            id="mouse-over-popover"
-                            className={classes.popover}
-                            classes={{
-                                paper: classes.paper,
-                            }}
-                            open={open}
-                            anchorEl={anchorEl}
-                            anchorOrigin={{
-                                vertical: 'bottom',
-                                horizontal: 'left',
-                            }}
-                            transformOrigin={{
-                                vertical: 'top',
-                                horizontal: 'left',
-                            }}
-                            onClose={handlePopoverClose}
-                            disableRestoreFocus
-                        >
-                            <LevelInfo level_meta={level_meta} level={level} />
-                        </Popover>
-                }
                 <ListItemText
                     className={classes.listItem}
                     secondary={
@@ -125,7 +97,7 @@ const ResultItem = (props) => {
                     }
                 />
                 <div>
-                    {isMobile ? <LevelPanel websiteData={{website, title, desc, keywords}} level_meta={level_meta} level={level} /> : null}
+                    <LevelPanel websiteData={{website, title, desc, keywords}} level_meta={level_meta} level={level} />
                 </div>
             </div>
         </ListItem>
