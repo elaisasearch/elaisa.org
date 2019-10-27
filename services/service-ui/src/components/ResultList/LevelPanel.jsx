@@ -72,8 +72,8 @@ const LevelPanel = (props) => {
 
     const [isMarked, setIsMarked] = React.useState(false);
 
-    const { websiteData } = props;
-    const { website, title, decs, keywords } = websiteData;
+    const { websiteData, level_meta, level } = props;
+    const { website, title, desc, keywords } = websiteData;
 
     // get bookmark articles
     let bookmarks = getBookmarks()
@@ -123,8 +123,10 @@ const LevelPanel = (props) => {
             const newBookMark = {
                 website,
                 title,
-                decs,
-                keywords
+                desc,
+                keywords,
+                level_meta,
+                level
             }
 
             bookmarks.push(newBookMark)
@@ -147,7 +149,7 @@ const LevelPanel = (props) => {
             >
             </ExpansionPanelSummary>
             <ExpansionPanelDetails style={{ display: "flex", flexDirection: "column" }}>
-                <LevelInfo level_meta={props.level_meta} level={props.level} />
+                <LevelInfo level_meta={level_meta} level={level} />
             </ExpansionPanelDetails>
         </ExpansionPanel>
     </div>);
