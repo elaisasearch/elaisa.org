@@ -73,6 +73,23 @@ const LevelPanel = (props) => {
     const { websiteData } = props;
     const { website, title, decs, keywords } = websiteData;
 
+    // get bookmark articles
+    let bookmarks = localStorage.getItem("bookmarks");
+    if (bookmarks === null || bookmarks === '') {
+        bookmarks = []
+    } else {
+        bookmarks = JSON.parse(bookmarks);
+    }
+
+    React.useEffect(() => {
+        // set isMarked for all articles in localStorage
+        for (let bm of bookmarks) {
+            if (bm.website === website) {
+                setIsMarked(true)
+            }
+        }
+    }, [bookmarks])
+
     /**
      * Render the BookMarkIcon given the current state of mark.
      */
@@ -90,17 +107,7 @@ const LevelPanel = (props) => {
      * source: https://stackoverflow.com/questions/3357553/how-do-i-store-an-array-in-localstorage
      */
     const handleBookMarkClicked = () => {
-
-        let bookmarks = localStorage.getItem("bookmarks");
-        if (bookmarks === null || bookmarks === '') {
-            bookmarks = []
-        } else {
-            bookmarks = JSON.parse(bookmarks);
-        }
-        
-        /**
-         * Given the isMarked state, wether add or remove article to localStorage bookmarks
-         */
+        // Given the isMarked state, wether add or remove article to localStorage bookmarks   
         if (isMarked) {
             // change the state and the icon
             setIsMarked(false)
@@ -114,7 +121,7 @@ const LevelPanel = (props) => {
             localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
         } else {
             setIsMarked(true)
-    
+
             // define new bookmark object
             const newBookMark = {
                 website,
@@ -122,7 +129,7 @@ const LevelPanel = (props) => {
                 decs,
                 keywords
             }
-    
+
             bookmarks.push(newBookMark)
             localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
         }
