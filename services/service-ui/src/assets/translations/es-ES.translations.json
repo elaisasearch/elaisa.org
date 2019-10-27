@@ -35,6 +35,7 @@
 
     "UI__MENU__TITLE": "Menú",
     "UI__MENU__HOME_BUTTON": "Casa",
+    "UI__MENU__BOOKMARKS_BUTTON": "Marcadores",
     "UI__MENU__SPEAKING_TESTS_BUTTON": "Exámenes de habla",
     "UI__MENU__HELP_BUTTON": "Ayudar",
     "UI__MENU__VIEW_SOURCE_BUTTON": "Ver Código",

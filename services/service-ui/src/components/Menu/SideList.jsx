@@ -3,6 +3,7 @@ import { List, Divider, ListItem, ListItemIcon, ListItemText, Collapse, ListSubh
 import { Help, ExpandLess, ExpandMore, Home, BugReport } from '@material-ui/icons/';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import SchoolIcon from '@material-ui/icons/School';
+import BookmarksIcon from '@material-ui/icons/Bookmarks';
 import MenuHelper from './MenuHelper';
 import { Link } from 'react-router-dom'
 import { Translate } from "react-localize-redux";
@@ -96,6 +97,13 @@ class SideList extends Component {
                                 <Home />
                             </ListItemIcon>
                             <ListItemText inset primary={<Translate id='UI__MENU__HOME_BUTTON' />} />
+                        </ListItemLink>
+                        {/* Home */}
+                        <ListItemLink to="/" >
+                            <ListItemIcon>
+                                <BookmarksIcon />
+                            </ListItemIcon>
+                            <ListItemText inset primary={<Translate id='UI__MENU__BOOKMARKS_BUTTON' />} />
                         </ListItemLink>
                         {/* Level of Speaking Tests MENU */}
                         <ListItem button onClick={this.handleClick}>
