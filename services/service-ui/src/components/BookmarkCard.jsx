@@ -13,6 +13,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import FitnessCenterIcon from '@material-ui/icons/FitnessCenter';
 
 import LevelInfo from '../components/ResultList/LevelInfo';
+import { deleteBookmark } from '../handlers/bookmarksHelper';
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -30,11 +31,11 @@ const useStyles = makeStyles(theme => ({
     transform: 'rotate(180deg)',
   },
   title: {
-      fontSize: 20
+    fontSize: 20
   },
   infoContent: {
-      paddingLeft: '7%',
-      paddingRight: '7%'
+    paddingLeft: '7%',
+    paddingRight: '7%'
   }
 }));
 
@@ -43,12 +44,18 @@ const BookmarkCard = (props) => {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
-  const { bookmark } = props;
+  const { bookmark, setDeleted } = props;
   const { website, title, desc, keywords, level_meta, level } = bookmark;
+
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+
+  const handleDeleteBookmark = () => {
+    deleteBookmark(website)
+    setDeleted(true)
+  }
 
   return (
     <Card className={classes.card}>
@@ -59,21 +66,21 @@ const BookmarkCard = (props) => {
           </IconButton>
         }
         classes={{
-            title: classes.title
+          title: classes.title
         }}
         title={title}
         subheader={null}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-            {desc}
-            <br />
-            <br />
-            {keywords}
+          {desc}
+          <br />
+          <br />
+          {keywords}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="delete">
+        <IconButton aria-label="delete" onClick={handleDeleteBookmark}>
           <DeleteIcon />
         </IconButton>
         <IconButton
@@ -89,9 +96,9 @@ const BookmarkCard = (props) => {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent
-            classes={{
-                root: classes.infoContent
-            }}
+          classes={{
+            root: classes.infoContent
+          }}
         >
           <LevelInfo level={level} level_meta={level_meta} />
         </CardContent>

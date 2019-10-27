@@ -23,6 +23,8 @@ const Bookmarks = () => {
 
     const classes = useStyles();
 
+    const [deleted, setDeleted] = React.useState(false);
+
     // get bookmark articles
     let bookmarks = getBookmarks();
 
@@ -39,7 +41,7 @@ const Bookmarks = () => {
             <div className={classes.bookmarkRoot}>
                 {
                     bookmarks.map((bm) => {
-                        return <BookmarkCard bookmark={bm}/>
+                        return <BookmarkCard bookmark={bm} setDeleted={setDeleted}/>
                     })
                 }
             </div>
