@@ -9,6 +9,8 @@ import FitnessCenterIcon from '@material-ui/icons/FitnessCenter';
 import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
 import BookmarkIcon from '@material-ui/icons/Bookmark';
 
+import getBookmarks from '../../handlers/bookmarksHelper';
+
 /**
  * The design for Expansion Panel for level difficulty infos.
 */
@@ -74,12 +76,7 @@ const LevelPanel = (props) => {
     const { website, title, decs, keywords } = websiteData;
 
     // get bookmark articles
-    let bookmarks = localStorage.getItem("bookmarks");
-    if (bookmarks === null || bookmarks === '') {
-        bookmarks = []
-    } else {
-        bookmarks = JSON.parse(bookmarks);
-    }
+    let bookmarks = getBookmarks()
 
     React.useEffect(() => {
         // set isMarked for all articles in localStorage
