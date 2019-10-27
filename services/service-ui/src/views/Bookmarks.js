@@ -40,8 +40,8 @@ const Bookmarks = () => {
             />
             <div className={classes.bookmarkRoot}>
                 {
-                    bookmarks.map((bm) => {
-                        return <BookmarkCard bookmark={bm} setDeleted={setDeleted}/>
+                    bookmarks.map((bm, index) => {
+                        return <BookmarkCard key={index} bookmark={bm} setDeleted={setDeleted}/>
                     })
                 }
             </div>
