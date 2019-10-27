@@ -9,7 +9,7 @@ import FitnessCenterIcon from '@material-ui/icons/FitnessCenter';
 import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
 import BookmarkIcon from '@material-ui/icons/Bookmark';
 
-import getBookmarks from '../../handlers/bookmarksHelper';
+import getBookmarks, { deleteBookmark } from '../../handlers/bookmarksHelper';
 
 /**
  * The design for Expansion Panel for level difficulty infos.
@@ -108,14 +108,7 @@ const LevelPanel = (props) => {
         if (isMarked) {
             // change the state and the icon
             setIsMarked(false)
-
-            // remove the clicked article from bookmarks local storage
-            for (let bm of bookmarks) {
-                if (bm.website === website) {
-                    bookmarks.splice(bookmarks.indexOf(bm), 1)
-                }
-            }
-            localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+            deleteBookmark(website)
         } else {
             setIsMarked(true)
 
