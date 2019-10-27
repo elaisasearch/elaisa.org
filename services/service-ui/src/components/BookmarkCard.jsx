@@ -11,6 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import OpenInNewIcon from '@material-ui/icons/OpenInNew';
 import DeleteIcon from '@material-ui/icons/Delete';
 import FitnessCenterIcon from '@material-ui/icons/FitnessCenter';
+import { isMobile } from 'react-device-detect';
 
 import LevelInfo from '../components/ResultList/LevelInfo';
 import { deleteBookmark } from '../handlers/bookmarksHelper';
@@ -18,7 +19,7 @@ import { deleteBookmark } from '../handlers/bookmarksHelper';
 const useStyles = makeStyles(theme => ({
   card: {
     maxWidth: 345,
-    marginBottom: '10%',
+    marginBottom: isMobile ? '10%' : '5%',
     display: 'flex',
     flexDirection: 'column'
   },
