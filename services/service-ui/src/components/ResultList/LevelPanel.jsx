@@ -1,12 +1,14 @@
 import React from 'react';
-import { Typography, IconButton } from '@material-ui/core/';
+import { IconButton } from '@material-ui/core/';
 import { withStyles } from '@material-ui/core/styles';
 import MuiExpansionPanel from '@material-ui/core/ExpansionPanel';
 import MuiExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import MuiExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import { Translate } from 'react-localize-redux';
 import LevelInfo from './LevelInfo';
 import FitnessCenterIcon from '@material-ui/icons/FitnessCenter';
+import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
+import BookmarkIcon from '@material-ui/icons/Bookmark';
+
 
 
 /**
@@ -41,6 +43,9 @@ const ExpansionPanelSummary = withStyles({
         '&$expanded': {
             minHeight: 0,
         },
+        padding: 0,
+        paddingRight: '24px',
+        paddingLeft: '4px'
     },
     content: {
         '&$expanded': {
@@ -54,10 +59,7 @@ const ExpansionPanelSummary = withStyles({
  * The design for Expansion Panel Details for level difficulty infos.
 */
 const ExpansionPanelDetails = withStyles({
-    // root: {
-    //     padding: 0,
-    //     marginTop: "-20px"
-    // }
+    root: {}
 })(MuiExpansionPanelDetails);
 
 
@@ -66,8 +68,25 @@ const ExpansionPanelDetails = withStyles({
  * @param {object} props the given properties.
  * @return {JSX} Expansion Panel component.
 */
-const LevelPanel = (props) => (
-    <div>
+const LevelPanel = (props) => {
+
+    const [isMarked, setIsMarked] = React.useState(false);
+
+    const renderBookMarkForArticle = () => {
+        if (isMarked) {
+            return <BookmarkIcon fontSize='medium' />
+        } else {
+            return <BookmarkBorderIcon fontSize='medium' />
+        }
+    }
+
+    return (<div style={{
+        display: 'flex',
+        flexDirection: 'row'
+    }}>
+        <IconButton aria-label='bookmark' onClick={e => isMarked ? setIsMarked(false) : setIsMarked(true)}>
+            {renderBookMarkForArticle()}
+        </IconButton>
         <ExpansionPanel>
             <ExpansionPanelSummary
                 aria-controls="panel1a-content"
@@ -79,7 +98,7 @@ const LevelPanel = (props) => (
                 <LevelInfo level_meta={props.level_meta} level={props.level} />
             </ExpansionPanelDetails>
         </ExpansionPanel>
-    </div>
-);
+    </div>);
+};
 
 export default LevelPanel;
