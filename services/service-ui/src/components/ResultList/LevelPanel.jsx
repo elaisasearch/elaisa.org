@@ -9,8 +9,6 @@ import FitnessCenterIcon from '@material-ui/icons/FitnessCenter';
 import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
 import BookmarkIcon from '@material-ui/icons/Bookmark';
 
-
-
 /**
  * The design for Expansion Panel for level difficulty infos.
 */
@@ -72,6 +70,12 @@ const LevelPanel = (props) => {
 
     const [isMarked, setIsMarked] = React.useState(false);
 
+    const { websiteData } = props;
+    const { website, title, decs, keywords } = websiteData;
+
+    /**
+     * Render the BookMarkIcon given the current state of mark.
+     */
     const renderBookMarkForArticle = () => {
         if (isMarked) {
             return <BookmarkIcon fontSize='medium' />
@@ -80,11 +84,55 @@ const LevelPanel = (props) => {
         }
     }
 
+    /**
+     * Set the new BookMarkIcon and store the marked article to localStorage.
+     * Store marked articles to bookmarks. Use a stringified array to store it in the localStorage.
+     * source: https://stackoverflow.com/questions/3357553/how-do-i-store-an-array-in-localstorage
+     */
+    const handleBookMarkClicked = () => {
+
+        let bookmarks = localStorage.getItem("bookmarks");
+        if (bookmarks === null || bookmarks === '') {
+            bookmarks = []
+        } else {
+            bookmarks = JSON.parse(bookmarks);
+        }
+        
+        /**
+         * Given the isMarked state, wether add or remove article to localStorage bookmarks
+         */
+        if (isMarked) {
+            // change the state and the icon
+            setIsMarked(false)
+
+            // remove the clicked article from bookmarks local storage
+            for (let bm of bookmarks) {
+                if (bm.website === website) {
+                    bookmarks.splice(bookmarks.indexOf(bm), 1)
+                }
+            }
+            localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+        } else {
+            setIsMarked(true)
+    
+            // define new bookmark object
+            const newBookMark = {
+                website,
+                title,
+                decs,
+                keywords
+            }
+    
+            bookmarks.push(newBookMark)
+            localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+        }
+    }
+
     return (<div style={{
         display: 'flex',
         flexDirection: 'row'
     }}>
-        <IconButton aria-label='bookmark' onClick={e => isMarked ? setIsMarked(false) : setIsMarked(true)}>
+        <IconButton aria-label='bookmark' onClick={handleBookMarkClicked}>
             {renderBookMarkForArticle()}
         </IconButton>
         <ExpansionPanel>

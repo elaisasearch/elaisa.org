@@ -125,7 +125,7 @@ const ResultItem = (props) => {
                     }
                 />
                 <div>
-                    {isMobile ? <LevelPanel level_meta={level_meta} level={level} /> : null}
+                    {isMobile ? <LevelPanel websiteData={{website, title, desc, keywords}} level_meta={level_meta} level={level} /> : null}
                 </div>
             </div>
         </ListItem>
