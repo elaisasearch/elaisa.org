@@ -25,7 +25,7 @@ const ExpansionPanel = withStyles({
             display: 'none',
         },
         '&$expanded': {
-            margin: 'auto',
+            // margin: 'auto',
         },
         background: "transparent"
     },
