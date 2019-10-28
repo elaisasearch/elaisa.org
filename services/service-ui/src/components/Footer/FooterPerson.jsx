@@ -12,7 +12,6 @@ const FooterPerson = (props) => (
         {props.study} <br />
         {props.faculty} <br />
         {props.uni} <br />
-        {props.mail} <br />
     </Typography>
 );
 
