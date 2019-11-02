@@ -129,9 +129,10 @@ const LevelPanel = (props) => {
 
     return (<div style={{
         display: 'flex',
-        flexDirection: 'row'
+        flexDirection: 'row',
+        alignItems: 'center'
     }}>
-        <IconButton aria-label='bookmark' onClick={handleBookMarkClicked}>
+        <IconButton aria-label='bookmark' onClick={handleBookMarkClicked} style={{height: '100%'}}>
             {renderBookMarkForArticle()}
         </IconButton>
         <ExpansionPanel>
