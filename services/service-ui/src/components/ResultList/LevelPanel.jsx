@@ -1,6 +1,6 @@
 import React from 'react';
 import { IconButton } from '@material-ui/core/';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
 import MuiExpansionPanel from '@material-ui/core/ExpansionPanel';
 import MuiExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import MuiExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
@@ -10,6 +10,21 @@ import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
 import BookmarkIcon from '@material-ui/icons/Bookmark';
 
 import getBookmarks, { deleteBookmark } from '../../handlers/bookmarksHelper';
+
+const useStyles = makeStyles({
+    panelRoot: {
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+    bookmarkButton: {
+        height: '100%'
+    },
+    expanelDetails: {
+        display: "flex", 
+        flexDirection: "column"
+    }
+})
 
 /**
  * The design for Expansion Panel for level difficulty infos.
@@ -70,6 +85,8 @@ const ExpansionPanelDetails = withStyles({
 */
 const LevelPanel = (props) => {
 
+    const classes = useStyles();
+
     const [isMarked, setIsMarked] = React.useState(false);
 
     const { websiteData, level_meta, level } = props;
@@ -127,12 +144,8 @@ const LevelPanel = (props) => {
         }
     }
 
-    return (<div style={{
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center'
-    }}>
-        <IconButton aria-label='bookmark' onClick={handleBookMarkClicked} style={{height: '100%'}}>
+    return (<div className={classes.panelRoot}>
+        <IconButton aria-label='bookmark' onClick={handleBookMarkClicked} className={classes.bookmarkButton}>
             {renderBookMarkForArticle()}
         </IconButton>
         <ExpansionPanel>
@@ -142,7 +155,7 @@ const LevelPanel = (props) => {
                 expandIcon={<FitnessCenterIcon fontSize="medium" />}
             >
             </ExpansionPanelSummary>
-            <ExpansionPanelDetails style={{ display: "flex", flexDirection: "column" }}>
+            <ExpansionPanelDetails className={classes.expanelDetails}>
                 <LevelInfo level_meta={level_meta} level={level} />
             </ExpansionPanelDetails>
         </ExpansionPanel>
