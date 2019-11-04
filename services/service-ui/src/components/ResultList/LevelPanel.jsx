@@ -9,7 +9,7 @@ import FitnessCenterIcon from '@material-ui/icons/FitnessCenter';
 import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
 import BookmarkIcon from '@material-ui/icons/Bookmark';
 
-import getBookmarks, { deleteBookmark } from '../../handlers/bookmarksHelper';
+import getBookmarks, { deleteBookmark, getLocalDate } from '../../handlers/bookmarksHelper';
 
 const useStyles = makeStyles({
     panelRoot: {
@@ -131,6 +131,7 @@ const LevelPanel = (props) => {
 
             // define new bookmark object
             const newBookMark = {
+                date: getLocalDate(),
                 website,
                 title,
                 desc,

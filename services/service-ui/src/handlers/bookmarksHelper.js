@@ -21,3 +21,12 @@ export function deleteBookmark(website) {
     }
     localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
 }
+
+export function getLocalDate() {
+    return new Date().toLocaleDateString('de-DE', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
+}

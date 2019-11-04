@@ -51,7 +51,7 @@ const BookmarkCard = (props) => {
   const [expanded, setExpanded] = React.useState(false);
 
   const { bookmark, setDeleted } = props;
-  const { website, title, desc, keywords, level_meta, level } = bookmark;
+  const { date, website, title, desc, keywords, level_meta, level } = bookmark;
 
 
   const handleExpandClick = () => {
@@ -75,7 +75,7 @@ const BookmarkCard = (props) => {
           title: classes.title
         }}
         title={title}
-        subheader={null}
+        subheader={date}
       />
       <CardContent className={classes.cardContent}>
         <Typography variant="body2" color="textSecondary" component="p">
