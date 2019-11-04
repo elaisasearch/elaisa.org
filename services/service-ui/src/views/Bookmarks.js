@@ -138,15 +138,13 @@ const Bookmarks = () => {
                 <Tab classes={{root: classes.tabRoot}} label="🇬🇧" {...a11yProps(1)} />
                 <Tab classes={{root: classes.tabRoot}} label="🇪🇸" {...a11yProps(2)} />
             </Tabs>
-            <TabPanel value={tab} index={0}>
-                {renderTabContent('de')}
-            </TabPanel>
-            <TabPanel value={tab} index={1}>
-                {renderTabContent('en')}
-            </TabPanel>
-            <TabPanel value={tab} index={2}>
-                {renderTabContent('es')}
-            </TabPanel>
+            {
+                ['de', 'en', 'es'].map((langCode, index) => (
+                    <TabPanel value={tab} index={index}>
+                        {renderTabContent(langCode)}
+                    </TabPanel>
+                ))
+            }
         </div>);
 
 };
