@@ -39,6 +39,19 @@ const useStyles = makeStyles({
         color: 'rgb(0, 0, 0, 0.1)',
         position: !isMobile ? 'fixed' : null,
         marginTop: '-5%'
+    },
+    tabRoot: {
+        fontSize: '30px'
+    },
+    tabsCentered: {
+        justifyContent: 'space-around'
+    },
+    tabsRoot: {
+        borderBottom: '1px solid #e8e8e8',
+        borderTop: isMobile ? '1px solid #e8e8e8' : null,
+    },
+    tabsIndicator: {
+    
     }
 });
 
@@ -108,11 +121,22 @@ const Bookmarks = () => {
             <NavigationBar
                 id="navBar"
             />
-            {!isMobile ? <Divider /> : null}
-            <Tabs value={tab} onChange={handleChangeTab} aria-label="bookmarks tabs">
-                <Tab label="🇩🇪" {...a11yProps(0)} />
-                <Tab label="🇬🇧" {...a11yProps(1)} />
-                <Tab label="🇪🇸" {...a11yProps(2)} />
+            { isMobile ? <br /> : <Divider /> }
+            <Tabs 
+                centered 
+                value={tab} 
+                onChange={handleChangeTab} 
+                aria-label="bookmarks tabs"
+                indicatorColor='secondary'
+                classes={{
+                    centered: classes.tabsCentered,
+                    root: classes.tabsRoot,
+                    indicator: classes.tabsIndicator
+                }}
+            >
+                <Tab classes={{root: classes.tabRoot}} label="🇩🇪" {...a11yProps(0)} />
+                <Tab classes={{root: classes.tabRoot}} label="🇬🇧" {...a11yProps(1)} />
+                <Tab classes={{root: classes.tabRoot}} label="🇪🇸" {...a11yProps(2)} />
             </Tabs>
             <TabPanel value={tab} index={0}>
                 {renderTabContent('de')}
