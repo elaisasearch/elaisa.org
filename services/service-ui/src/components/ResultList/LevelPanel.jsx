@@ -21,7 +21,7 @@ const useStyles = makeStyles({
         height: '100%'
     },
     expanelDetails: {
-        display: "flex", 
+        display: "flex",
         flexDirection: "column"
     }
 })
@@ -89,7 +89,7 @@ const LevelPanel = (props) => {
 
     const [isMarked, setIsMarked] = React.useState(false);
 
-    const { websiteData, level_meta, level } = props;
+    const { websiteData, level_meta, level, language } = props;
     const { website, title, desc, keywords } = websiteData;
 
     // get bookmark articles
@@ -97,11 +97,33 @@ const LevelPanel = (props) => {
 
     React.useEffect(() => {
         // set isMarked for all articles in localStorage
-        for (let bm of bookmarks) {
-            if (bm.website === website) {
-                setIsMarked(true)
-            }
-        }
+        Object.keys(bookmarks).forEach((key) => {
+            switch (key) {
+                case 'de':
+                    for (let bm of bookmarks.de) {
+                        if (bm.website === website) {
+                            setIsMarked(true)
+                        }
+                    }
+                    break;
+                case 'en':
+                    for (let bm of bookmarks.en) {
+                        if (bm.website === website) {
+                            setIsMarked(true)
+                        }
+                    }
+                    break;
+                case 'es':
+                    for (let bm of bookmarks.es) {
+                        if (bm.website === website) {
+                            setIsMarked(true)
+                        }
+                    }
+                    break;
+                default:
+                    break;
+                }
+        })
     }, [bookmarks])
 
     /**
@@ -130,7 +152,7 @@ const LevelPanel = (props) => {
             setIsMarked(true)
 
             // define new bookmark object
-            const newBookMark = {
+            let newBookMark = {
                 date: getLocalDate(),
                 website,
                 title,
@@ -140,7 +162,7 @@ const LevelPanel = (props) => {
                 level
             }
 
-            bookmarks.push(newBookMark)
+            bookmarks[language].push(newBookMark)
             localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
         }
     }

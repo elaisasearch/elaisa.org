@@ -6,7 +6,24 @@ import BookmarkCard from '../components/BookmarkCard';
 import { makeStyles } from '@material-ui/styles';
 import { isMobile } from 'react-device-detect';
 import BookmarkIcon from '@material-ui/icons/Bookmark';
-import { Divider } from '@material-ui/core';
+import { Divider, Tabs, Tab, Box, Typography } from '@material-ui/core';
+
+const TabPanel = (props) => {
+    const { children, value, index, ...other } = props;
+
+    return (
+        <Typography
+            component="div"
+            role="tabpanel"
+            hidden={value !== index}
+            id={`simple-tabpanel-${index}`}
+            aria-labelledby={`simple-tab-${index}`}
+            {...other}
+        >
+            <Box p={3}>{children}</Box>
+        </Typography>
+    );
+}
 
 const useStyles = makeStyles({
     bookmarkRoot: {
@@ -35,6 +52,7 @@ const Bookmarks = () => {
     const classes = useStyles();
 
     const [deleted, setDeleted] = React.useState(false);
+    const [tab, setTab] = React.useState(0);
 
     // get bookmark articles
     let bookmarks = getBookmarks();
@@ -43,6 +61,42 @@ const Bookmarks = () => {
     React.useEffect(() => {
         setDeleted(false)
     }, [deleted])
+
+    function a11yProps(index) {
+        return {
+            id: `simple-tab-${index}`,
+            'aria-controls': `simple-tabpanel-${index}`,
+        };
+    }
+
+    /**
+     * Store the new tab in the state
+     * @param {Event} event 
+     * @param {Number} newValue 
+     */
+    const handleChangeTab = (event, newValue) => {
+        setTab(newValue);
+    }
+
+    /**
+     * Render the bookmarks for each language
+     * @param {String} lang 
+     */
+    const renderTabContent = (lang) => {
+        return (
+            <div className={classes.bookmarkRoot}>
+            {
+                bookmarks[lang].length === 0
+                    ?
+                    <BookmarkIcon className={classes.bookmarkicon} />
+                    :
+                    bookmarks[lang].map((bm, index) => {
+                        return <BookmarkCard key={index} bookmark={bm} setDeleted={setDeleted} />
+                    })
+            }
+        </div>
+        );
+    }
 
     return (
         <div>
@@ -55,17 +109,20 @@ const Bookmarks = () => {
                 id="navBar"
             />
             {!isMobile ? <Divider /> : null}
-            <div className={classes.bookmarkRoot}>
-                {
-                    bookmarks.length === 0
-                        ?
-                        <BookmarkIcon className={classes.bookmarkicon} />
-                        :
-                        bookmarks.map((bm, index) => {
-                            return <BookmarkCard key={index} bookmark={bm} setDeleted={setDeleted} />
-                        })
-                }
-            </div>
+            <Tabs value={tab} onChange={handleChangeTab} aria-label="bookmarks tabs">
+                <Tab label="🇩🇪" {...a11yProps(0)} />
+                <Tab label="🇬🇧" {...a11yProps(1)} />
+                <Tab label="🇪🇸" {...a11yProps(2)} />
+            </Tabs>
+            <TabPanel value={tab} index={0}>
+                {renderTabContent('de')}
+            </TabPanel>
+            <TabPanel value={tab} index={1}>
+                {renderTabContent('en')}
+            </TabPanel>
+            <TabPanel value={tab} index={2}>
+                {renderTabContent('es')}
+            </TabPanel>
         </div>);
 
 };

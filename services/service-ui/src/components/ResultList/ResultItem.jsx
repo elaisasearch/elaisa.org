@@ -97,7 +97,7 @@ const ResultItem = (props) => {
                     }
                 />
                 <div>
-                    <LevelPanel websiteData={{website, title, desc, keywords}} level_meta={level_meta} level={level} />
+                    <LevelPanel websiteData={{website, title, desc, keywords}} level_meta={level_meta} level={level} language={language} />
                 </div>
             </div>
         </ListItem>
