@@ -30,7 +30,7 @@ class NewsSpider(scrapy.Spider):
     ]
 
     # The already seen urls
-    seen_urls: list = nlp.getSeenUrls
+    seen_urls: list = db.getSeenUrls
 
     # The urls with whom the spider starts crawling.
     start_urls = [
