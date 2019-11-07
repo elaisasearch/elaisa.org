@@ -9,6 +9,7 @@ import re
 from textblob import TextBlob
 from . import categorize
 from . import nlp
+from . import db
 
 class NewsSpider(scrapy.Spider):
     """
@@ -29,7 +30,7 @@ class NewsSpider(scrapy.Spider):
     ]
 
     # The already seen urls
-    seen_urls = []
+    seen_urls: list = nlp.getSeenUrls
 
     # The urls with whom the spider starts crawling.
     start_urls = [
