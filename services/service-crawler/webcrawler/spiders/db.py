@@ -25,10 +25,10 @@ def getSeenUrls() -> list:
     # Comment this line for development mode
     client = MongoClient(
         GLOBALS["mongo"]["auth"]["host"],
-        #username= GLOBALS["mongo"]["auth"]["username"],
-        #password= GLOBALS["mongo"]["auth"]["password"],
-        #authSource= GLOBALS["mongo"]["auth"]["authSource"],
-        #authMechanism= GLOBALS["mongo"]["auth"]["authMechanism"]
+        username= GLOBALS["mongo"]["auth"]["username"],
+        password= GLOBALS["mongo"]["auth"]["password"],
+        authSource= GLOBALS["mongo"]["auth"]["authSource"],
+        authMechanism= GLOBALS["mongo"]["auth"]["authMechanism"]
     
     )
     db = client[GLOBALS["mongo"]["database"]]
