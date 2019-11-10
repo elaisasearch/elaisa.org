@@ -62,26 +62,8 @@ def findDocuments(query: list, level: str, language: str) -> dict:
     """
     docIdsSet: set = set(docIds)
 
-    documents: list = []
-    # Is used for calculating TF. See nlp.py/calculateTermfrequency
-    textsOfDocuments: dict = {}
-    # Only use the IDs of the result documents to prevent KeyError
-    resultIds: list = []
-    for id in docIdsSet:
-
-        # Check if the user wants to search for all documents with this search term
-        # and remove the filter for this case
-        if level == 'all':
-            query: dict = {"_id": ObjectId(id), "meta.language": language}
-        else:
-            query: dict = {"_id": ObjectId(id), "level": level, "meta.language": language}
-        
-        results = col.find(query)
-
-        for r in results: 
-            documents.append(r)
-            resultIds.append(str(r['_id']))
-            textsOfDocuments[str(r['_id'])] = r['text']
+    # Get result documents filtered by language level
+    documents, textsOfDocuments, resultIds = getDocumentsByLevel(docIdsSet, level, language, col)
 
     # Get the number of all documents in the database for IDF
     allDocInDBCount: int = col.count_documents(filter={})
@@ -245,3 +227,28 @@ def getWordsFromInvertedIndex() -> list:
         return [w for w in objdb.find({},{ "_id": 0, "documents": 0})]
     except:
         return []
+
+
+def getDocumentsByLevel(docIdsSet: set, level: str, language: str, col):
+    documents: list = []
+    # Is used for calculating TF. See nlp.py/calculateTermfrequency
+    textsOfDocuments: dict = {}
+    # Only use the IDs of the result documents to prevent KeyError
+    resultIds: list = []
+    for id in docIdsSet:
+
+        # Check if the user wants to search for all documents with this search term
+        # and remove the filter for this case
+        if level == 'all':
+            query: dict = {"_id": ObjectId(id), "meta.language": language}
+        else:
+            query: dict = {"_id": ObjectId(id), "level": level, "meta.language": language}
+        
+        results = col.find(query)
+
+        for r in results: 
+            documents.append(r)
+            resultIds.append(str(r['_id']))
+            textsOfDocuments[str(r['_id'])] = r['text']
+
+    return documents, textsOfDocuments, resultIds
