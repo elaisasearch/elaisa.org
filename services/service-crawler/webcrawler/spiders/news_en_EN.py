@@ -56,7 +56,7 @@ class NewsSpider(scrapy.Spider):
     ]
 
     # Prevent crawling sign in pages etc.
-    exluded_paths = ['newsround','profile', 'game', 'play', 'sign', 'join', 'info', 'log', 'password', 'account', 'home', 'job', 'portal', 'usingthebbc', 'help', 'wiki', 'center', 'faq']
+    exluded_paths = ['contact', 'newsround','profile', 'game', 'play', 'sign', 'join', 'info', 'log', 'password', 'account', 'home', 'job', 'portal', 'usingthebbc', 'help', 'wiki', 'center', 'faq']
 
     def parse(self, response):
         """
