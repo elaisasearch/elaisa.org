@@ -21,6 +21,11 @@ news_de_DE = db[GLOBALS["mongo"]["collections"]["crawled"]["news"][0]]
 news_en_EN = db[GLOBALS["mongo"]["collections"]["crawled"]["news"][1]]
 news_es_ES = db[GLOBALS["mongo"]["collections"]["crawled"]["news"][2]]
 
+# Different inverted indices
+inverted_index_de_DE = db[GLOBALS["mongo"]["collections"]["inverted_index"][0]]
+inverted_index_en_EN = db[GLOBALS["mongo"]["collections"]["inverted_index"][1]]
+inverted_index_es_ES = db[GLOBALS["mongo"]["collections"]["inverted_index"][2]]
+
 class MongoEncoder(JSONEncoder):
     """
     Mongo DB results encoder.

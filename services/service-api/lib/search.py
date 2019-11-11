@@ -9,8 +9,9 @@ from bson.objectid import ObjectId
 from .nlp import calculateTermfrequency
 import math
 from .globals import GLOBALS
-from .db import client, news_de_DE, news_en_EN, news_es_ES, MongoEncoder
-
+from .db import client, MongoEncoder
+from .db import news_de_DE, news_en_EN, news_es_ES
+from .db import inverted_index_de_DE, inverted_index_en_EN, inverted_index_es_ES
 
 def findDocuments(query: list, level: str, language: str) -> dict:
     """
@@ -30,7 +31,7 @@ def findDocuments(query: list, level: str, language: str) -> dict:
         col = news_es_ES
     
     # Get the IDs of the documents which contain the given search terms.
-    docIds: list = getIdsFromWord(query)
+    docIds: list = getIdsFromWord(query, language)
 
     """
     Only store a set of all IDs. If this is no set, there maybe will be several equal IDs
@@ -74,14 +75,21 @@ def findDocuments(query: list, level: str, language: str) -> dict:
     }
 
 
-def getIdsFromWord(terms: list) -> list:
+def getIdsFromWord(terms: list, language: str) -> list:
     """
-    Takes the search terms and gets the document IDs for findDocuments().
+    Takes the search terms, language and gets the document IDs for findDocuments().
     :terms: List
+    :language: String
     :return: List
     """
-    db = client[GLOBALS["mongo"]["database"]]
-    objdb = db[GLOBALS["mongo"]["collections"]["inverted_index"][0]]
+
+    # Choose inverted index collection by given language
+    if language == 'de':
+        objdb = inverted_index_de_DE
+    elif language == 'en':
+        objdb = inverted_index_en_EN
+    elif language == 'es':
+        objdb = inverted_index_es_ES
 
     query: list = []
     found_ids: list = []
