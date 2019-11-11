@@ -6,44 +6,13 @@ from pymongo import MongoClient, ASCENDING
 import bcrypt
 import json
 from bson.objectid import ObjectId
-from json import JSONEncoder
 import datetime
 import pickle
 import string
 import random
 from .mail import sendEmail
 from .globals import GLOBALS
-
-
-# Global connection to database
-# source: https://api.mongodb.com/python/current/examples/authentication.html
-client = MongoClient(
-    GLOBALS["mongo"]["auth"]["host"],
-    username= GLOBALS["mongo"]["auth"]["username"],
-    password= GLOBALS["mongo"]["auth"]["password"],
-    authSource= GLOBALS["mongo"]["auth"]["authSource"],
-    authMechanism= GLOBALS["mongo"]["auth"]["authMechanism"]
-)
-
-
-class MongoEncoder(JSONEncoder):
-    """
-    Mongo DB results encoder.
-    """
-    def default(self, obj, **kwargs):
-        if isinstance(obj, ObjectId):
-            return str(obj)
-        else:
-            return JSONEncoder.default(obj, **kwargs)
-
-class SetEncoder(json.JSONEncoder):
-    """
-    Set encoder for results in JSON.
-    """
-    def default(self, obj):
-        if isinstance(obj, set):
-            return list(obj)
-        return json.JSONEncoder.default(self, obj)
+from .db import client, MongoEncoder
 
 
 def createUser(firstname: str, lastname: str, email: str, password: str) -> str:

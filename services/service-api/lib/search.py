@@ -4,32 +4,13 @@ Handles the database methods for finding documents.
 
 from pymongo import MongoClient
 import json
+# JSON Encoder
+# https://stackoverflow.com/questions/28251835/from-pymongo-objectid-import-objectid-importerror-no-module-named-objectid
 from bson.objectid import ObjectId
-from json import JSONEncoder
 from .nlp import calculateTermfrequency
 import math
 from .globals import GLOBALS
-
-
-# JSON Encoder
-# https://stackoverflow.com/questions/28251835/from-pymongo-objectid-import-objectid-importerror-no-module-named-objectid
-
-# Global connection to database
-# source: https://api.mongodb.com/python/current/examples/authentication.html
-client = MongoClient(
-    GLOBALS["mongo"]["auth"]["host"],
-    username= GLOBALS["mongo"]["auth"]["username"],
-    password= GLOBALS["mongo"]["auth"]["password"],
-    authSource= GLOBALS["mongo"]["auth"]["authSource"],
-    authMechanism= GLOBALS["mongo"]["auth"]["authMechanism"]
-)
-
-class MongoEncoder(JSONEncoder):
-    def default(self, obj, **kwargs):
-        if isinstance(obj, ObjectId):
-            return str(obj)
-        else:
-            return JSONEncoder.default(obj, **kwargs)
+from .db import client, MongoEncoder
 
 
 def findDocuments(query: list, level: str, language: str) -> dict:
