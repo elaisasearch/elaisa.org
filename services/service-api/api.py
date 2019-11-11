@@ -9,7 +9,6 @@ from lib.search import findDocuments, getIdsFromWord, getListOfSearchTerms, getW
 from lib.wikipedia import getWikiEntry
 from lib.user import createUser, getSearchHistoryForUser, handlePasswordChange, loginUser, writeSearchDataIntoDatabase, handleForgotPassword
 from lib.nlp import extractNamedEntities, lemmatizeSearchQuery, checkSpelling
-import os
 from lib.globals import GLOBALS, API_KEY
 
 
