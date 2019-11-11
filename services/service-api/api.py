@@ -3,7 +3,7 @@ The Application Programming Interface (API) for the entire Search Engine.
 """
 
 import json
-from bottle import Bottle, request, response, run
+from bottle import Bottle, request, response, run, template
 # import lib files
 from lib.search import findDocuments, getIdsFromWord, getListOfSearchTerms, getWordsFromInvertedIndex
 from lib.wikipedia import getWikiEntry
@@ -30,9 +30,9 @@ def enable_cors():
 def index() -> str:
     """
     Root api requst url.
-    :return: String
+    :return: Template
     """
-    return "API - Language Level Search Engine"
+    return template('index')
 
 
 @app.route('/find', method=["OPTIONS", "GET"])
