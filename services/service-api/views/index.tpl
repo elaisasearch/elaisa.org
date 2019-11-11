@@ -1,6 +1,6 @@
 <html>
     <body style="text-align: center;
-        height: 50vh;
+        height: 100vh;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -14,7 +14,7 @@
         <a href="https://documenter.getpostman.com/view/2560401/SVtbR627?version=latest"
             style="
             text-decoration: none;
-            padding: 1%;
+            padding: 5vh;
             border: 1px solid black;
             border-radius: 15px;
             color: black;
