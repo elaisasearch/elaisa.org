@@ -1,4 +1,8 @@
 <html>
+    <head>
+        <title>Elaisa Search Engine - API</title>
+        <meta name=”description” content="Elaisa API for accessing language level search engine data. Contact info@elaisa.org for more information.">
+    </head>
     <body style="text-align: center;
         height: 100vh;
         display: flex;
