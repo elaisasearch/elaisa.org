@@ -12,7 +12,7 @@ import string
 import random
 from .mail import sendEmail
 from .globals import GLOBALS
-from .db import client, MongoEncoder
+from .db import client, MongoEncoder, users, search_history
 
 
 def createUser(firstname: str, lastname: str, email: str, password: str) -> str:
@@ -24,8 +24,7 @@ def createUser(firstname: str, lastname: str, email: str, password: str) -> str:
     :password: String
     :return: String
     """
-    db = client[GLOBALS["mongo"]["database"]]
-    col = db[GLOBALS["mongo"]["collections"]["user"][0]]
+    col = users
     col.create_index([('email', ASCENDING)], unique=True)
 
     # hash password
@@ -53,8 +52,7 @@ def loginUser(email: str, password: str) -> str:
     :password: String
     :return: JSON String
     """
-    db = client[GLOBALS["mongo"]["database"]]
-    col = db[GLOBALS["mongo"]["collections"]["user"][0]]
+    col = users
 
     userObject: dict = {}
 
@@ -86,8 +84,7 @@ def handlePasswordChange(email: str, oldPass: str, newPass: str) -> str:
     :newPass: String
     :return: String
     """
-    db = client[GLOBALS["mongo"]["database"]]
-    col = db[GLOBALS["mongo"]["collections"]["user"][0]]
+    col = users
 
     newPass_hash = bcrypt.hashpw(newPass.encode('utf-8'), bcrypt.gensalt(14))
     try:
@@ -104,8 +101,7 @@ def handleForgotPassword(email: str) -> dict:
     :newPass: String
     :return: Dictionary
     """
-    db = client[GLOBALS["mongo"]["database"]]
-    col = db[GLOBALS["mongo"]["collections"]["user"][0]]
+    col = users
 
     newPassword = randomString(8)
     newPass_hash = bcrypt.hashpw(newPassword.encode('utf-8'), bcrypt.gensalt(14))
@@ -162,8 +158,7 @@ def writeSearchDataIntoDatabase(query: str, level: str, language: str, email: st
     :email: String
     :return: None
     """
-    db = client[GLOBALS["mongo"]["database"]]
-    col = db[GLOBALS["mongo"]["collections"]["user"][1]]
+    col = search_history
 
     date: str = datetime.datetime.now().strftime("%d.%m.%Y %H:%M")
 
@@ -184,8 +179,7 @@ def getSearchHistoryForUser(email: str) -> dict:
     :email: String
     :return: Dictionary
     """
-    db = client[GLOBALS["mongo"]["database"]]
-    col = db[GLOBALS["mongo"]["collections"]["user"][1]]
+    col = search_history
 
     try:
         historyData = col.find({

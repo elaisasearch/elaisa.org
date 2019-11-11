@@ -26,6 +26,10 @@ inverted_index_de_DE = db[GLOBALS["mongo"]["collections"]["inverted_index"][0]]
 inverted_index_en_EN = db[GLOBALS["mongo"]["collections"]["inverted_index"][1]]
 inverted_index_es_ES = db[GLOBALS["mongo"]["collections"]["inverted_index"][2]]
 
+# Different user collections
+users = db[GLOBALS["mongo"]["collections"]["user"][0]]
+search_history = db[GLOBALS["mongo"]["collections"]["user"][1]]
+
 class MongoEncoder(JSONEncoder):
     """
     Mongo DB results encoder.
