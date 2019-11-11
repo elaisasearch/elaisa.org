@@ -2,7 +2,6 @@
 Handles the database methods for finding documents.
 """
 
-from pymongo import MongoClient
 import json
 # JSON Encoder
 # https://stackoverflow.com/questions/28251835/from-pymongo-objectid-import-objectid-importerror-no-module-named-objectid

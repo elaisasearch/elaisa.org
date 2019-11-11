@@ -2,7 +2,7 @@
 Handles the user methods for signing and logging user.
 """
 
-from pymongo import MongoClient, ASCENDING
+from pymongo import ASCENDING
 import bcrypt
 import json
 from bson.objectid import ObjectId
