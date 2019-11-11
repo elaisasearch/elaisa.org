@@ -9,3 +9,5 @@ scriptDir = os.path.dirname(__file__)
 relPath = 'globals.json'
 with open(os.path.join(scriptDir, relPath)) as f: 
     GLOBALS = json.load(f)
+
+API_KEY = GLOBALS['api']['x-api-key']
