@@ -10,17 +10,8 @@ from lib.wikipedia import getWikiEntry
 from lib.user import createUser, getSearchHistoryForUser, handlePasswordChange, loginUser, writeSearchDataIntoDatabase, handleForgotPassword
 from lib.nlp import extractNamedEntities, lemmatizeSearchQuery, checkSpelling
 import os
+from lib.globals import GLOBALS, API_KEY
 
-"""
-Load the global configurations for database connection and collections.
-    - source: https://stackoverflow.com/questions/7165749/open-file-in-a-relative-location-in-python
-"""
-scriptDir = os.path.dirname(__file__) 
-relPath = 'lib/globals.json'
-with open(os.path.join(scriptDir, relPath)) as f: 
-    GLOBALS = json.load(f)
-
-API_KEY = GLOBALS['api']['x-api-key']
 
 app = Bottle()
 
