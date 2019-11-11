@@ -205,8 +205,7 @@ def getWordsFromInvertedIndex() -> list:
         - [{'label': 'summer'}, ...]
     :return: List
     """
-    db = client[GLOBALS["mongo"]["database"]]
-    objdb = db[GLOBALS["mongo"]["collections"]["inverted_index"][0]]
+    objdb = inverted_index_en_EN
 
     try:
         return [w for w in objdb.find({},{ "_id": 0, "documents": 0})]
