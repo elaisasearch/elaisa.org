@@ -20,11 +20,15 @@ If you want to connect to your own database or API, you have to follow this temp
         "database": "LanguageLevelSearchEngine",
         "collections": {
             "inverted_index": [
-                "inverted_index_en_EN"
+                "inverted_index_de_DE",
+                "inverted_index_en_EN",
+                "inverted_index_es_ES"
             ],
             "crawled": {
                 "news": [
-                    "news_en_EN"
+                    "news_de_DE",
+                    "news_en_EN",
+                    "news_es_ES"
                 ]
             },
             "user": [
