@@ -9,7 +9,7 @@ from bson.objectid import ObjectId
 from .nlp import calculateTermfrequency
 import math
 from .globals import GLOBALS
-from .db import client, MongoEncoder
+from .db import client, news_de_DE, news_en_EN, news_es_ES, MongoEncoder
 
 
 def findDocuments(query: list, level: str, language: str) -> dict:
@@ -20,8 +20,14 @@ def findDocuments(query: list, level: str, language: str) -> dict:
     :language: String
     :return: Dictionary
     """
-    db = client[GLOBALS["mongo"]["database"]]
-    col = db[GLOBALS["mongo"]["collections"]["crawled"]["news"][0]]
+
+    # Choose news collection by given language
+    if language == 'de':
+        col = news_de_DE
+    elif language == 'en':
+        col = news_en_EN
+    elif language == 'es':
+        col = news_es_ES
     
     # Get the IDs of the documents which contain the given search terms.
     docIds: list = getIdsFromWord(query)

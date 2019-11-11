@@ -13,6 +13,13 @@ client = MongoClient(
     authMechanism= GLOBALS["mongo"]["auth"]["authMechanism"]
 )
 
+# Database name
+db = client[GLOBALS["mongo"]["database"]]
+
+# Different database collections
+news_de_DE = db[GLOBALS["mongo"]["collections"]["crawled"]["news"][0]]
+news_en_EN = db[GLOBALS["mongo"]["collections"]["crawled"]["news"][1]]
+news_es_ES = db[GLOBALS["mongo"]["collections"]["crawled"]["news"][2]]
 
 class MongoEncoder(JSONEncoder):
     """
