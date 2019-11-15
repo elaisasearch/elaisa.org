@@ -64,7 +64,7 @@ const useStyles = makeStyles({
         height: '100%'
       },
     tabs: {
-        borderRight: `1px solid black`
+        borderRight: `1px solid #e8e8e8`
     },
     levelTabPanel: {
         flex: 1
