@@ -20,14 +20,20 @@ const TabPanel = (props) => {
             aria-labelledby={`simple-tab-${index}`}
             {...other}
         >
-            <Box p={3}>{children}</Box>
+            <Box>{children}</Box>
         </Typography>
     );
 }
 
 const useStyles = makeStyles({
+    root: {
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100vh'
+    },
     bookmarkRoot: {
         display: 'flex',
+        flex: 1,
         alignItems: isMobile ? 'center' : null,
         flexDirection: isMobile ? 'column' : 'row',
         marginTop: isMobile ? '10%' : '5%',
@@ -51,7 +57,24 @@ const useStyles = makeStyles({
         borderTop: isMobile ? '1px solid #e8e8e8' : null,
     },
     tabsIndicator: {
-    
+
+    },
+    levelTabs: {
+        display: 'flex',
+        height: '100%'
+      },
+    tabs: {
+        borderRight: `1px solid black`
+    },
+    levelTabPanel: {
+        flex: 1
+    },
+    levelTabRoot: {
+        fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
+        fontSize: '1rem',
+        fontWeight: 400,
+        lineHeight: 1.5,
+        letterSpacing: '0.00938em'
     }
 });
 
@@ -66,6 +89,7 @@ const Bookmarks = () => {
 
     const [deleted, setDeleted] = React.useState(false);
     const [tab, setTab] = React.useState(0);
+    const [levelTab, setLevelTab] = React.useState(0)
 
     // get bookmark articles
     let bookmarks = getBookmarks();
@@ -92,27 +116,36 @@ const Bookmarks = () => {
     }
 
     /**
+     * Store the new level tab in the state
+     * @param {Event} event 
+     * @param {Number} newValue 
+     */
+    const handleChangeLevelTab = (event, newValue) => {
+        setLevelTab(newValue);
+    }
+
+    /**
      * Render the bookmarks for each language
      * @param {String} lang 
      */
     const renderTabContent = (lang) => {
         return (
             <div className={classes.bookmarkRoot}>
-            {
-                bookmarks[lang].length === 0
-                    ?
-                    <BookmarkIcon className={classes.bookmarkicon} />
-                    :
-                    bookmarks[lang].map((bm, index) => {
-                        return <BookmarkCard key={index} bookmark={bm} setDeleted={setDeleted} />
-                    })
-            }
-        </div>
+                {
+                    bookmarks[lang].length === 0
+                        ?
+                        <BookmarkIcon className={classes.bookmarkicon} />
+                        :
+                        bookmarks[lang].map((bm, index) => {
+                            return <BookmarkCard key={index} bookmark={bm} setDeleted={setDeleted} />
+                        })
+                }
+            </div>
         );
     }
 
     return (
-        <div>
+        <div className={classes.root}>
             <HeaderTags
                 title="Elaisa Search Engine - Bookmarks"
                 desc="Sorry, but there is no page with this path."
@@ -121,11 +154,11 @@ const Bookmarks = () => {
             <NavigationBar
                 id="navBar"
             />
-            { isMobile ? <br /> : <Divider /> }
-            <Tabs 
-                centered 
-                value={tab} 
-                onChange={handleChangeTab} 
+            {isMobile ? <br /> : <Divider />}
+            <Tabs
+                centered
+                value={tab}
+                onChange={handleChangeTab}
                 aria-label="bookmarks tabs"
                 indicatorColor='secondary'
                 classes={{
@@ -134,14 +167,33 @@ const Bookmarks = () => {
                     indicator: classes.tabsIndicator
                 }}
             >
-                <Tab classes={{root: classes.tabRoot}} label="🇩🇪" {...a11yProps(0)} />
-                <Tab classes={{root: classes.tabRoot}} label="🇬🇧" {...a11yProps(1)} />
-                <Tab classes={{root: classes.tabRoot}} label="🇪🇸" {...a11yProps(2)} />
+                <Tab classes={{ root: classes.tabRoot }} label="🇩🇪" {...a11yProps(0)} />
+                <Tab classes={{ root: classes.tabRoot }} label="🇬🇧" {...a11yProps(1)} />
+                <Tab classes={{ root: classes.tabRoot }} label="🇪🇸" {...a11yProps(2)} />
             </Tabs>
             {
                 ['de', 'en', 'es'].map((langCode, index) => (
                     <TabPanel value={tab} index={index}>
-                        {renderTabContent(langCode)}
+                        <div className={classes.levelTabs}>
+                            <Tabs
+                                orientation="vertical"
+                                variant="scrollable"
+                                value={levelTab}
+                                onChange={handleChangeLevelTab}
+                                aria-label="Vertical tabs for language level"
+                                className={classes.tabs}
+                            >
+                                <Tab classes={{ root: classes.levelTabRoot }} label="A1" {...a11yProps(0)} />
+                                <Tab classes={{ root: classes.levelTabRoot }} label="A2" {...a11yProps(1)} />
+                                <Tab classes={{ root: classes.levelTabRoot }} label="B1" {...a11yProps(2)} />
+                                <Tab classes={{ root: classes.levelTabRoot }} label="B2" {...a11yProps(3)} />
+                                <Tab classes={{ root: classes.levelTabRoot }} label="C1" {...a11yProps(4)} />
+                                <Tab classes={{ root: classes.levelTabRoot }} label="C2" {...a11yProps(5)} />
+                            </Tabs>
+                            <TabPanel className={classes.levelTabPanel} value={levelTab} index={0}>
+                                {renderTabContent(langCode)}
+                            </TabPanel>
+                        </div>
                     </TabPanel>
                 ))
             }
