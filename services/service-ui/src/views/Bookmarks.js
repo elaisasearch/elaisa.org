@@ -61,6 +61,7 @@ const useStyles = makeStyles({
     },
     levelTabs: {
         display: 'flex',
+        flexDirection: isMobile ? 'column' : 'row',
         height: '100%'
       },
     tabs: {
@@ -180,7 +181,7 @@ const Bookmarks = () => {
                     <TabPanel key={index} value={tab} index={index}>
                         <div className={classes.levelTabs}>
                             <Tabs
-                                orientation="vertical"
+                                orientation={isMobile ? 'horizontal' : 'vertical'}
                                 centered
                                 variant="scrollable"
                                 value={levelTab}
