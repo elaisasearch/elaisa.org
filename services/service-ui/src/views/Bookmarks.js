@@ -183,12 +183,13 @@ const Bookmarks = () => {
                                 aria-label="Vertical tabs for language level"
                                 className={classes.tabs}
                             >
-                                <Tab classes={{ root: classes.levelTabRoot }} label="A1" {...a11yProps(0)} />
-                                <Tab classes={{ root: classes.levelTabRoot }} label="A2" {...a11yProps(1)} />
-                                <Tab classes={{ root: classes.levelTabRoot }} label="B1" {...a11yProps(2)} />
-                                <Tab classes={{ root: classes.levelTabRoot }} label="B2" {...a11yProps(3)} />
-                                <Tab classes={{ root: classes.levelTabRoot }} label="C1" {...a11yProps(4)} />
-                                <Tab classes={{ root: classes.levelTabRoot }} label="C2" {...a11yProps(5)} />
+                                <Tab classes={{ root: classes.levelTabRoot }} label="All" {...a11yProps(0)} />
+                                <Tab classes={{ root: classes.levelTabRoot }} label="A1" {...a11yProps(1)} />
+                                <Tab classes={{ root: classes.levelTabRoot }} label="A2" {...a11yProps(2)} />
+                                <Tab classes={{ root: classes.levelTabRoot }} label="B1" {...a11yProps(3)} />
+                                <Tab classes={{ root: classes.levelTabRoot }} label="B2" {...a11yProps(4)} />
+                                <Tab classes={{ root: classes.levelTabRoot }} label="C1" {...a11yProps(5)} />
+                                <Tab classes={{ root: classes.levelTabRoot }} label="C2" {...a11yProps(6)} />
                             </Tabs>
                             <TabPanel className={classes.levelTabPanel} value={levelTab} index={0}>
                                 {renderTabContent(langCode)}
