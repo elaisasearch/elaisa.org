@@ -181,6 +181,7 @@ const Bookmarks = () => {
                         <div className={classes.levelTabs}>
                             <Tabs
                                 orientation="vertical"
+                                centered
                                 variant="scrollable"
                                 value={levelTab}
                                 onChange={handleChangeLevelTab}
