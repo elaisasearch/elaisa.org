@@ -128,7 +128,7 @@ const Bookmarks = () => {
      * Render the bookmarks for each language
      * @param {String} lang 
      */
-    const renderTabContent = (lang) => {
+    const renderTabContent = (lang, level) => {
         return (
             <div className={classes.bookmarkRoot}>
                 {
@@ -137,7 +137,11 @@ const Bookmarks = () => {
                         <BookmarkIcon className={classes.bookmarkicon} />
                         :
                         bookmarks[lang].map((bm, index) => {
-                            return <BookmarkCard key={index} bookmark={bm} setDeleted={setDeleted} />
+                            if (bm.level === level) {
+                                return <BookmarkCard key={index} bookmark={bm} setDeleted={setDeleted} />
+                            } else if (level === 'All') {
+                                return <BookmarkCard key={index} bookmark={bm} setDeleted={setDeleted} />
+                            }
                         })
                 }
             </div>
@@ -173,7 +177,7 @@ const Bookmarks = () => {
             </Tabs>
             {
                 ['de', 'en', 'es'].map((langCode, index) => (
-                    <TabPanel value={tab} index={index}>
+                    <TabPanel key={index} value={tab} index={index}>
                         <div className={classes.levelTabs}>
                             <Tabs
                                 orientation="vertical"
@@ -191,9 +195,13 @@ const Bookmarks = () => {
                                 <Tab classes={{ root: classes.levelTabRoot }} label="C1" {...a11yProps(5)} />
                                 <Tab classes={{ root: classes.levelTabRoot }} label="C2" {...a11yProps(6)} />
                             </Tabs>
-                            <TabPanel className={classes.levelTabPanel} value={levelTab} index={0}>
-                                {renderTabContent(langCode)}
-                            </TabPanel>
+                            {
+                                ['All', 'A1', 'A2', 'B1', 'B2', 'C1', 'C2'].map((level, i) => (
+                                    <TabPanel key={i} className={classes.levelTabPanel} value={levelTab} index={i}>
+                                        {renderTabContent(langCode, level)}
+                                    </TabPanel>
+                                ))
+                            }
                         </div>
                     </TabPanel>
                 ))
