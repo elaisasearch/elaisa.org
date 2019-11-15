@@ -11,10 +11,12 @@
         justify-content: space-around;
         font-size: 17px;
         font-family: Helvetica;"
-    >       
-        <a href="https://elaisa.org"><img src="https://raw.githubusercontent.com/dasmemeteam/language-level-search-engine/master/services/service-ui/src/assets/img/logo.png" alt="elaisa api image" width="300"/></a>
-        <h1>Elaisa API</h1>
-        <h3>Welcome to the Elaisa Application Programming Interface.</h3>
+    >     
+        <div>
+            <a href="https://elaisa.org"><img src="https://raw.githubusercontent.com/dasmemeteam/language-level-search-engine/master/services/service-ui/src/assets/img/logo.png" alt="elaisa api image" width="300"/></a>
+            <h1>Elaisa API</h1>
+            <h3>Welcome to the Elaisa Application Programming Interface.</h3>
+        </div>  
         <a href="https://documenter.getpostman.com/view/2560401/SVtbR627?version=latest"
             style="
             text-decoration: none;
