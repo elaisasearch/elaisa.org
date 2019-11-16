@@ -95,6 +95,14 @@ const SignIn = (props) => {
                     // redux action
                     props.onSignIn(email, firstname, lastname);
 
+                    // save login state to localStorage
+                    localStorage.setItem('user', JSON.stringify({
+                        loggedIn: true,
+                        email,
+                        firstname,
+                        lastname
+                    }));
+
                     // navigate to App.js
                     props.history.push({
                         pathname: "/"

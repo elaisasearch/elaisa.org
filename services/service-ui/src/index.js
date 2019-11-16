@@ -44,6 +44,12 @@ axios.get('https://api.elaisa.org/getwords')
         store.dispatch({type: 'SET_WORDS', words: response.data.words});
     })
 
+// Get user loggedIn state from localStorage
+const userLocalStorage = JSON.parse(localStorage.getItem('user'));
+const { loggedIn, email, firstname, lastname } = userLocalStorage;
+if (loggedIn) {
+    store.dispatch({type: 'SIGN_IN', email: email, firstname: firstname, lastname: lastname});
+}
 
 ReactDOM.render(
     <Provider store={store}>

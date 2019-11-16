@@ -2,9 +2,9 @@ import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Gravatar from 'react-gravatar';
 import { Person, ExitToApp, Home, Dashboard } from '@material-ui/icons/';
-import { Menu, MenuItem, Button, Divider, ListItemIcon, ListItemText} from '@material-ui/core';
+import { Menu, MenuItem, Button, Divider, ListItemIcon, ListItemText } from '@material-ui/core';
 import { Link } from 'react-router-dom'
-import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 import { Translate } from 'react-localize-redux';
 
 /**
@@ -46,16 +46,32 @@ const Avatars = (props) => {
   }
 
   /**
+   * Logs out the current user in redux and localStorage
+   */
+  const handleLogoutUser = () => {
+    // logout user from redux
+    props.onSignOut()
+
+    // save login state to localStorage
+    localStorage.setItem('user', JSON.stringify({
+      loggedIn: false,
+      email: "frodo.beutlin@hobbits.com",
+      firstname: "Frodo",
+      lastname: "Beutlin",
+    }));
+  }
+
+  /**
    * Avatar menu with profile options.
    * @param {object} props the given properties.
    * @returns {JSX} render profile menu given if the user is logged in or not. Wether signIn or view profile stats and options.
   */
   const renderMenu = (props) => {
     if (props.loggedIn) {
-      return <Menu 
-        id="simple-menu" 
-        anchorEl={anchorEl} 
-        open={Boolean(anchorEl)} 
+      return <Menu
+        id="simple-menu"
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
         onClose={handleClose}
         anchorOrigin={{
           vertical: 'bottom',
@@ -68,30 +84,30 @@ const Avatars = (props) => {
         getContentAnchorEl={null}
       >
         <MenuItem component={Link} to="/profile">
-        <ListItemIcon>
+          <ListItemIcon>
             <Dashboard />
           </ListItemIcon>
           <ListItemText primary={<Translate id='UI__USER__MENU__PROFILE' />} />
         </MenuItem>
         <MenuItem component={Link} to="/account">
-        <ListItemIcon>
+          <ListItemIcon>
             <Person />
           </ListItemIcon>
           <ListItemText primary={<Translate id='UI__USER__MENU__ACCOUNT' />} />
         </MenuItem>
         <Divider />
-        <MenuItem onClick={props.onSignOut} component={Link} to="/">
-        <ListItemIcon>
+        <MenuItem onClick={handleLogoutUser} component={Link} to="/">
+          <ListItemIcon>
             <ExitToApp />
           </ListItemIcon>
           <ListItemText primary={<Translate id='UI__USER__MENU__SIGN_OUT' />} />
         </MenuItem>
       </Menu>
     }
-    return <Menu 
-      id="simple-menu" 
-      anchorEl={anchorEl} 
-      open={Boolean(anchorEl)} 
+    return <Menu
+      id="simple-menu"
+      anchorEl={anchorEl}
+      open={Boolean(anchorEl)}
       onClose={handleClose}
       anchorOrigin={{
         vertical: 'bottom',
@@ -104,10 +120,10 @@ const Avatars = (props) => {
       getContentAnchorEl={null}
     >
       <MenuItem component={Link} to="/signin">
-      <ListItemIcon>
-            <Home />
-          </ListItemIcon>
-          <ListItemText primary={<Translate id='UI__BUTTION__SIGN_IN' />} />
+        <ListItemIcon>
+          <Home />
+        </ListItemIcon>
+        <ListItemText primary={<Translate id='UI__BUTTION__SIGN_IN' />} />
       </MenuItem>
     </Menu>
   }
@@ -134,7 +150,7 @@ const Avatars = (props) => {
 */
 const mapDispatchToProps = dispatch => {
   return {
-      onSignOut: () => dispatch({type: 'SIGN_OUT'})
+    onSignOut: () => dispatch({ type: 'SIGN_OUT' })
   };
 };
 
