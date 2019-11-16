@@ -45,10 +45,20 @@ axios.get('https://api.elaisa.org/getwords')
     })
 
 // Get user loggedIn state from localStorage
-const userLocalStorage = JSON.parse(localStorage.getItem('user'));
-const { loggedIn, email, firstname, lastname } = userLocalStorage;
-if (loggedIn) {
-    store.dispatch({type: 'SIGN_IN', email: email, firstname: firstname, lastname: lastname});
+try {
+    const userLocalStorage = JSON.parse(localStorage.getItem('user'));
+    const { loggedIn, email, firstname, lastname } = userLocalStorage;
+    if (loggedIn) {
+        store.dispatch({type: 'SIGN_IN', email: email, firstname: firstname, lastname: lastname});
+    }
+} catch(error) {
+    // store the default state to localStorage if 'user' is undefined in localStorage
+    localStorage.setItem('user', JSON.stringify({
+        loggedIn: false,
+        email: "frodo.beutlin@hobbits.com",
+        firstname: "Frodo",
+        lastname: "Beutlin",
+    }));
 }
 
 ReactDOM.render(
