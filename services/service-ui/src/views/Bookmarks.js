@@ -7,6 +7,7 @@ import { makeStyles } from '@material-ui/styles';
 import { isMobile } from 'react-device-detect';
 import BookmarkIcon from '@material-ui/icons/Bookmark';
 import { Divider, Tabs, Tab, Box, Typography } from '@material-ui/core';
+import { Translate } from 'react-localize-redux';
 
 const TabPanel = (props) => {
     const { children, value, index, ...other } = props;
@@ -191,7 +192,7 @@ const Bookmarks = () => {
                                 aria-label="Vertical tabs for language level"
                                 className={classes.tabs}
                             >
-                                <Tab classes={{ root: classes.levelTabRoot }} label="All" {...a11yProps(0)} />
+                                <Tab classes={{ root: classes.levelTabRoot }} label={<Translate id='UI__DROPDOWN__LEVEL_ALL' />} {...a11yProps(0)} />
                                 <Tab classes={{ root: classes.levelTabRoot }} label="A1" {...a11yProps(1)} />
                                 <Tab classes={{ root: classes.levelTabRoot }} label="A2" {...a11yProps(2)} />
                                 <Tab classes={{ root: classes.levelTabRoot }} label="B1" {...a11yProps(3)} />
