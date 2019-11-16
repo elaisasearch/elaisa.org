@@ -142,6 +142,8 @@ const Bookmarks = () => {
                                 return <BookmarkCard key={index} bookmark={bm} setDeleted={setDeleted} />
                             } else if (level === 'All') {
                                 return <BookmarkCard key={index} bookmark={bm} setDeleted={setDeleted} />
+                            } else {
+                                return <div></div>
                             }
                         })
                 }
