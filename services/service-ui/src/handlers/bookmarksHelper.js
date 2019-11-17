@@ -14,6 +14,20 @@ export default function getBookmarks() {
     return bookmarks;
 }
 
+export function getBookmarksNumber() {
+    let bookmarks = localStorage.getItem("bookmarks");
+    let number = 0;
+    if (bookmarks !== null || bookmarks !== '') {
+        bookmarks = JSON.parse(bookmarks);
+    }
+
+    Object.keys(bookmarks).forEach((b) => {
+        number += bookmarks[b].length;
+    })
+
+    return number;
+}
+
 export function deleteBookmark(website) {
     let bookmarks = getBookmarks();
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { List, Divider, ListItem, ListItemIcon, ListItemText, Collapse, ListSubheader, Typography, Grid } from '@material-ui/core/';
+import { Badge, List, Divider, ListItem, ListItemIcon, ListItemText, Collapse, ListSubheader, Typography, Grid } from '@material-ui/core/';
 import { Help, ExpandLess, ExpandMore, Home, BugReport } from '@material-ui/icons/';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import SchoolIcon from '@material-ui/icons/School';
@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom'
 import { Translate } from "react-localize-redux";
 import { connect } from 'react-redux';
 import logo from '../../assets/img/logo.png'
+import { getBookmarksNumber } from '../../handlers/bookmarksHelper';
 
 /**
  * Link Item for Menu to change view.
@@ -101,7 +102,9 @@ class SideList extends Component {
                         {/* Home */}
                         <ListItemLink to="/bookmarks" >
                             <ListItemIcon>
-                                <BookmarksIcon />
+                                <Badge badgeContent={getBookmarksNumber()} color="secondary">
+                                    <BookmarksIcon />
+                                </Badge>
                             </ListItemIcon>
                             <ListItemText inset primary={<Translate id='UI__MENU__BOOKMARKS_BUTTON' />} />
                         </ListItemLink>
