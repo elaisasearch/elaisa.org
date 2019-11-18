@@ -4,6 +4,7 @@ import { Help, ExpandLess, ExpandMore, Home, BugReport } from '@material-ui/icon
 import GitHubIcon from '@material-ui/icons/GitHub';
 import SchoolIcon from '@material-ui/icons/School';
 import BookmarksIcon from '@material-ui/icons/Bookmarks';
+import GroupIcon from '@material-ui/icons/Group';
 import MenuHelper from './MenuHelper';
 import { Link } from 'react-router-dom'
 import { Translate } from "react-localize-redux";
@@ -137,6 +138,14 @@ class SideList extends Component {
                             <ListItemText inset primary={<Translate id='UI__MENU__HELP_BUTTON' />} />
                         </ListItemLink>
                         <Divider />
+                        <ListItemLinkHref href="https://www.patreon.com/join/elaisa/checkout" target="_blank">
+                            <ListItemIcon>
+                                <Badge badgeContent={1} max={9999} color="secondary">
+                                    <GroupIcon />
+                                </Badge>
+                            </ListItemIcon>
+                            <ListItemText inset primary={<Translate id='UI__MENU__PATREON_BUTTON' />} />
+                        </ListItemLinkHref>
                         {/* Navigate to GitHub page */}
                         <ListItemLinkHref href='https://github.com/dasmemeteam/language-level-search-engine/' target="_blank">
                             <ListItemIcon>
