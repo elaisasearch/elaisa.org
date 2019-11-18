@@ -140,9 +140,7 @@ class SideList extends Component {
                         <Divider />
                         <ListItemLinkHref href="https://www.patreon.com/join/elaisa/checkout" target="_blank">
                             <ListItemIcon>
-                                <Badge badgeContent={1} max={9999} color="secondary">
-                                    <GroupIcon />
-                                </Badge>
+                                <GroupIcon />
                             </ListItemIcon>
                             <ListItemText inset primary={<Translate id='UI__MENU__PATREON_BUTTON' />} />
                         </ListItemLinkHref>
