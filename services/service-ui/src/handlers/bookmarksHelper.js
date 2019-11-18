@@ -17,9 +17,13 @@ export default function getBookmarks() {
 export function getBookmarksNumber() {
     let bookmarks = localStorage.getItem("bookmarks");
     let number = 0;
-    if (bookmarks !== null || bookmarks !== '') {
-        bookmarks = JSON.parse(bookmarks);
+    
+    // Return 0 if there are no bookmarks yet.
+    if (bookmarks === null || bookmarks === '') {
+        return number;
     }
+
+    bookmarks = JSON.parse(bookmarks);
 
     Object.keys(bookmarks).forEach((b) => {
         number += bookmarks[b].length;
