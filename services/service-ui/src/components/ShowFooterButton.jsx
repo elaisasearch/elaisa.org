@@ -13,7 +13,7 @@ const useStyles = makeStyles({
         right: '0',
         marginLeft: 'auto !important',
         marginRight: 'auto !important',
-        bottom: '5vh',
+        bottom: '7vh',
     }
 });
 
