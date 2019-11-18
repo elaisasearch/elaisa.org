@@ -73,7 +73,6 @@ const Results = (props) => {
         }
       })
       .then(response => {
-        console.log(response.data)
         if (response.data.correct_query) {
           setState({
             resultDocs: [],
