@@ -102,7 +102,7 @@ class SideList extends Component {
                         {/* Home */}
                         <ListItemLink to="/bookmarks" >
                             <ListItemIcon>
-                                <Badge badgeContent={getBookmarksNumber()} color="secondary">
+                                <Badge badgeContent={getBookmarksNumber()} max={999} color="secondary">
                                     <BookmarksIcon />
                                 </Badge>
                             </ListItemIcon>
