@@ -47,7 +47,7 @@ class LeftMenu extends React.Component {
                 >
                     <MenuIcon />
                 </IconButton>
-                <SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} open={this.state.left} onClose={this.toggleDrawer('left', false)}>
+                <SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} open={this.state.left} onOpen={this.toggleDrawer('left', true)} onClose={this.toggleDrawer('left', false)}>
                     <SideList />
                 </SwipeableDrawer>
             </div>
