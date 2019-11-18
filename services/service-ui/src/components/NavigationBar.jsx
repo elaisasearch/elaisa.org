@@ -85,7 +85,7 @@ class NavigationBar extends React.Component {
         >
           <Button disableRipple component={Link} to="/" style={styles.elaisaButton}><img src={logo} style={styles.elaisaText} alt="Elaisa Search Engine Logo"></img></Button>
           <SearchBarNavigationBar handleClickSearch={this.searchButtonPressed} value={props.values[0]} onChange={e => this.setState({ value: e })} onKeyDown={this.keyPress} />
-          <DropDownMenu value={this.state.language} desc={<Translate id='UI__DROPDOWN__LANGUAGE' />} items={["Deutsch", "English", "Español"]} values={["de", "en", "es"]} onChange={e => this.setState({ language: e })} />
+          <DropDownMenu value={this.state.language} desc={<Translate id='UI__DROPDOWN__LANGUAGE' />} items={["D̶e̶u̶t̶s̶c̶h̶", "English", "E̶s̶p̶a̶ñ̶o̶l̶"]} values={["de", "en", "es"]} onChange={e => this.setState({ language: e })} />
           <DropDownMenu value={this.state.level} desc={<Translate id='UI__DROPDOWN__LEVEL' />} items={[<Translate id='UI__DROPDOWN__LEVEL_ALL' />, "A1", "A2", "B1", "B2", "C1", "C2"]} values={["all", "A1", "A2", "B1", "B2", "C1", "C2"]} onChange={e => this.setState({ level: e })} />
         </Grid>
       }
