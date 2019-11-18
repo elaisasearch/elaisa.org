@@ -1,10 +1,12 @@
 import React from 'react';
-import { Button, Grid } from '@material-ui/core/';
+import { Button, Grid, IconButton } from '@material-ui/core/';
 import { Translate } from "react-localize-redux";
 import LanguageSelect from './LanguageSelect';
 import LegalNoticeDialog from './Dialogs/LegalNoticeDialog';
 import { makeStyles } from '@material-ui/styles';
 import { isMobile } from 'react-device-detect';
+import GetAppIcon from '@material-ui/icons/GetApp';
+
 
 const useStyles = makeStyles({
     infoBar: {
@@ -37,6 +39,22 @@ const BottomInfoBar = () => {
         setLegalNoticeDialogOpen(false);
     }
 
+    const handleAddToHomescreenClick = () => {
+        const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
+
+        if (iOS) {
+            alert(`
+            1. Open Share menu
+            2. Tap on "Add to Home Screen"`
+          );
+        } else {
+            alert(`
+            1. Tap on the menu button
+            2. Tap on "Add to Home Screen"`
+          );
+        }
+      };
+
     return (
         <Grid
             className={classes.infoBar}
@@ -46,6 +64,15 @@ const BottomInfoBar = () => {
         >
             <LegalNoticeDialog open={legalNoticeDialogOpen} handleClose={handleCloseLegalNoticeDialog} />
             <LanguageSelect />
+            {
+                isMobile
+                ?
+                <IconButton onClick={handleAddToHomescreenClick}>
+                    <GetAppIcon />
+                </IconButton>
+                :
+                null
+            }
             <Button className={classes.legalNoticeButton} onClick={e => setLegalNoticeDialogOpen(true)}>
                 <Translate id='UI__BUTTON__LEGAL' />
             </Button>
