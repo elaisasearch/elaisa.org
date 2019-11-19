@@ -11,7 +11,7 @@ import { makeStyles } from '@material-ui/styles';
 import { isMobile } from 'react-device-detect';
 import globals from '../globals.json';
 import ShareIcon from '@material-ui/icons/Share';
- 
+import HideOnScroll from '../components/HideOnScroll';
 
 const useStyles = makeStyles({
   resultsRoot: {
@@ -24,6 +24,8 @@ const useStyles = makeStyles({
     right: isMobile ? '5%' : '2%'
   }
 });
+
+
 
 /**
  * Results view class.
@@ -218,9 +220,11 @@ const Results = (props) => {
       />
       { isMobile ? null : <Divider /> }
       {renderResults()}
-      <Fab className={classes.shareButton}>
-        <ShareIcon />
-      </Fab>
+      <HideOnScroll {...props}>
+        <Fab className={classes.shareButton}>
+          <ShareIcon />
+        </Fab>
+      </HideOnScroll>
     </div>
   );
 }
