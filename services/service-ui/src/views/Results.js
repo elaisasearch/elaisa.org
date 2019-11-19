@@ -3,7 +3,7 @@ import NavigationBar from "../components/NavigationBar";
 import ResultList from "../components/ResultList/ResultList";
 import axios from "axios";
 import WikiCard from "../components/WikiCard/WikiCard";
-import { Divider, Grid, Fab } from "@material-ui/core";
+import { Divider, Grid, Fab, Tooltip } from "@material-ui/core";
 import NotFound from '../components/NotFound';
 import { connect } from 'react-redux';
 import HeaderTags from '../components/HeaderTags';
@@ -12,6 +12,7 @@ import { isMobile } from 'react-device-detect';
 import globals from '../globals.json';
 import ShareIcon from '@material-ui/icons/Share';
 import HideOnScroll from '../components/HideOnScroll';
+import { Translate } from 'react-localize-redux';
 
 const useStyles = makeStyles({
   resultsRoot: {
@@ -221,9 +222,12 @@ const Results = (props) => {
       { isMobile ? null : <Divider /> }
       {renderResults()}
       <HideOnScroll {...props}>
-        <Fab className={classes.shareButton}>
-          <ShareIcon />
-        </Fab>
+        <Tooltip title={<Translate id='UI__RESULTS_PAGE__SHARE_BUTTON__TOOLTIP' />}>
+
+          <Fab className={classes.shareButton}>
+            <ShareIcon />
+          </Fab>
+        </Tooltip>
       </HideOnScroll>
     </div>
   );
