@@ -221,13 +221,20 @@ const Results = (props) => {
       />
       { isMobile ? null : <Divider /> }
       {renderResults()}
-      <HideOnScroll {...props}>
-        <Tooltip title={<Translate id='UI__RESULTS_PAGE__SHARE_BUTTON__TOOLTIP' />}>
-          <Fab className={classes.shareButton}>
-            <ShareIcon />
-          </Fab>
-        </Tooltip>
-      </HideOnScroll>
+      {
+        state.waiting
+        ?
+        null
+        :
+        <HideOnScroll {...props}>
+          <Tooltip title={<Translate id='UI__RESULTS_PAGE__SHARE_BUTTON__TOOLTIP' />}>
+            <Fab className={classes.shareButton}>
+              <ShareIcon />
+            </Fab>
+          </Tooltip>
+        </HideOnScroll>
+      }
+
     </div>
   );
 }
