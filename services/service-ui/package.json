@@ -5,7 +5,7 @@
   "dependencies": {
     "@material-ui/core": "4.5.0",
     "@material-ui/icons": "^4.5.1",
-    "@material-ui/lab": "4.0.0-alpha.28",
+    "@material-ui/lab": "^4.0.0-alpha.32",
     "@material-ui/styles": "4.5.0",
     "@react-pdf/renderer": "^1.6.2",
     "autosuggest-highlight": "^3.1.1",
