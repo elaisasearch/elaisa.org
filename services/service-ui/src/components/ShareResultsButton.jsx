@@ -84,6 +84,7 @@ export default function ShareResultsButton(props) {
 
     const handleCloseSnackBar = () => {
         setOpenSnackbar(false);
+        setCopiedLink(false)
     }
 
     React.useEffect(() => {
