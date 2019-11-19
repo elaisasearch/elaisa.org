@@ -3,17 +3,25 @@ import NavigationBar from "../components/NavigationBar";
 import ResultList from "../components/ResultList/ResultList";
 import axios from "axios";
 import WikiCard from "../components/WikiCard/WikiCard";
-import { Divider, Grid } from "@material-ui/core";
+import { Divider, Grid, Fab } from "@material-ui/core";
 import NotFound from '../components/NotFound';
 import { connect } from 'react-redux';
 import HeaderTags from '../components/HeaderTags';
 import { makeStyles } from '@material-ui/styles';
 import { isMobile } from 'react-device-detect';
 import globals from '../globals.json';
+import ShareIcon from '@material-ui/icons/Share';
+ 
 
 const useStyles = makeStyles({
   resultsRoot: {
     height: '100vh'
+  },
+  shareButton: {
+    position: 'fixed',
+    margin: '0 auto',
+    bottom: '3%',
+    right: isMobile ? '5%' : '2%'
   }
 });
 
@@ -210,6 +218,9 @@ const Results = (props) => {
       />
       { isMobile ? null : <Divider /> }
       {renderResults()}
+      <Fab className={classes.shareButton}>
+        <ShareIcon />
+      </Fab>
     </div>
   );
 }
