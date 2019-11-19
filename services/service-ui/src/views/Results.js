@@ -211,7 +211,7 @@ const Results = (props) => {
       />
       {isMobile ? null : <Divider />}
       {renderResults()}
-      {state.waiting ? null : <ShareResultsButton />}
+      {state.waiting ? null : <ShareResultsButton searchValue={searchValue} />}
     </div>
   );
 }

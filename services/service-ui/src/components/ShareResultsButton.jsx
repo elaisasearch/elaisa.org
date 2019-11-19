@@ -5,9 +5,10 @@ import { isMobile } from 'react-device-detect';
 import SpeedDial from '@material-ui/lab/SpeedDial';
 import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
 import FileCopyIcon from '@material-ui/icons/FileCopyOutlined';
-import SaveIcon from '@material-ui/icons/Save';
-import PrintIcon from '@material-ui/icons/Print';
-import FavoriteIcon from '@material-ui/icons/Favorite';
+import MailIcon from '@material-ui/icons/Mail';
+// import SaveIcon from '@material-ui/icons/Save';
+// import PrintIcon from '@material-ui/icons/Print';
+// import FavoriteIcon from '@material-ui/icons/Favorite';
 import { useScrollTrigger, Snackbar, SnackbarContent } from '@material-ui/core';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { green } from '@material-ui/core/colors';
@@ -50,17 +51,22 @@ function MySnackbarContentWrapper(props) {
 
 const actions = [
     { icon: <FileCopyIcon />, name: 'Copy Link' },
-    { icon: <SaveIcon />, name: 'Save' },
-    { icon: <PrintIcon />, name: 'Print' },
-    { icon: <ShareIcon />, name: 'Share' },
-    { icon: <FavoriteIcon />, name: 'Like' },
+    { icon: <MailIcon />, name: 'Send Mail' },
+    // { icon: <PrintIcon />, name: 'Print' },
+    // { icon: <ShareIcon />, name: 'Share' },
+    // { icon: <FavoriteIcon />, name: 'Like' },
 ];
 
 export default function ShareResultsButton(props) {
+
+    const { searchValue } = props;
+
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const [copiedLink, setCopiedLink] = React.useState(false);
     const [openSnackbar, setOpenSnackbar] = React.useState(false);
+
+    const url = window.location.href;
 
     const trigger = useScrollTrigger({
         target: props.window ? window() : undefined,
@@ -105,7 +111,7 @@ export default function ShareResultsButton(props) {
                     switch (action.name) {
                         case 'Copy Link':
                             return (
-                                <CopyToClipboard text={window.location.href} onCopy={() => setCopiedLink(true)}>
+                                <CopyToClipboard text={url} onCopy={() => setCopiedLink(true)}>
                                     <SpeedDialAction
                                         key={action.name}
                                         icon={action.icon}
@@ -115,6 +121,14 @@ export default function ShareResultsButton(props) {
                                     />
                                 </CopyToClipboard>
                             );
+                        case 'Send Mail':
+                            return <SpeedDialAction
+                                key={action.name}
+                                icon={action.icon}
+                                tooltipTitle={action.name}
+                                tooltipOpen={isMobile ? true : false}
+                                href={`mailto:?subject=Elaisa Search - ${searchValue}&body=Hi,%0A%0AI want to share this Elaisa Search with you:%0A${url}`}
+                            />
                         default:
                             return <SpeedDialAction
                                 key={action.name}
