@@ -48,26 +48,23 @@ export default function ShareResultsButton(props) {
 
     return (
         <SpeedDial
-                ariaLabel="sharebutton speed dial menu"
-                className={classes.shareButton}
-                icon={<ShareIcon />}
-                hidden={!trigger}
-                onClose={handleClose}
-                onOpen={handleOpen}
-                open={open}
-            >
-                {actions.map(action => (
-                    <SpeedDialAction
-                        key={action.name}
-                        icon={action.icon}
-                        tooltipTitle={action.name}
-                        tooltipOpen={isMobile ? true : false}
-                        onClick={handleClose}
-                    />
-                ))}
-            </SpeedDial>
-        // <HideOnScroll {...props}>
-            
-        // </HideOnScroll>
+            ariaLabel="sharebutton speed dial menu"
+            className={classes.shareButton}
+            icon={<ShareIcon />}
+            hidden={!trigger}
+            onClose={handleClose}
+            onOpen={handleOpen}
+            open={open}
+        >
+            {actions.map(action => (
+                <SpeedDialAction
+                    key={action.name}
+                    icon={action.icon}
+                    tooltipTitle={action.name}
+                    tooltipOpen={isMobile ? true : false}
+                    onClick={handleClose}
+                />
+            ))}
+        </SpeedDial>
     );
 }
