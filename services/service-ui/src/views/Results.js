@@ -26,7 +26,12 @@ const Results = (props) => {
 
   const classes = useStyles();
 
-  const { searchValue, language, level } = props.location.state;
+  // Read parameters from link to provide sharing results.
+  const params = new URLSearchParams(props.location.search);
+  const searchValue = params.get('query');
+  const language = params.get('language');
+  const level = params.get('level');
+  
   const { email, loggedIn } = props; //redux
 
   const [state, setState] = React.useState({
