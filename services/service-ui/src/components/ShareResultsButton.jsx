@@ -51,7 +51,7 @@ export default function ShareResultsButton(props) {
             ariaLabel="sharebutton speed dial menu"
             className={classes.shareButton}
             icon={<ShareIcon />}
-            hidden={!trigger}
+            hidden={trigger}
             onClose={handleClose}
             onOpen={handleOpen}
             open={open}
