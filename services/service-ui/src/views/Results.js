@@ -3,30 +3,20 @@ import NavigationBar from "../components/NavigationBar";
 import ResultList from "../components/ResultList/ResultList";
 import axios from "axios";
 import WikiCard from "../components/WikiCard/WikiCard";
-import { Divider, Grid, Fab, Tooltip } from "@material-ui/core";
+import { Divider, Grid } from "@material-ui/core";
 import NotFound from '../components/NotFound';
 import { connect } from 'react-redux';
 import HeaderTags from '../components/HeaderTags';
 import { makeStyles } from '@material-ui/styles';
 import { isMobile } from 'react-device-detect';
 import globals from '../globals.json';
-import ShareIcon from '@material-ui/icons/Share';
-import HideOnScroll from '../components/HideOnScroll';
-import { Translate } from 'react-localize-redux';
+import ShareResultsButton from '../components/ShareResultsButton';
 
 const useStyles = makeStyles({
   resultsRoot: {
     height: '100vh'
-  },
-  shareButton: {
-    position: 'fixed',
-    margin: '0 auto',
-    bottom: '3%',
-    right: isMobile ? '5%' : '2%'
   }
 });
-
-
 
 /**
  * Results view class.
@@ -221,20 +211,7 @@ const Results = (props) => {
       />
       {isMobile ? null : <Divider />}
       {renderResults()}
-      {
-        state.waiting
-          ?
-          null
-          :
-          <HideOnScroll {...props}>
-            <Tooltip title={<Translate id='UI__RESULTS_PAGE__SHARE_BUTTON__TOOLTIP' />}>
-              <Fab className={classes.shareButton}>
-                <ShareIcon />
-              </Fab>
-            </Tooltip>
-          </HideOnScroll>
-      }
-
+      {state.waiting ? null : <ShareResultsButton />}
     </div>
   );
 }
