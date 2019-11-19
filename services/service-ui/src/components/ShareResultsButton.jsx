@@ -111,7 +111,7 @@ export default function ShareResultsButton(props) {
                     switch (action.name) {
                         case 'Copy Link':
                             return (
-                                <CopyToClipboard text={url} onCopy={() => setCopiedLink(true)}>
+                                <CopyToClipboard key={action.name} text={url} onCopy={() => setCopiedLink(true)}>
                                     <SpeedDialAction
                                         key={action.name}
                                         icon={action.icon}
