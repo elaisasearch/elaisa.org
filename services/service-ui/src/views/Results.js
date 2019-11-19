@@ -223,7 +223,6 @@ const Results = (props) => {
       {renderResults()}
       <HideOnScroll {...props}>
         <Tooltip title={<Translate id='UI__RESULTS_PAGE__SHARE_BUTTON__TOOLTIP' />}>
-
           <Fab className={classes.shareButton}>
             <ShareIcon />
           </Fab>
