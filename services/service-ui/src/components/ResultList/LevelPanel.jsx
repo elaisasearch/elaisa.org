@@ -131,9 +131,9 @@ const LevelPanel = (props) => {
      */
     const renderBookMarkForArticle = () => {
         if (isMarked) {
-            return <BookmarkIcon fontSize='medium' />
+            return <BookmarkIcon fontSize='default' />
         } else {
-            return <BookmarkBorderIcon fontSize='medium' />
+            return <BookmarkBorderIcon fontSize='default' />
         }
     }
 
@@ -175,7 +175,7 @@ const LevelPanel = (props) => {
             <ExpansionPanelSummary
                 aria-controls="panel1a-content"
                 id="panel1a-header"
-                expandIcon={<FitnessCenterIcon fontSize="medium" />}
+                expandIcon={<FitnessCenterIcon fontSize="default" />}
             >
             </ExpansionPanelSummary>
             <ExpansionPanelDetails className={classes.expanelDetails}>
