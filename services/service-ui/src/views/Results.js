@@ -42,7 +42,7 @@ const Results = (props) => {
   const searchValue = params.get('query');
   const language = params.get('language');
   const level = params.get('level');
-  
+
   const { email, loggedIn } = props; //redux
 
   const [state, setState] = React.useState({
@@ -190,7 +190,7 @@ const Results = (props) => {
           {renderWiki(state.wiki_title.length === 0)}
         </Grid>
       );
-    } else if (state.resultDocsLength === 0){
+    } else if (state.resultDocsLength === 0) {
       // Show the sad dog centered if there are no results
       return <NotFound searchValue={state.searchValue} language={state.language} level={state.level} correctSpelledQuery={state.correct_spelled_query} onClickSpellCheck={onClickSpellCheckForNewSearch.bind(this)} />
     }
@@ -219,20 +219,20 @@ const Results = (props) => {
         ]}
         id="navBar"
       />
-      { isMobile ? null : <Divider /> }
+      {isMobile ? null : <Divider />}
       {renderResults()}
       {
         state.waiting
-        ?
-        null
-        :
-        <HideOnScroll {...props}>
-          <Tooltip title={<Translate id='UI__RESULTS_PAGE__SHARE_BUTTON__TOOLTIP' />}>
-            <Fab className={classes.shareButton}>
-              <ShareIcon />
-            </Fab>
-          </Tooltip>
-        </HideOnScroll>
+          ?
+          null
+          :
+          <HideOnScroll {...props}>
+            <Tooltip title={<Translate id='UI__RESULTS_PAGE__SHARE_BUTTON__TOOLTIP' />}>
+              <Fab className={classes.shareButton}>
+                <ShareIcon />
+              </Fab>
+            </Tooltip>
+          </HideOnScroll>
       }
 
     </div>
