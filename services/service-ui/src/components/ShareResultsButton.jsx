@@ -50,6 +50,9 @@ export default function ShareResultsButton(props) {
         <SpeedDial
             ariaLabel="sharebutton speed dial menu"
             className={classes.shareButton}
+            FabProps={{
+                color: 'default'
+            }}
             icon={<ShareIcon />}
             hidden={trigger}
             onClose={handleClose}
