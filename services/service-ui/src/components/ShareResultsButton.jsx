@@ -33,6 +33,7 @@ const useStyles = makeStyles({
 function MySnackbarContentWrapper(props) {
     const { className, message, onClose, variant, ...other } = props;
 
+    // TODO: Background Color is not working after docker build
     const classes = useStyles();
 
     return (
@@ -117,7 +118,7 @@ export default function ShareResultsButton(props) {
                                         key={action.name}
                                         icon={action.icon}
                                         tooltipTitle={action.name}
-                                        tooltipOpen={isMobile ? true : false}
+                                        tooltipOpen={false}
                                         onClick={handleClose}
                                     />
                                 </CopyToClipboard>
@@ -127,15 +128,15 @@ export default function ShareResultsButton(props) {
                                 key={action.name}
                                 icon={action.icon}
                                 tooltipTitle={action.name}
-                                tooltipOpen={isMobile ? true : false}
-                                href={`mailto:?subject=Elaisa Search - ${searchValue}&body=Hi,%0A%0AI want to share this Elaisa Search with you:%0A${url}`}
+                                tooltipOpen={false}
+                                href={`mailto:?subject=Elaisa Search - ${searchValue}&body=Hi,%0A%0AI want to share this Elaisa Search with you:%0A${encodeURIComponent(url)}`}
                             />
                         default:
                             return <SpeedDialAction
                                 key={action.name}
                                 icon={action.icon}
                                 tooltipTitle={action.name}
-                                tooltipOpen={isMobile ? true : false}
+                                tooltipOpen={false}
                                 onClick={handleClose}
                             />
                     }
