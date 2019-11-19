@@ -1,10 +1,15 @@
 import React from 'react';
-import { Tooltip, Fab } from '@material-ui/core';
-import { Translate } from 'react-localize-redux';
 import ShareIcon from '@material-ui/icons/Share';
 import { makeStyles } from '@material-ui/styles';
 import { isMobile } from 'react-device-detect';
-import HideOnScroll from './HideOnScroll';
+import SpeedDial from '@material-ui/lab/SpeedDial';
+import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
+import FileCopyIcon from '@material-ui/icons/FileCopyOutlined';
+import SaveIcon from '@material-ui/icons/Save';
+import PrintIcon from '@material-ui/icons/Print';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import { useScrollTrigger } from '@material-ui/core';
+
 
 const useStyles = makeStyles({
     shareButton: {
@@ -15,16 +20,54 @@ const useStyles = makeStyles({
     }
 });
 
+const actions = [
+    { icon: <FileCopyIcon />, name: 'Copy Link' },
+    { icon: <SaveIcon />, name: 'Save' },
+    { icon: <PrintIcon />, name: 'Print' },
+    { icon: <ShareIcon />, name: 'Share' },
+    { icon: <FavoriteIcon />, name: 'Like' },
+];
+
 export default function ShareResultsButton(props) {
     const classes = useStyles();
+    const [open, setOpen] = React.useState(false);
+
+    const trigger = useScrollTrigger({
+        target: props.window ? window() : undefined,
+        disableHysteresis: true,
+        threshold: 100,
+    });
+
+    const handleOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     return (
-        <HideOnScroll {...props}>
-            <Tooltip title={<Translate id='UI__RESULTS_PAGE__SHARE_BUTTON__TOOLTIP' />}>
-                <Fab className={classes.shareButton}>
-                    <ShareIcon />
-                </Fab>
-            </Tooltip>
-        </HideOnScroll>
+        <SpeedDial
+                ariaLabel="sharebutton speed dial menu"
+                className={classes.shareButton}
+                icon={<ShareIcon />}
+                hidden={!trigger}
+                onClose={handleClose}
+                onOpen={handleOpen}
+                open={open}
+            >
+                {actions.map(action => (
+                    <SpeedDialAction
+                        key={action.name}
+                        icon={action.icon}
+                        tooltipTitle={action.name}
+                        tooltipOpen={isMobile ? true : false}
+                        onClick={handleClose}
+                    />
+                ))}
+            </SpeedDial>
+        // <HideOnScroll {...props}>
+            
+        // </HideOnScroll>
     );
 }
