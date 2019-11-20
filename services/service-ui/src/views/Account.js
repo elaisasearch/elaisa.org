@@ -25,7 +25,9 @@ const useStyles = makeStyles({
         flexDirection: 'column',
         height: isMobile ? '100%' : '80vh',
         width: isMobile ? '100%' : '50vw',
-        alignItems: 'center'
+        alignItems: 'center',
+        boxShadow: isMobile ? 'none' : null
+        
     },
     accountLogo: {
         width: '100px',
@@ -45,7 +47,8 @@ const useStyles = makeStyles({
     passwordTextfieldsDiv: {
         width: '100%',
         display: 'flex',
-        flexDirection: isMobile ? 'column' : 'row'
+        flexDirection: isMobile ? 'column' : 'row',
+        justifyContent: !isMobile ? 'center' : null
     }
 });
 
@@ -124,7 +127,6 @@ const Account = (props) => {
                             onChange={e => setOldPass(e.target.value)}
                             variant="outlined"
                             required
-                            fullWidth
                             name="password"
                             label={<Translate id='UI__USER__ACCOUNT_PAGE__CHANGE_PASSWORD__OLD_PASSWORD' />}
                             type="password"
@@ -136,7 +138,6 @@ const Account = (props) => {
                             onChange={e => setNewPass(e.target.value)}
                             variant="outlined"
                             required
-                            fullWidth
                             name="password"
                             label={<Translate id='UI__USER__ACCOUNT_PAGE__CHANGE_PASSWORD__NEW_PASSWORD' />}
                             type="password"
