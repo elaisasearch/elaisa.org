@@ -6,11 +6,9 @@ import { makeStyles } from '@material-ui/styles';
 
 import NavigationBar from '../components/NavigationBar';
 import SearchBar from '../components/SearchBar/SearchBar';
-import Footer from '../components/Footer/Footer';
 import SplashDialog from '../components/Dialogs/SplashDialog';
 import HeaderTags from '../components/HeaderTags';
 import QuickSearch from '../components/QuickSearch';
-import ShowFooterButton from '../components/ShowFooterButton';
 import BottomInfoBar from '../components/BottomInfoBar';
 
 import logo from '../assets/img/logo.png';
@@ -86,10 +84,8 @@ const App = (props) => {
         ></img>
         <SearchBar />
         <QuickSearch topics={['Donald Trump', 'UK', 'sport']}/>
-        <ShowFooterButton />
         <BottomInfoBar />
       </Grid>
-      <Footer />
     </div>
   );
 }
