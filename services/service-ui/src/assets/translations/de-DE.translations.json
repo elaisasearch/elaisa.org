@@ -5,7 +5,6 @@
     "UI__DROPDOWN__LEVEL_ALL": "Alle",
     "UI__SEARCHBAR": "Suche nach Dokumenten",
     "UI__BUTTION__SIGN_IN": "Einloggen",
-    "UI__BUTTON__SHOW_FOOTER__TOOLTIP": "Mehr Infos anzeigen",
     "UI__DIALOG__QUICK_SEARCH": "Schnellsuche",
 
     "UI__USER__MENU__PROFILE": "Profil",
@@ -59,12 +58,7 @@
     "UI__SPLASH_SCREEN__MORE_INFOS__BUTTON": "Mehr Infos",
 
     "UI__LEGAL_NOTICE__TITLE": "Impressum",
-
-    "UI__FOOTER_ONE__TITLE": "Erforsche die Welt der Sprachen mit Elaisa.",
-    "UI__FOOTER_ONE__TEXT1": "Eine neue Sprache zu lernen ist immer eine große Herausforderung, aber es kann ein bisschen einfacher sein - mit Elaisa. Es ist bekannt, dass eine Sprache nur beherrscht werden kann, wenn sie regelmäßig verwendet wird, dh. wenn sie in einem Gespräch oder zum Lesen geeigneter Literatur verwendet wird. Das Problem bei herkömmlichen Lernmaterialien ist der veraltete Zustand der jeweiligen Texte. Lehrbücher entwickeln oft ihre eigenen Geschichten, um die verschiedenen Themen eines Gesprächs anhand von in sich geschlossenen Geschichten zu erklären. Das hat leider nichts mit Aktualität zu tun.",
-    "UI__FOOTER_ONE__TEXT2": "Daher bietet Elaisa die Funktionalität, nach aktuellen Artikeln und Websites einer gewünschten Sprache zu suchen. Das eigene Sprachniveau kann direkt angegeben werden, um den eigenen Wissensstand zu erhalten oder sogar zu erweitern.",
-    "UI__FOOTER_TWO__TITLE": "Hilfreiche Links",
-    "UI__FOOTER_TWO__SUBTITLE": "Wir haben einige hilfreiche Links aufgelistet, damit du deine Traumsprache leicht finden kannst.",
+    
     "UI__FOOTER_LEGAL": "Elaisa - Sprachniveau Suchmaschine - Alle Rechte vorbehalten - 2019",
     "UI__FOOTER_PERSON_INSTITUTE": "Informationswissenschaft",
     "UI__FOOTER_PERSON_FACULTY": "Philospohische Fakultät",

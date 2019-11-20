@@ -5,7 +5,6 @@
     "UI__DROPDOWN__LEVEL_ALL": "Todos",
     "UI__SEARCHBAR": "Buscar documentos",
     "UI__BUTTION__SIGN_IN": "Registrarse",
-    "UI__BUTTON__SHOW_FOOTER__TOOLTIP": "Mostrar más información",
     "UI__DIALOG__QUICK_SEARCH": "Busqueda rapida",
 
     "UI__USER__MENU__PROFILE": "Perfil",
@@ -60,11 +59,6 @@
 
     "UI__LEGAL_NOTICE__TITLE": "Impresión",
 
-    "UI__FOOTER_ONE__TITLE": "Descubre el mundo de los idiomas con Elaisa",
-    "UI__FOOTER_ONE__TEXT1": "Aprender un nuevo idioma siempre es un gran desafío, pero puede ser un poco más fácil, con Elaisa. Como se sabe, un idioma solo se puede dominar si se usa regularmente, es decir, si se usa en una conversación o para leer literatura apropiada. El problema con los materiales de aprendizaje convencionales es el estado desactualizado de los textos respectivos. Los libros de texto a menudo desarrollan sus propias historias para explicar los diversos temas de una conversación por medio de historias independientes. Desafortunadamente, esto no tiene nada que ver con la actualidad.",
-    "UI__FOOTER_ONE__TEXT2": "Por lo tanto, Elaisa proporciona la funcionalidad para buscar artículos y sitios web actuales del idioma deseado. El nivel de idioma propio se puede especificar directamente para mantener o incluso expandir el nivel de conocimiento propio.",
-    "UI__FOOTER_TWO__TITLE": "Enlaces Útiles",
-    "UI__FOOTER_TWO__SUBTITLE": "Hemos enumerado algunos enlaces útiles para que pueda encontrar fácilmente el idioma de sus sueños.",
     "UI__FOOTER_LEGAL": "Elaisa - Language Level Search Engine - Todos los derechos reservados - 2019",
     "UI__FOOTER_PERSON_INSTITUTE": "Ciencias de la Información",
     "UI__FOOTER_PERSON_FACULTY": "Facultad de Artes y Humanidades",
