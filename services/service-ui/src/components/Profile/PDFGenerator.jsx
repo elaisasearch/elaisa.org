@@ -20,9 +20,9 @@ const styles = StyleSheet.create({
         flexDirection: "column"
     },
     image: {
-        width: "25%",
-        marginTop: "5%",
-        marginLeft: "5%"
+        width: "25% !important",
+        marginTop: "5% !important",
+        marginLeft: "5% !important"
     },
     content: {
         marginTop: "5%"
