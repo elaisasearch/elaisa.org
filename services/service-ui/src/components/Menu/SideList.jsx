@@ -138,12 +138,12 @@ class SideList extends Component {
                             <ListItemText inset primary={<Translate id='UI__MENU__HELP_BUTTON' />} />
                         </ListItemLink>
                         <Divider />
-                        <ListItemLinkHref href="https://www.patreon.com/join/elaisa/checkout" target="_blank">
+                        {/* <ListItemLinkHref href="https://www.patreon.com/join/elaisa/checkout" target="_blank">
                             <ListItemIcon>
                                 <GroupIcon />
                             </ListItemIcon>
                             <ListItemText inset primary={<Translate id='UI__MENU__PATREON_BUTTON' />} />
-                        </ListItemLinkHref>
+                        </ListItemLinkHref> */}
                         {/* Navigate to GitHub page */}
                         <ListItemLinkHref href='https://github.com/dasmemeteam/language-level-search-engine/' target="_blank">
                             <ListItemIcon>
