@@ -17,7 +17,7 @@ import globals from '../globals.json';
 const useStyles = makeStyles({
     profileContent: {
         marginTop: '3%',
-        justifyContent: 'space-around'
+        justifyContent: 'space-around !important'
     },
     currentLevelContent: {
         width: isMobile ? '90%' : '35%',
