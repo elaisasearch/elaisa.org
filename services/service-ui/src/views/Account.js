@@ -101,7 +101,7 @@ const Account = (props) => {
         <Divider />
         <Grid container direction='column' alignItems='center' className={classes.accountView}>
             <Paper className={classes.accountPaper}>
-                <Avatar alt={firstname} className={classes.accountLogo}>
+                <Avatar alt={firstname} classes={{root: classes.accountLogo}}>
                     {renderAvatar(email, firstname, lastname)}
                 </Avatar>
                 <Typography variant="h3" color="textSecondary" component="h3" className={classes.accountName}>
