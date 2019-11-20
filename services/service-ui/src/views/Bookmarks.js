@@ -48,7 +48,7 @@ const useStyles = makeStyles({
         marginTop: '-5%'
     },
     tabRoot: {
-        fontSize: '30px'
+        fontSize: '30px !important'
     },
     tabsCentered: {
         justifyContent: 'space-around'
