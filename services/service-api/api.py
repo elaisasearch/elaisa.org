@@ -236,9 +236,13 @@ def getSearchHistory():
     Returns all words from the inverted index. Used for autosuggestion in Searchbar.js.
     :return: List
     """
+    wordList: list =  getWordsFromInvertedIndex()
+    if len(wordList) == 0: response.status = 503
+
     return {
-        "words": getWordsFromInvertedIndex()
+        "result": wordList
     }
+    
 
 
 app.run(host='0.0.0.0', port=8080, debug=True, reloader=True)
