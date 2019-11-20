@@ -89,9 +89,9 @@ def handlePasswordChange(email: str, oldPass: str, newPass: str) -> str:
     newPass_hash = bcrypt.hashpw(newPass.encode('utf-8'), bcrypt.gensalt(14))
     try:
         col.update_one({"email": email}, {"$set": {"password": newPass_hash}})
-        return "Success"
+        return True
     except:
-        return "Error"
+        return False
 
 def handleForgotPassword(email: str) -> dict:
     """

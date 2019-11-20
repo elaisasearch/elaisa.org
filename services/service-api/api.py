@@ -179,12 +179,23 @@ def changePassword() -> str:
             "error": "API-KEY is wrong or missing. See https://github.com/dasmemeteam/language-level-search-engine/blob/master/bin/README.md for more information."
         }
 
-    result: str = handlePasswordChange(email, oldPass, newPass)
+    changedPassword: bool = handlePasswordChange(email, oldPass, newPass)
 
-    if result == "Success":
-        return "Success"
-    else:
-        return "Error"
+    if changedPassword: 
+        return {
+            "result": {
+                "email": email,
+                "message": "success"
+            }
+        }
+    else: 
+        response.status = 500
+        return {
+            "result": {
+                "email": email,
+                "message": "error"
+            }
+        }
 
 
 @app.route('/forgotpassword', method=["OPTIONS", "POST"])
