@@ -61,7 +61,8 @@ def loginUser(email: str, password: str) -> str:
     for user in results:
         if bcrypt.checkpw(password.encode('utf-8'), user['password']):
             userObject = {
-                "response": "Success",
+                "email": email,
+                "message": "success",
                 "user": {
                     "email": user['email'],
                     "firstname": user['firstname'],
@@ -70,7 +71,9 @@ def loginUser(email: str, password: str) -> str:
             }
         else:
             userObject = {
-                "response": "Error"
+                "email": email,
+                "message": "error",
+                "user": {}
             }
 
     return json.dumps(userObject, cls=MongoEncoder)

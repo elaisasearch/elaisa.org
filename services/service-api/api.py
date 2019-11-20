@@ -154,9 +154,14 @@ def signIn() -> dict:
             "error": "API-KEY is wrong or missing. See https://github.com/dasmemeteam/language-level-search-engine/blob/master/bin/README.md for more information."
         }
 
-    result: str = loginUser(email, password)
+    loginResponse: str = loginUser(email, password)
+    result: dict = json.loads(loginResponse)
 
-    return json.loads(result)
+    if result["message"] == "error": response.status = 500
+        
+    return {
+        "result": result
+    }
 
 
 @app.route('/changepassword', method=["OPTIONS", "POST"])
