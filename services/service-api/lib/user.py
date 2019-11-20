@@ -208,7 +208,7 @@ def getSearchHistoryForUser(email: str) -> dict:
             if d["level"] == "C2": c2 += 1
 
         return {
-            "response": "Success",
+            "email": email,
             "statistics": {
                 "language": {
                     "en": en,
@@ -229,5 +229,7 @@ def getSearchHistoryForUser(email: str) -> dict:
         }
     except:
         return {
-            "response": "Error"
+            "email": email,
+            "statistics": {},
+            "history": {}
         }

@@ -224,10 +224,10 @@ def getSearchHistory():
 
     results: dict = getSearchHistoryForUser(email)
 
-    if results["response"] == "Success":
-        return results
-    else:
-        return "Error"
+    if len(results["statistics"]) == 0: response.status = 500
+    return {
+        "result": results
+    }
 
 
 @app.route('/getwords', method=["OPTIONS", "GET"])
