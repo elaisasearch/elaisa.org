@@ -41,7 +41,9 @@ if (localStorage.getItem('splashDialogWasOpen') !== 'true') localStorage.setItem
 // Get all words from inverted index for auto suggestions
 axios.get('https://api.elaisa.org/getwords')
     .then((response) => {
-        store.dispatch({type: 'SET_WORDS', words: response.data.words});
+        store.dispatch({type: 'SET_WORDS', words: response.data.result});
+    }).catch(() => {
+        store.dispatch({type: 'SET_WORDS', words: []});
     })
 
 // Get user loggedIn state from localStorage
