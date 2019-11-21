@@ -111,8 +111,12 @@ const Profile = (props) => {
                 key: globals['api']['x-api-key']
             }
         }).then((response) => {
-            setHistory(response.data.history);
-            setStatistics(response.data.statistics);
+            const { data } = response;
+            const { result } = data;
+            const { statistics, history } = result;
+
+            setHistory(history);
+            setStatistics(statistics);
             setWaiting(false);
         }).catch((error) => {
             setWaiting(false);
