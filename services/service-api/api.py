@@ -120,6 +120,9 @@ def find() -> dict:
         # Check if client wants to exclude stuff
         if "wikipedia" in exclude: wikipedia: dict = {}
         else: wikipedia: dict = getWikiEntry(terms, language)
+        
+        if "documents" in exclude: documents: dict = {}
+        else: documents: dict = findDocuments(terms, level, language)
 
         return {
             "result": {
@@ -128,7 +131,7 @@ def find() -> dict:
                     "correctquery": ""
                 },
                 "wikipedia": wikipedia,
-                "documents": findDocuments(terms, level, language)
+                "documents": documents
             }
         }
     else:
