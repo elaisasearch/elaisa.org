@@ -3,6 +3,7 @@ Handles the user methods for signing and logging user.
 """
 
 from pymongo import ASCENDING
+import pymongo
 import bcrypt
 import json
 from bson.objectid import ObjectId
@@ -41,7 +42,7 @@ def createUser(firstname: str, lastname: str, email: str, password: str) -> str:
             },
         )
         return True
-    except:
+    except pymongo.errors.DuplicateKeyError:
         return False
 
 

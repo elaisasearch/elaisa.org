@@ -186,11 +186,10 @@ def signUp() -> str:
             }
         }
     else: 
-        response.status = 500
         return {
             "result": {
                 "email": email,
-                "message": "error",
+                "message": "already exists",
                 "user": {}
             }
         }
