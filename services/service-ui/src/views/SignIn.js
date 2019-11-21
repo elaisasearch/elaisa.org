@@ -88,9 +88,13 @@ const SignIn = (props) => {
 
         axios.post(`https://api.elaisa.org/signin?email=${email}&password=${password}&key=${globals['api']['x-api-key']}`)
             .then((response) => {
-                if (response.data.response === "Success") {
+                const { data } = response;
+                const { result } = data;
+                const { message, user } = result;
+                
+                if (message === 'success') {
 
-                    const { email, firstname, lastname } = response.data.user;
+                    const { email, firstname, lastname } = user;
 
                     // redux action
                     props.onSignIn(email, firstname, lastname);
@@ -108,15 +112,12 @@ const SignIn = (props) => {
                         pathname: "/"
                     });
 
-                    variant = "success";
-                    props.enqueueSnackbar('Successfully logged in user', { variant });
-                } else {
-                    variant = "error"
-                    props.enqueueSnackbar('Password or Username incorrect', { variant });
+                    variant = message;
+                    props.enqueueSnackbar(`Successfully logged in user ${email}`, { variant });
                 }
             }).catch((error) => {
-                variant = "error"
-                props.enqueueSnackbar(error.message, { variant });
+                variant = 'error';
+                props.enqueueSnackbar('Password or Username incorrect', { variant });
             });
     }
 
