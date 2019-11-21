@@ -66,7 +66,13 @@ def find() -> dict:
     Check if query is spelled correctly. The result will be a string and if the string 
     don't equals the query, the query was spelled wrong.
     """
-    spellCheck: str = checkSpelling(query)
+    try:
+        spellCheck: str = checkSpelling(query)
+    except:
+        response.status = 400
+        return {
+            "error": "Your request is missing the 'query' parameter!"
+        }
 
     """
     If the spell check is equivalent to the search query, return the found documents.
