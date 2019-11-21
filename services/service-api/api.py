@@ -56,7 +56,7 @@ def find() -> dict:
 
     # Get values to exclude from result quantity
     try:
-        exclude = exclude.split()
+        exclude = exclude.split(",")
     except:
         exclude = []
 
