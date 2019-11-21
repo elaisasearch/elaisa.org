@@ -13,12 +13,13 @@ from .db import client, MongoEncoder
 from .db import news_de_DE, news_en_EN, news_es_ES
 from .db import inverted_index_de_DE, inverted_index_en_EN, inverted_index_es_ES
 
-def findDocuments(query: list, level: str, language: str) -> dict:
+def findDocuments(query: list, level: str, language: str, mode: str) -> dict:
     """
     Takes the search values and searches the database for results.
     :query: List
     :level: String
     :language: String
+    :mode: String
     :return: Dictionary
     """
 
@@ -49,12 +50,27 @@ def findDocuments(query: list, level: str, language: str) -> dict:
     # Get the TF*IDF formula for result's ranking
     tf: dict = calculateTermfrequency(query, resultIds, len(docIdsSet), allDocInDBCount, textsOfDocuments)
 
-    # remove unnecessary data from documents
-    for d in documents: 
-        del d['links']
-        del d['text']
-        if d['pagerank'] == math.inf:
-            d['pagerank'] = 0
+    # Remove unnecessary data from documents given the itemFilter
+    if mode == "compact":
+        for d in documents:
+            del d['links']
+            del d['text']
+            if d['pagerank'] == math.inf:
+                d['pagerank'] = 0
+    elif mode == "analysis":
+        for d in documents:
+            del d['links']
+            del d['text']
+            del d['meta']
+            del d['abstract']
+            del d['title']
+            if d['pagerank'] == math.inf:
+                d['pagerank'] = 0
+    else:
+        for d in documents:
+            if d['pagerank'] == math.inf:
+                d['pagerank'] = 0
+
 
     # translate BSON structure to JSON to return real JSON and not stringified JSON
     bsonToJSON = json.dumps(documents, cls=MongoEncoder)

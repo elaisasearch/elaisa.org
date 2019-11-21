@@ -44,7 +44,7 @@ def find() -> dict:
     :language: String
     :loggedIn: Boolean
     :email: String
-    :filter: List
+    :mode: String
     :exclude: List
     :return: Dictionary
     """
@@ -53,7 +53,7 @@ def find() -> dict:
     language: str = request.params.get('language')
     loggedIn: str = request.params.get('loggedin')
     email: str = request.params.get('email')
-    itemFilter: str = request.params.get('filter')
+    mode: str = request.params.get('mode')
     exclude: str = request.params.get('exclude')
 
     # Get values to exclude from result quantity
@@ -61,12 +61,6 @@ def find() -> dict:
         exclude: list = exclude.split(",")
     except:
         exclude: list = []
-    
-    # Get values to filter from documents.items
-    try:
-        itemFilter: list = itemFilter.split(",")
-    except:
-        itemFilter: list = []
 
     # Check API Key
     if str(request.params.get('key')) != API_KEY:
@@ -130,7 +124,7 @@ def find() -> dict:
         else: wikipedia: dict = getWikiEntry(terms, language)
         
         if "documents" in exclude: documents: dict = {}
-        else: documents: dict = findDocuments(terms, level, language)
+        else: documents: dict = findDocuments(terms, level, language, mode)
 
         return {
             "result": {
