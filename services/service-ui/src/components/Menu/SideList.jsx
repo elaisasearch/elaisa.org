@@ -4,7 +4,7 @@ import { Help, ExpandLess, ExpandMore, Home, BugReport } from '@material-ui/icon
 import GitHubIcon from '@material-ui/icons/GitHub';
 import SchoolIcon from '@material-ui/icons/School';
 import BookmarksIcon from '@material-ui/icons/Bookmarks';
-import GroupIcon from '@material-ui/icons/Group';
+// import GroupIcon from '@material-ui/icons/Group';
 import MenuHelper from './MenuHelper';
 import { Link } from 'react-router-dom'
 import { Translate } from "react-localize-redux";
