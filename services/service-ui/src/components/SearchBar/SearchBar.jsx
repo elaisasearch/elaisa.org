@@ -164,7 +164,8 @@ const SearchBar = (props) => {
     const inputLength = inputValue.length;
     let count = 0;
 
-    return inputLength === 0
+    try {
+      return inputLength === 0
       ? []
       : suggestions.filter(suggestion => {
         const keep =
@@ -176,6 +177,10 @@ const SearchBar = (props) => {
 
         return keep;
       });
+    } catch (error) {
+      return [];
+    }
+
   }
 
   const getSuggestionValue = (suggestion) => {
