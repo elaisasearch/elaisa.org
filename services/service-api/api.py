@@ -44,6 +44,7 @@ def find() -> dict:
     :language: String
     :loggedIn: Boolean
     :email: String
+    :exclude: List
     :return: Dictionary
     """
     query: str = request.params.get('query')
@@ -51,6 +52,13 @@ def find() -> dict:
     language: str = request.params.get('language')
     loggedIn: str = request.params.get('loggedin')
     email: str = request.params.get('email')
+    exclude: str = request.params.get('exclude')
+
+    # Get values to exclude from result quantity
+    try:
+        exclude = exclude.split()
+    except:
+        exclude = []
 
     # Check API Key
     if str(request.params.get('key')) != API_KEY:
@@ -109,13 +117,17 @@ def find() -> dict:
             # If there are no named entites, use the splitted query sentence.
             terms = query.split()
 
+        # Check if client wants to exclude stuff
+        if "wikipedia" in exclude: wikipedia: dict = {}
+        else: wikipedia: dict = getWikiEntry(terms, language)
+
         return {
             "result": {
                 "spellcheck": {
                     "checked": False,
                     "correctquery": ""
                 },
-                "wikipedia": getWikiEntry(terms, language),
+                "wikipedia": wikipedia,
                 "documents": findDocuments(terms, level, language)
             }
         }
