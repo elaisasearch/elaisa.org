@@ -94,7 +94,13 @@ def find() -> dict:
             - ['summer']
         """
         # Extract named entities
-        named_entities: list = extractNamedEntities(query, language)
+        try:
+            named_entities: list = extractNamedEntities(query, language)
+        except:
+            response.status = 400
+            return {
+                "error": "Your request is missing the 'language' parameter!"
+            }
         terms: list = []
         if len(list(named_entities)) != 0:
             terms = getListOfSearchTerms(named_entities, query)
