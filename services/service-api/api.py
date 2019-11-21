@@ -97,12 +97,25 @@ def find() -> dict:
             terms = query.split()
 
         return {
-            "wikipedia": getWikiEntry(terms, language),
-            "documents": findDocuments(terms, level, language)
+            "result": {
+                "spellcheck": {
+                    "checked": False,
+                    "correctquery": ""
+                },
+                "wikipedia": getWikiEntry(terms, language),
+                "documents": findDocuments(terms, level, language)
+            }
         }
     else:
         return {
-            "correct_query": str(spellCheck)
+            "result": {
+                "spellcheck": {
+                    "checked": True,
+                    "correctquery": str(spellCheck)
+                },
+                "wikipedia": {},
+                "documents": {}
+            }
         }
 
 

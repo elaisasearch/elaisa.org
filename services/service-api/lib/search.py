@@ -71,7 +71,7 @@ def findDocuments(query: list, level: str, language: str) -> dict:
 
     return {
         "length": len(json.loads(bsonToJSON)),
-        "results": jsonResults,
+        "items": jsonResults,
     }
 
 
