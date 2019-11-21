@@ -80,7 +80,13 @@ const SignUp = (props) => {
 
         axios.post(`https://api.elaisa.org/signup?firstname=${firstName}&lastname=${lastName}&email=${email}&password=${password}&key=${globals['api']['x-api-key']}`)
             .then((response) => {
-                if (response.data === "Success") {
+                const { data } = response;
+                const { result } = data;
+                const { email, message, user } = result;
+
+                if ( message === 'success') {
+
+                    const { firstname, lastname } = user;
 
                     setTimeout(() => {
                         props.history.push({
@@ -88,11 +94,11 @@ const SignUp = (props) => {
                         });
                     }, 2000)
 
-                    variant = "success";
-                    props.enqueueSnackbar('Successfully created the user', { variant });
-                } else if (response.data === "Error") {
-                    variant = "error"
-                    props.enqueueSnackbar('The user already exists', { variant });
+                    variant = message;
+                    props.enqueueSnackbar(`Successfully created the user ${firstname} ${lastname}`, { variant });
+                } else if (message === 'already exists') {
+                    variant = 'error'
+                    props.enqueueSnackbar(`The user ${email} already exists`, { variant });
                 }
             }).catch((error) => {
                 variant = "error"
