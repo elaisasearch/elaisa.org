@@ -128,12 +128,30 @@ def signUp() -> str:
             "error": "API-KEY is wrong or missing. See https://github.com/dasmemeteam/language-level-search-engine/blob/master/bin/README.md for more information."
         }
 
-    result: str = createUser(firstname, lastname, email, password)
+    createdUser: bool = createUser(firstname, lastname, email, password)
 
-    if result == "Success":
-        return "Success"
-    else:
-        return "Error"
+    if createdUser: 
+        return {
+            "result": {
+                "email": email,
+                "message": "success",
+                "user": {
+                    "email": email,
+                    "firstname": firstname,
+                    "lastname": lastname
+                }
+            }
+        }
+    else: 
+        response.status = 500
+        return {
+            "result": {
+                "email": email,
+                "message": "error",
+                "user": {}
+            }
+        }
+
 
 
 @app.route('/signin', method=["OPTIONS", "POST"])

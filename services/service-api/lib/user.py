@@ -40,9 +40,9 @@ def createUser(firstname: str, lastname: str, email: str, password: str) -> str:
                 "password": pass_hash
             },
         )
-        return "Success"
+        return True
     except:
-        return "Error"
+        return False
 
 
 def loginUser(email: str, password: str) -> str:
