@@ -80,11 +80,15 @@ const Account = (props) => {
 
         axios.post(`https://api.elaisa.org/changepassword?oldpassword=${oldPass}&newpassword=${newPass}&email=${email}&key=${globals['api']['x-api-key']}`, {})
             .then((response) => {
-                if (response.data === "Success") {
-                    variant = "success";
-                    props.enqueueSnackbar('Successfully changed password', { variant });
+                const { data } = response;
+                const { result } = data;
+                const { email, message } = result;
+
+                if (message === 'success') {
+                    variant = message;
+                    props.enqueueSnackbar(`Successfully changed password for ${email}`, { variant });
                 } else {
-                    variant = "error";
+                    variant = message;
                     props.enqueueSnackbar('The old password is wrong', { variant });
                 }
             }).catch((error) => {
