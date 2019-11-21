@@ -101,6 +101,7 @@ def find() -> dict:
             return {
                 "error": "Your request is missing the 'language' parameter!"
             }
+
         terms: list = []
         if len(list(named_entities)) != 0:
             terms = getListOfSearchTerms(named_entities, query)
