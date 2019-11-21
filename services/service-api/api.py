@@ -237,7 +237,23 @@ def forgotPassword() -> str:
             "error": "API-KEY is wrong or missing. See https://github.com/dasmemeteam/language-level-search-engine/blob/master/bin/README.md for more information."
         }
 
-    return handleForgotPassword(email)
+    changedForgottenPassword = handleForgotPassword(email)
+
+    if changedForgottenPassword == "Mail not found":
+        response.status = 404
+        message = "Mail not found"
+    elif changedForgottenPassword == True:
+        message = "success"
+    else:
+        response.status = 500
+        message = "error"
+
+    return {
+        "result": {
+            "email": email,
+            "message": message
+        }
+    }
 
 
 @app.route('/searchhistory', method=["OPTIONS", "GET"])

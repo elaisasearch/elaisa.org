@@ -136,9 +136,9 @@ def handleForgotPassword(email: str) -> dict:
 
         sendEmail(email, 'Elaisa - Your new password', html)
 
-        return "Success",
+        return True
     except:
-        return "Error",
+        return False
 
 
 def randomString(stringLength: int) -> str:
