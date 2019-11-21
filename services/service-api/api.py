@@ -58,9 +58,9 @@ def find() -> dict:
 
     # Get values to exclude from result quantity
     try:
-        exclude = exclude.split(",")
+        exclude: list = exclude.split(",")
     except:
-        exclude = []
+        exclude: list = []
     
     # Get values to filter from documents.items
     try:
