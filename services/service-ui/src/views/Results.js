@@ -75,11 +75,16 @@ const Results = (props) => {
           language: language,
           email: email,
           loggedin: loggedIn,
-          key: globals['api']['x-api-key']
+          key: globals['api']['x-api-key'],
+          mode: 'compact'
         }
       })
       .then(response => {
-        if (response.data.correct_query) {
+        const { data } = response;
+        const { result } = data;
+        const { spellcheck, wikipedia, documents } = result;
+
+        if (spellcheck.checked) {
           setState({
             resultDocs: [],
             resultDocsLength: 0,
@@ -88,18 +93,18 @@ const Results = (props) => {
             searchValue: searchValue,
             language: language,
             level: level,
-            correct_spelled_query: response.data.correct_query
+            correct_spelled_query: spellcheck.correctquery
           });
-        } else if (response.data.documents) {
+        } else if (documents) {
           // get the length of result docs
-          let length = response.data.documents.length
+          let length = documents.length
 
           setState({
-            resultDocs: response.data.documents.results,
+            resultDocs: documents.items,
             resultDocsLength: length,
-            wiki_url: response.data.wikipedia.url,
-            wiki_title: response.data.wikipedia.title,
-            wiki_summary: response.data.wikipedia.summary,
+            wiki_url: wikipedia.url,
+            wiki_title: wikipedia.title,
+            wiki_summary: wikipedia.summary,
             waiting: false,
             error: false,
             searchValue: searchValue,
