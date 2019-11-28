@@ -5,7 +5,7 @@ import MuiExpansionPanel from '@material-ui/core/ExpansionPanel';
 import MuiExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import MuiExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import LevelInfo from './LevelInfo';
-import FitnessCenterIcon from '@material-ui/icons/FitnessCenter';
+import BarChartIcon from '@material-ui/icons/BarChart';
 import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
 import BookmarkIcon from '@material-ui/icons/Bookmark';
 
@@ -175,7 +175,7 @@ const LevelPanel = (props) => {
             <ExpansionPanelSummary
                 aria-controls="panel1a-content"
                 id="panel1a-header"
-                expandIcon={<FitnessCenterIcon fontSize="default" />}
+                expandIcon={<BarChartIcon fontSize="default" />}
             >
             </ExpansionPanelSummary>
             <ExpansionPanelDetails className={classes.expanelDetails}>
