@@ -8,6 +8,7 @@ import HeaderTags from '../components/HeaderTags';
 import { isMobile } from 'react-device-detect';
 import { makeStyles } from '@material-ui/styles';
 import globals from '../globals.json';
+import { Link } from "react-router-dom";
 
 import logo from '../assets/img/logo.png';
 
@@ -20,7 +21,8 @@ const useStyles = makeStyles({
     backFab: {
         width: '90%',
         margin: '5%',
-        flex: 1
+        flex: 1,
+        display: isMobile ? 'none' : 'inherit'
     },
     formPaper: {
         display: 'flex',
@@ -38,6 +40,12 @@ const useStyles = makeStyles({
         width: '25%',
         marginTop: '10%',
         marginBottom: '5%'
+    },
+    signUpLogoButton: {
+        backgroundColor: 'transparent',
+        "&:hover": {
+          backgroundColor: "transparent"
+      }
     },
     form: {
         width: '90%',
@@ -120,7 +128,7 @@ const SignUp = (props) => {
             />
             {!isMobile ? <Grid item xs className={classes.sideImage} /> : null}
             <Paper className={classes.formPaper}>
-                <img className={classes.signUpLogo} src={logo} alt="Elaisa Search Engine Logo"></img>
+                <Button component={Link} to="/signin" className={classes.signUpLogoButton}><img src={logo} className={classes.signUpLogo} alt="Elaisa Search Engine Logo"></img></Button>
                 <Typography component="h1" variant="h5">
                     <Translate id='UI__SIGN_UP_PAGE__TITLE' />
                 </Typography>
