@@ -49,7 +49,7 @@ const BottomInfoBar = () => {
           );
         } else {
             alert(`
-            1. Tap on the menu button
+            1. Tap on the browser menu button
             2. Tap on "Add to Home Screen"`
           );
         }
