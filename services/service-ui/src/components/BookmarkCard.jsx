@@ -10,7 +10,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import OpenInNewIcon from '@material-ui/icons/OpenInNew';
 import DeleteIcon from '@material-ui/icons/Delete';
-import FitnessCenterIcon from '@material-ui/icons/FitnessCenter';
+import BarChartIcon from '@material-ui/icons/BarChart';
 import { isMobile } from 'react-device-detect';
 
 import LevelInfo from '../components/ResultList/LevelInfo';
@@ -97,7 +97,7 @@ const BookmarkCard = (props) => {
           aria-expanded={expanded}
           aria-label="show more"
         >
-          <FitnessCenterIcon />
+          <BarChartIcon />
         </IconButton>
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
