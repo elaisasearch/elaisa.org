@@ -44,6 +44,10 @@ const useStyles = makeStyles({
     fontSize: '14px',
     color: '#069',
     cursor: 'pointer',
+  },
+  titleLink: {
+    textDecoration: 'none',
+    color: 'black'
   }
 });
 
@@ -99,7 +103,13 @@ const  WikiCardTemplate = (props) => {
           Wikipedia
         </Typography>
         <Typography variant="h5" component="div" className={classes.wikiTitleDiv}>
-          {title}
+          {
+            isMobile
+            ?
+              <a className={classes.titleLink} href={url}>{title}</a>
+            :
+            title
+          }
           <IconButton onClick={handleChangeFontSize} className={classes.enlargeFontSizeButton}>
             <FormatSizeIcon size='medium'/>
           </IconButton>
