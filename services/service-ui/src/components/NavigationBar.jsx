@@ -1,11 +1,12 @@
 import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Button from '@material-ui/core/Button'
+import { Button, IconButton } from '@material-ui/core/'
 import { withRouter, Link } from "react-router-dom";
 import { isMobile } from "react-device-detect";
 import { Translate } from 'react-localize-redux';
 import Grid from '@material-ui/core/Grid';
+import SearchIcon from '@material-ui/icons/Search';
 
 //import styles
 import styles from '../assets/jss/NavigationBarStyle';
@@ -72,15 +73,31 @@ class NavigationBar extends React.Component {
   renderSearchBar = (props) => {
     if (props.results) {
       if (isMobile) {
-        return <Grid
-          container
-          justify='flex-end'
-        >
-          <Button component={Link} to="/" style={styles.elaisaButton}><img src={logo} style={styles.elaisaText} alt="Elaisa Search Engine Logo"></img></Button>
-        </Grid>
+        return (
+          <Grid
+            container
+            justify='space-between'
+            alignItems='center'
+          >
+            <Grid
+              item
+              justify='flex-start'
+            >
+              <IconButton style={{color: 'black'}}>
+                <SearchIcon />
+              </IconButton>
+            </Grid>
+            <Grid
+              item
+              justify='flex-end'
+            >
+              <Button component={Link} to="/" style={styles.elaisaButton}><img src={logo} style={styles.elaisaText} alt="Elaisa Search Engine Logo"></img></Button>
+            </Grid>
+          </Grid>
+        );
       } else {
         return <Grid
-          container 
+          container
           justify='center'
         >
           <Button disableRipple component={Link} to="/" style={styles.elaisaButton}><img src={logo} style={styles.elaisaText} alt="Elaisa Search Engine Logo"></img></Button>
@@ -90,7 +107,7 @@ class NavigationBar extends React.Component {
         </Grid>
       }
     }
-    return <Grid 
+    return <Grid
       container
       direction='column'
       alignItems='flex-end'
@@ -101,21 +118,21 @@ class NavigationBar extends React.Component {
 
   render() {
     return (
-        <AppBar 
-          position="static" 
-          id="navBar" 
-          style={{
-            backgroundColor: "transparent",
-            boxShadow: "none",
-            width: '100%',
-            marginTop: isMobile ? '5%' : null
-          }}
-        >
-          <Toolbar>
-            <LeftMenu />
-            {this.renderSearchBar(this.props)}
-          </Toolbar>
-        </AppBar>
+      <AppBar
+        position="static"
+        id="navBar"
+        style={{
+          backgroundColor: "transparent",
+          boxShadow: "none",
+          width: '100%',
+          marginTop: isMobile ? '5%' : null
+        }}
+      >
+        <Toolbar>
+          <LeftMenu />
+          {this.renderSearchBar(this.props)}
+        </Toolbar>
+      </AppBar>
     );
   }
 }
