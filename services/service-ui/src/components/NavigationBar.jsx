@@ -58,8 +58,10 @@ class NavigationBar extends React.Component {
    * Start a new Search when user changes parameters via Search Dialog on 
    * mobile devices
    */
-  handleChangedSearchParamsInDialog = async (level, language) => {
+  handleChangedSearchParamsInDialog = async (level, language, value) => {
+    console.log(value)
     await this.setState({
+      value: value,
       language: language,
       level: level,
       openSearchDialog: false
@@ -124,6 +126,7 @@ class NavigationBar extends React.Component {
             >
               <Button component={Link} to="/" style={styles.elaisaButton}><img src={logo} style={styles.elaisaText} alt="Elaisa Search Engine Logo"></img></Button>
             </Grid>
+            <SearchDialog open={this.state.openSearchDialog} handleClose={this.handleClickedCloseSearchDialog} level={this.state.level} language={this.state.language} value={this.props.values[0]} handleChange={this.handleChangedSearchParamsInDialog}/>
           </Grid>
         );
       } else {
@@ -163,7 +166,6 @@ class NavigationBar extends React.Component {
           <LeftMenu />
           {this.renderSearchBar(this.props)}
         </Toolbar>
-        <SearchDialog open={this.state.openSearchDialog} handleClose={this.handleClickedCloseSearchDialog} level={this.state.level} language={this.state.language} value={this.props.values[0]} handleChange={this.handleChangedSearchParamsInDialog}/>
       </AppBar>
     );
   }

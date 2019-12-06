@@ -47,7 +47,7 @@ const SearchDialog = (props) => {
                 <DropDownMenu value={language} desc={<Translate id='UI__DROPDOWN__LANGUAGE' />} items={["D̶e̶u̶t̶s̶c̶h̶", "English", "E̶s̶p̶a̶ñ̶o̶l̶"]} values={["de", "en", "es"]} onChange={e => setLanguage(e)} />
                 <DropDownMenu value={level} desc={<Translate id='UI__DROPDOWN__LEVEL' />} items={[<Translate id='UI__DROPDOWN__LEVEL_ALL' />, "A1", "A2", "B1", "B2", "C1", "C2"]} values={["all", "A1", "A2", "B1", "B2", "C1", "C2"]} onChange={e => setLevel(e)} />
                 <TextField
-                    onChange={e => setValue(e)}
+                    onChange={e => setValue(e.target.value)}
                     id="outlined-full-width"
                     style={{ borderColor: "grey" }}
                     label={<Translate id='UI__SEARCHBAR' />}
@@ -68,7 +68,7 @@ const SearchDialog = (props) => {
                 <Button onClick={handleClose} color="primary">
                     <Translate id='UI__SIGN_IN_PAGE__DIALOG_MAIL_INPUT__CANCEL_BUTTON' />
                 </Button>
-                <Button onClick={e => handleChange(level, language)} color="primary">
+                <Button onClick={e => handleChange(level, language, value)} color="primary">
                     <Translate id='UI__RESULTS_PAGE__SEARCH_DIALOG__BUTTON' />
                 </Button>
             </DialogActions>
