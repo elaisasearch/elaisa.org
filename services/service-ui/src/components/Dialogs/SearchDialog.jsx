@@ -25,6 +25,9 @@ const useStyles = makeStyles({
       },
     },
     notchedOutline: {},
+    contentRoot: {
+        textAlign: 'center'
+    }
 });
 
 const SearchDialog = (props) => {
@@ -39,14 +42,14 @@ const SearchDialog = (props) => {
 
     return (
         <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-            <DialogTitle id="form-dialog-title"><Translate id='UI__SIGN_IN_PAGE__DIALOG_MAIL_INPUT__TITLE' /></DialogTitle>
-            <DialogContent>
+            <DialogTitle id="form-dialog-title"><Translate id='UI__RESULTS_PAGE__SEARCH_DIALOG__TITLE' /></DialogTitle>
+            <DialogContent classes={{root: classes.contentRoot}}>
                 <DropDownMenu value={language} desc={<Translate id='UI__DROPDOWN__LANGUAGE' />} items={["D̶e̶u̶t̶s̶c̶h̶", "English", "E̶s̶p̶a̶ñ̶o̶l̶"]} values={["de", "en", "es"]} onChange={e => setLanguage(e)} />
                 <DropDownMenu value={level} desc={<Translate id='UI__DROPDOWN__LEVEL' />} items={[<Translate id='UI__DROPDOWN__LEVEL_ALL' />, "A1", "A2", "B1", "B2", "C1", "C2"]} values={["all", "A1", "A2", "B1", "B2", "C1", "C2"]} onChange={e => setLevel(e)} />
                 <TextField
                     onChange={e => setValue(e)}
                     id="outlined-full-width"
-                    style={{ margin: 8, borderColor: "grey" }}
+                    style={{ borderColor: "grey" }}
                     label={<Translate id='UI__SEARCHBAR' />}
                     fullWidth
                     margin="normal"
@@ -66,7 +69,7 @@ const SearchDialog = (props) => {
                     <Translate id='UI__SIGN_IN_PAGE__DIALOG_MAIL_INPUT__CANCEL_BUTTON' />
                 </Button>
                 <Button onClick={e => handleChange(level, language)} color="primary">
-                    <Translate id='UI__SIGN_IN_PAGE__DIALOG_MAIL_INPUT__SUBMIT_BUTTON' />
+                    <Translate id='UI__RESULTS_PAGE__SEARCH_DIALOG__BUTTON' />
                 </Button>
             </DialogActions>
         </Dialog>
