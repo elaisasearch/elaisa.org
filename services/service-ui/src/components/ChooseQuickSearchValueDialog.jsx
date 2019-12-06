@@ -36,7 +36,6 @@ const ChooseQuickSearchValueDialog = (props) => {
 ChooseQuickSearchValueDialog.propTypes = {
     onClose: PropTypes.func.isRequired,
     open: PropTypes.bool.isRequired,
-    selectedValue: PropTypes.string.isRequired,
 };
 
 export default ChooseQuickSearchValueDialog;
