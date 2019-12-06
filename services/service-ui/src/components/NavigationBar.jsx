@@ -17,6 +17,7 @@ import SearchBarNavigationBar from './SearchBar/SearchBarNavigationBar';
 import Avatars from './Profile/Avatars';
 import DropDownMenu from './DropDownMenu';
 import logo from '../assets/img/logo.png';
+import SearchDialog from '../components/Dialogs/SearchDialog';
 
 class NavigationBar extends React.Component {
 
@@ -26,7 +27,8 @@ class NavigationBar extends React.Component {
     this.state = {
       value: this.props.values === undefined ? '' : this.props.values[0],
       language: this.props.values === undefined ? '' : this.props.values[1],
-      level: this.props.values === undefined ? '' : this.props.values[2]
+      level: this.props.values === undefined ? '' : this.props.values[2],
+      openSearchDialog: false
     }
   }
 
@@ -35,6 +37,35 @@ class NavigationBar extends React.Component {
     if (e.keyCode === 13) {
       this.searchButtonPressed()
     }
+  }
+
+  /**
+   * Search Dialog handler functions
+   */
+  handleClickedOpenSearchDialog = () => {
+    this.setState({
+      openSearchDialog: true
+    })
+  }
+
+  handleClickedCloseSearchDialog = () => {
+    this.setState({
+      openSearchDialog: false
+    })
+  }
+
+  /**
+   * Start a new Search when user changes parameters via Search Dialog on 
+   * mobile devices
+   */
+  handleChangedSearchParamsInDialog = async (level, language) => {
+    await this.setState({
+      language: language,
+      level: level,
+      openSearchDialog: false
+    })
+
+    await this.searchButtonPressed();
   }
 
   searchButtonPressed = () => {
@@ -83,7 +114,7 @@ class NavigationBar extends React.Component {
               item
               justify='flex-start'
             >
-              <IconButton style={{color: 'black'}}>
+              <IconButton style={{color: 'black'}} onClick={this.handleClickedOpenSearchDialog}>
                 <SearchIcon />
               </IconButton>
             </Grid>
@@ -132,6 +163,7 @@ class NavigationBar extends React.Component {
           <LeftMenu />
           {this.renderSearchBar(this.props)}
         </Toolbar>
+        <SearchDialog open={this.state.openSearchDialog} handleClose={this.handleClickedCloseSearchDialog} level={this.state.level} language={this.state.language} value={this.props.values[0]} handleChange={this.handleChangedSearchParamsInDialog}/>
       </AppBar>
     );
   }
