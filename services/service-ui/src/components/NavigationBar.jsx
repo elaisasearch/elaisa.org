@@ -114,7 +114,6 @@ class NavigationBar extends React.Component {
           >
             <Grid
               item
-              justify='flex-start'
             >
               <IconButton style={{color: 'black'}} onClick={this.handleClickedOpenSearchDialog}>
                 <SearchIcon />
