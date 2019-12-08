@@ -3,6 +3,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import { SwipeableDrawer, IconButton } from '@material-ui/core/';
 // Side List for Menu
 import SideList from './SideList';
+import { withTheme } from '@material-ui/styles'; 
 
 /**
  * The Menu button.
@@ -36,11 +37,16 @@ class LeftMenu extends React.Component {
     render() {
         // get IOS device information for configuring swipable drawer functionality
         const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
+        const { theme } = this.props;
 
         return (
             <div>
                 <IconButton
-                    style={{ color: "black" }}
+                    style={
+                        { 
+                            color: theme.palette.text.primary
+                        }
+                    }
                     aria-label="Open Menu"
                     onClick={this.toggleDrawer('left', true)}
                     id="menuButton"
@@ -55,4 +61,4 @@ class LeftMenu extends React.Component {
     }
 }
 
-export default LeftMenu;
+export default withTheme(LeftMenu);
