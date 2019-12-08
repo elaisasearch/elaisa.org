@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import { Translate } from 'react-localize-redux';
 import FormatSizeIcon from '@material-ui/icons/FormatSize';
 import { IconButton } from '@material-ui/core';
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles, withTheme } from '@material-ui/styles';
 import { isMobile } from 'react-device-detect';
 
 
@@ -26,7 +26,7 @@ const useStyles = makeStyles({
     lineHeight: '1.5 !important'
   },
   title: {
-    fontSize: '14'
+    fontSize: '14',
   },
   wikiTitleDiv: {
     display: 'flex !important',
@@ -45,10 +45,10 @@ const useStyles = makeStyles({
     color: '#069',
     cursor: 'pointer',
   },
-  titleLink: {
+  titleLink: theme => ({
     textDecoration: 'none',
-    color: 'black'
-  }
+    color: theme.palette.text.primary
+  })
 });
 
 
@@ -58,8 +58,8 @@ const useStyles = makeStyles({
  * @returns {JSX} Wikipedia Card Template component with design.
 */
 const  WikiCardTemplate = (props) => {
-  const { url, title, summary } = props;
-  const classes = useStyles();
+  const { url, title, summary, theme } = props;
+  const classes = useStyles(theme);
 
   const [fullWikiText, setFullWikiText] = useState(false);
 
@@ -126,4 +126,4 @@ const  WikiCardTemplate = (props) => {
   );
 }
 
-export default WikiCardTemplate;
+export default withTheme(WikiCardTemplate);
