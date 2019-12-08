@@ -5,7 +5,7 @@ import { Grid, Typography, Button } from '@material-ui/core';
 import ChooseQuickSearchValueDialog from './ChooseQuickSearchValueDialog';
 import { makeStyles } from '@material-ui/styles';
 import { Translate } from 'react-localize-redux';
-import { withTheme } from '@material-ui/core/styles';
+import { withTheme, rgbToHex } from '@material-ui/core/styles';
 
 
 const useStyles = makeStyles({
@@ -13,7 +13,7 @@ const useStyles = makeStyles({
         padding: isMobile ? '3%': '1%',
         borderRadius: '30px',
         border: '1px solid',
-        borderColor: theme.palette.borderColor,
+        borderColor: 'rgb(255,255,255,0.3)',
         '&:hover': {
             border: '1px solid',
             borderColor: theme.palette.borderColor
