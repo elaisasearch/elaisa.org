@@ -1,25 +1,30 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { isMobile } from 'react-device-detect';
-import { Grid, Typography } from '@material-ui/core';
+import { Grid, Typography, Button } from '@material-ui/core';
 import ChooseQuickSearchValueDialog from './ChooseQuickSearchValueDialog';
-import { styled } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/styles';
 import { Translate } from 'react-localize-redux';
+import { withTheme } from '@material-ui/core/styles';
 
 
-const QuickSearchButton = styled('button')({
-    padding: isMobile ? '3%': '1%',
-    borderRadius: '30px',
-    border: '1px solid rgba(0, 0, 0, 0.23)',
-    '&:hover': {
-        border: '1px solid black'
-    },
-    background: 'transparent',
-    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-    cursor: 'pointer',
-    fontSize: '1rem',
-    color: 'rgba(0, 0, 0, 0.54)',
-    marginRight: '2%',
+const useStyles = makeStyles({
+    quickSearchButton: theme => ({
+        padding: isMobile ? '3%': '1%',
+        borderRadius: '30px',
+        border: '1px solid',
+        borderColor: theme.palette.borderColor,
+        '&:hover': {
+            border: '1px solid',
+            borderColor: theme.palette.borderColor
+        },
+        background: 'transparent',
+        fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+        cursor: 'pointer',
+        fontSize: '1rem',
+        color: theme.palette.text.secondary,
+        marginRight: '2%',
+    })
 })
 
 
@@ -30,7 +35,8 @@ const QuickSearchButton = styled('button')({
 
 const QuickSearchContainer = (props) => {
 
-    const { topics, setQuickSearch } = props;
+    const { topics, setQuickSearch, theme } = props;
+    const classes = useStyles(theme);
 
     // handle open state for dialog
     const [open, setOpen] = useState(false);
@@ -59,21 +65,22 @@ const QuickSearchContainer = (props) => {
                     <Typography color='textSecondary' style={{marginBottom: '5%'}}>
                         <Translate id='UI__DIALOG__QUICK_SEARCH_OR' />
                     </Typography>
-                    <QuickSearchButton onClick={handleOpenQuickReplyCard}>
+                    <Button  className={classes.quickSearchButton} onClick={handleOpenQuickReplyCard}>
                         <Translate id='UI__DIALOG__QUICK_SEARCH' />
-                    </QuickSearchButton>
+                    </Button>
                     <ChooseQuickSearchValueDialog topics={topics} open={open} onClose={handleClose} />
                 </div>
                 :
                 <div>
                     {topics.map(topic => {
                         return (
-                            <QuickSearchButton
+                            <Button
                                 key={topic}
                                 onClick={e => setQuickSearch(topic, true)}
+                                className={classes.quickSearchButton}
                             >
                                 {topic}
-                            </QuickSearchButton>
+                            </Button>
                         );
                     })}
                 </div>
@@ -93,4 +100,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(null, mapDispatchToProps)(QuickSearchContainer);
+export default connect(null, mapDispatchToProps)(withTheme(QuickSearchContainer));
