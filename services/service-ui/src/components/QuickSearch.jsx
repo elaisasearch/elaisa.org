@@ -13,7 +13,7 @@ const useStyles = makeStyles({
         padding: isMobile ? '3%': '1%',
         borderRadius: '30px',
         border: '1px solid',
-        borderColor: 'rgb(255,255,255,0.3)',
+        borderColor: theme.palette.type === 'dark' ? 'rgb(255,255,255,0.3)' : theme.palette.borderColor,
         '&:hover': {
             border: '1px solid',
             borderColor: theme.palette.borderColor

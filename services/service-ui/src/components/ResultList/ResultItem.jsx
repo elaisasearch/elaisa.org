@@ -5,16 +5,18 @@ import { Typography, Grid } from '@material-ui/core';
 import moment from 'moment';
 import LevelPanel from './LevelPanel';
 import { isMobile } from 'react-device-detect';
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles, withTheme } from '@material-ui/styles';
 
 const useStyles = makeStyles({
-    levelDiv: {
-        border: '1px solid black',
+    levelDiv: theme => ({
+        border: '1px solid',
+        borderColor: theme.palette.type === 'dark' ? 'rgb(255,255,255,0.3)' : theme.palette.borderColor,
         padding: '1vh',
         borderRadius: '100%',
         marginRight: '2%',
-        display: isMobile ? 'none' : ''
-    },
+        display: isMobile ? 'none' : '',
+        color: theme.palette.text.primary
+    }),
     listItemRoot: {
         marginBottom: isMobile ? '5% !important' : '3% !important'
     },
@@ -25,10 +27,10 @@ const useStyles = makeStyles({
     date: {
         fontSize: ' 12px !important'
     },
-    keywords: {
-        color: 'blue !important',
+    keywords: theme => ({
+        color: theme.resultItem.keywords.color,
         fontSize: '12px !important',
-    },
+    }),
     subtitle: {
         color: 'green !important',
         fontSize: ' 12px !important'
@@ -40,6 +42,9 @@ const useStyles = makeStyles({
         paddingLeft: '16px',
         paddingRight: '16px',
     },
+    link: theme => ({
+        color: theme.resultItem.link.color
+    })
 });
 
 /**
@@ -49,8 +54,8 @@ const useStyles = makeStyles({
 */
 const ResultItem = (props) => {
 
-    const classes = useStyles();
-    const { website, title, desc, keywords, date, language, level, level_meta, waiting } = props;
+    const { website, title, desc, keywords, date, language, level, level_meta, waiting, theme } = props;
+    const classes = useStyles(theme);
 
     // hovering state for rendering preview
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -70,6 +75,7 @@ const ResultItem = (props) => {
             {!waiting ? <div className={classes.levelDiv}>{level}</div> : null}
             <div>
                 <a
+                    className={classes.link}
                     href={website}
                     onMouseEnter={handlePopoverOpen}
                     onMouseLeave={handlePopoverClose}
@@ -104,4 +110,4 @@ const ResultItem = (props) => {
     )
 }
 
-export default ResultItem;
+export default withTheme(ResultItem);
