@@ -9,7 +9,6 @@ export const theme = createMuiTheme({
         type: lightMode ? 'light' : 'dark',
         primary: {
             main: lightMode ? '#424242' : '#e0e0e0'
-        } 
-
+        }
     }
 });

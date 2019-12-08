@@ -1,15 +1,15 @@
-const styles = {
+const styles = theme => ({
     root: {
     },
     cssLabel: {
       '&$cssFocused': {
-        color: "black",
+        color: theme.palette.text.primary,
       },
     },
     cssFocused: {},
     cssOutlinedInput: {
       '&$cssFocused $notchedOutline': {
-        border: '1px solid black'
+        // border: '1px solid',
       },
     },
     notchedOutline: {},
@@ -26,7 +26,6 @@ const styles = {
       marginLeft: 'auto',
       width: '50%',
       boxShadow: 'none',
-      border: '1px solid rgba(0, 0, 0, 0.23)',
       borderTop: 'none'
     },
     suggestion: {
@@ -37,6 +36,6 @@ const styles = {
       padding: 0,
       listStyleType: 'none',
     }
-};
+});
 
 export default styles;
