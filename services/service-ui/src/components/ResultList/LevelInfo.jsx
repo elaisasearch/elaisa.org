@@ -2,7 +2,6 @@ import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import { Translate } from 'react-localize-redux';
 
-
 /**
  * The Level Panel component for difficulty infos.
  * @param {object} props the given properties.
@@ -37,7 +36,7 @@ const LevelInfo = (props) => {
             <p>A1: <b>{A1}%</b> | A2: <b>{A2}%</b> | B1: <b>{B1}%</b> | B2: <b>{B2}%</b> | C1: <b>{C1}%</b> | C2: <b>{C2}%</b> | <Translate id='UI__RESULTS_PAGE__DIFFICUTLY__UNKNOWN' /> <b>{unknown}%</b></p>
         </Typography>
         <Typography variant='body2' component="span">
-            <p style={{ color: "black" }}><b><Translate id='UI__RESULTS_PAGE__DIFFICUTLY__WORD_LENGTH__TITLE' /> </b><b style={{ color: renderDifficulty() }}>{firstUpperDifficulty}</b></p>
+            <p><b><Translate id='UI__RESULTS_PAGE__DIFFICUTLY__WORD_LENGTH__TITLE' /> </b><b style={{ color: renderDifficulty() }}>{firstUpperDifficulty}</b></p>
         </Typography>
     </div>
 };
