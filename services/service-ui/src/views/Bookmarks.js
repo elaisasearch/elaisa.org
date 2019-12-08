@@ -3,7 +3,7 @@ import NavigationBar from "../components/NavigationBar";
 import HeaderTags from '../components/HeaderTags';
 import getBookmarks from '../handlers/bookmarksHelper';
 import BookmarkCard from '../components/BookmarkCard';
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles, withTheme } from '@material-ui/styles';
 import { isMobile } from 'react-device-detect';
 import BookmarkIcon from '@material-ui/icons/Bookmark';
 import { Divider, Tabs, Tab, Box, Typography } from '@material-ui/core';
@@ -27,11 +27,12 @@ const TabPanel = (props) => {
 }
 
 const useStyles = makeStyles({
-    root: {
+    root: theme => ({
         display: 'flex',
         flexDirection: 'column',
-        height: '100vh'
-    },
+        height: '100vh',
+        background: theme.palette.background.default
+    }),
     bookmarkRoot: {
         display: 'flex',
         flex: 1,
@@ -71,13 +72,14 @@ const useStyles = makeStyles({
     levelTabPanel: {
         flex: 1
     },
-    levelTabRoot: {
+    levelTabRoot: theme => ({
         fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
         fontSize: '1rem',
         fontWeight: 400,
         lineHeight: 1.5,
-        letterSpacing: '0.00938em'
-    }
+        letterSpacing: '0.00938em',
+        color: theme.palette.text.primary
+    })
 });
 
 
@@ -85,9 +87,10 @@ const useStyles = makeStyles({
  * The Bookmarks view.
  * @returns {JSX} Bookmarks view components jsx.
  */
-const Bookmarks = () => {
+const Bookmarks = (props) => {
 
-    const classes = useStyles();
+    const { theme } = props;
+    const classes = useStyles(theme);
 
     const [deleted, setDeleted] = React.useState(false);
     const [tab, setTab] = React.useState(0);
@@ -215,4 +218,4 @@ const Bookmarks = () => {
 
 };
 
-export default Bookmarks;
+export default withTheme(Bookmarks);
