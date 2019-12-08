@@ -5,7 +5,7 @@ import { Grid, Typography, Button } from '@material-ui/core';
 import ChooseQuickSearchValueDialog from './ChooseQuickSearchValueDialog';
 import { makeStyles } from '@material-ui/styles';
 import { Translate } from 'react-localize-redux';
-import { withTheme, rgbToHex } from '@material-ui/core/styles';
+import { withTheme } from '@material-ui/core/styles';
 
 
 const useStyles = makeStyles({
