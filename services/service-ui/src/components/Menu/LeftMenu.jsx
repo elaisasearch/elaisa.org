@@ -44,7 +44,7 @@ class LeftMenu extends React.Component {
                 <IconButton
                     style={
                         { 
-                            color: theme.palette.text.primary
+                            color: theme.palette.text.secondary
                         }
                     }
                     aria-label="Open Menu"
