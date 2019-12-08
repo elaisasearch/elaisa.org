@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { isMobile } from 'react-device-detect';
-import { Grid } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 import ChooseQuickSearchValueDialog from './ChooseQuickSearchValueDialog';
 import { styled } from '@material-ui/styles';
 import { Translate } from 'react-localize-redux';
@@ -56,6 +56,9 @@ const QuickSearchContainer = (props) => {
         >
             {isMobile ?
                 <div>
+                    <Typography color='textSecondary' style={{marginBottom: '5%'}}>
+                        <Translate id='UI__DIALOG__QUICK_SEARCH_OR' />
+                    </Typography>
                     <QuickSearchButton onClick={handleOpenQuickReplyCard}>
                         <Translate id='UI__DIALOG__QUICK_SEARCH' />
                     </QuickSearchButton>

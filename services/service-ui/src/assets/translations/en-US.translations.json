@@ -6,6 +6,7 @@
     "UI__SEARCHBAR": "Search for documents",
     "UI__BUTTION__SIGN_IN": "Sign In",
     "UI__DIALOG__QUICK_SEARCH": "Choose Topic",
+    "UI__DIALOG__QUICK_SEARCH_OR": "or",
 
     "UI__USER__MENU__PROFILE": "Profile",
     "UI__USER__MENU__ACCOUNT": "Account",
