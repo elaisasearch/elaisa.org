@@ -158,7 +158,7 @@ class NavigationBar extends React.Component {
           backgroundColor: "transparent",
           boxShadow: "none",
           width: '100%',
-          marginTop: isMobile ? '5%' : null
+          paddingTop: isMobile ? '5%' : null
         }}
       >
         <Toolbar>
