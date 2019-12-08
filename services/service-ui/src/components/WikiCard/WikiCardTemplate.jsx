@@ -97,7 +97,7 @@ const  WikiCardTemplate = (props) => {
   }
 
   return (
-    <Card className={classes.card}>
+    <Card className={classes.card} square={isMobile ? true : false}>
       <CardContent>
         <Typography className={classes.title} color="textSecondary" gutterBottom>
           Wikipedia
