@@ -6,10 +6,10 @@ import LegalNoticeDialog from './Dialogs/LegalNoticeDialog';
 import { makeStyles } from '@material-ui/styles';
 import { isMobile } from 'react-device-detect';
 import GetAppIcon from '@material-ui/icons/GetApp';
-
+import { withTheme } from '@material-ui/styles';
 
 const useStyles = makeStyles({
-    infoBar: {
+    infoBar: theme => ({
         overflow: 'auto',
         position: 'absolute',
         left: 0,
@@ -17,10 +17,10 @@ const useStyles = makeStyles({
         marginLeft: 'auto',
         marginRight: 'auto',
         bottom: 0,
-        background: 'rgb(239,239,239)',
+        background: theme.palette.type === 'dark' ? theme.palette.background.paper : 'rgb(239,239,239)',
         paddingLeft: isMobile ? '3vh' : '0',
-        borderTop: '0.8px solid lightgrey'
-    },
+        borderTop: theme.palette.type === 'light' ? '0.8px solid lightgrey' : null
+    }),
     legalNoticeButton: {
         fontSize: '60% !important',
         marginRight: isMobile ? 0 : '5vh !important',
@@ -30,9 +30,10 @@ const useStyles = makeStyles({
     }
 });
 
-const BottomInfoBar = () => {
+const BottomInfoBar = (props) => {
 
-    const classes = useStyles();
+    const { theme } = props;
+    const classes = useStyles(theme);
     const [legalNoticeDialogOpen, setLegalNoticeDialogOpen] = React.useState(false);
 
     const handleCloseLegalNoticeDialog = () => {
@@ -81,4 +82,4 @@ const BottomInfoBar = () => {
 };
 
 
-export default BottomInfoBar;
+export default withTheme(BottomInfoBar);
