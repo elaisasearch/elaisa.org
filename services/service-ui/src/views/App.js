@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Grid } from '@material-ui/core/';
-import { isMobile } from 'react-device-detect';
+import { isMobile } from 'react-device-detect';
 import { makeStyles } from '@material-ui/styles';
+import { withTheme } from '@material-ui/core/styles';
 
 import NavigationBar from '../components/NavigationBar';
 import SearchBar from '../components/SearchBar/SearchBar';
@@ -13,12 +14,14 @@ import BottomInfoBar from '../components/BottomInfoBar';
 
 import logo from '../assets/img/logo.png';
 
+
 const useStyles = makeStyles({
-  appRoot: {
+  appRoot: theme => ({
     textAlign: 'center',
     height: '100vh',
-    width: '100vw'
-  },
+    width: '100vw',
+    background: theme.palette.background.default
+  }),
   contentGridContainer: {
     height: '100%'
   },
@@ -35,7 +38,8 @@ const useStyles = makeStyles({
  */
 const App = (props) => {
 
-  const classes = useStyles();
+  const { theme } = props;
+  const classes = useStyles(theme);
 
   // handle the splash dialog open state
   const [splashDialogOpen, setSplashDialogOpen] = useState(false);
@@ -62,28 +66,28 @@ const App = (props) => {
 
   return (
     <div className={classes.appRoot}>
-      <HeaderTags 
+      <HeaderTags
         title="Elaisa Search Engine - Home"
         desc="Language level search engine for finding documents in a specific language with a specific language level"
         keywords="Home"
       />
       <SplashDialog open={splashDialogOpen} handleClose={handleClose} />
-      
-      <Grid 
-        container 
-        direction= 'column'
-        alignItems= 'center'
+
+      <Grid
+        container
+        direction='column'
+        alignItems='center'
         className={classes.contentGridContainer}
       >
         <NavigationBar loggedIn={loggedIn} email={email} firstname={firstname} lastname={lastname} />
-        <img 
-          id="logo" 
-          src={logo} 
+        <img
+          id="logo"
+          src={logo}
           alt="Elaisa Search Engine Logo"
           className={classes.appLogo}
         ></img>
         <SearchBar />
-        <QuickSearch topics={['Donald Trump', 'UK', 'sport']}/>
+        <QuickSearch topics={['Donald Trump', 'UK', 'sport']} />
         <BottomInfoBar />
       </Grid>
     </div>
@@ -116,6 +120,6 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(withTheme(App));
 
 
