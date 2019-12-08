@@ -7,6 +7,7 @@ import { isMobile } from "react-device-detect";
 import { Translate } from 'react-localize-redux';
 import Grid from '@material-ui/core/Grid';
 import SearchIcon from '@material-ui/icons/Search';
+import { withTheme } from '@material-ui/styles';
 
 //import styles
 import styles from '../assets/jss/NavigationBarStyle';
@@ -104,6 +105,8 @@ class NavigationBar extends React.Component {
   }
 
   renderSearchBar = (props) => {
+    const { theme } = props;
+
     if (props.results) {
       if (isMobile) {
         return (
@@ -115,7 +118,7 @@ class NavigationBar extends React.Component {
             <Grid
               item
             >
-              <IconButton style={{color: 'black'}} onClick={this.handleClickedOpenSearchDialog}>
+              <IconButton style={{color: theme.palette.text.primary}} onClick={this.handleClickedOpenSearchDialog}>
                 <SearchIcon />
               </IconButton>
             </Grid>
@@ -170,4 +173,4 @@ class NavigationBar extends React.Component {
   }
 }
 
-export default withRouter(NavigationBar);
+export default withRouter(withTheme(NavigationBar));
