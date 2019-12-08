@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { isMobile } from 'react-device-detect';
-import TimerIcon from '@material-ui/icons/Timer';
-import { IconButton, Grid } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import ChooseQuickSearchValueDialog from './ChooseQuickSearchValueDialog';
 import { styled } from '@material-ui/styles';
+import { Translate } from 'react-localize-redux';
+
 
 const QuickSearchButton = styled('button')({
-    padding: '1%',
+    padding: isMobile ? '3%': '1%',
     borderRadius: '30px',
     border: '1px solid rgba(0, 0, 0, 0.23)',
     '&:hover': {
@@ -55,9 +56,9 @@ const QuickSearchContainer = (props) => {
         >
             {isMobile ?
                 <div>
-                    <IconButton onClick={handleOpenQuickReplyCard}>
-                        <TimerIcon fontSize='large' />
-                    </IconButton>
+                    <QuickSearchButton onClick={handleOpenQuickReplyCard}>
+                        <Translate id='UI__DIALOG__QUICK_SEARCH' />
+                    </QuickSearchButton>
                     <ChooseQuickSearchValueDialog topics={topics} open={open} onClose={handleClose} />
                 </div>
                 :
