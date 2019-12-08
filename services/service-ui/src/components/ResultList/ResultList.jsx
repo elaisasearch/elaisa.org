@@ -3,7 +3,7 @@ import ResultItem from './ResultItem';
 import { Typography, TableBody, TablePagination, Grid } from '@material-ui/core';
 import logo from '../../assets/img/logo.png'
 import { Translate } from 'react-localize-redux';
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles, withTheme } from '@material-ui/styles';
 import { isMobile } from 'react-device-detect';
 import WikipediaSkeleton from '../Skeleton/WikipediaSkeleton';
 import ResultItemSkeleton from '../Skeleton/ResultItemSkeleton';
@@ -17,11 +17,12 @@ const useStyles = makeStyles({
     pagination: {
         marginTop: '5%'
     },
-    resultDocsLength: {
+    resultDocsLength: theme => ({
         marginLeft: '2%',
         alignItems: isMobile ? 'center' : '',
-        marginBottom: isMobile ? '10%' : '4vh'
-    },
+        marginBottom: isMobile ? '10%' : '4vh',
+        color: theme.palette.text.primary
+    }),
     paginationLogo: {
         width: isMobile ? '15%' : '5%'
     }
@@ -36,8 +37,9 @@ const ResultList = (props) => {
 
     // State for current page.
     const [page, setPage] = useState(0);
+    const { theme } = props;
 
-    const classes = useStyles();
+    const classes = useStyles(theme);
 
     /**
      * Sets the page state if the user clicks on the next page button.
@@ -133,4 +135,4 @@ const ResultList = (props) => {
     return renderList(resultDocs);
 }
 
-export default ResultList;
+export default withTheme(ResultList);
