@@ -7,15 +7,16 @@ import { Divider, Grid } from "@material-ui/core";
 import NotFound from '../components/NotFound';
 import { connect } from 'react-redux';
 import HeaderTags from '../components/HeaderTags';
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles, withTheme } from '@material-ui/styles';
 import { isMobile } from 'react-device-detect';
 import globals from '../globals.json';
 import ShareResultsButton from '../components/ShareResultsButton';
 
 const useStyles = makeStyles({
-  resultsRoot: {
-    height: '100vh'
-  }
+  resultsRoot: theme => ({
+    background: theme.palette.background.default,
+    minHeight: '100vh'
+  })
 });
 
 /**
@@ -25,7 +26,8 @@ const useStyles = makeStyles({
 */
 const Results = (props) => {
 
-  const classes = useStyles();
+  const { theme } = props;
+  const classes = useStyles(theme);
 
   // Read parameters from link to provide sharing results.
   const params = new URLSearchParams(props.location.search);
@@ -234,4 +236,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(Results);
+export default connect(mapStateToProps)(withTheme(Results));
