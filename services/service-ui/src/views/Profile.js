@@ -9,12 +9,15 @@ import { CircularProgress } from "@material-ui/core";
 import PDFGenerator from '../components/Profile/PDF/index';
 import { Translate } from 'react-localize-redux';
 import HeaderTags from '../components/HeaderTags';
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles, withTheme } from '@material-ui/styles';
 import { isMobile } from 'react-device-detect';
 import globals from '../globals.json';
 
 
 const useStyles = makeStyles({
+    profileRoot: theme => ({
+        background: theme.palette.background.default
+    }),
     profileContent: {
         marginTop: '3%',
         justifyContent: 'space-around !important'
@@ -64,7 +67,7 @@ const useStyles = makeStyles({
         justifyContent: 'center',
     },
     pdfButton: {
-        marginBottom: '5%',
+        paddingBottom: '5%',
         marginTop: '5%'
     }
 })
@@ -99,7 +102,9 @@ const Profile = (props) => {
     // redux state
     const { loggedIn, email, firstname, lastname } = props;
 
-    const classes = useStyles();
+    const { theme } = props;
+
+    const classes = useStyles(theme);
 
     /**
      * Loads the users search history from API and stores to state.
@@ -231,7 +236,7 @@ const Profile = (props) => {
     */
 
     return (
-        <div>
+        <div className={classes.profileRoot}>
             <HeaderTags
                 title="Elaisa Search Engine - Profile"
                 desc="See your seach history and statistics about your use of the Elaisa Search Engine. Download your profile for school or studying."
@@ -259,4 +264,4 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps)(Profile);
+export default connect(mapStateToProps)(withTheme(Profile));
