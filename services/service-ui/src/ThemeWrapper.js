@@ -27,6 +27,9 @@ const ThemeWrapper = (props) => {
           type: prefersDarkMode ? 'dark' : 'light',
           primary: {
             main: !prefersDarkMode ? '#424242' : '#e0e0e0'
+          },
+          background: {
+            default: prefersDarkMode ? 'rgb(48, 48, 48) none repeat scroll 0% 0%' : 'rgb(255, 255, 255) none repeat scroll 0% 0%'
           }
         },
       }),
