@@ -133,6 +133,7 @@ const Avatars = (props) => {
       aria-owns={anchorEl ? 'simple-menu' : undefined}
       aria-haspopup="true"
       onClick={handleClick}
+      style={{color: 'white'}}
     >
       <Avatar onClick={handleClick} alt={props.name}>
         {renderAvatar(props)}
