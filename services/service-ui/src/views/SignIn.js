@@ -84,7 +84,6 @@ const SignIn = (props) => {
     const [email, setEmail] = React.useState('');
     const [changePasswordDialogOpen, setChangePasswordDialogOpen] = React.useState(false);
     const [loading, setLoading] = React.useState(false);
-    const [success, setSuccess] = React.useState(false);
 
     const classes = useStyles();
 
@@ -125,7 +124,6 @@ const SignIn = (props) => {
 
                     //loading circle in button
                     setLoading(false);
-                    setSuccess(true);
 
                     // save login state to localStorage
                     localStorage.setItem('user', JSON.stringify({
@@ -145,7 +143,6 @@ const SignIn = (props) => {
                 }
             }).catch((error) => {
                 setLoading(false);
-                setSuccess(false);
 
                 variant = 'error';
                 props.enqueueSnackbar('Password or Username incorrect', { variant });
