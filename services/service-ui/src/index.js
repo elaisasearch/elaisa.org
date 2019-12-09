@@ -8,10 +8,6 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { LocalizeProvider } from 'react-localize-redux';
 import axios from 'axios';
-import { ThemeProvider } from '@material-ui/core/styles';
-
-// theme
-import { theme } from './assets/theme';
 
 // views
 import App from './views/App';
@@ -23,6 +19,7 @@ import Account from './views/Account';
 import Profile from './views/Profile';
 import TranslationWrapper from './TranslationWrapper';
 import Bookmarks from './views/Bookmarks';
+import ThemeWrapper from './ThemeWrapper';
 
 // reducer 
 import reducer from './store/reducer';
@@ -69,7 +66,7 @@ try {
 
 ReactDOM.render(
     <Provider store={store}>
-        <ThemeProvider theme={theme}>
+        <ThemeWrapper>
             <LocalizeProvider>
                 <TranslationWrapper>
                     <Router history={hist}>
@@ -86,7 +83,7 @@ ReactDOM.render(
                     </Router>
                 </TranslationWrapper>
             </LocalizeProvider>
-        </ThemeProvider>
+        </ThemeWrapper>
 
     </Provider>,
     document.getElementById('root')
