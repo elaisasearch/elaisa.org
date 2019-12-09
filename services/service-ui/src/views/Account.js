@@ -2,7 +2,7 @@ import React from 'react';
 import NavigationBar from '../components/NavigationBar';
 import Gravatar from 'react-gravatar';
 import { Person } from '@material-ui/icons/';
-import { Avatar, Grid, Button, TextField, Typography, Paper } from '@material-ui/core/';
+import { Avatar, Grid, Button, TextField, Typography, Paper, CircularProgress } from '@material-ui/core/';
 import { SnackbarProvider, withSnackbar } from 'notistack';
 import axios from 'axios';
 // redux
@@ -13,7 +13,7 @@ import HeaderTags from '../components/HeaderTags';
 import { makeStyles, withTheme } from '@material-ui/styles';
 import { isMobile } from 'react-device-detect';
 import globals from '../globals.json';
-
+import { green } from '@material-ui/core/colors';
 
 const useStyles = makeStyles({
     accountRoot: theme => ({
@@ -53,7 +53,19 @@ const useStyles = makeStyles({
         display: 'flex',
         flexDirection: isMobile ? 'column' : 'row',
         justifyContent: !isMobile ? 'center' : null
-    }
+    },
+    buttonProgress: {
+        color: green[500],
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        marginTop: -12,
+        marginLeft: -12,
+    },
+    buttonWrapper: theme => ({
+        margin: theme.spacing(1),
+        position: 'relative',
+    })
 });
 
 /**
@@ -65,6 +77,7 @@ const Account = (props) => {
 
     const [oldPass, setOldPass] = React.useState('');
     const [newPass, setNewPass] = React.useState('');
+    const [loading, setLoading] = React.useState(false);
 
     const { loggedIn, email, firstname, lastname, theme } = props;
 
@@ -82,11 +95,15 @@ const Account = (props) => {
     const handleChangeButton = (email) => {
         let variant = "";
 
+        setLoading(true);
+
         axios.post(`https://api.elaisa.org/changepassword?oldpassword=${oldPass}&newpassword=${newPass}&email=${email}&key=${globals['api']['x-api-key']}`, {})
             .then((response) => {
                 const { data } = response;
                 const { result } = data;
                 const { email, message } = result;
+
+                setLoading(false);
 
                 if (message === 'success') {
                     variant = message;
@@ -153,9 +170,12 @@ const Account = (props) => {
                             style={{ margin: "3%" }}
                         />
                     </div>
-                    <Button variant="contained" onClick={e => handleChangeButton(email)}>
-                        <Translate id='UI__USER__ACCOUNT_PAGE__CHANGE_PASSWORD__BUTTON' />
-                    </Button>
+                    <div className={classes.buttonWrapper}>
+                        <Button variant="contained" onClick={e => handleChangeButton(email)} disabled={loading}>
+                            <Translate id='UI__USER__ACCOUNT_PAGE__CHANGE_PASSWORD__BUTTON' />
+                        </Button>
+                        {loading && <CircularProgress size={24} className={classes.buttonProgress} />}
+                    </div>
                 </Grid>
 
             </Paper>
