@@ -10,12 +10,16 @@ import { connect } from 'react-redux';
 import { Divider } from '@material-ui/core';
 import { Translate } from 'react-localize-redux';
 import HeaderTags from '../components/HeaderTags';
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles, withTheme } from '@material-ui/styles';
 import { isMobile } from 'react-device-detect';
 import globals from '../globals.json';
 
 
 const useStyles = makeStyles({
+    accountRoot: theme => ({
+        background: theme.palette.background.default,
+        minHeight: '100vh'
+    }),
     accountView: {
         marginTop: isMobile ? '10%' : '2%',
         height: isMobile ? '70vh' : null
@@ -62,9 +66,9 @@ const Account = (props) => {
     const [oldPass, setOldPass] = React.useState('');
     const [newPass, setNewPass] = React.useState('');
 
-    const { loggedIn, email, firstname, lastname } = props;
+    const { loggedIn, email, firstname, lastname, theme } = props;
 
-    const classes = useStyles();
+    const classes = useStyles(theme);
 
     const renderAvatar = (email, firstname, lastname) => {
         if (email) {
@@ -98,7 +102,7 @@ const Account = (props) => {
     }
 
 
-    return <div>
+    return <div className={classes.accountRoot}>
         <HeaderTags
             title="Elaisa Search Engine - Account"
             desc="Visit your account and change your password"
@@ -173,7 +177,7 @@ const mapStateToProps = state => {
     };
 };
 
-const AccountSnackBar = withSnackbar(connect(mapStateToProps)(Account));
+const AccountSnackBar = withSnackbar(connect(mapStateToProps)(withTheme(Account)));
 
 /**
  * Adds Notification Snack Bar.
