@@ -23,9 +23,9 @@ const ChooseQuickSearchValueDialog = (props) => {
         <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
             <DialogTitle id="simple-dialog-title"><Translate id='UI__DIALOG__QUICK_SEARCH' /></DialogTitle>
             <List>
-                {topics.map(topic => (
-                    <ListItem button onClick={() => handleListItemClick(topic)} key={topic}>
-                        <ListItemText primary={topic} />
+                {topics.map(topicObj => (
+                    <ListItem button onClick={() => handleListItemClick(topicObj.topic)} key={topicObj.topic}>
+                        <ListItemText primary={topicObj.topic} />
                     </ListItem>
                 ))}
             </List>
