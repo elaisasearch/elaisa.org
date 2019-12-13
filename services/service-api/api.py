@@ -5,7 +5,7 @@ The Application Programming Interface (API) for the entire Search Engine.
 import json
 from bottle import Bottle, request, response, run, template
 # import lib files
-from lib.search import findDocuments, getIdsFromWord, getListOfSearchTerms, getWordsFromInvertedIndex
+from lib.search import findDocuments, getIdsFromWord, getListOfSearchTerms, getWordsFromInvertedIndex, getMostCommonWordsFromInvertedIndex
 from lib.wikipedia import getWikiEntry
 from lib.user import createUser, getSearchHistoryForUser, handlePasswordChange, loginUser, writeSearchDataIntoDatabase, handleForgotPassword
 from lib.nlp import extractNamedEntities, lemmatizeSearchQuery, checkSpelling
@@ -333,6 +333,30 @@ def getSearchHistory():
 
     return {
         "result": wordList
+    }
+
+@app.route('/gettopics', method=["OPTIONS", "GET"])
+def getMostCommonWords():
+    """
+    Returns the n most common words from the inverted index to have topics. Used for the quick search feature.
+    :return: List
+    """
+
+    number: str = request.params.get('number')
+
+    try:
+        number = int(number)
+    except:
+        number = 3
+
+    topics: list =  getMostCommonWordsFromInvertedIndex(number)
+    if len(topics) == 0: response.status = 503
+
+    return {
+        "result": {
+            "length": number,
+            "topics": topics
+        }
     }
     
 

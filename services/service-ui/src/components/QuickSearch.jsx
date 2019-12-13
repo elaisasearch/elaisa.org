@@ -72,14 +72,14 @@ const QuickSearchContainer = (props) => {
                 </div>
                 :
                 <div>
-                    {topics.map(topic => {
+                    {topics.map(topicObj => {
                         return (
                             <Button
-                                key={topic}
-                                onClick={e => setQuickSearch(topic, true)}
+                                key={topicObj.topic}
+                                onClick={e => setQuickSearch(topicObj.topic, true)}
                                 className={classes.quickSearchButton}
                             >
-                                {topic}
+                                {topicObj.topic}
                             </Button>
                         );
                     })}
@@ -88,6 +88,17 @@ const QuickSearchContainer = (props) => {
         </Grid>
     );
 }
+
+/**
+ * Redux store to props mapping.
+ * @param {object} state the current redux store.
+ * @returns {object} returns the props containing the redux state.
+ */
+const mapStateToProps = state => {
+    return {
+      topics: state.topics,
+    };
+};
 
 /**
  * Maps redux signIn action to props.
@@ -100,4 +111,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(null, mapDispatchToProps)(withTheme(QuickSearchContainer));
+export default connect(mapStateToProps, mapDispatchToProps)(withTheme(QuickSearchContainer));

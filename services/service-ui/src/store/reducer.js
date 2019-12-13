@@ -7,7 +7,8 @@ const initialState = {
     uiLanguage: "en-US",
     quickSearch: false,
     quickSearchValue: "",
-    suggestions: []
+    suggestions: [],
+    topics: []
 }
 
 /**
@@ -51,6 +52,11 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 suggestions: action.words
+            }
+        case 'SET_TOPICS':
+            return {
+                ...state,
+                topics: action.topics
             }
         default:
             return state

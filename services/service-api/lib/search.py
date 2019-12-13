@@ -8,6 +8,7 @@ import json
 from bson.objectid import ObjectId
 from .nlp import calculateTermfrequency
 import math
+import random
 from .globals import GLOBALS
 from .db import client, MongoEncoder
 from .db import news_de_DE, news_en_EN, news_es_ES
@@ -252,3 +253,44 @@ def getDocumentsByLevel(docIdsSet: set, level: str, language: str, col):
             textsOfDocuments[str(r['_id'])] = r['text']
 
     return documents, textsOfDocuments, resultIds
+
+
+def getMostCommonWordsFromInvertedIndex(number: int):
+    """
+    Gets n topics from the inverted index.
+    :number: Integer
+    :return: List 
+    """
+    results = inverted_index_en_EN.aggregate([
+        {
+            "$unwind": '$documents'
+        },
+        {
+            "$group": {
+                "_id": "$word",
+                "count": {
+                    "$sum": 1
+                }
+            }
+        }, 
+        {
+            "$sort": {
+                'count': -1
+            }
+        },
+        {
+            "$limit": 100
+        } 
+    ])
+
+    # Return n random and unique word dictionaries from the list as random topics
+    # source: https://stackoverflow.com/questions/6494508/how-do-you-pick-x-number-of-unique-numbers-from-a-list-in-python
+    return random.sample(
+        [
+            {"topic": r["_id"], "documents_count": r["count"]} 
+            for r in results 
+            if len(r["_id"]) >= 5 and r["_id"].istitle()
+        ],
+    k=number
+    )
+

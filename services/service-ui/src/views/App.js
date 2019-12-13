@@ -87,7 +87,7 @@ const App = (props) => {
           className={classes.appLogo}
         ></img>
         <SearchBar />
-        <QuickSearch topics={['Donald Trump', 'UK', 'sport']} />
+        <QuickSearch />
         <BottomInfoBar />
       </Grid>
     </div>
