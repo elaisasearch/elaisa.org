@@ -48,7 +48,7 @@ axios.get('https://api.elaisa.org/getwords')
     })
 
 // Get three topics for the quick search feature
-axios.get('http://localhost:8080/gettopics?number=3')
+axios.get('https://api.elaisa.org/gettopics?number=3')
     .then((res) => {
         store.dispatch({ type: 'SET_TOPICS', topics: res.data.result.topics });
     }).catch(() => {
