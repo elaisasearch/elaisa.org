@@ -7,7 +7,6 @@ import * as serviceWorker from './serviceWorker';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { LocalizeProvider } from 'react-localize-redux';
-import axios from 'axios';
 
 // views
 import App from './views/App';
@@ -23,6 +22,9 @@ import ThemeWrapper from './ThemeWrapper';
 
 // reducer 
 import reducer from './store/reducer';
+import getTopics from './handlers/topicsHandler';
+import getWords from './handlers/suggestionsHandler';
+import getUserLoginState from './handlers/userHandler';
 
 
 
@@ -39,53 +41,14 @@ const store = createStore(
 // only show splash dialog window one time
 if (localStorage.getItem('splashDialogWasOpen') !== 'true') localStorage.setItem('splashDialogWasOpen', false);
 
-// Get all words from inverted index for auto suggestions
-axios.get('https://api.elaisa.org/getwords')
-    .then((response) => {
-        store.dispatch({ type: 'SET_WORDS', words: response.data.result });
-    }).catch(() => {
-        store.dispatch({ type: 'SET_WORDS', words: [] });
-    })
+// get words and store to redux for autocomplete
+getWords(store)
 
-// Get three topics for the quick search feature
-axios.get('https://api.elaisa.org/gettopics?number=3')
-    .then((res) => {
-        store.dispatch({ type: 'SET_TOPICS', topics: res.data.result.topics });
-    }).catch(() => {
-        store.dispatch({
-            type: 'SET_TOPICS', topics: [
-                {
-                    "topic": "Pavkov",
-                    "documents_count": 32
-                },
-                {
-                    "topic": "Tottenham",
-                    "documents_count": 33
-                },
-                {
-                    "topic": "Eriksen",
-                    "documents_count": 30
-                }
-            ]
-        });
-    })
+// get topics and store to redux
+getTopics(store)
 
-// Get user loggedIn state from localStorage
-try {
-    const userLocalStorage = JSON.parse(localStorage.getItem('user'));
-    const { loggedIn, email, firstname, lastname } = userLocalStorage;
-    if (loggedIn) {
-        store.dispatch({ type: 'SIGN_IN', email: email, firstname: firstname, lastname: lastname });
-    }
-} catch (error) {
-    // store the default state to localStorage if 'user' is undefined in localStorage
-    localStorage.setItem('user', JSON.stringify({
-        loggedIn: false,
-        email: "frodo.beutlin@hobbits.com",
-        firstname: "Frodo",
-        lastname: "Beutlin",
-    }));
-}
+// check if the user is logged in from last session
+getUserLoginState(store)
 
 ReactDOM.render(
     <Provider store={store}>
