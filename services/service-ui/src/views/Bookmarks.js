@@ -30,7 +30,7 @@ const useStyles = makeStyles({
     root: theme => ({
         display: 'flex',
         flexDirection: 'column',
-        height: '100vh',
+        minHeight: '100vh',
         background: theme.palette.background.default
     }),
     bookmarkRoot: {
