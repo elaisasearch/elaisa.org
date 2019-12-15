@@ -10,7 +10,7 @@ import { withTheme } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
     quickSearchButton: theme => ({
-        padding: isMobile ? '3%' : '1%',
+        padding: '3%',
         borderRadius: '30px',
         border: '1px solid',
         borderColor: theme.palette.type === 'dark' ? 'rgb(255,255,255,0.3)' : theme.palette.borderColor,
