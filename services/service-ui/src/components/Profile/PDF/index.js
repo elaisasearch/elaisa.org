@@ -119,7 +119,7 @@ const PDFGenerator = (props) => {
   const classes = useStyles();
 
   return <PDFDownloadLink className={classes.downloadbutton} document={<Resume language={language} level={level} firstname={firstname} lastname={lastname} />} fileName="elaisa_statistics.pdf">
-    {({ blob, url, loading, error }) => (loading ? 'LOADING DOCUMENT...' : 'GENERATE PDF')}
+    {({ blob, url, loading, error }) => (loading ? '...' : 'PDF Download')}
   </PDFDownloadLink>
 }
 

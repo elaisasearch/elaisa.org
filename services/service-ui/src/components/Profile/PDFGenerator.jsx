@@ -66,7 +66,7 @@ const PDFGenerator = (props) => {
     const { language, level, firstname, lastname } = props;
 
     return <PDFDownloadLink document={<MyDocument language={language} level={level} fistname={firstname} lastname={lastname}/>} fileName="elaisa_statistics.pdf">
-    {({ blob, url, loading, error }) => (loading ? 'LOADING DOCUMENT...' : 'GENERATE PDF')}
+    {({ blob, url, loading, error }) => (loading ? '...' : 'PDF')}
 </PDFDownloadLink>
 }
 
