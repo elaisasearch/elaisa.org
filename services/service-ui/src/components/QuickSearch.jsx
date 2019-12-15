@@ -10,7 +10,7 @@ import { withTheme } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
     quickSearchButton: theme => ({
-        padding: isMobile ? '3%': '1%',
+        padding: isMobile ? '3%' : '1%',
         borderRadius: '30px',
         border: '1px solid',
         borderColor: theme.palette.type === 'dark' ? 'rgb(255,255,255,0.3)' : theme.palette.borderColor,
@@ -24,7 +24,10 @@ const useStyles = makeStyles({
         fontSize: '1rem',
         color: theme.palette.text.secondary,
         marginRight: '2%',
-    })
+    }),
+    or: {
+        marginBottom: '10%'
+    }
 })
 
 
@@ -57,34 +60,15 @@ const QuickSearchContainer = (props) => {
             xs='auto'
             style={{
                 marginTop: isMobile ? '5%' : '2%',
-                width: '100%'
             }}
         >
-            {isMobile ?
-                <div>
-                    <Typography color='textSecondary' style={{marginBottom: '5%'}}>
-                        <Translate id='UI__DIALOG__QUICK_SEARCH_OR' />
-                    </Typography>
-                    <Button  className={classes.quickSearchButton} onClick={handleOpenQuickReplyCard}>
-                        <Translate id='UI__DIALOG__QUICK_SEARCH' />
-                    </Button>
-                    <ChooseQuickSearchValueDialog topics={topics} open={open} onClose={handleClose} />
-                </div>
-                :
-                <div>
-                    {topics.map(topicObj => {
-                        return (
-                            <Button
-                                key={topicObj.topic}
-                                onClick={e => setQuickSearch(topicObj.topic, true)}
-                                className={classes.quickSearchButton}
-                            >
-                                {topicObj.topic}
-                            </Button>
-                        );
-                    })}
-                </div>
-            }
+            <Typography color='textSecondary' classes={{root: classes.or}}>
+                <Translate id='UI__DIALOG__QUICK_SEARCH_OR' />
+            </Typography>
+            <Button className={classes.quickSearchButton} onClick={handleOpenQuickReplyCard}>
+                <Translate id='UI__DIALOG__QUICK_SEARCH' />
+            </Button>
+            <ChooseQuickSearchValueDialog topics={topics} open={open} onClose={handleClose} />
         </Grid>
     );
 }
@@ -96,7 +80,7 @@ const QuickSearchContainer = (props) => {
  */
 const mapStateToProps = state => {
     return {
-      topics: state.topics,
+        topics: state.topics,
     };
 };
 
