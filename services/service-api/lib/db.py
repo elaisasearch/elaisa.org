@@ -26,6 +26,15 @@ inverted_index_de_DE = db[GLOBALS["mongo"]["collections"]["inverted_index"][0]]
 inverted_index_en_EN = db[GLOBALS["mongo"]["collections"]["inverted_index"][1]]
 inverted_index_es_ES = db[GLOBALS["mongo"]["collections"]["inverted_index"][2]]
 
+# Create indices for the mongo db collections to make the query even faster
+# Sources:
+#   - https://kb.objectrocket.com/mongo-db/how-to-create-an-index-for-a-mongodb-collection-in-python-371
+#   - https://api.mongodb.com/python/current/api/pymongo/collection.html#pymongo.collection.Collection.create_index
+inverted_index_de_DE.create_index("word")
+inverted_index_en_EN.create_index("word")
+inverted_index_es_ES.create_index("word")
+
+
 # Different user collections
 users = db[GLOBALS["mongo"]["collections"]["user"][0]]
 search_history = db[GLOBALS["mongo"]["collections"]["user"][1]]
