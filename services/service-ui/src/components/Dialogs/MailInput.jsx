@@ -24,7 +24,7 @@ const MailInput = (props) => {
      */
     const handleSendPassword = () => {
 
-        axios.post(`http://api.elaisa.org/forgotpassword?email=${email}`, {}
+        axios.post(`https://api.elaisa.org/forgotpassword?email=${email}`, {}
         ).then((response) => {
             switch (response.data) {
                 case 'Success':
