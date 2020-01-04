@@ -171,7 +171,7 @@ const Account = (props) => {
                         />
                     </div>
                     <div className={classes.buttonWrapper}>
-                        <Button variant="contained" onClick={e => handleChangeButton(email)} disabled={loading}>
+                        <Button variant="contained" onClick={e => handleChangeButton(email)} disabled={loading || oldPass === newPass || oldPass.length === 0 || newPass.length === 0}>
                             <Translate id='UI__USER__ACCOUNT_PAGE__CHANGE_PASSWORD__BUTTON' />
                         </Button>
                         {loading && <CircularProgress size={24} className={classes.buttonProgress} />}
