@@ -101,7 +101,7 @@ const Resume = props => {
           </View>
           <Experience level={level} language={language}/>
         </View>
-        <Text style={styles.footer}>Elaisa - Language Level Search Engine - All rights reserverd - 2019</Text>
+        <Text style={styles.footer}>Elaisa - Language Level Search Engine - All rights reserved - 2020</Text>
       </Page>
     </Document>
   );
