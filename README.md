@@ -18,4 +18,4 @@ Then let us know in an email with some information about your profile. As an Ope
 
 ## History
 
-Elaisa was developed during a master seminar and thesis at [Heinrich-Heine-Univerisity Dusseldorf](./docs/run-application.md) in the department of [Information Science](http://www.isi.hhu.de/en/departments/department-of-information-science.html).
+Elaisa was developed during a master seminar and thesis at [Heinrich-Heine-Univerisity Dusseldorf](https://www.hhu.de) in the department of [Information Science](http://www.isi.hhu.de/en/departments/department-of-information-science.html).
