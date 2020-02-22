@@ -11,6 +11,7 @@ import datetime
 import pickle
 import string
 import random
+from datetime import datetime
 from .mail import sendEmail
 from .globals import GLOBALS
 from .db import client, MongoEncoder, users, search_history
@@ -141,6 +142,18 @@ def handleForgotPassword(email: str) -> dict:
     except:
         return False
 
+def sendPasswordToken(email: str):
+    """
+    Sends the user a passwordToken via mail to change define a new password within 10 minutes
+    :email: String
+    """
+
+    tokenData: str = "{} {}".format(email, datetime.now())
+
+    passwordToken: str = "{} {}".format(
+        tokenData,
+        bcrypt.hashpw(tokenData.encode('utf-8'), bcrypt.gensalt(14))
+    )
 
 def randomString(stringLength: int) -> str:
     """
