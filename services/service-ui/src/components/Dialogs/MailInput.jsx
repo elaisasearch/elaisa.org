@@ -9,6 +9,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { Translate } from 'react-localize-redux';
 import axios from 'axios';
+import globals from '../../globals.json';
 
 
 const MailInput = (props) => {
@@ -24,10 +25,10 @@ const MailInput = (props) => {
      */
     const handleSendPassword = () => {
 
-        axios.post(`https://api.elaisa.org/forgotpassword?email=${email}`, {}
+        axios.post(`https://api.elaisa.org/forgotpassword?email=${email}&key=${globals['api']['x-api-key']}`, {}
         ).then((response) => {
-            switch (response.data) {
-                case 'Success':
+            switch (response.data.result.message) {
+                case 'success':
                     setShowResponseMessage(true)
                     setResponseMessageVariant('success')
                     setTimeout(() => {
