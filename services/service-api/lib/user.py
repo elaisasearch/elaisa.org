@@ -142,6 +142,7 @@ def handleForgotPassword(email: str) -> dict:
     except:
         return False
 
+# TODO: Send password reset token to provide better security.
 def sendPasswordToken(email: str):
     """
     Sends the user a passwordToken via mail to change define a new password within 10 minutes
