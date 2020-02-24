@@ -7,7 +7,8 @@ from bottle import Bottle, request, response, run, template
 # import lib files
 from lib.search import findDocuments, getIdsFromWord, getListOfSearchTerms, getWordsFromInvertedIndex, getMostCommonWordsFromInvertedIndex
 from lib.wikipedia import getWikiEntry
-from lib.user import createUser, getSearchHistoryForUser, handlePasswordChange, loginUser, writeSearchDataIntoDatabase, handleForgotPassword
+from lib.user import createUser, getSearchHistoryForUser, loginUser, writeSearchDataIntoDatabase
+from lib.password import handlePasswordChange, handleForgotPassword, sendPasswordToken
 from lib.nlp import extractNamedEntities, lemmatizeSearchQuery, checkSpelling
 from lib.globals import GLOBALS, API_KEY
 
@@ -279,7 +280,7 @@ def forgotPassword() -> str:
             "error": "API-KEY is wrong or missing. See https://github.com/dasmemeteam/language-level-search-engine/blob/master/bin/README.md for more information."
         }
 
-    changedForgottenPassword = handleForgotPassword(email)
+    changedForgottenPassword = sendPasswordToken(email)
 
     if changedForgottenPassword == "Mail not found":
         response.status = 404
