@@ -9,6 +9,10 @@ If you want to connect to your own database or API, you have to follow this temp
     "api": {
         "x-api-key": ""
     },
+    "redis": {
+        "host": "host",
+        "port": "6379"
+    },
     "mongo": {
         "auth": {
             "host": "example.com:27017",
