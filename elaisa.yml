@@ -1,6 +1,18 @@
 version: "3.5"
 
 services: 
+
+  # redis cache store
+  cache:
+    image: redis:6.0-rc1-alpine
+    # when you restart Redis it will re-play the AOF to rebuild the state.
+    # source: https://redis.io/topics/persistence
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - 'redis:/data/cache'
+    networks:
+      - database
+
   # mongo database
   db:
     image: mongo:4.0.3
@@ -127,6 +139,8 @@ networks:
 # persist on the host and will survive restarts of containers
 # - docker volume create mongodb
 volumes:
+  redis:
+    external: true
   mongodb:
     external: true
   # stores time-series db for metrics
