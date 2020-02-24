@@ -12,6 +12,7 @@ import pickle
 import string
 import random
 from datetime import datetime
+import redis
 from .mail import sendEmail
 from .globals import GLOBALS
 from .db import client, MongoEncoder, users, search_history
@@ -149,12 +150,24 @@ def sendPasswordToken(email: str):
     :email: String
     """
 
+    # Connect to Redis cache to store passwordToken temporary
+    redisServer = redis.Redis(
+        host = GLOBALS["redis"]["host"],
+        port = GLOBALS["redis"]["port"],
+        db = 0
+    )
+
     tokenData: str = "{} {}".format(email, datetime.now())
 
     passwordToken: str = "{} {}".format(
         tokenData,
         bcrypt.hashpw(tokenData.encode('utf-8'), bcrypt.gensalt(14))
     )
+
+    # Store the created passwordToken to the redis cache. Make it unique with the user's email address.
+    redisServer.set('passwordToken_{}'.format(email), passwordToken)
+    # Delete the passwordToken after 10 minutes
+    redisServer.expire('passwordToken_{}'.format(email), 600)
 
 def randomString(stringLength: int) -> str:
     """
