@@ -17,29 +17,21 @@ const useStyles = makeStyles({
         background: theme.palette.background.default,
         minHeight: '100vh'
     }),
-    accountView: {
+    resetView: {
         marginTop: isMobile ? '10%' : '2%',
         height: isMobile ? '70vh' : null
     },
-    accountPaper: {
+    resetPaper: {
         display: 'flex',
         flexDirection: 'column',
-        height: isMobile ? '100%' : '80vh',
+        height: isMobile ? '100%' : '50vh',
         width: isMobile ? '100%' : '50vw',
         alignItems: 'center',
         boxShadow: isMobile ? 'none' : null
         
     },
-    accountLogo: {
-        width: '100px',
-        height: '100px',
-        marginTop: '5%'
-    },
-    accountName: {
-        marginTop: isMobile ? '10%' : '5%'
-    },
-    accountEmail: {
-        marginTop: '2%'
+    resetTitle: {
+        marginTop: '10%'
     },
     passwordDiv: {
         marginTop: '10%',
@@ -121,9 +113,9 @@ const ResetPassword = (props) => {
         />
         <NavigationBar loggedIn={false} />
         <Divider />
-        <Grid container direction='column' alignItems='center' className={classes.accountView}>
-            <Paper className={classes.accountPaper}>
-                <Typography variant="h3" color="textSecondary" component="h3" className={classes.accountName}>
+        <Grid container direction='column' alignItems='center' className={classes.resetView}>
+            <Paper className={classes.resetPaper}>
+                <Typography variant="h3" color="textSecondary" component="h3" className={classes.resetTitle}>
                     <Translate id='UI__USER__ACCOUNT_PAGE__CHANGE_PASSWORD' />
                 </Typography>
                 <Grid 
