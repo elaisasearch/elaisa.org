@@ -326,7 +326,7 @@ def resetPassword() -> str:
     
     if resetResponse == "Mail not found":
         response.status = 404
-        message = "error. Mail not found"
+        message = "error: Mail not found"
     elif resetResponse == True:
         message = "success"
     else:
