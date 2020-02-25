@@ -141,11 +141,17 @@ const SignIn = (props) => {
                     variant = message;
                     props.enqueueSnackbar(`Successfully logged in user ${email}`, { variant });
                 }
+                else {
+                    setLoading(false);
+
+                    variant = 'error';
+                    props.enqueueSnackbar('Password or username is incorrect', { variant });    
+                }
             }).catch((error) => {
                 setLoading(false);
 
                 variant = 'error';
-                props.enqueueSnackbar('Password or Username incorrect', { variant });
+                props.enqueueSnackbar('An unexpected error occured. Please try again later.', { variant });
             });
     }
 
