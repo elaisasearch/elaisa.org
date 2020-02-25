@@ -149,7 +149,7 @@ const ResetPassword = (props) => {
                     </div>
                     <div className={classes.buttonWrapper}>
                         <Button variant="contained" onClick={e => handleChangeButton()} disabled={loading || newPass !== newPassSecond || newPass.length === 0 || newPassSecond.length === 0}>
-                            <Translate id='UI__USER__ACCOUNT_PAGE__CHANGE_PASSWORD__BUTTON' />
+                            <Translate id='UI__USER__RESETPW_PAGE__CHANGE_PASSWORD__BUTTON' />
                         </Button>
                         {loading && <CircularProgress size={24} className={classes.buttonProgress} />}
                     </div>
