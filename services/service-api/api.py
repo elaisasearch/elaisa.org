@@ -8,7 +8,7 @@ from bottle import Bottle, request, response, run, template
 from lib.search import findDocuments, getIdsFromWord, getListOfSearchTerms, getWordsFromInvertedIndex, getMostCommonWordsFromInvertedIndex
 from lib.wikipedia import getWikiEntry
 from lib.user import createUser, getSearchHistoryForUser, loginUser, writeSearchDataIntoDatabase
-from lib.password import handlePasswordChange, handleForgotPassword, sendPasswordToken
+from lib.password import changePasswordHandler, resetPasswordHandler, sendResetPasswordToken
 from lib.nlp import extractNamedEntities, lemmatizeSearchQuery, checkSpelling
 from lib.globals import GLOBALS, API_KEY
 
@@ -245,16 +245,24 @@ def changePassword() -> str:
             "error": "API-KEY is wrong or missing. See https://github.com/dasmemeteam/language-level-search-engine/blob/master/bin/README.md for more information."
         }
 
-    changedPassword: bool = handlePasswordChange(email, oldPass, newPass)
+    changedPasswordResponse: bool = changePasswordHandler(email, oldPass, newPass)
 
-    if changedPassword: 
+    if changedPasswordResponse == "Old password incorrect":
+        response.status = 500
+        return {
+            "result": {
+                "email": email,
+                "message": "error: Old password is incorrect."
+            }
+        }
+    elif changedPasswordResponse == True: 
         return {
             "result": {
                 "email": email,
                 "message": "success"
             }
         }
-    else: 
+    else:
         response.status = 500
         return {
             "result": {
@@ -262,6 +270,7 @@ def changePassword() -> str:
                 "message": "error"
             }
         }
+
 
 
 @app.route('/forgotpassword', method=["OPTIONS", "POST"])
@@ -280,12 +289,45 @@ def forgotPassword() -> str:
             "error": "API-KEY is wrong or missing. See https://github.com/dasmemeteam/language-level-search-engine/blob/master/bin/README.md for more information."
         }
 
-    changedForgottenPassword = sendPasswordToken(email)
+    sentResetPasswordToken: bool = sendResetPasswordToken(email)
+    
+    if sentResetPasswordToken == True:
+        message = "success"
+    else:
+        response.status = 500
+        message = "error"
 
-    if changedForgottenPassword == "Mail not found":
+    return {
+        "result": {
+            "email": email,
+            "message": message
+        }
+    }
+
+@app.route('/resetpassword', method=["OPTIONS", "POST"])
+def resetPassword() -> str:
+    """
+    Changes the user's password with the new user's input. First, the method checks the old password (coming soon).
+    :email: String
+    :newPass: String
+    :return: String
+    """
+    email: str = request.params.get('email')
+    newPass: str = request.params.get('newpassword')
+
+    # Check API Key
+    if str(request.params.get('key')) != API_KEY:
+        response.status = 401
+        return {
+            "error": "API-KEY is wrong or missing. See https://github.com/dasmemeteam/language-level-search-engine/blob/master/bin/README.md for more information."
+        }
+
+    resetResponse = resetPasswordHandler(email, newPass)
+    
+    if resetResponse == "Mail not found":
         response.status = 404
-        message = "Mail not found"
-    elif changedForgottenPassword == True:
+        message = "error. Mail not found"
+    elif resetResponse == True:
         message = "success"
     else:
         response.status = 500
