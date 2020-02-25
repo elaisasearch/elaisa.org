@@ -109,13 +109,17 @@ const Account = (props) => {
                     variant = message;
                     props.enqueueSnackbar(`Successfully changed password for ${email}`, { variant });
                 } else {
-                    variant = message;
-                    props.enqueueSnackbar('The old password is wrong', { variant });
+                    variant = 'error';
+                    props.enqueueSnackbar(`The old password is incorrect. If you don't know your password anymore, logout and reset it.`, { variant });
                 }
-            }).catch((error) => {
+            })
+            .catch((error) => {
+                console.log(error)
                 variant = "error";
-                props.enqueueSnackbar(error.message, { variant });
-            });
+                props.enqueueSnackbar('The old password is wrong', { variant });
+
+                setLoading(false);
+            })
     }
 
 
