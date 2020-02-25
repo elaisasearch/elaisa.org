@@ -257,7 +257,6 @@ def changePassword() -> str:
     changedPasswordResponse: bool = changePasswordHandler(email, oldPass, newPass)
 
     if changedPasswordResponse == "Old password incorrect":
-        response.status = 500
         return {
             "result": {
                 "email": email,
