@@ -74,10 +74,9 @@ def loginUser(email: str, password: str) -> str:
         else:
             userObject = {
                 "email": email,
-                "message": "error",
+                "message": "error: Password is incorrect",
                 "user": {}
             }
-
     return json.dumps(userObject, cls=MongoEncoder)
 
 

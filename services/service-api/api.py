@@ -218,11 +218,20 @@ def signIn() -> dict:
     loginResponse: str = loginUser(email, password)
     result: dict = json.loads(loginResponse)
 
-    if result["message"] == "error": response.status = 500
-        
-    return {
-        "result": result
-    }
+    try:
+        if result["message"] == "error": response.status = 500
+
+        return {
+            "result": result
+        }
+    except:
+        return {
+            "result": {
+                "email": email,
+                "message": "error: Mail not found",
+                "user": {}
+            }
+        }
 
 
 @app.route('/changepassword', method=["OPTIONS", "POST"])
