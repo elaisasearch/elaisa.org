@@ -16,6 +16,7 @@ import SignIn from './views/SignIn';
 import SignUp from './views/SignUp';
 import Account from './views/Account';
 import Profile from './views/Profile';
+import ResetPassword from './views/ResetPassword';
 import TranslationWrapper from './TranslationWrapper';
 import Bookmarks from './views/Bookmarks';
 import ThemeWrapper from './ThemeWrapper';
@@ -63,6 +64,7 @@ ReactDOM.render(
                             <Route path='/signup' component={SignUp} />
                             <Route path='/signin' component={SignIn} />
                             <Route path='/results' component={Results} />
+                            <Route path='/resetpw/:passwordToken' component={ResetPassword} />
                             <Route path='/' exact component={App} />
                             <Route component={Page404} />
                         </Switch>
