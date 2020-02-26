@@ -105,7 +105,7 @@ def sendResetPasswordToken(email: str):
         <html>
             <body>
                 <p>Hello Elaisa user,<br><br>
-                Since you forgot your password, we send you a link to generate a new one.
+                Since you forgot your password, we send you a link to generate a new one.<br>
                 The link is only available for 10 minutes!<br><br>
                 <a href="https://elaisa.org/resetpw/{passwordToken}">Reset your password</a>
                 <br><br>
