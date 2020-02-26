@@ -313,14 +313,14 @@ def forgotPassword() -> str:
     }
 
 @app.route('/resetpassword', method=["OPTIONS", "POST"])
-def resetPassword() -> str:
+def resetPassword() -> dict:
     """
     Changes the user's password with the new user's input. First, the method checks the old password (coming soon).
-    :email: String
+    :passwordtoken: String
     :newPass: String
     :return: String
     """
-    email: str = request.params.get('email')
+    passwordToken: str = request.params.get('passwordtoken')
     newPass: str = request.params.get('newpassword')
 
     # Check API Key
@@ -330,22 +330,12 @@ def resetPassword() -> str:
             "error": "API-KEY is wrong or missing. See https://github.com/dasmemeteam/language-level-search-engine/blob/master/bin/README.md for more information."
         }
 
-    resetResponse = resetPasswordHandler(email, newPass)
+    resetResponse: dict = resetPasswordHandler(passwordToken, newPass)
     
-    if resetResponse == "Mail not found":
-        response.status = 404
-        message = "error: Mail not found"
-    elif resetResponse == True:
-        message = "success"
-    else:
-        response.status = 500
-        message = "error"
+    if resetResponse["message"] == "error": response.status = 500
 
     return {
-        "result": {
-            "email": email,
-            "message": message
-        }
+        "result": resetResponse
     }
 
 

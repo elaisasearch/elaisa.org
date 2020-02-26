@@ -35,27 +35,48 @@ def changePasswordHandler(email: str, oldPass: str, newPass: str) -> str:
             return "Old password incorrect"
 
 
-def resetPasswordHandler(email: str, newPass: str) -> str:
+def resetPasswordHandler(passwordToken: str, newPass: str) -> dict:
     """
     Resets the password for the user in the database (hashed).
-    :email: String
+    :passwordToken: String
     :newPass: String
     :return: String
     """
     col = users
+    message = ""
 
-    # Set the new password
-    newPass_hash = bcrypt.hashpw(newPass.encode('utf-8'), bcrypt.gensalt(14))
+    # Connect to Redis
+    redisServer = redis.Redis(
+        host = GLOBALS["redis"]["host"],
+        port = GLOBALS["redis"]["port"],
+        db = 0
+    )
 
-    try:
-        updatedAccount = col.update_one({"email": email}, {"$set": {"password": newPass_hash}})
-            
-        if updatedAccount.matched_count == 0:
-            return "Mail not found"
-        else: 
-            return True
-    except:
-        return False
+    # Get email address from passwordToken. Values are stored as byte strings (decode)
+    # key: passwordToken
+    # value: user email
+    email = redisServer.get(passwordToken).decode('utf-8')
+
+    if email != None:
+        # Set the new password
+        newPass_hash = bcrypt.hashpw(newPass.encode('utf-8'), bcrypt.gensalt(14))
+        try:
+            updatedAccount = col.update_one({"email": email}, {"$set": {"password": newPass_hash}})
+                
+            if updatedAccount.matched_count == 0:
+               message = "error: Mail not found"
+            else: 
+               message = "success"
+        except:
+            message = "error"
+    else:
+        message = "error: Token expired"
+    
+    return {
+        "email": email,
+        "passwordToken": passwordToken,
+        "message": message
+    }
 
 
 def sendResetPasswordToken(email: str):
