@@ -44,6 +44,7 @@ def resetPasswordHandler(passwordToken: str, newPass: str) -> dict:
     """
     col = users
     message = ""
+    email = ""
 
     # Connect to Redis
     redisServer = redis.Redis(
@@ -58,7 +59,7 @@ def resetPasswordHandler(passwordToken: str, newPass: str) -> dict:
     emailByteObj = redisServer.get(passwordToken)
 
     if emailByteObj != None:
-        
+
         # If token is not expired, decode the byte string to get the email address
         email = emailByteObj.decode('utf-8')
 
