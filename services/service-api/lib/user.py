@@ -91,7 +91,7 @@ def writeSearchDataIntoDatabase(query: str, level: str, language: str, email: st
     """
     col = search_history
 
-    date: str = datetime.datetime.now().strftime("%d.%m.%Y %H:%M")
+    date: str = datetime.now().strftime("%d.%m.%Y %H:%M")
 
     try:
         col.insert_one({
