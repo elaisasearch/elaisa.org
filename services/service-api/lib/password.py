@@ -55,9 +55,13 @@ def resetPasswordHandler(passwordToken: str, newPass: str) -> dict:
     # Get email address from passwordToken. Values are stored as byte strings (decode)
     # key: passwordToken
     # value: user email
-    email = redisServer.get(passwordToken).decode('utf-8')
+    emailByteObj = redisServer.get(passwordToken)
 
-    if email != None:
+    if emailByteObj != None:
+        
+        # If token is not expired, decode the byte string to get the email address
+        email = emailByteObj.decode('utf-8')
+
         # Set the new password
         newPass_hash = bcrypt.hashpw(newPass.encode('utf-8'), bcrypt.gensalt(14))
         try:
