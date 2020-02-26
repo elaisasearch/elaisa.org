@@ -10,7 +10,7 @@ import { makeStyles, withTheme } from '@material-ui/styles';
 import { isMobile } from 'react-device-detect';
 import globals from '../globals.json';
 import { green } from '@material-ui/core/colors';
-import { useParams } from 'react-router-dom';
+import { useParams, withRouter } from 'react-router-dom';
 
 const useStyles = makeStyles({
     accountRoot: theme => ({
@@ -80,7 +80,7 @@ const ResetPassword = (props) => {
 
         setLoading(true);
 
-        axios.post(`https://api.elaisa.org/resetpassword?newpassword=${newPass}&email=''&key=${globals['api']['x-api-key']}`, {})
+        axios.post(`https://api.elaisa.org/resetpassword?passwordtoken=${passwordToken}&newpassword=${newPass}&key=${globals['api']['x-api-key']}`, {})
             .then((response) => {
                 const { data } = response;
                 const { result } = data;
@@ -91,14 +91,31 @@ const ResetPassword = (props) => {
                 if (message === 'success') {
                     variant = message;
                     props.enqueueSnackbar(`Successfully changed password for ${email}`, { variant });
-                } else {
+                
+                    setTimeout(() => {
+                        // navigate to App.js
+                        props.history.push({
+                            pathname: "/"
+                        });
+                    }, 2000)
+                } else if (message === 'error: Mail not found') {
                     variant = 'error';
-                    props.enqueueSnackbar(`The old password is incorrect. If you don't know your password anymore, logout and reset it.`, { variant });
+                    props.enqueueSnackbar(`You tried to reset the password for an invalid E-Mail address: ${email}`, { variant });
+                } else if (message === 'error: Token expired') {
+                    variant = 'error';
+                    props.enqueueSnackbar(`You waited longer than 10 minutes. The token is expired. Please try again.`, { variant });
+
+                    setTimeout(() => {
+                        // navigate to App.js
+                        props.history.push({
+                            pathname: "/signin"
+                        });
+                    }, 2000)
                 }
             })
             .catch((error) => {
                 variant = "error";
-                props.enqueueSnackbar('The old password is wrong', { variant });
+                props.enqueueSnackbar(error.message, { variant });
 
                 setLoading(false);
             })
@@ -160,7 +177,7 @@ const ResetPassword = (props) => {
     </div>
 }
 
-const ResetPasswordSnackBar = withSnackbar(withTheme(ResetPassword));
+const ResetPasswordSnackBar = withSnackbar(withRouter(withTheme(ResetPassword)));
 
 /**
  * Adds Notification Snack Bar.
