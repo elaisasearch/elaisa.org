@@ -1,3 +1,11 @@
 # Architecture
 
-![Architecture](./figures/LanguageLevelSearchEngine.jpg)
+![Architecture](./figures/architecture.jpg)
+
+# Web Crawler
+
+![WebCrawler](./figures/webcrawler.jpg)
+
+# Database
+
+![Database](./figures/databasemodel.png)
