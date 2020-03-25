@@ -16,6 +16,9 @@ info@elaisa.org
 **You want to help Elaisa to get bigger and more powerful?**\
 Then let us know in an email with some information about your profile. As an Open-Source community, we want to use the knowledge of every person who is interested. BECOME ONE OF US!
 
-## History
+## Publications
 
-Elaisa was developed during a master seminar and thesis at [Heinrich-Heine-Univerisity Dusseldorf](https://www.hhu.de) in the department of [Information Science](http://www.isi.hhu.de/en/departments/department-of-information-science.html).
+Elaisa was developed during a master seminar and thesis at [Heinrich-Heine-Univerisity Dusseldorf](https://www.hhu.de) in the department of [Information Science](http://www.isi.hhu.de/en/departments/department-of-information-science.html). To get a theoretical overview and introduction to the topic of developing search engines, the master thesis is published as open source paper:
+
+- https://doi.org/10.5281/zenodo.3727043
+
