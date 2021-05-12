@@ -13,7 +13,7 @@
     "clsx": "^1.0.4",
     "history": "^4.9.0",
     "moment": "^2.24.0",
-    "nodemailer": "^6.3.0",
+    "nodemailer": "^6.4.16",
     "notistack": "^0.8.5",
     "react": "^16.12.0",
     "react-autosuggest": "^9.4.3",
